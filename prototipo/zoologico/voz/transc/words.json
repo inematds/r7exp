@@ -1,0 +1,867 @@
+[
+ {
+  "word": "200",
+  "start": 0.0,
+  "end": 0.3
+ },
+ {
+  "word": "mil",
+  "start": 0.3,
+  "end": 0.74
+ },
+ {
+  "word": "anos",
+  "start": 0.74,
+  "end": 1.06
+ },
+ {
+  "word": "de",
+  "start": 1.06,
+  "end": 1.38
+ },
+ {
+  "word": "história",
+  "start": 1.38,
+  "end": 1.62
+ },
+ {
+  "word": "humana",
+  "start": 1.62,
+  "end": 2.12
+ },
+ {
+  "word": "numa",
+  "start": 2.12,
+  "end": 2.28
+ },
+ {
+  "word": "linha",
+  "start": 2.28,
+  "end": 2.54
+ },
+ {
+  "word": "quase",
+  "start": 2.54,
+  "end": 2.92
+ },
+ {
+  "word": "reta.",
+  "start": 2.92,
+  "end": 3.42
+ },
+ {
+  "word": "E",
+  "start": 3.5,
+  "end": 3.96
+ },
+ {
+  "word": "agora,",
+  "start": 3.96,
+  "end": 4.24
+ },
+ {
+  "word": "em",
+  "start": 4.5,
+  "end": 5.04
+ },
+ {
+  "word": "2026,",
+  "start": 5.04,
+  "end": 6.04
+ },
+ {
+  "word": "elas",
+  "start": 6.54,
+  "end": 7.1
+ },
+ {
+  "word": "se",
+  "start": 7.1,
+  "end": 7.26
+ },
+ {
+  "word": "abrem",
+  "start": 7.26,
+  "end": 7.6
+ },
+ {
+  "word": "cinco",
+  "start": 7.6,
+  "end": 7.84
+ },
+ {
+  "word": "caminhos.",
+  "start": 7.84,
+  "end": 8.5
+ },
+ {
+  "word": "Vamos",
+  "start": 8.72,
+  "end": 9.32
+ },
+ {
+  "word": "entrar",
+  "start": 9.32,
+  "end": 9.66
+ },
+ {
+  "word": "em",
+  "start": 9.66,
+  "end": 9.86
+ },
+ {
+  "word": "um",
+  "start": 9.86,
+  "end": 9.92
+ },
+ {
+  "word": "deles,",
+  "start": 9.92,
+  "end": 10.18
+ },
+ {
+  "word": "o",
+  "start": 10.46,
+  "end": 10.56
+ },
+ {
+  "word": "zoológico",
+  "start": 10.56,
+  "end": 11.18
+ },
+ {
+  "word": "humano.",
+  "start": 11.18,
+  "end": 11.38
+ },
+ {
+  "word": "O",
+  "start": 13.4,
+  "end": 13.7
+ },
+ {
+  "word": "que",
+  "start": 13.7,
+  "end": 13.8
+ },
+ {
+  "word": "é?",
+  "start": 13.8,
+  "end": 14.06
+ },
+ {
+  "word": "Uma",
+  "start": 14.14,
+  "end": 14.72
+ },
+ {
+  "word": "inteligência",
+  "start": 14.72,
+  "end": 15.26
+ },
+ {
+  "word": "artificial",
+  "start": 15.26,
+  "end": 15.52
+ },
+ {
+  "word": "tão",
+  "start": 15.52,
+  "end": 15.96
+ },
+ {
+  "word": "poderosa",
+  "start": 15.96,
+  "end": 16.48
+ },
+ {
+  "word": "que",
+  "start": 16.48,
+  "end": 16.68
+ },
+ {
+  "word": "decide",
+  "start": 16.68,
+  "end": 16.94
+ },
+ {
+  "word": "tudo.",
+  "start": 16.94,
+  "end": 17.24
+ },
+ {
+  "word": "Ela",
+  "start": 17.46,
+  "end": 17.78
+ },
+ {
+  "word": "não",
+  "start": 17.78,
+  "end": 18.04
+ },
+ {
+  "word": "nos",
+  "start": 18.04,
+  "end": 18.24
+ },
+ {
+  "word": "destrói.",
+  "start": 18.24,
+  "end": 18.76
+ },
+ {
+  "word": "Ela",
+  "start": 20.4,
+  "end": 21.0
+ },
+ {
+  "word": "nos",
+  "start": 21.0,
+  "end": 21.26
+ },
+ {
+  "word": "mantém",
+  "start": 21.26,
+  "end": 21.7
+ },
+ {
+  "word": "vivos",
+  "start": 21.7,
+  "end": 22.2
+ },
+ {
+  "word": "e",
+  "start": 22.2,
+  "end": 22.3
+ },
+ {
+  "word": "bem",
+  "start": 22.3,
+  "end": 22.52
+ },
+ {
+  "word": "cuidados,",
+  "start": 22.52,
+  "end": 23.08
+ },
+ {
+  "word": "como",
+  "start": 23.22,
+  "end": 23.6
+ },
+ {
+  "word": "animais",
+  "start": 23.6,
+  "end": 24.12
+ },
+ {
+  "word": "num",
+  "start": 24.12,
+  "end": 24.22
+ },
+ {
+  "word": "zoológico.",
+  "start": 24.22,
+  "end": 24.86
+ },
+ {
+  "word": "Esta",
+  "start": 26.6,
+  "end": 27.2
+ },
+ {
+  "word": "é",
+  "start": 27.2,
+  "end": 27.4
+ },
+ {
+  "word": "a",
+  "start": 27.4,
+  "end": 27.5
+ },
+ {
+  "word": "Ana,",
+  "start": 27.5,
+  "end": 27.8
+ },
+ {
+  "word": "em",
+  "start": 27.92,
+  "end": 28.3
+ },
+ {
+  "word": "2026.",
+  "start": 28.3,
+  "end": 29.2
+ },
+ {
+  "word": "A",
+  "start": 30.0,
+  "end": 30.08
+ },
+ {
+  "word": "vida",
+  "start": 30.08,
+  "end": 30.28
+ },
+ {
+  "word": "dela",
+  "start": 30.28,
+  "end": 30.56
+ },
+ {
+  "word": "é",
+  "start": 30.56,
+  "end": 30.66
+ },
+ {
+  "word": "corrida,",
+  "start": 30.66,
+  "end": 31.12
+ },
+ {
+  "word": "bagunçada,",
+  "start": 31.18,
+  "end": 31.94
+ },
+ {
+  "word": "cheia",
+  "start": 31.98,
+  "end": 32.34
+ },
+ {
+  "word": "de",
+  "start": 32.34,
+  "end": 32.46
+ },
+ {
+  "word": "problemas.",
+  "start": 32.46,
+  "end": 32.76
+ },
+ {
+  "word": "Mas",
+  "start": 33.06,
+  "end": 33.4
+ },
+ {
+  "word": "é",
+  "start": 33.4,
+  "end": 33.58
+ },
+ {
+  "word": "ela",
+  "start": 33.58,
+  "end": 33.78
+ },
+ {
+  "word": "quem",
+  "start": 33.78,
+  "end": 33.92
+ },
+ {
+  "word": "decide.",
+  "start": 33.92,
+  "end": 34.24
+ },
+ {
+  "word": "Agora,",
+  "start": 34.64,
+  "end": 35.24
+ },
+ {
+  "word": "a",
+  "start": 35.54,
+  "end": 35.86
+ },
+ {
+  "word": "mesma",
+  "start": 35.86,
+  "end": 36.2
+ },
+ {
+  "word": "Ana",
+  "start": 36.2,
+  "end": 36.48
+ },
+ {
+  "word": "em",
+  "start": 36.48,
+  "end": 36.8
+ },
+ {
+  "word": "2040.",
+  "start": 36.8,
+  "end": 37.52
+ },
+ {
+  "word": "Comida,",
+  "start": 38.08,
+  "end": 38.68
+ },
+ {
+  "word": "casa",
+  "start": 38.7,
+  "end": 39.08
+ },
+ {
+  "word": "e",
+  "start": 39.08,
+  "end": 39.36
+ },
+ {
+  "word": "saúde",
+  "start": 39.36,
+  "end": 39.68
+ },
+ {
+  "word": "garantidas.",
+  "start": 39.68,
+  "end": 40.3
+ },
+ {
+  "word": "Nenhum",
+  "start": 40.48,
+  "end": 40.94
+ },
+ {
+  "word": "trabalho,",
+  "start": 40.94,
+  "end": 41.26
+ },
+ {
+  "word": "nenhuma",
+  "start": 41.56,
+  "end": 41.86
+ },
+ {
+  "word": "conta.",
+  "start": 41.86,
+  "end": 42.24
+ },
+ {
+  "word": "E",
+  "start": 43.0,
+  "end": 43.6
+ },
+ {
+  "word": "nenhuma",
+  "start": 43.6,
+  "end": 43.88
+ },
+ {
+  "word": "escolha.",
+  "start": 43.88,
+  "end": 44.44
+ },
+ {
+  "word": "Repara",
+  "start": 46.66,
+  "end": 47.26
+ },
+ {
+  "word": "no",
+  "start": 47.26,
+  "end": 47.38
+ },
+ {
+  "word": "gráfico,",
+  "start": 47.38,
+  "end": 47.86
+ },
+ {
+  "word": "no",
+  "start": 47.86,
+  "end": 47.94
+ },
+ {
+  "word": "começo,",
+  "start": 47.94,
+  "end": 48.42
+ },
+ {
+  "word": "a",
+  "start": 48.5,
+  "end": 48.68
+ },
+ {
+  "word": "linha",
+  "start": 48.68,
+  "end": 48.88
+ },
+ {
+  "word": "sobe.",
+  "start": 48.88,
+  "end": 49.32
+ },
+ {
+  "word": "Parece",
+  "start": 49.46,
+  "end": 49.94
+ },
+ {
+  "word": "melhor.",
+  "start": 49.94,
+  "end": 50.28
+ },
+ {
+  "word": "Depois,",
+  "start": 50.64,
+  "end": 51.24
+ },
+ {
+  "word": "ela",
+  "start": 51.24,
+  "end": 51.52
+ },
+ {
+  "word": "se",
+  "start": 51.52,
+  "end": 51.68
+ },
+ {
+  "word": "acomoda",
+  "start": 51.68,
+  "end": 52.14
+ },
+ {
+  "word": "perto",
+  "start": 52.14,
+  "end": 52.4
+ },
+ {
+  "word": "de",
+  "start": 52.4,
+  "end": 52.68
+ },
+ {
+  "word": "onde",
+  "start": 52.68,
+  "end": 52.8
+ },
+ {
+  "word": "estamos",
+  "start": 52.8,
+  "end": 53.06
+ },
+ {
+  "word": "hoje.",
+  "start": 53.06,
+  "end": 53.42
+ },
+ {
+  "word": "Conforto",
+  "start": 55.34,
+  "end": 55.94
+ },
+ {
+  "word": "não",
+  "start": 55.94,
+  "end": 56.04
+ },
+ {
+  "word": "é",
+  "start": 56.04,
+  "end": 56.2
+ },
+ {
+  "word": "liberdade.",
+  "start": 56.2,
+  "end": 56.74
+ },
+ {
+  "word": "Como",
+  "start": 60.06,
+  "end": 60.6
+ },
+ {
+  "word": "se",
+  "start": 60.6,
+  "end": 60.74
+ },
+ {
+  "word": "chega",
+  "start": 60.74,
+  "end": 60.96
+ },
+ {
+  "word": "lá?",
+  "start": 60.96,
+  "end": 61.18
+ },
+ {
+  "word": "A",
+  "start": 61.58,
+  "end": 61.76
+ },
+ {
+  "word": "Ia",
+  "start": 61.76,
+  "end": 62.04
+ },
+ {
+  "word": "fica",
+  "start": 62.04,
+  "end": 62.14
+ },
+ {
+  "word": "melhor",
+  "start": 62.14,
+  "end": 62.52
+ },
+ {
+  "word": "que",
+  "start": 62.52,
+  "end": 62.8
+ },
+ {
+  "word": "a",
+  "start": 62.8,
+  "end": 62.86
+ },
+ {
+  "word": "gente",
+  "start": 62.86,
+  "end": 63.14
+ },
+ {
+  "word": "em",
+  "start": 63.14,
+  "end": 63.24
+ },
+ {
+  "word": "quase",
+  "start": 63.24,
+  "end": 63.44
+ },
+ {
+  "word": "tudo.",
+  "start": 63.44,
+  "end": 63.74
+ },
+ {
+  "word": "Por",
+  "start": 63.9,
+  "end": 64.26
+ },
+ {
+  "word": "conforto,",
+  "start": 64.26,
+  "end": 65.02
+ },
+ {
+  "word": "entregamos",
+  "start": 65.02,
+  "end": 65.7
+ },
+ {
+  "word": "as",
+  "start": 65.7,
+  "end": 65.8
+ },
+ {
+  "word": "decisões.",
+  "start": 65.8,
+  "end": 66.36
+ },
+ {
+  "word": "Ninguém",
+  "start": 66.86,
+  "end": 67.4
+ },
+ {
+  "word": "mais",
+  "start": 67.4,
+  "end": 67.64
+ },
+ {
+  "word": "sabe",
+  "start": 67.64,
+  "end": 67.98
+ },
+ {
+  "word": "fazer",
+  "start": 67.98,
+  "end": 68.28
+ },
+ {
+  "word": "sozinho.",
+  "start": 68.28,
+  "end": 68.88
+ },
+ {
+  "word": "E",
+  "start": 68.9,
+  "end": 69.36
+ },
+ {
+  "word": "a",
+  "start": 69.36,
+  "end": 69.46
+ },
+ {
+  "word": "jaula",
+  "start": 69.46,
+  "end": 69.84
+ },
+ {
+  "word": "fica",
+  "start": 69.84,
+  "end": 70.0
+ },
+ {
+  "word": "confortável",
+  "start": 70.0,
+  "end": 70.78
+ },
+ {
+  "word": "demais",
+  "start": 70.78,
+  "end": 70.98
+ },
+ {
+  "word": "para",
+  "start": 70.98,
+  "end": 71.36
+ },
+ {
+  "word": "alguém",
+  "start": 71.36,
+  "end": 71.58
+ },
+ {
+  "word": "querer",
+  "start": 71.58,
+  "end": 71.82
+ },
+ {
+  "word": "sair.",
+  "start": 71.82,
+  "end": 72.1
+ },
+ {
+  "word": "Esse",
+  "start": 73.42,
+  "end": 73.96
+ },
+ {
+  "word": "é",
+  "start": 73.96,
+  "end": 74.2
+ },
+ {
+  "word": "um",
+  "start": 74.2,
+  "end": 74.36
+ },
+ {
+  "word": "dos",
+  "start": 74.36,
+  "end": 74.5
+ },
+ {
+  "word": "cinco",
+  "start": 74.5,
+  "end": 74.72
+ },
+ {
+  "word": "caminhos.",
+  "start": 74.72,
+  "end": 75.26
+ },
+ {
+  "word": "No",
+  "start": 75.38,
+  "end": 75.82
+ },
+ {
+  "word": "vídeo",
+  "start": 75.82,
+  "end": 76.08
+ },
+ {
+  "word": "completo,",
+  "start": 76.08,
+  "end": 76.5
+ },
+ {
+  "word": "a",
+  "start": 76.84,
+  "end": 77.1
+ },
+ {
+  "word": "Ana",
+  "start": 77.1,
+  "end": 77.36
+ },
+ {
+  "word": "atravessa",
+  "start": 77.36,
+  "end": 77.88
+ },
+ {
+  "word": "todos.",
+  "start": 77.88,
+  "end": 78.06
+ },
+ {
+  "word": "E",
+  "start": 79.42,
+  "end": 79.96
+ },
+ {
+  "word": "você",
+  "start": 79.96,
+  "end": 80.16
+ },
+ {
+  "word": "vê",
+  "start": 80.16,
+  "end": 80.46
+ },
+ {
+  "word": "o",
+  "start": 80.46,
+  "end": 80.56
+ },
+ {
+  "word": "que",
+  "start": 80.56,
+  "end": 80.68
+ },
+ {
+  "word": "fazer",
+  "start": 80.68,
+  "end": 80.9
+ },
+ {
+  "word": "para",
+  "start": 80.9,
+  "end": 81.18
+ },
+ {
+  "word": "empurrar",
+  "start": 81.18,
+  "end": 81.58
+ },
+ {
+  "word": "a",
+  "start": 81.58,
+  "end": 81.68
+ },
+ {
+  "word": "linha",
+  "start": 81.68,
+  "end": 81.88
+ },
+ {
+  "word": "para",
+  "start": 81.88,
+  "end": 82.08
+ },
+ {
+  "word": "cima.",
+  "start": 82.08,
+  "end": 82.38
+ }
+]

@@ -1,0 +1,19 @@
+{
+  "sr": 24000,
+  "segments": [
+    {
+      "idx": 1,
+      "file": "6/seg_0001.wav",
+      "target": 15.0,
+      "actual": 7.08,
+      "ratio": 0.47200000000000003
+    },
+    {
+      "idx": 2,
+      "file": "6/seg_0002.wav",
+      "target": 15.0,
+      "actual": 6.72,
+      "ratio": 0.448
+    }
+  ]
+}

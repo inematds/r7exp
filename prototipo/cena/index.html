@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Sora"; src: url("assets/fonts/sora-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Sora"; src: url("assets/fonts/sora-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-500.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-700.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Montserrat"; src: url("assets/fonts/Montserrat-Black.ttf") format("truetype"); font-weight: 900; }
+      :root { --bg:#0c0c10; --am:#FACC15; --tx:#ECECF1; --mu:#9a9aa6; --zoo:#e052e6; --red:#ff4d4d; --vd:#4ade80; }
+      * { margin:0; padding:0; box-sizing:border-box; }
+      html, body { width:1920px; height:1080px; overflow:hidden; background:var(--bg); }
+      #root { width:100%; height:100%; position:relative; font-family:Inter, sans-serif; color:var(--tx); background:var(--bg); }
+      .full { position:absolute; inset:0; }
+      .scene { position:absolute; inset:0; }
+      .in { position:absolute; inset:0; opacity:0; }
+      .opaque { background:var(--bg); }
+
+      /* mapa */
+      #cam { position:absolute; inset:0; transform-origin:1150px 640px; }
+      #mapa text { font-family:Sora, sans-serif; font-weight:700; }
+      .lbl { font-size:30px; letter-spacing:.02em; }
+      .axis { font-size:30px; fill:#f4f4f5; }
+
+      /* topo */
+      #marca { position:absolute; left:40px; top:26px; padding:8px 16px; border-radius:10px; background:rgba(12,12,16,.82); font-family:Sora; font-weight:700; font-size:24px; letter-spacing:.14em; color:var(--am); }
+      #marca span { color:var(--tx); }
+      #fonte { position:absolute; right:40px; top:28px; padding:8px 14px; border-radius:10px; background:rgba(12,12,16,.82); font-size:20px; color:#c9c9d2; }
+
+      /* titulos */
+      .big { position:absolute; font-family:Sora; font-weight:700; letter-spacing:-.01em; }
+      .chip { display:inline-block; font-family:Sora; font-weight:700; font-size:22px; letter-spacing:.14em; padding:8px 16px; border-radius:999px; }
+
+      /* legenda */
+      .cap { position:absolute; left:0; right:0; bottom:44px; text-align:center; font-family:Montserrat; font-weight:900; font-size:60px; text-transform:uppercase; opacity:0;
+             color:#fff; -webkit-text-stroke:8px #000; paint-order:stroke fill; letter-spacing:.01em; }
+      .cap b { font-weight:900; }
+
+      /* cena B */
+      .card { position:absolute; background:rgba(22,22,30,.92); border:1px solid #2c2c38; border-radius:18px; }
+      .row { display:flex; align-items:center; gap:22px; font-size:40px; font-weight:700; margin-top:30px; opacity:0; }
+      .num { flex:none; width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:Sora; font-size:28px; color:#1a1206; background:var(--am); }
+
+      /* cena C/D */
+      .foto { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+      .grad { position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,12,16,.55) 0%, rgba(12,12,16,0) 28%, rgba(12,12,16,0) 55%, rgba(12,12,16,.92) 100%); }
+      .stamp { position:absolute; left:56px; top:96px; font-family:Sora; font-weight:700; font-size:78px; line-height:1; color:#fff; text-shadow:0 4px 24px rgba(0,0,0,.6); }
+      .stamp small { display:inline-block; background:rgba(12,12,16,.85); padding:6px 12px; border-radius:8px; font-size:26px; letter-spacing:.16em; color:var(--am); margin-bottom:12px; }
+      .tag { position:absolute; font-family:Sora; font-weight:700; font-size:34px; padding:12px 24px; border-radius:12px; background:rgba(12,12,16,.85); border:2px solid #444; opacity:0; }
+      .strip { position:absolute; left:56px; right:56px; top:760px; display:flex; gap:18px; justify-content:center; }
+      .it { font-family:Sora; font-weight:700; font-size:32px; padding:16px 26px; border-radius:14px; background:rgba(12,12,16,.88); border:2px solid #333; opacity:0; display:flex; gap:12px; align-items:center; }
+      .ok { border-color:var(--vd); } .ok i { color:var(--vd); font-style:normal; }
+      .no { border-color:#666; color:#bbb; } .no i { color:#999; font-style:normal; }
+      .bad { border-color:var(--red); background:rgba(80,10,10,.9); font-size:40px; } .bad i { color:var(--red); font-style:normal; }
+
+      /* cena E */
+      #meter { position:absolute; right:80px; top:150px; width:640px; padding:30px 36px; opacity:0; }
+      .bar { height:34px; border-radius:8px; background:#22222c; margin:10px 0 22px; overflow:hidden; }
+      .bar div { height:100%; width:0%; border-radius:8px; }
+      .blab { font-family:Sora; font-weight:700; font-size:28px; letter-spacing:.1em; display:flex; justify-content:space-between; }
+
+      /* cena F */
+      .node { position:absolute; top:400px; width:380px; height:270px; padding:30px; border-radius:18px; background:rgba(18,18,26,.94); border:2px solid #2c2c38; opacity:.25; }
+      .node .n { font-family:Sora; font-weight:700; font-size:24px; color:var(--mu); letter-spacing:.14em; }
+      .node .t { font-family:Sora; font-weight:700; font-size:36px; line-height:1.18; margin-top:16px; }
+      .node .s { font-size:24px; color:var(--mu); margin-top:12px; }
+      .seta { position:absolute; top:518px; width:60px; height:34px; opacity:.2; }
+
+      /* cena G */
+      .thumb { position:absolute; width:120px; height:120px; border-radius:50%; overflow:hidden; border:4px solid var(--zoo); opacity:0; }
+      .thumb img { width:100%; height:100%; object-fit:cover; object-position:30% 30%; }
+      .q { position:absolute; width:96px; height:96px; border-radius:50%; border:3px dashed #888; display:flex; align-items:center; justify-content:center; font-family:Sora; font-weight:700; font-size:46px; color:#aaa; background:rgba(12,12,16,.9); opacity:0; }
+      #fim { position:absolute; left:0; right:0; top:330px; text-align:center; opacity:0; }
+      #fim h2 { font-family:Sora; font-weight:700; font-size:92px; color:#fff; }
+      #fim h2 em { color:var(--am); font-style:normal; }
+      .pill { display:inline-block; margin-top:36px; font-family:Sora; font-weight:700; font-size:40px; padding:16px 44px; border-radius:999px; background:var(--am); color:#1a1206; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="86" data-width="1920" data-height="1080">
+
+      <audio id="vo" src="assets/narracao.wav" data-start="0" data-duration="84.2" data-track-index="9" data-volume="1"></audio>
+
+      <!-- ===== MAPA (sempre presente; as cenas opacas cobrem) ===== -->
+      <div id="mapaClip" class="clip full" data-start="0" data-duration="86" data-track-index="0">
+        <div id="cam">
+          <svg id="mapa" width="1920" height="1080" viewBox="0 50 1920 1080">
+            <defs>
+              <filter id="glow" filterUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1200"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <mask id="mU" maskUnits="userSpaceOnUse"><path id="uMask" d="M760,680 C840,520 900,470 1040,430 S1450,300 1700,170" stroke="#fff" stroke-width="30" fill="none"/></mask>
+              <marker id="ah" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff"/></marker>
+            </defs>
+            <g id="grade" stroke="#1d1d26" stroke-width="2">
+              <path d="M220,160 H1700 M220,240 H1700 M220,320 H1700 M220,400 H1700 M220,480 H1700 M220,560 H1700 M220,640 H1700 M220,720 H1700 M220,800 H1700 M220,880 H1700"/>
+              <path d="M300,160 V900 M400,160 V900 M500,160 V900 M600,160 V900 M700,160 V900 M800,160 V900 M900,160 V900 M1000,160 V900 M1100,160 V900 M1200,160 V900 M1300,160 V900 M1400,160 V900 M1500,160 V900 M1600,160 V900 M1700,160 V900"/>
+            </g>
+            <path d="M220,900 V150" stroke="#fff" stroke-width="4" marker-end="url(#ah)"/>
+            <path d="M220,900 H1720" stroke="#fff" stroke-width="4"/>
+            <text class="axis" transform="translate(170,530) rotate(-90)" text-anchor="middle" font-size="30">LIBERDADE E SOBREVIVÊNCIA</text>
+            <text class="axis" x="300" y="955" text-anchor="middle">PASSADO</text>
+            <text class="axis" x="760" y="955" text-anchor="middle">2026</text>
+            <text class="axis" x="920" y="955" text-anchor="middle">2030</text>
+            <text class="axis" x="1300" y="955" text-anchor="middle">2040</text>
+            <text class="axis" x="1700" y="955" text-anchor="middle">2050</text>
+
+            <!-- referência HOJE (cena E) -->
+            <g id="hoje" opacity="0"><path d="M760,680 H1700" stroke="#9a9aa6" stroke-width="3" stroke-dasharray="10 10"/><text x="1700" y="712" text-anchor="end" fill="#9a9aa6" font-size="26">NÍVEL DE HOJE</text></g>
+
+            <path id="lHist" d="M220,680 L760,680" stroke="#5ad1f0" stroke-width="7" fill="none" filter="url(#glow)"/>
+            <text id="tHist" x="250" y="728" fill="#5ad1f0" class="lbl" opacity="0">200 MIL ANOS DE HISTÓRIA</text>
+
+            <g id="gU" class="linha"><path id="lU" d="M760,680 C840,520 900,470 1040,430 S1450,300 1700,170" stroke="#a78bfa" stroke-width="7" stroke-dasharray="4 14" stroke-linecap="round" fill="none" mask="url(#mU)" filter="url(#glow)"/><text class="lbl" x="1700" y="258" text-anchor="end" fill="#a78bfa">UTOPIA VERDADEIRA</text></g>
+            <g id="gP" class="linha"><path id="lP" d="M760,680 C900,520 1020,380 1200,350 S1500,340 1700,340" stroke="#4ade80" stroke-width="7" fill="none" filter="url(#glow)"/><text class="lbl" x="1700" y="322" text-anchor="end" fill="#4ade80">PARAÍSO FEITO PELA IA</text></g>
+            <g id="gG" class="linha"><path id="lG" d="M760,680 C840,560 900,520 1040,520 L1700,520" stroke="#facc15" stroke-width="7" fill="none" filter="url(#glow)"/><text class="lbl" x="1700" y="502" text-anchor="end" fill="#facc15">GOVERNO MUNDIAL DA IA</text></g>
+            <g id="gZ" class="linha"><path id="lZ" d="M760,680 C830,630 880,615 940,618 S1060,650 1200,655 L1700,655" stroke="#e052e6" stroke-width="7" fill="none" filter="url(#glow)"/><text id="tZ" class="lbl" x="1700" y="637" text-anchor="end" fill="#e052e6">ZOOLÓGICO HUMANO</text></g>
+            <g id="gE" class="linha"><path id="lE" d="M760,680 C840,680 900,720 1000,800 S1200,880 1300,885 L1700,885" stroke="#ff4d4d" stroke-width="7" fill="none" filter="url(#glow)"/><text class="lbl" x="1700" y="867" text-anchor="end" fill="#ff4d4d">EXTINÇÃO TOTAL</text></g>
+
+            <g id="aqui" opacity="0">
+              <text x="610" y="500" text-anchor="middle" fill="#fff" font-size="40">ESTAMOS AQUI</text>
+              <path d="M600,520 C590,580 640,640 728,668" stroke="#fff" stroke-width="5" fill="none" marker-end="url(#ah)"/>
+            </g>
+            <circle id="dot" cx="760" cy="680" r="17" fill="#fff" filter="url(#glow)" opacity="0"/>
+
+            <!-- anotações da cena E -->
+            <g id="sobe" opacity="0"><path d="M900,600 L900,540" stroke="#e052e6" stroke-width="5" marker-end="url(#ah)"/><text x="900" y="520" text-anchor="middle" fill="#fff" font-size="30">SOBE: PARECE MELHOR</text></g>
+            <g id="acomoda" opacity="0"><text x="1380" y="585" text-anchor="middle" fill="#fff" font-size="30">…E SE ACOMODA PERTO DE HOJE</text></g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ===== CENA B — O QUE É ===== -->
+      <div id="sB" class="clip scene" data-start="12.9" data-duration="13.9" data-track-index="1">
+        <div class="in opaque" id="sBin">
+          <svg width="900" height="1080" viewBox="0 0 900 1080" style="position:absolute;left:60px;top:0">
+            <defs><filter id="glow2"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+            <!-- robô: cabeça com visor -->
+            <g id="robo" opacity="0">
+              <rect x="350" y="150" width="160" height="150" rx="60" fill="#d9dbe0"/>
+              <rect x="372" y="195" width="116" height="52" rx="26" fill="#0b0b0f"/>
+              <rect x="408" y="300" width="44" height="30" fill="#b8bac0"/>
+            </g>
+            <g id="fios" stroke="#facc15" stroke-width="3" fill="none" opacity="0.9">
+              <path class="fio" d="M430,330 L180,640"/><path class="fio" d="M430,330 L310,640"/><path class="fio" d="M430,330 L430,640"/><path class="fio" d="M430,330 L550,640"/><path class="fio" d="M430,330 L680,640"/>
+            </g>
+            <g id="gente" fill="#ECECF1">
+              <g class="p"><circle cx="180" cy="660" r="22"/><rect x="160" y="690" width="40" height="80" rx="18"/></g>
+              <g class="p"><circle cx="310" cy="660" r="22"/><rect x="290" y="690" width="40" height="80" rx="18"/></g>
+              <g class="p"><circle cx="430" cy="660" r="22"/><rect x="410" y="690" width="40" height="80" rx="18"/></g>
+              <g class="p"><circle cx="550" cy="660" r="22"/><rect x="530" y="690" width="40" height="80" rx="18"/></g>
+              <g class="p"><circle cx="680" cy="660" r="22"/><rect x="660" y="690" width="40" height="80" rx="18"/></g>
+            </g>
+            <g id="coracoes" fill="#4ade80" opacity="0">
+              <path d="M180,618 l-12,-12 a8,8 0 0 1 12,-10 a8,8 0 0 1 12,10 z"/><path d="M310,618 l-12,-12 a8,8 0 0 1 12,-10 a8,8 0 0 1 12,10 z"/><path d="M430,618 l-12,-12 a8,8 0 0 1 12,-10 a8,8 0 0 1 12,10 z"/><path d="M550,618 l-12,-12 a8,8 0 0 1 12,-10 a8,8 0 0 1 12,10 z"/><path d="M680,618 l-12,-12 a8,8 0 0 1 12,-10 a8,8 0 0 1 12,10 z"/>
+            </g>
+            <path d="M80,790 H780" stroke="#3a3a46" stroke-width="4"/>
+            <path id="cupula" d="M90,790 C90,420 770,420 770,790" stroke="#e052e6" stroke-width="8" fill="rgba(224,82,230,.06)" filter="url(#glow2)"/>
+          </svg>
+          <div class="card" style="left:1000px; top:200px; width:840px; height:640px; padding:44px 52px;">
+            <div class="chip" style="background:rgba(224,82,230,.18); color:#f0a5f3;">O QUE É</div>
+            <div style="font-family:Sora; font-weight:700; font-size:58px; margin-top:20px;">Zoológico humano</div>
+            <div class="row" id="b1"><div class="num">1</div><div>Uma IA que <span style="color:var(--am)">decide tudo</span></div></div>
+            <div class="row" id="b2"><div class="num">2</div><div>Ela <span style="color:var(--am)">não nos destrói</span></div></div>
+            <div class="row" id="b3"><div class="num">3</div><div>Nos mantém <span style="color:var(--vd)">vivos e bem cuidados</span></div></div>
+            <div class="row" id="b4"><div class="num" style="background:var(--zoo)">4</div><div>…como animais <span style="color:var(--zoo)">num zoológico</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CENA C — ANA 2026 ===== -->
+      <div id="sC" class="clip scene" data-start="26.2" data-duration="9.0" data-track-index="2">
+        <div class="in" id="sCin">
+          <div class="full" id="cImg" style="overflow:hidden"><img class="foto" id="cFoto" src="assets/ana-2026.png" alt="Ana em 2026"/></div>
+          <div class="grad"></div>
+          <div class="stamp"><small>A PERSONAGEM</small>ANA · 2026</div>
+          <div class="tag" id="c1" style="left:120px; top:720px;">corrida</div>
+          <div class="tag" id="c2" style="left:340px; top:720px;">bagunçada</div>
+          <div class="tag" id="c3" style="left:620px; top:720px;">cheia de problemas</div>
+          <div class="tag" id="c4" style="left:120px; top:820px; font-size:52px; border-color:var(--am); color:var(--am);">✓ MAS É ELA QUEM DECIDE</div>
+        </div>
+      </div>
+
+      <!-- ===== CENA D — ANA 2040 NO ZOOLÓGICO ===== -->
+      <div id="sD" class="clip scene" data-start="34.5" data-duration="12.5" data-track-index="3">
+        <div class="in" id="sDin" style="opacity:1">
+          <div class="full" id="dReveal" style="overflow:hidden; clip-path:circle(0% at 44% 38%);">
+            <img class="foto" id="dFoto" src="assets/ana-2040-zoo.png" alt="Ana em 2040 no zoológico humano"/>
+            <div class="grad"></div>
+          </div>
+          <div class="full" id="dVidro" style="overflow:hidden; opacity:0;"><img class="foto" id="dFoto2" src="assets/ana-2040-vidro.png" alt="Ana com a mão no vidro da cúpula"/><div class="grad"></div></div>
+          <div class="stamp" id="dStamp" style="opacity:0"><small>A MESMA ANA</small>ANA · <span id="ano">2026</span></div>
+          <div class="strip">
+            <div class="it ok" id="d1"><i>✓</i>COMIDA</div>
+            <div class="it ok" id="d2"><i>✓</i>CASA</div>
+            <div class="it ok" id="d3"><i>✓</i>SAÚDE</div>
+            <div class="it no" id="d4"><i>—</i>TRABALHO</div>
+            <div class="it no" id="d5"><i>—</i>CONTAS</div>
+            <div class="it bad" id="d6"><i>✕</i>ESCOLHA</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CENA E — medidor ===== -->
+      <div id="sE" class="clip scene" data-start="55.0" data-duration="4.6" data-track-index="4">
+        <div class="card" id="meter">
+          <div class="blab"><span style="color:var(--vd)">CONFORTO</span><span id="vC" style="color:var(--vd)">ALTO</span></div>
+          <div class="bar"><div id="bC" style="background:var(--vd)"></div></div>
+          <div class="blab"><span style="color:var(--red)">LIBERDADE</span><span style="color:var(--red)">BAIXA</span></div>
+          <div class="bar"><div id="bL" style="background:var(--red)"></div></div>
+          <div id="neq" style="font-family:Sora; font-weight:700; font-size:44px; opacity:0;">Conforto <span style="color:var(--am)">≠</span> liberdade</div>
+        </div>
+      </div>
+
+      <!-- ===== CENA F — O QUE LEVA ATÉ LÁ ===== -->
+      <div id="sF" class="clip scene" data-start="59.4" data-duration="14.0" data-track-index="5">
+        <div class="in opaque" id="sFin">
+          <img class="foto" src="assets/ana-2040-vidro.png" alt="" style="opacity:.18; filter:blur(6px);"/>
+          <div class="chip" style="position:absolute; left:120px; top:200px; background:rgba(250,204,21,.16); color:var(--am);">O QUE LEVA ATÉ LÁ</div>
+          <div class="big" style="left:120px; top:260px; font-size:62px;">Como se chega ao zoológico</div>
+          <div class="node" id="f1" style="left:80px;"><div class="n">PASSO 1</div><div class="t">A IA fica melhor que nós</div><div class="s">em quase tudo</div></div>
+          <svg class="seta" id="a1" style="left:470px" viewBox="0 0 60 34"><path d="M0,17 H44 M34,5 L52,17 L34,29" stroke="#FACC15" stroke-width="5" fill="none"/></svg>
+          <div class="node" id="f2" style="left:540px;"><div class="n">PASSO 2</div><div class="t">Entregamos as decisões</div><div class="s">por conforto</div></div>
+          <svg class="seta" id="a2" style="left:930px" viewBox="0 0 60 34"><path d="M0,17 H44 M34,5 L52,17 L34,29" stroke="#FACC15" stroke-width="5" fill="none"/></svg>
+          <div class="node" id="f3" style="left:1000px;"><div class="n">PASSO 3</div><div class="t">Ninguém sabe mais fazer sozinho</div></div>
+          <svg class="seta" id="a3" style="left:1390px" viewBox="0 0 60 34"><path d="M0,17 H44 M34,5 L52,17 L34,29" stroke="#FACC15" stroke-width="5" fill="none"/></svg>
+          <div class="node" id="f4" style="left:1460px;"><div class="n" style="color:#f0a5f3">RESULTADO</div><div class="t">A jaula fica confortável demais</div><div class="s">para alguém querer sair</div></div>
+        </div>
+      </div>
+
+      <!-- ===== CENA G — volta ao mapa ===== -->
+      <div id="sG" class="clip scene" data-start="73.0" data-duration="13.0" data-track-index="6">
+        <div class="q" id="q1" style="left:1752px; top:122px;">?</div>
+        <div class="q" id="q2" style="left:1752px; top:292px;">?</div>
+        <div class="q" id="q3" style="left:1752px; top:472px;">?</div>
+        <div class="thumb" id="th" style="left:1740px; top:595px;"><img src="assets/ana-2040-zoo.png" alt="Ana no zoológico"/></div>
+        <div class="q" id="q4" style="left:1752px; top:837px;">?</div>
+        <svg id="empurra" width="1920" height="1080" style="position:absolute;inset:0;opacity:0"><path id="pEmp" d="M1200,640 C1250,560 1260,460 1250,380" stroke="#FACC15" stroke-width="12" fill="none" stroke-linecap="round" marker-end="url(#ah2)"/><defs><marker id="ah2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#FACC15"/></marker></defs></svg>
+        <div class="full" id="fimBg" style="background:rgba(12,12,16,.86); opacity:0;"></div>
+        <div id="fim"><h2>Qual caminho <em>você escolhe?</em></h2><div class="pill">inema.club</div><div style="margin-top:28px; font-size:30px; color:var(--mu);">no vídeo completo: os 5 caminhos e o que fazer</div></div>
+      </div>
+
+      <!-- ===== topo e legenda ===== -->
+      <div id="topo" class="clip full" data-start="0" data-duration="86" data-track-index="7">
+        <div id="marca">INEMA <span>· QUAL O CAMINHO?</span></div>
+        <div id="fonte">ilustrativo · cenários inspirados em Max Tegmark, <i>Life 3.0</i> (2017)</div>
+      </div>
+      <div id="legenda" class="clip full" data-start="0" data-duration="86" data-track-index="8"></div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const W = [["Duzentos",0.0],["mil",0.3],["anos",0.74],["de",1.06],["história",1.38],["humana",1.62],["numa",2.12],["linha",2.28],["quase",2.54],["reta.",2.92],
+        ["E",3.5],["agora,",3.96],["em",4.5],["2026,",5.04],["ela",6.54],["se",7.1],["abre",7.26],["em",7.5],["cinco",7.6],["caminhos.",7.84],
+        ["Vamos",8.72],["entrar",9.32],["em",9.66],["um",9.86],["deles:",9.92],["o",10.46],["zoológico",10.56],["humano.",11.18],
+        ["O",13.4],["que",13.7],["é?",13.8],["Uma",14.14],["inteligência",14.72],["artificial",15.26],["tão",15.52],["poderosa",15.96],["que",16.48],["decide",16.68],["tudo.",16.94],
+        ["Ela",17.46],["não",17.78],["nos",18.04],["destrói.",18.24],["Ela",20.4],["nos",21.0],["mantém",21.26],["vivos",21.7],["e",22.2],["bem",22.3],["cuidados,",22.52],
+        ["como",23.22],["animais",23.6],["num",24.12],["zoológico.",24.22],
+        ["Esta",26.6],["é",27.2],["a",27.4],["Ana,",27.5],["em",27.92],["2026.",28.3],["A",30.0],["vida",30.08],["dela",30.28],["é",30.56],["corrida,",30.66],["bagunçada,",31.18],
+        ["cheia",31.98],["de",32.34],["problemas.",32.46],["Mas",33.06],["é",33.4],["ela",33.58],["quem",33.78],["decide.",33.92],
+        ["Agora,",34.64],["a",35.54],["mesma",35.86],["Ana",36.2],["em",36.48],["2040.",36.8],["Comida,",38.08],["casa",38.7],["e",39.08],["saúde",39.36],["garantidas.",39.68],
+        ["Nenhum",40.48],["trabalho,",40.94],["nenhuma",41.56],["conta.",41.86],["E",43.0],["nenhuma",43.6],["escolha.",43.88],
+        ["Repara",46.66],["no",47.26],["gráfico:",47.38],["no",47.86],["começo,",47.94],["a",48.5],["linha",48.68],["sobe.",48.88],["Parece",49.46],["melhor.",49.94],
+        ["Depois",50.64],["ela",51.24],["se",51.52],["acomoda",51.68],["perto",52.14],["de",52.4],["onde",52.68],["estamos",52.8],["hoje.",53.06],
+        ["Conforto",55.34],["não",55.94],["é",56.04],["liberdade.",56.2],
+        ["Como",60.06],["se",60.6],["chega",60.74],["lá?",60.96],["A",61.58],["IA",61.76],["fica",62.04],["melhor",62.14],["que",62.52],["a",62.8],["gente",62.86],["em",63.14],["quase",63.24],["tudo.",63.44],
+        ["Por",63.9],["conforto,",64.26],["entregamos",65.02],["as",65.7],["decisões.",65.8],["Ninguém",66.86],["mais",67.4],["sabe",67.64],["fazer",67.98],["sozinho.",68.28],
+        ["E",68.9],["a",69.36],["jaula",69.46],["fica",69.84],["confortável",70.0],["demais",70.78],["para",70.98],["alguém",71.36],["querer",71.58],["sair.",71.82],
+        ["Esse",73.42],["é",73.96],["um",74.2],["dos",74.36],["cinco",74.5],["caminhos.",74.72],["No",75.38],["vídeo",75.82],["completo,",76.08],["a",76.84],["Ana",77.1],["atravessa",77.36],["todos,",77.88],
+        ["e",79.42],["você",79.96],["vê",80.16],["o",80.46],["que",80.56],["fazer",80.68],["para",80.9],["empurrar",81.18],["a",81.58],["linha",81.68],["para",81.88],["cima.",82.08]];
+      const KEY = { "história":"#5ad1f0","2026,":"#FACC15","2026.":"#FACC15","cinco":"#FACC15","zoológico":"#e052e6","zoológico.":"#e052e6","decide":"#FACC15","destrói.":"#ff4d4d",
+        "vivos":"#4ade80","2040.":"#FACC15","escolha.":"#ff4d4d","decide.":"#FACC15","liberdade.":"#ff4d4d","decisões.":"#FACC15","jaula":"#e052e6","empurrar":"#FACC15","cima.":"#FACC15" };
+
+      // legenda: grupos de até 3 palavras; quebra em pontuação ou pausa
+      const leg = document.getElementById("legenda");
+      const grupos = []; let g = [];
+      W.forEach((w, i) => {
+        g.push(w); const nx = W[i + 1];
+        if (g.length === 3 || /[.,:?]$/.test(w[0]) || !nx || nx[1] - w[1] > 0.9) { grupos.push(g); g = []; }
+      });
+      grupos.forEach((gr, k) => {
+        const d = document.createElement("div"); d.className = "cap";
+        d.innerHTML = gr.map(w => `<b>${w[0].replace(/[.,:]$/, "")}</b>`).join(" ");
+        leg.appendChild(d);
+        const ini = gr[0][1] - 0.05;
+        const prox = grupos[k + 1] ? grupos[k + 1][0][1] - 0.05 : 86;
+        const fim = Math.min(prox, gr[gr.length - 1][1] + 1.4);
+        tl.set(d, { opacity: 1 }, ini); tl.set(d, { opacity: 0 }, fim);
+        [...d.children].forEach((b, j) => { tl.set(b, { color: KEY[gr[j][0]] || "#FACC15" }, gr[j][1]); tl.set(b, { color: "#fff" }, Math.min(fim, gr[j][1] + 0.45)); });
+      });
+
+      // linhas: desenho por stroke-dashoffset
+      function prep(id) { const p = document.getElementById(id); const L = p.getTotalLength(); return [p, L]; }
+      const [hist, Lh] = prep("lHist");
+      tl.fromTo(hist, { strokeDasharray: Lh, strokeDashoffset: Lh }, { strokeDashoffset: 0, duration: 3.0, ease: "power1.inOut" }, 0.1);
+      tl.fromTo("#tHist", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 1.3);
+      tl.fromTo("#dot", { opacity: 0, attr: { r: 4 } }, { opacity: 1, attr: { r: 17 }, duration: 0.5, ease: "back.out(3)" }, 3.9);
+      tl.fromTo("#aqui", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6 }, 4.4);
+      const ordem = [["lU", "uMask"], ["lP"], ["lG"], ["lZ"], ["lE"]];
+      ["gU", "gP", "gG", "gZ", "gE"].forEach((gid, i) => {
+        const tgt = ordem[i][1] || ordem[i][0]; const [p, L] = prep(tgt);
+        tl.fromTo(p, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.out" }, 7.5 + i * 0.28);
+        tl.fromTo(`#${gid} text`, { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.5 }, 8.4 + i * 0.28);
+      });
+      // entra no zoológico
+      tl.to(["#gU", "#gP", "#gG", "#gE"], { opacity: 0.15, duration: 0.6 }, 10.5);
+      tl.to("#lZ", { attr: { "stroke-width": 11 }, duration: 0.6 }, 10.5);
+      tl.to("#tZ", { attr: { "font-size": 40 }, duration: 0.6 }, 10.5);
+      tl.to("#cam", { scale: 1.2, x: -60, duration: 2.2, ease: "power2.inOut" }, 10.5);
+
+      // o mapa some enquanto as cenas opacas o cobrem
+      tl.set("#cam", { opacity: 0 }, 13.6); tl.set("#cam", { opacity: 1 }, 46.0);
+      tl.set("#cam", { opacity: 0 }, 60.1); tl.set("#cam", { opacity: 1 }, 72.0);
+
+      // cena B
+      tl.fromTo("#sBin", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 12.9);
+      document.querySelectorAll("#gente .p").forEach((p, i) => tl.fromTo(p, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4 }, 13.2 + i * 0.12));
+      tl.fromTo("#robo", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.6, ease: "back.out(2)" }, 14.7);
+      document.querySelectorAll(".fio").forEach((f, i) => { const L = f.getTotalLength(); tl.fromTo(f, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 0.5 }, 16.6 + i * 0.1); });
+      tl.fromTo("#b1", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.5 }, 16.6);
+      tl.fromTo("#b2", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.5 }, 18.1);
+      tl.fromTo("#b3", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.5 }, 21.6);
+      tl.fromTo("#coracoes", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, 21.7);
+      const cup = document.getElementById("cupula"); const Lc = cup.getTotalLength();
+      tl.fromTo(cup, { strokeDasharray: Lc, strokeDashoffset: Lc, fillOpacity: 0 }, { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }, 23.5);
+      tl.to(cup, { fillOpacity: 1, duration: 0.6 }, 24.4);
+      tl.to("#fios", { opacity: 0.25, duration: 0.6 }, 24.4);
+      tl.fromTo("#b4", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.5 }, 24.1);
+      tl.to("#sBin", { opacity: 0, duration: 0.6 }, 26.2);
+
+      // cena C
+      tl.fromTo("#sCin", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 26.2);
+      tl.fromTo("#cFoto", { scale: 1.0 }, { scale: 1.07, duration: 9, ease: "none" }, 26.2);
+      [["#c1", 30.6], ["#c2", 31.1], ["#c3", 31.9], ["#c4", 33.85]].forEach(([s, t]) => tl.fromTo(s, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(2)" }, t));
+
+      // cena D — revelação circular a partir do rosto + ano rolando
+      tl.to("#dReveal", { clipPath: "circle(120% at 44% 38%)", duration: 1.6, ease: "power2.inOut" }, 34.6);
+      tl.fromTo("#dFoto", { scale: 1.12 }, { scale: 1.02, duration: 9.6, ease: "power1.out" }, 34.6);
+      tl.fromTo("#dStamp", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 35.2);
+      const ano = { v: 2026 };
+      tl.to(ano, { v: 2040, duration: 1.6, ease: "power1.inOut", onUpdate: () => { document.getElementById("ano").textContent = Math.round(ano.v); } }, 35.3);
+      [["#d1", 38.0], ["#d2", 38.6], ["#d3", 39.3], ["#d4", 40.9], ["#d5", 41.8], ["#d6", 43.8]].forEach(([s, t]) => tl.fromTo(s, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(2)" }, t));
+      tl.to(["#d1", "#d2", "#d3", "#d4", "#d5"], { opacity: 0.35, duration: 0.4 }, 44.3);
+      tl.to("#dVidro", { opacity: 1, duration: 0.9 }, 44.4);
+      tl.fromTo("#dFoto2", { scale: 1.0 }, { scale: 1.06, duration: 3, ease: "none" }, 44.4);
+      tl.to("#sDin", { opacity: 0, duration: 0.6 }, 46.3);
+
+      // cena E — volta ao mapa (a câmera é reposta escondida atrás da cena D)
+      tl.set("#cam", { scale: 1, x: 0 }, 46.0);
+      tl.set(["#gU", "#gP", "#gG", "#gE"], { opacity: 0.15 }, 46.0);
+      tl.set(["#tHist", "#aqui"], { opacity: 0 }, 46.0);
+      tl.to("#cam", { scale: 1.18, x: -40, y: -30, duration: 2.0, ease: "power2.inOut" }, 46.6);
+      tl.fromTo("#sobe", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 48.6);
+      tl.fromTo("#hoje", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 50.6);
+      tl.fromTo("#acomoda", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 51.6);
+      tl.to("#sobe", { opacity: 0.3, duration: 0.4 }, 51.6);
+      tl.to(["#acomoda", "#sobe"], { opacity: 0, duration: 0.3 }, 54.8);
+      tl.fromTo("#meter", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5 }, 55.1);
+      tl.fromTo("#bC", { width: "0%" }, { width: "92%", duration: 0.8, ease: "power2.out" }, 55.3);
+      tl.fromTo("#bL", { width: "0%" }, { width: "18%", duration: 0.8, ease: "power2.out" }, 56.1);
+      tl.fromTo("#neq", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 56.6);
+      tl.to("#meter", { opacity: 0, duration: 0.4 }, 59.1);
+
+      // cena F — cadeia de causas
+      tl.fromTo("#sFin", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 59.4);
+      [["#f1", null, 61.6], ["#f2", "#a1", 64.2], ["#f3", "#a2", 66.8], ["#f4", "#a3", 69.4]].forEach(([n, a, t], i) => {
+        if (a) tl.fromTo(a, { opacity: 0.2, x: -10 }, { opacity: 1, x: 0, duration: 0.4 }, t - 0.2);
+        tl.to(n, { opacity: 1, borderColor: i === 3 ? "#e052e6" : "#FACC15", duration: 0.4 }, t);
+        tl.fromTo(n, { y: 16 }, { y: 0, duration: 0.4, ease: "back.out(2)" }, t);
+      });
+      tl.to("#sFin", { opacity: 0, duration: 0.6 }, 72.8);
+
+      // cena G — mapa inteiro + "?" nos outros caminhos + empurrar para cima
+      tl.set("#cam", { scale: 1, x: 0, y: 0 }, 72.0);
+      tl.set(["#sobe", "#acomoda", "#hoje"], { opacity: 0 }, 72.0);
+      tl.set(["#gU", "#gP", "#gG", "#gE"], { opacity: 0.55 }, 72.0);
+      tl.set("#tZ", { attr: { "font-size": 30 } }, 72.0);
+      tl.fromTo("#th", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 73.6);
+      ["#q1", "#q2", "#q3", "#q4"].forEach((q, i) => tl.fromTo(q, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 74.4 + i * 0.15));
+      tl.to(["#gU", "#gP", "#gG", "#gE"], { opacity: 1, duration: 0.6 }, 77.3);
+      tl.to(["#q1", "#q2", "#q3", "#q4"], { borderColor: "#FACC15", color: "#FACC15", duration: 0.4 }, 77.4);
+      tl.fromTo("#empurra", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 81.0);
+      const pe = document.getElementById("pEmp"); const Le = pe.getTotalLength();
+      tl.fromTo(pe, { strokeDasharray: Le, strokeDashoffset: Le }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.out" }, 81.1);
+      tl.fromTo("#fimBg", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 83.0);
+      tl.fromTo("#fim", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, 83.2);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

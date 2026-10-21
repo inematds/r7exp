@@ -22,3 +22,4 @@ nos 5 caminhos e no final "como se preparar"; cada caminho ensina como se adapta
 
 ## Playlist (21/10/2026)
 - lives11 (INEMA Futuros): https://www.youtube.com/playlist?list=PLGR_G3hBAAaM — A ddWUJbfPgPk · B W2tBGNYlzi4 · r7ex dt5ekPf7znY. Reels entram quando forem publicados (`CANAL=lives11 python3 ~/projetos/wifi/fila-espanhol/yt_api.py add PLGR_G3hBAAaM <id>`).
+- Reels na fila do lives11 (r7ex/fila, na frente, com --playlist PLGR_G3hBAAaM): índice 21h de 21/10, caminhos 1–5 em 22/10 9–17h.

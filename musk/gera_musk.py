@@ -63,8 +63,8 @@ def mapa_svg(f):
    <text x="1350" y="300" text-anchor="middle" fill="#fff" font-size="40">NINGUÉM CONTROLA</text>
    <text x="1350" y="350" text-anchor="middle" fill="#fff" font-size="40">O RESULTADO</text></g>
   {linhas}
-  <g id="degrau" opacity="0"><path d="M1240,700 L1240,790" stroke="#38bdf8" stroke-width="5" marker-end="url(#ah)"/>
-   <text x="1240" y="680" text-anchor="middle" fill="#fff" font-size="34">SÓ UM DEGRAU: +20% A 30%</text></g>
+  <g id="degrau" opacity="0"><path d="M1500,700 L1500,790" stroke="#38bdf8" stroke-width="5" marker-end="url(#ah)"/>
+   <text x="1500" y="680" text-anchor="middle" fill="#fff" font-size="34">SÓ UM DEGRAU: +20% A 30%</text></g>
   <g id="aqui" opacity="0"><text x="470" y="640" text-anchor="middle" fill="#fff" font-size="40">ESTAMOS AQUI · ×1</text>
    <path d="M470,660 C470,720 520,790 578,812" stroke="#fff" stroke-width="5" fill="none" marker-end="url(#ah)"/></g>
   <circle id="dot" cx="600" cy="{Y1}" r="17" fill="#fff" filter="url(#glow)" opacity="0"/>
@@ -191,7 +191,7 @@ class Cena(G.Cena):
 
     # ------------------------------------------------------------ abertura
     def abertura(self, F):
-        t_capa = F.t("nao") - 0.15                       # capa parada a 1ª frase inteira
+        t_capa = F.t("sou") - 0.4                        # capa parada a 1ª frase inteira (até "Não sou eu")
         inner = self.id("in")
         self.clip(0, t_capa + 0.6, f'<div class="in" id="{inner}" style="opacity:1"><img class="foto" id="{inner}f" src="assets/capa.png" alt="capa"/></div>', 3)
         self.a(f'tl.fromTo("#{inner}f", {{scale:0.93, transformOrigin:"0% 0%"}}, {{scale:0.95, transformOrigin:"0% 0%", duration:{t_capa + 0.6:.2f}, ease:"none"}}, 0);')
@@ -227,7 +227,7 @@ class Cena(G.Cena):
         self.a(f'tl.to("#qq", {{opacity:0, duration:0.3}}, {tm - 0.5:.2f}); tl.to("#qq", {{opacity:1, duration:0.4}}, {tc + 0.2:.2f});')
         self.foto(tm - 0.2, tc + 0.2, "marcos-2026.png", carimbo="MARCOS · HOJE", sub="O PERSONAGEM")
         F.cur = tm - F.ini
-        self.tags(F, [("quarenta", "40 anos"), ("oficina", "dono de oficina mecânica"), ("sol", "trabalha de sol a sol")], tc + 0.2)
+        self.tags(F, [("40", "40 anos"), ("oficina", "dono de oficina mecânica"), ("sol", "trabalha de sol a sol")], tc + 0.2)
         # prévia: mapa com "?" e a faixa
         tf = F.fim
         corpo = '<div class="full"><div class="ban" id="banM">O MESMO DIA DELE EM CADA CAMINHO</div></div>'
@@ -255,10 +255,10 @@ class Cena(G.Cena):
         # quanto muda: barras + degrau no mapa
         tl_ = F.t("leva", depois=tqt)
         F.cur = tqt - F.ini
-        tv2 = F.t("vinte"); tdg = F.t("degrau")
+        tv2 = F.t("20"); tdg = F.t("degrau")
         i = self.id("bn")
         corpo = (f'<div class="card bign" id="{i}" style="border-color:#38bdf855"><span class="chip" style="background:#38bdf82e;color:#38bdf8">ESTIMATIVA DO MUSK</span>'
-                 f'<div class="num" style="color:#38bdf8">+20% a 30%</div><div class="sub">na produção da economia</div>'
+                 f'<div class="num" style="color:#38bdf8;font-size:96px">+20% a 30%</div><div class="sub">na produção da economia</div>'
                  f'<div class="cbar"><span>HOJE</span><div class="b1" style="background:#9a9aa6"></div></div>'
                  f'<div class="cbar"><span>COM IA DIGITAL</span><div class="b2" style="background:#38bdf8"></div></div>'
                  f'<div class="alerta" id="{i}a">sem cronograma verificável</div></div>')

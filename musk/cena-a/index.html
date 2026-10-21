@@ -1,0 +1,1328 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="landscape">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=1920, height=1080"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>@font-face { font-family:"Sora"; src:url("assets/fonts/sora-latin-700-normal.woff2") format("woff2"); font-weight:700; }
+@font-face { font-family:"Sora"; src:url("assets/fonts/sora-latin-400-normal.woff2") format("woff2"); font-weight:400; }
+@font-face { font-family:"Inter"; src:url("assets/fonts/Inter-500.woff2") format("woff2"); font-weight:500; }
+@font-face { font-family:"Inter"; src:url("assets/fonts/Inter-700.woff2") format("woff2"); font-weight:700; }
+@font-face { font-family:"Montserrat"; src:url("assets/fonts/Montserrat-Black.ttf") format("truetype"); font-weight:900; }
+:root { --bg:#0c0c10; --am:#FACC15; --tx:#ECECF1; --mu:#a3a3ae; --vd:#4ade80; --red:#ff4d4d; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1920px; height:1080px; overflow:hidden; background:var(--bg); }
+#root { width:100%; height:100%; position:relative; font-family:Inter, sans-serif; color:var(--tx); background:var(--bg); }
+.full, .scene { position:absolute; inset:0; }
+.in { position:absolute; inset:0; opacity:0; }
+.opaque { background:var(--bg); }
+.ovh { overflow:hidden; }
+#cam { position:absolute; inset:0; }
+#mapa text { font-family:Sora, sans-serif; font-weight:700; }
+.lbl { font-size:30px; letter-spacing:.02em; }
+.axis { font-size:30px; fill:#f4f4f5; }
+.chip { display:inline-block; font-family:Sora; font-weight:700; font-size:22px; letter-spacing:.14em; padding:8px 16px; border-radius:999px; }
+
+/* topo */
+#marca { position:absolute; left:40px; top:26px; padding:8px 16px; border-radius:10px; background:rgba(12,12,16,.82); font-family:Sora; font-weight:700; font-size:24px; letter-spacing:.14em; color:var(--am); }
+#marca span { color:var(--tx); }
+#fonte { position:absolute; right:40px; top:28px; padding:8px 14px; border-radius:10px; background:rgba(12,12,16,.82); font-size:20px; color:#c9c9d2; }
+.tcam { position:absolute; left:40px; top:92px; opacity:0; }
+.tnome { font-family:Sora; font-weight:700; font-size:64px; margin-top:10px; text-shadow:0 4px 20px rgba(0,0,0,.7); }
+
+/* avatar */
+#avw { position:absolute; overflow:hidden; border-radius:18px; border:3px solid var(--am); background:#000; box-shadow:0 20px 50px -20px #000; }
+#av { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:58% 30%; }
+.avtag { position:absolute; left:0; right:0; bottom:0; padding:6px 10px; font-family:Sora; font-weight:700; font-size:16px; background:rgba(12,12,16,.8); color:#fff; }
+
+/* legenda */
+.cap { position:absolute; left:0; right:0; bottom:44px; text-align:center; font-family:Montserrat; font-weight:900; font-size:58px; text-transform:uppercase; opacity:0;
+       color:#fff; -webkit-text-stroke:8px #000; paint-order:stroke fill; }
+.cap b { font-weight:900; }
+
+/* foto */
+.foto { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.grad { position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,12,16,.55) 0%, rgba(12,12,16,0) 26%, rgba(12,12,16,0) 58%, rgba(12,12,16,.9) 100%); }
+.stamp { position:absolute; left:40px; top:96px; font-family:Sora; font-weight:700; font-size:76px; line-height:1; color:#fff; text-shadow:0 4px 24px rgba(0,0,0,.6); }
+.stamp small { display:inline-block; font-size:24px; letter-spacing:.16em; color:var(--am); background:rgba(12,12,16,.85); padding:6px 12px; border-radius:8px; margin-bottom:12px; }
+.stamp span { display:block; }
+.tags { position:absolute; right:60px; top:230px; display:flex; flex-direction:column; align-items:flex-end; gap:18px; }
+.tag { font-family:Sora; font-weight:700; font-size:36px; padding:14px 26px; border-radius:14px; background:rgba(12,12,16,.88); border:2px solid #555; opacity:0; }
+.tag.gold { border-color:var(--am); color:var(--am); font-size:44px; }
+.tag.bad { border-color:var(--red); background:rgba(80,10,10,.9); font-size:44px; }
+.strip { position:absolute; left:390px; right:40px; top:780px; display:flex; gap:16px; justify-content:center; }
+.it { font-family:Sora; font-weight:700; font-size:30px; padding:14px 22px; border-radius:14px; background:rgba(12,12,16,.88); border:2px solid #333; opacity:0; display:flex; gap:10px; align-items:center; }
+.it i { font-style:normal; }
+.it.ok { border-color:var(--vd); } .it.ok i { color:var(--vd); }
+.it.nao { border-color:#666; color:#bbb; } .it.bad { border-color:var(--red); background:rgba(80,10,10,.9); font-size:38px; } .it.bad i { color:var(--red); }
+
+/* o que é */
+.card { position:absolute; background:rgba(20,20,28,.94); border:2px solid #2c2c38; border-radius:18px; }
+.oque { left:1000px; top:170px; width:860px; padding:40px 48px 44px; opacity:0; }
+.ctit { font-family:Sora; font-weight:700; font-size:56px; margin:18px 0 6px; }
+.row { display:flex; align-items:center; gap:22px; font-size:38px; font-weight:700; margin-top:26px; opacity:0; line-height:1.2; }
+.ic { flex:none; width:64px; height:64px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:36px; background:#22222c; }
+
+/* cadeia */
+.node { position:absolute; top:400px; height:270px; padding:28px; border-radius:18px; background:rgba(18,18,26,.95); border:2px solid #2c2c38; opacity:.22; }
+.node .n { font-family:Sora; font-weight:700; font-size:22px; color:var(--mu); letter-spacing:.14em; }
+.node .t { font-family:Sora; font-weight:700; font-size:36px; line-height:1.15; margin-top:16px; }
+.node .s { font-size:26px; color:#c9c9d2; margin-top:12px; }
+.seta { position:absolute; top:518px; width:58px; height:34px; opacity:.2; }
+.risco { position:absolute; left:420px; right:120px; top:740px; text-align:center; font-family:Sora; font-weight:700; font-size:40px; padding:18px; border-radius:14px; border:2px solid var(--red); background:rgba(80,10,10,.85); opacity:0; }
+
+/* massa */
+.multi { position:absolute; left:40px; top:-70px; }
+.multi .pt { fill:#55555f; opacity:0; }
+.mtit { position:absolute; left:1000px; top:200px; }
+.mlist { position:absolute; left:1000px; top:280px; width:860px; }
+.mi { display:flex; gap:22px; align-items:center; margin-bottom:30px; opacity:0; font-family:Sora; font-weight:700; font-size:40px; line-height:1.2; }
+.mi b { flex:none; width:62px; height:62px; border-radius:50%; background:var(--vd); color:#0c0c10; display:flex; align-items:center; justify-content:center; font-size:30px; }
+.mfecho { position:absolute; left:1000px; top:700px; font-family:Sora; font-weight:700; font-size:56px; line-height:1.25; opacity:0; }
+
+/* abertura */
+.a27, .tegm { position:absolute; left:120px; top:170px; width:780px; }
+.a27t { font-family:Sora; font-weight:700; font-size:110px; line-height:1; margin-top:20px; color:#fff; }
+.a27s { font-size:28px; color:#c9c9d2; margin-top:16px; line-height:1.35; }
+.tl27 { position:relative; margin:44px 0 54px; height:60px; }
+.tlb { height:10px; background:#22222c; border-radius:6px; overflow:hidden; }
+.tlf { height:100%; width:0; background:var(--am); }
+.tl27 span { position:absolute; top:22px; font-family:Sora; font-weight:700; font-size:26px; color:#c9c9d2; }
+.row27 { display:flex; align-items:center; gap:20px; font-size:36px; font-weight:700; margin-top:22px; opacity:0; line-height:1.2; }
+.ress { display:inline-block; margin-top:34px; font-size:26px; padding:10px 18px; border-radius:10px; border:2px solid #777; color:#ddd; opacity:0; }
+.mini5 { display:flex; gap:14px; margin-top:44px; } .mini5 span { width:110px; height:12px; border-radius:6px; }
+.stf { position:absolute; left:420px; right:120px; top:150px; text-align:center; }
+.stn { font-family:Sora; font-weight:700; font-size:58px; color:var(--red); line-height:1.05; margin-top:10px; }
+.stn span { display:block; font-size:250px; line-height:1; }
+.stl { font-family:Sora; font-weight:700; font-size:48px; margin-top:10px; }
+.stfo { font-size:26px; color:#c9c9d2; margin-top:22px; }
+.q { position:absolute; width:86px; height:86px; border-radius:50%; border:3px dashed #aaa; display:flex; align-items:center; justify-content:center; font-family:Sora; font-weight:700; font-size:44px; color:#ddd; background:rgba(12,12,16,.9); opacity:0; }
+.ban { position:absolute; left:120px; right:420px; top:100px; text-align:center; font-family:Sora; font-weight:700; font-size:46px; color:#fff; opacity:0; text-shadow:0 4px 24px #000; }
+
+/* final */
+.cmp { position:absolute; left:40px; right:40px; top:110px; display:flex; gap:20px; }
+.cc { flex:1; background:#16161e; border-radius:14px; overflow:hidden; opacity:0; }
+.cc img { width:100%; height:470px; object-fit:cover; display:block; }
+.cc span { display:block; padding:14px 12px; font-family:Sora; font-weight:700; font-size:22px; text-align:center; }
+.frase { position:absolute; left:400px; right:80px; top:700px; text-align:center; font-family:Sora; font-weight:700; font-size:54px; line-height:1.25; opacity:0; }
+.passos { position:absolute; left:420px; top:230px; width:1300px; }
+.ps { display:flex; gap:26px; align-items:center; margin-bottom:26px; opacity:0; font-family:Sora; font-weight:700; font-size:46px; }
+.ps b { flex:none; width:78px; height:78px; border-radius:50%; background:#33333d; color:#0c0c10; display:flex; align-items:center; justify-content:center; font-size:38px; }
+.fim { position:absolute; left:360px; right:520px; top:300px; text-align:center; }
+.fim h2 { font-family:Sora; font-weight:700; font-size:80px; line-height:1.15; color:#fff; }
+.fim .sub { font-size:34px; color:#c9c9d2; margin-top:20px; }
+.pill { display:inline-block; margin-top:36px; font-family:Sora; font-weight:700; font-size:44px; padding:16px 48px; border-radius:999px; background:var(--am); color:#1a1206; opacity:0; }
+.printc { position:absolute; right:60px; top:240px; width:420px; border-radius:14px; overflow:hidden; border:3px solid var(--am); background:#111; opacity:0; }
+.printc img { width:100%; display:block; }
+.printc span { display:block; padding:10px; text-align:center; font-family:Sora; font-weight:700; font-size:22px; color:var(--am); }
+.meter { right:80px; top:150px; width:640px; padding:30px 36px; opacity:0; }
+.bar { height:34px; border-radius:8px; background:#22222c; margin:10px 0 22px; overflow:hidden; }
+.bar div { height:100%; width:0%; border-radius:8px; }
+.blab { font-family:Sora; font-weight:700; font-size:28px; letter-spacing:.1em; display:flex; justify-content:space-between; }
+.neq { font-family:Sora; font-weight:700; font-size:44px; opacity:0; }
+
+.tick { font-family:Sora; font-weight:700; }
+.bign { position:absolute; left:300px; top:150px; width:740px; padding:30px 36px; opacity:0; }
+.bign .num { font-family:Sora; font-weight:800; font-size:120px; line-height:1; margin:14px 0 6px; }
+.bign .sub { font-size:30px; color:#c9c9d2; line-height:1.3; }
+.bign .alerta { margin-top:18px; font-family:Sora; font-weight:700; font-size:26px; color:#c9c9d2; border-top:2px solid #33333d; padding-top:14px; opacity:0; }
+.cbar { display:flex; align-items:center; gap:14px; font-family:Sora; font-weight:700; font-size:26px; margin-top:16px; }
+.cbar span { width:230px; flex:none; color:#c9c9d2; }
+.cbar div { height:30px; border-radius:6px; width:0; }
+.quote { position:absolute; left:80px; top:180px; width:800px; }
+.quote .qt { font-family:Sora; font-weight:700; font-size:66px; line-height:1.15; margin-top:26px; }
+.quote .qs { font-size:30px; color:#c9c9d2; margin-top:22px; }
+.pills { position:absolute; left:300px; top:600px; display:flex; gap:18px; }
+.pills div { font-family:Sora; font-weight:700; font-size:34px; padding:12px 24px; border-radius:14px; background:rgba(12,12,16,.9); border:2px solid #ff4d4d; opacity:0; }
+.cc p { padding:0 12px 14px; font-size:24px; color:#c9c9d2; text-align:center; }
+.mus { position:absolute; left:120px; top:170px; width:780px; }
+</style></head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="290.58" data-width="1920" data-height="1080">
+ <div id="mapaClip" class="clip full" data-start="0" data-duration="290.58" data-track-index="0"><div id="cam">
+<svg id="mapa" width="1920" height="1080" viewBox="0 0 1920 1080">
+ <defs>
+  <filter id="glow" filterUnits="userSpaceOnUse" x="-200" y="-200" width="2400" height="1600"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <marker id="ah" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff"/></marker>
+  <marker id="ahy" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#FACC15"/></marker>
+  <mask id="mF" maskUnits="userSpaceOnUse"><path id="mkF" d="M600,820 C900,816 1080,720 1260,520 S1560,250 1700,220" stroke="#fff" stroke-width="40" fill="none"/></mask>
+  <linearGradient id="nevoa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff4d4d" stop-opacity=".55"/><stop offset="1" stop-color="#ff4d4d" stop-opacity="0"/></linearGradient>
+ </defs>
+ <g transform="translate(40,-10) scale(0.88)">
+  <g id="eixos" opacity="0">
+   <g stroke="#1d1d26" stroke-width="2"><path d="M220,820 H1700"/><path d="M220,720 H1700"/><path d="M220,620 H1700"/><path d="M220,520 H1700"/><path d="M220,420 H1700"/><path d="M220,320 H1700"/><path d="M220,220 H1700"/></g>
+   <path d="M220,900 V130" stroke="#fff" stroke-width="4" marker-end="url(#ah)"/>
+   <path d="M220,900 H1720" stroke="#fff" stroke-width="4"/>
+   <g id="ticks" fill="#c4c4cc" font-size="24"><text class="tick" x="236" y="710">×10</text><text class="tick" x="236" y="610">×100</text><text class="tick" x="236" y="510">×1.000</text><text class="tick" x="236" y="410">×10.000</text><text class="tick" x="236" y="310">×100.000</text><text class="tick" x="236" y="210">×1.000.000</text></g>
+   <text class="axis" transform="translate(170,520) rotate(-90)" text-anchor="middle">TAMANHO DA ECONOMIA (escala log)</text>
+   <text class="axis" x="600" y="955" text-anchor="middle">HOJE</text>
+   <text class="axis" x="1700" y="955" text-anchor="end">FUTURO · sem data</text>
+  </g>
+  <g id="nev" opacity="0"><rect x="980" y="120" width="740" height="330" fill="url(#nevoa)"/>
+   <text x="1350" y="300" text-anchor="middle" fill="#fff" font-size="40">NINGUÉM CONTROLA</text>
+   <text x="1350" y="350" text-anchor="middle" fill="#fff" font-size="40">O RESULTADO</text></g>
+  <g id="gD" class="linha"><path id="lD" d="M600,820 C760,820 860,814 1000,812 L1700,809" stroke="#38bdf8" stroke-width="7" fill="none" filter="url(#glow)"/><text id="tD" class="lbl" x="1700" y="790" text-anchor="end" fill="#38bdf8" opacity="0">IA DIGITAL</text></g><g id="gF" class="linha"><path id="lF" d="M600,820 C900,816 1080,720 1260,520 S1560,250 1700,220" stroke="#FACC15" stroke-width="7" fill="none" filter="url(#glow)" stroke-dasharray="4 16" stroke-linecap="round" mask="url(#mF)"/><text id="tF" class="lbl" x="1700" y="190" text-anchor="end" fill="#FACC15" opacity="0">ROBÔS + ESPAÇO</text></g>
+  <g id="degrau" opacity="0"><path d="M1240,700 L1240,790" stroke="#38bdf8" stroke-width="5" marker-end="url(#ah)"/>
+   <text x="1240" y="680" text-anchor="middle" fill="#fff" font-size="34">SÓ UM DEGRAU: +20% A 30%</text></g>
+  <g id="aqui" opacity="0"><text x="470" y="640" text-anchor="middle" fill="#fff" font-size="40">ESTAMOS AQUI · ×1</text>
+   <path d="M470,660 C470,720 520,790 578,812" stroke="#fff" stroke-width="5" fill="none" marker-end="url(#ah)"/></g>
+  <circle id="dot" cx="600" cy="820" r="17" fill="#fff" filter="url(#glow)" opacity="0"/>
+  <g id="qq" opacity="0" font-size="60" fill="#ddd"><text x="1660" y="560">?</text><text x="1660" y="790">?</text></g>
+  <g id="empurra" opacity="0"><path id="pEmp" d="M1450,860 C1480,700 1500,520 1490,300" stroke="#FACC15" stroke-width="12" fill="none" stroke-linecap="round" marker-end="url(#ahy)"/>
+   <text x="1450" y="890" text-anchor="middle" fill="#FACC15" font-size="32">VOCÊ DIRIGE</text></g>
+ </g>
+</svg></div></div>
+ <div id="c2" class="clip scene" data-start="0.00" data-duration="2.68" data-track-index="3" ><div class="in" id="in1" style="opacity:1"><img class="foto" id="in1f" src="assets/capa.png" alt="capa"/></div></div><div id="c6" class="clip scene" data-start="2.08" data-duration="25.23" data-track-index="4" ><div class="in opaque" id="in3"><div class="mus"><div class="chip" style="background:rgba(250,204,21,.16);color:#FACC15">A ENTREVISTA</div><div class="a27t" style="font-size:96px">Elon Musk</div><div class="a27s">a Walter Isaacson, o biógrafo dele</div><div class="row27" id="a4"><div class="ic">💻</div><div>caminho 1: IA digital</div></div><div class="row27" id="a5"><div class="ic">🦾</div><div>caminho 2: robôs</div></div><div class="ress" id="in3rs" style="border-color:#ff4d4d;color:#ff8a8a;font-size:34px">⚠ ninguém controla o resultado</div></div></div></div><div id="c8" class="clip scene" data-start="33.69" data-duration="8.79" data-track-index="3" ><div class="in" id="in7"><div class="full ovh" id="in7r"><img class="foto" id="in7f" src="assets/marcos-2026.png" alt=""/><div class="grad"></div></div><div class="stamp"><small>O PERSONAGEM</small><span>MARCOS · HOJE</span></div></div></div><div id="c12" class="clip full" data-start="34.52" data-duration="7.96" data-track-index="4" ><div class="tags"><div class="tag" id="tg9">40 anos</div><div class="tag" id="tg10">dono de oficina mecânica</div><div class="tag" id="tg11">trabalha de sol a sol</div></div></div><div id="c13" class="clip full" data-start="42.28" data-duration="3.72" data-track-index="5" ><div class="full"><div class="ban" id="banM">O MESMO DIA DELE EM CADA CAMINHO</div></div></div><div id="c15" class="clip full" data-start="46.35" data-duration="10.14" data-track-index="7" ><div class="tcam" id="tc14"><span class="chip" style="background:#38bdf8;color:#0c0c10">CAMINHO 1</span><div class="tnome" style="color:#38bdf8">IA DIGITAL</div></div></div><div id="c19" class="clip full" data-start="49.57" data-duration="6.82" data-track-index="4" ><div class="card oque" style="left:1000px;border-color:#38bdf855"><div class="chip" style="background:#38bdf82e;color:#38bdf8">O QUE É</div><div class="ctit">Programas que pensam</div><div class="row" id="r16"><div class="ic">🤖</div><div>agentes de IA</div></div><div class="row" id="r17"><div class="ic">🔎</div><div>pesquisam e programam</div></div><div class="row" id="r18"><div class="ic">📊</div><div>analisam e atendem</div></div></div></div><div id="c21" class="clip scene" data-start="56.29" data-duration="14.14" data-track-index="3" ><div class="in" id="in20"><div class="full ovh" id="in20r"><img class="foto" id="in20f" src="assets/digital-marcos.png" alt=""/><div class="grad"></div></div><div class="stamp"><small>O MESMO MARCOS</small><span>MARCOS · IA DIGITAL</span></div></div></div><div id="c27" class="clip full" data-start="57.70" data-duration="12.73" data-track-index="4" ><div class="tags"><div class="tag" id="tg22">📞 agente atende o telefone</div><div class="tag" id="tg23">orçamento sai sozinho</div><div class="tag" id="tg24">agenda se organiza</div><div class="tag gold" id="tg25">✓ ganha horas no dia</div><div class="tag" id="tg26">o carro ainda é com ele</div></div></div><div id="c29" class="clip full" data-start="70.23" data-duration="11.26" data-track-index="4" ><div class="card bign" id="bn28" style="border-color:#38bdf855"><span class="chip" style="background:#38bdf82e;color:#38bdf8">ESTIMATIVA DO MUSK</span><div class="num" style="color:#38bdf8">+20% a 30%</div><div class="sub">na produção da economia</div><div class="cbar"><span>HOJE</span><div class="b1" style="background:#9a9aa6"></div></div><div class="cbar"><span>COM IA DIGITAL</span><div class="b2" style="background:#38bdf8"></div></div><div class="alerta" id="bn28a">sem cronograma verificável</div></div></div><div id="c34" class="clip scene" data-start="81.19" data-duration="8.41" data-track-index="5" ><div class="in opaque" id="in30"><img class="foto" src="assets/digital-agentes.png" alt="" style="opacity:.2;filter:blur(6px)"/><div class="chip" style="position:absolute;left:420px;top:220px;background:rgba(250,204,21,.16);color:#FACC15">O QUE LEVA ATÉ LÁ · IA DIGITAL</div><div class="node" id="no31" style="left:420px;width:380px"><div class="n">PASSO 1</div><div class="t">MODELOS MELHORES</div><div class="s">cada vez mais capazes</div></div><div class="node" id="no32" style="left:870px;width:380px"><div class="n">PASSO 2</div><div class="t">AGENTES</div><div class="s">ligados às ferramentas</div></div><svg class="seta" id="no32s" style="left:806px" viewBox="0 0 60 34"><path d="M0,17 H44 M34,5 L52,17 L34,29" stroke="#FACC15" stroke-width="5" fill="none"/></svg><div class="node" id="no33" style="left:1320px;width:380px"><div class="n">RESULTADO</div><div class="t">EMPRESAS QUE APRENDEM</div><div class="s">→ +20% a 30%</div></div><svg class="seta" id="no33s" style="left:1256px" viewBox="0 0 60 34"><path d="M0,17 H44 M34,5 L52,17 L34,29" stroke="#FACC15" stroke-width="5" fill="none"/></svg></div></div><div id="c37" class="clip scene" data-start="89.40" data-duration="10.27" data-track-index="6" ><div class="in opaque" id="in35"><svg class="multi" width="900" height="1080" viewBox="0 0 900 1080"><circle class="pt" cx="140" cy="330" r="13"/><circle class="pt" cx="188" cy="330" r="13"/><circle class="pt" cx="236" cy="330" r="13"/><circle class="pt" cx="284" cy="330" r="13"/><circle class="pt" cx="332" cy="330" r="13"/><circle class="pt" cx="380" cy="330" r="13"/><circle class="pt" cx="428" cy="330" r="13"/><circle class="pt" cx="476" cy="330" r="13"/><circle class="pt" cx="524" cy="330" r="13"/><circle class="pt" cx="572" cy="330" r="13"/><circle class="pt" cx="620" cy="330" r="13"/><circle class="pt" cx="668" cy="330" r="13"/><circle class="pt" cx="716" cy="330" r="13"/><circle class="pt" cx="764" cy="330" r="13"/><circle class="pt" cx="164" cy="382" r="13"/><circle class="pt" cx="212" cy="382" r="13"/><circle class="pt" cx="260" cy="382" r="13"/><circle class="pt" cx="308" cy="382" r="13"/><circle class="pt" cx="356" cy="382" r="13"/><circle class="pt" cx="404" cy="382" r="13"/><circle class="pt" cx="452" cy="382" r="13"/><circle class="pt" cx="500" cy="382" r="13"/><circle class="pt" cx="548" cy="382" r="13"/><circle class="pt" cx="596" cy="382" r="13"/><circle class="pt" cx="644" cy="382" r="13"/><circle class="pt" cx="692" cy="382" r="13"/><circle class="pt" cx="740" cy="382" r="13"/><circle class="pt" cx="788" cy="382" r="13"/><circle class="pt" cx="140" cy="434" r="13"/><circle class="pt" cx="188" cy="434" r="13"/><circle class="pt" cx="236" cy="434" r="13"/><circle class="pt" cx="284" cy="434" r="13"/><circle class="pt" cx="332" cy="434" r="13"/><circle class="pt" cx="380" cy="434" r="13"/><circle class="pt" cx="428" cy="434" r="13"/><circle class="pt" cx="476" cy="434" r="13"/><circle class="pt" cx="524" cy="434" r="13"/><circle class="pt" cx="572" cy="434" r="13"/><circle class="pt" cx="620" cy="434" r="13"/><circle class="pt" cx="668" cy="434" r="13"/><circle class="pt" cx="716" cy="434" r="13"/><circle class="pt" cx="764" cy="434" r="13"/><circle class="pt" cx="164" cy="486" r="13"/><circle class="pt" cx="212" cy="486" r="13"/><circle class="pt" cx="260" cy="486" r="13"/><circle class="pt" cx="308" cy="486" r="13"/><circle class="pt" cx="356" cy="486" r="13"/><circle class="pt" cx="404" cy="486" r="13"/><circle class="pt" cx="452" cy="486" r="13"/><circle class="pt" cx="500" cy="486" r="13"/><circle class="pt" cx="548" cy="486" r="13"/><circle class="pt" cx="596" cy="486" r="13"/><circle class="pt" cx="644" cy="486" r="13"/><circle class="pt" cx="692" cy="486" r="13"/><circle class="pt" cx="740" cy="486" r="13"/><circle class="pt" cx="788" cy="486" r="13"/><circle class="pt" cx="140" cy="538" r="13"/><circle class="pt" cx="188" cy="538" r="13"/><circle class="pt" cx="236" cy="538" r="13"/><circle class="pt" cx="284" cy="538" r="13"/><circle class="pt" cx="332" cy="538" r="13"/><circle class="pt" cx="380" cy="538" r="13"/><circle class="pt" cx="428" cy="538" r="13"/><circle class="pt sai" cx="476" cy="538" r="13"/><circle class="pt" cx="524" cy="538" r="13"/><circle class="pt" cx="572" cy="538" r="13"/><circle class="pt" cx="620" cy="538" r="13"/><circle class="pt" cx="668" cy="538" r="13"/><circle class="pt" cx="716" cy="538" r="13"/><circle class="pt" cx="764" cy="538" r="13"/><circle class="pt" cx="164" cy="590" r="13"/><circle class="pt" cx="212" cy="590" r="13"/><circle class="pt" cx="260" cy="590" r="13"/><circle class="pt" cx="308" cy="590" r="13"/><circle class="pt" cx="356" cy="590" r="13"/><circle class="pt" cx="404" cy="590" r="13"/><circle class="pt" cx="452" cy="590" r="13"/><circle class="pt" cx="500" cy="590" r="13"/><circle class="pt" cx="548" cy="590" r="13"/><circle class="pt" cx="596" cy="590" r="13"/><circle class="pt" cx="644" cy="590" r="13"/><circle class="pt" cx="692" cy="590" r="13"/><circle class="pt" cx="740" cy="590" r="13"/><circle class="pt" cx="788" cy="590" r="13"/><circle class="pt" cx="140" cy="642" r="13"/><circle class="pt" cx="188" cy="642" r="13"/><circle class="pt" cx="236" cy="642" r="13"/><circle class="pt" cx="284" cy="642" r="13"/><circle class="pt" cx="332" cy="642" r="13"/><circle class="pt" cx="380" cy="642" r="13"/><circle class="pt" cx="428" cy="642" r="13"/><circle class="pt" cx="476" cy="642" r="13"/><circle class="pt" cx="524" cy="642" r="13"/><circle class="pt" cx="572" cy="642" r="13"/><circle class="pt" cx="620" cy="642" r="13"/><circle class="pt" cx="668" cy="642" r="13"/><circle class="pt" cx="716" cy="642" r="13"/><circle class="pt" cx="764" cy="642" r="13"/><circle class="pt" cx="164" cy="694" r="13"/><circle class="pt" cx="212" cy="694" r="13"/><circle class="pt" cx="260" cy="694" r="13"/><circle class="pt" cx="308" cy="694" r="13"/><circle class="pt" cx="356" cy="694" r="13"/><circle class="pt" cx="404" cy="694" r="13"/><circle class="pt" cx="452" cy="694" r="13"/><circle class="pt" cx="500" cy="694" r="13"/><circle class="pt" cx="548" cy="694" r="13"/><circle class="pt" cx="596" cy="694" r="13"/><circle class="pt" cx="644" cy="694" r="13"/><circle class="pt" cx="692" cy="694" r="13"/><circle class="pt" cx="740" cy="694" r="13"/><circle class="pt" cx="788" cy="694" r="13"/><circle class="pt" cx="140" cy="746" r="13"/><circle class="pt" cx="188" cy="746" r="13"/><circle class="pt" cx="236" cy="746" r="13"/><circle class="pt" cx="284" cy="746" r="13"/><circle class="pt" cx="332" cy="746" r="13"/><circle class="pt" cx="380" cy="746" r="13"/><circle class="pt" cx="428" cy="746" r="13"/><circle class="pt" cx="476" cy="746" r="13"/><circle class="pt" cx="524" cy="746" r="13"/><circle class="pt" cx="572" cy="746" r="13"/><circle class="pt" cx="620" cy="746" r="13"/><circle class="pt" cx="668" cy="746" r="13"/><circle class="pt" cx="716" cy="746" r="13"/><circle class="pt" cx="764" cy="746" r="13"/></svg><div class="mtit"><span class="chip" style="background:#4ade802a;color:#4ade80">COMO NÃO FICAR PARA TRÁS · IA DIGITAL</span></div><div class="mlist"><div class="mi" id="m36"><b>1</b><span>aprenda agora a montar agentes para o seu trabalho</span></div></div><div class="mfecho"><div id="in35fa" style="opacity:0">Quem espera vira cliente.</div><div id="in35fb" style="color:#FACC15;opacity:0">Quem aprende vira dono.</div></div></div></div><div id="c39" class="clip full" data-start="99.77" data-duration="15.25" data-track-index="7" ><div class="tcam" id="tc38"><span class="chip" style="background:#FACC15;color:#0c0c10">CAMINHO 2</span><div class="tnome" style="color:#FACC15">ROBÔS</div></div></div><div id="c42" class="clip full" data-start="105.72" data-duration="9.20" data-track-index="4" ><div class="card oque" style="left:1000px;border-color:#FACC1555"><div class="chip" style="background:#FACC152e;color:#FACC15">O QUE É</div><div class="ctit">Inteligência com mãos</div><div class="row" id="r40"><div class="ic">🦾</div><div>montam, constroem, carregam, consertam</div></div><div class="row" id="r41"><div class="ic">🏭</div><div>fábricas, laboratórios e obras</div></div></div></div><div id="c44" class="clip scene" data-start="114.82" data-duration="11.80" data-track-index="3" ><div class="in" id="in43"><div class="full ovh" id="in43r"><img class="foto" id="in43f" src="assets/robos-oficina.png" alt=""/><div class="grad"></div></div><div class="stamp"><small>O MESMO MARCOS</small><span>MARCOS · ROBÔS</span></div></div></div><div id="c49" class="clip full" data-start="117.21" data-duration="9.41" data-track-index="4" ><div class="tags"><div class="tag" id="tg45">robô troca o óleo</div><div class="tag" id="tg46">desmonta o motor</div><div class="tag" id="tg47">trabalha a noite inteira</div><div class="tag bad" id="tg48">✕ ele já não é o melhor</div></div></div><div id="c51" class="clip scene" data-start="126.22" data-duration="9.56" data-track-index="5" ><div class="in opaque" id="in50"><img class="foto" src="assets/robos-oficina.png" alt="" style="opacity:.28;filter:blur(4px)"/><div class="quote"><span class="chip" style="background:#FACC152e;color:#FACC15">A PREVISÃO DO MUSK</span><div class="qt">Humanos deixam de ser os melhores em qualquer trabalho.</div><div class="qs" id="in50s">até nos criativos · é uma previsão, não um fato</div></div></div></div><div id="c53" class="clip full" data-start="135.58" data-duration="14.66" data-track-index="4" ><div class="card bign" id="bn52" style="border-color:#FACC1555"><span class="chip" style="background:#FACC152e;color:#FACC15">ESTIMATIVA DO MUSK</span><div class="num" style="color:#FACC15">×<i id="bn52n" style="font-style:normal">1</i></div><div class="sub">até um milhão de vezes a economia de hoje, com robôs + espaço</div><div class="alerta" id="bn52a">se hoje fosse 1 cm, isso seria 10 km · especulativo, sem cronograma</div></div><div class="pills" id="bn52p"><div>💰 dinheiro perde peso</div><div>💼 emprego perde peso</div></div></div><div id="c58" class="clip scene" data-start="149.94" data-duration="9.67" data-track-index="5" ><div class="in opaque" id="in54"><img class="foto" src="assets/robos-espaco.png" alt="" style="opacity:.2;filter:blur(6px)"/><div class="chip" style="position:absolute;left:420px;top:220px;background:rgba(250,204,21,.16);color:#FACC15">O QUE LEVA ATÉ LÁ · NA VISÃO DELE</div><div class="node" id="no55" style="left:420px;width:380px"><div class="n">PASSO 1</div><div class="t">PRODUÇÃO AUTOMATIZADA</div><div class="s">robôs que fazem robôs</div></div><div class="node" id="no56" style="left:870px;width:380px"><div class="n">PASSO 2</div><div class="t">ENERGIA DO SOL</div><div class="s">captada no espaço</div></div><svg class="seta" id="no56s" style="left:806px" viewBox="0 0 60 34"><path d="M0,17 H44 M34,5 L52,17 L34,29" stroke="#FACC15" stroke-width="5" fill="none"/></svg><div class="node" id="no57" style="left:1320px;width:380px"><div class="n">RESULTADO</div><div class="t">RECURSOS DE FORA DA TERRA</div><div class="s">→ até ×1.000.000</div></div><svg class="seta" id="no57s" style="left:1256px" viewBox="0 0 60 34"><path d="M0,17 H44 M34,5 L52,17 L34,29" stroke="#FACC15" stroke-width="5" fill="none"/></svg></div></div><div id="c62" class="clip scene" data-start="159.41" data-duration="11.06" data-track-index="6" ><div class="in opaque" id="in59"><svg class="multi" width="900" height="1080" viewBox="0 0 900 1080"><circle class="pt" cx="140" cy="330" r="13"/><circle class="pt" cx="188" cy="330" r="13"/><circle class="pt" cx="236" cy="330" r="13"/><circle class="pt" cx="284" cy="330" r="13"/><circle class="pt" cx="332" cy="330" r="13"/><circle class="pt" cx="380" cy="330" r="13"/><circle class="pt" cx="428" cy="330" r="13"/><circle class="pt" cx="476" cy="330" r="13"/><circle class="pt" cx="524" cy="330" r="13"/><circle class="pt" cx="572" cy="330" r="13"/><circle class="pt" cx="620" cy="330" r="13"/><circle class="pt" cx="668" cy="330" r="13"/><circle class="pt" cx="716" cy="330" r="13"/><circle class="pt" cx="764" cy="330" r="13"/><circle class="pt" cx="164" cy="382" r="13"/><circle class="pt" cx="212" cy="382" r="13"/><circle class="pt" cx="260" cy="382" r="13"/><circle class="pt" cx="308" cy="382" r="13"/><circle class="pt" cx="356" cy="382" r="13"/><circle class="pt" cx="404" cy="382" r="13"/><circle class="pt" cx="452" cy="382" r="13"/><circle class="pt" cx="500" cy="382" r="13"/><circle class="pt" cx="548" cy="382" r="13"/><circle class="pt" cx="596" cy="382" r="13"/><circle class="pt" cx="644" cy="382" r="13"/><circle class="pt" cx="692" cy="382" r="13"/><circle class="pt" cx="740" cy="382" r="13"/><circle class="pt" cx="788" cy="382" r="13"/><circle class="pt" cx="140" cy="434" r="13"/><circle class="pt" cx="188" cy="434" r="13"/><circle class="pt" cx="236" cy="434" r="13"/><circle class="pt" cx="284" cy="434" r="13"/><circle class="pt" cx="332" cy="434" r="13"/><circle class="pt" cx="380" cy="434" r="13"/><circle class="pt" cx="428" cy="434" r="13"/><circle class="pt" cx="476" cy="434" r="13"/><circle class="pt" cx="524" cy="434" r="13"/><circle class="pt" cx="572" cy="434" r="13"/><circle class="pt" cx="620" cy="434" r="13"/><circle class="pt" cx="668" cy="434" r="13"/><circle class="pt" cx="716" cy="434" r="13"/><circle class="pt" cx="764" cy="434" r="13"/><circle class="pt" cx="164" cy="486" r="13"/><circle class="pt" cx="212" cy="486" r="13"/><circle class="pt" cx="260" cy="486" r="13"/><circle class="pt" cx="308" cy="486" r="13"/><circle class="pt" cx="356" cy="486" r="13"/><circle class="pt" cx="404" cy="486" r="13"/><circle class="pt" cx="452" cy="486" r="13"/><circle class="pt" cx="500" cy="486" r="13"/><circle class="pt" cx="548" cy="486" r="13"/><circle class="pt" cx="596" cy="486" r="13"/><circle class="pt" cx="644" cy="486" r="13"/><circle class="pt" cx="692" cy="486" r="13"/><circle class="pt" cx="740" cy="486" r="13"/><circle class="pt" cx="788" cy="486" r="13"/><circle class="pt" cx="140" cy="538" r="13"/><circle class="pt" cx="188" cy="538" r="13"/><circle class="pt" cx="236" cy="538" r="13"/><circle class="pt" cx="284" cy="538" r="13"/><circle class="pt" cx="332" cy="538" r="13"/><circle class="pt" cx="380" cy="538" r="13"/><circle class="pt" cx="428" cy="538" r="13"/><circle class="pt sai" cx="476" cy="538" r="13"/><circle class="pt" cx="524" cy="538" r="13"/><circle class="pt" cx="572" cy="538" r="13"/><circle class="pt" cx="620" cy="538" r="13"/><circle class="pt" cx="668" cy="538" r="13"/><circle class="pt" cx="716" cy="538" r="13"/><circle class="pt" cx="764" cy="538" r="13"/><circle class="pt" cx="164" cy="590" r="13"/><circle class="pt" cx="212" cy="590" r="13"/><circle class="pt" cx="260" cy="590" r="13"/><circle class="pt" cx="308" cy="590" r="13"/><circle class="pt" cx="356" cy="590" r="13"/><circle class="pt" cx="404" cy="590" r="13"/><circle class="pt" cx="452" cy="590" r="13"/><circle class="pt" cx="500" cy="590" r="13"/><circle class="pt" cx="548" cy="590" r="13"/><circle class="pt" cx="596" cy="590" r="13"/><circle class="pt" cx="644" cy="590" r="13"/><circle class="pt" cx="692" cy="590" r="13"/><circle class="pt" cx="740" cy="590" r="13"/><circle class="pt" cx="788" cy="590" r="13"/><circle class="pt" cx="140" cy="642" r="13"/><circle class="pt" cx="188" cy="642" r="13"/><circle class="pt" cx="236" cy="642" r="13"/><circle class="pt" cx="284" cy="642" r="13"/><circle class="pt" cx="332" cy="642" r="13"/><circle class="pt" cx="380" cy="642" r="13"/><circle class="pt" cx="428" cy="642" r="13"/><circle class="pt" cx="476" cy="642" r="13"/><circle class="pt" cx="524" cy="642" r="13"/><circle class="pt" cx="572" cy="642" r="13"/><circle class="pt" cx="620" cy="642" r="13"/><circle class="pt" cx="668" cy="642" r="13"/><circle class="pt" cx="716" cy="642" r="13"/><circle class="pt" cx="764" cy="642" r="13"/><circle class="pt" cx="164" cy="694" r="13"/><circle class="pt" cx="212" cy="694" r="13"/><circle class="pt" cx="260" cy="694" r="13"/><circle class="pt" cx="308" cy="694" r="13"/><circle class="pt" cx="356" cy="694" r="13"/><circle class="pt" cx="404" cy="694" r="13"/><circle class="pt" cx="452" cy="694" r="13"/><circle class="pt" cx="500" cy="694" r="13"/><circle class="pt" cx="548" cy="694" r="13"/><circle class="pt" cx="596" cy="694" r="13"/><circle class="pt" cx="644" cy="694" r="13"/><circle class="pt" cx="692" cy="694" r="13"/><circle class="pt" cx="740" cy="694" r="13"/><circle class="pt" cx="788" cy="694" r="13"/><circle class="pt" cx="140" cy="746" r="13"/><circle class="pt" cx="188" cy="746" r="13"/><circle class="pt" cx="236" cy="746" r="13"/><circle class="pt" cx="284" cy="746" r="13"/><circle class="pt" cx="332" cy="746" r="13"/><circle class="pt" cx="380" cy="746" r="13"/><circle class="pt" cx="428" cy="746" r="13"/><circle class="pt" cx="476" cy="746" r="13"/><circle class="pt" cx="524" cy="746" r="13"/><circle class="pt" cx="572" cy="746" r="13"/><circle class="pt" cx="620" cy="746" r="13"/><circle class="pt" cx="668" cy="746" r="13"/><circle class="pt" cx="716" cy="746" r="13"/><circle class="pt" cx="764" cy="746" r="13"/></svg><div class="mtit"><span class="chip" style="background:#4ade802a;color:#4ade80">COMO NÃO FICAR PARA TRÁS · ROBÔS</span></div><div class="mlist"><div class="mi" id="m60"><b>1</b><span>entenda como um robô aprende</span></div><div class="mi" id="m61"><b>2</b><span>do real para o simulador, e de volta (Real2Sim)</span></div></div><div class="mfecho"><div id="in59fa" style="opacity:0">Quem entende o robô</div><div id="in59fb" style="color:#FACC15;opacity:0">dirige o robô.</div></div></div></div><div id="c64" class="clip full" data-start="170.57" data-duration="3.43" data-track-index="7" ><div class="tcam" id="tc63"><span class="chip" style="background:#ff4d4d;color:#0c0c10">O RISCO</span><div class="tnome" style="color:#ff4d4d">ELE MESMO ADMITE</div></div></div><div id="c69" class="clip scene" data-start="173.80" data-duration="17.51" data-track-index="5" ><div class="in opaque" id="in65"><img class="foto" src="assets/risco-corrida.png" alt="" style="opacity:.2;filter:blur(6px)"/><div class="chip" style="position:absolute;left:420px;top:220px;background:rgba(250,204,21,.16);color:#FACC15">O QUE LEVA ATÉ LÁ · O RISCO</div><div class="node" id="no66" style="left:420px;width:380px"><div class="n">PASSO 1</div><div class="t">A CORRIDA NÃO PARA</div><div class="s">ele não conseguiria pará-la</div></div><div class="node" id="no67" style="left:870px;width:380px"><div class="n">PASSO 2</div><div class="t">ELE ENTROU</div><div class="s">para tentar influenciar</div></div><svg class="seta" id="no67s" style="left:806px" viewBox="0 0 60 34"><path d="M0,17 H44 M34,5 L52,17 L34,29" stroke="#FACC15" stroke-width="5" fill="none"/></svg><div class="node" id="no68" style="left:1320px;width:380px"><div class="n">RESULTADO</div><div class="t">CONTROLAR?</div><div class="s">inteligências milhares ou milhões de vezes maiores: improvável</div></div><svg class="seta" id="no68s" style="left:1256px" viewBox="0 0 60 34"><path d="M0,17 H44 M34,5 L52,17 L34,29" stroke="#FACC15" stroke-width="5" fill="none"/></svg></div></div><div id="c73" class="clip full" data-start="191.51" data-duration="8.41" data-track-index="4" ><div class="card oque" style="left:1000px;border-color:#4ade8055"><div class="chip" style="background:#4ade802e;color:#4ade80">A APOSTA DELE</div><div class="ctit">IA que busca a verdade</div><div class="row" id="r70"><div class="ic">🔍</div><div>busca a verdade</div></div><div class="row" id="r71"><div class="ic">⚖️</div><div>evita contradições</div></div><div class="row" id="r72"><div class="ic">✨</div><div>tem curiosidade pela humanidade</div></div></div></div><div id="c75" class="clip scene" data-start="199.82" data-duration="13.40" data-track-index="3" ><div class="in" id="in74"><div class="full ovh" id="in74r"><img class="foto" id="in74f" src="assets/aposta-labs.png" alt=""/><div class="grad"></div></div><div class="stamp"><small>A PROPOSTA DELE</small><span>FISCALIZAÇÃO MÚTUA</span></div></div></div><div id="c80" class="clip full" data-start="199.82" data-duration="13.40" data-track-index="4" ><div class="tags"><div class="tag" id="tg76">laboratórios fiscalizando uns aos outros</div><div class="tag" id="tg77">reuniões toda semana</div><div class="tag" id="tg78">acesso antecipado aos modelos rivais</div><div class="tag gold" id="tg79">✓ achar o perigo antes do lançamento</div></div></div><div id="c82" class="clip scene" data-start="212.82" data-duration="7.78" data-track-index="5" ><div class="in opaque" id="in81"><div class="quote"><span class="chip" style="background:#ff4d4d2e;color:#ff4d4d">ELE RECONHECE UM ERRO</span><div class="qt">Ficou tempo demais na política, longe das empresas.</div><div class="qs" id="in81s">É uma aposta, não uma garantia.</div></div></div></div><div id="c87" class="clip scene" data-start="220.40" data-duration="10.22" data-track-index="6" ><div class="in opaque" id="in83"><svg class="multi" width="900" height="1080" viewBox="0 0 900 1080"><circle class="pt" cx="140" cy="330" r="13"/><circle class="pt" cx="188" cy="330" r="13"/><circle class="pt" cx="236" cy="330" r="13"/><circle class="pt" cx="284" cy="330" r="13"/><circle class="pt" cx="332" cy="330" r="13"/><circle class="pt" cx="380" cy="330" r="13"/><circle class="pt" cx="428" cy="330" r="13"/><circle class="pt" cx="476" cy="330" r="13"/><circle class="pt" cx="524" cy="330" r="13"/><circle class="pt" cx="572" cy="330" r="13"/><circle class="pt" cx="620" cy="330" r="13"/><circle class="pt" cx="668" cy="330" r="13"/><circle class="pt" cx="716" cy="330" r="13"/><circle class="pt" cx="764" cy="330" r="13"/><circle class="pt" cx="164" cy="382" r="13"/><circle class="pt" cx="212" cy="382" r="13"/><circle class="pt" cx="260" cy="382" r="13"/><circle class="pt" cx="308" cy="382" r="13"/><circle class="pt" cx="356" cy="382" r="13"/><circle class="pt" cx="404" cy="382" r="13"/><circle class="pt" cx="452" cy="382" r="13"/><circle class="pt" cx="500" cy="382" r="13"/><circle class="pt" cx="548" cy="382" r="13"/><circle class="pt" cx="596" cy="382" r="13"/><circle class="pt" cx="644" cy="382" r="13"/><circle class="pt" cx="692" cy="382" r="13"/><circle class="pt" cx="740" cy="382" r="13"/><circle class="pt" cx="788" cy="382" r="13"/><circle class="pt" cx="140" cy="434" r="13"/><circle class="pt" cx="188" cy="434" r="13"/><circle class="pt" cx="236" cy="434" r="13"/><circle class="pt" cx="284" cy="434" r="13"/><circle class="pt" cx="332" cy="434" r="13"/><circle class="pt" cx="380" cy="434" r="13"/><circle class="pt" cx="428" cy="434" r="13"/><circle class="pt" cx="476" cy="434" r="13"/><circle class="pt" cx="524" cy="434" r="13"/><circle class="pt" cx="572" cy="434" r="13"/><circle class="pt" cx="620" cy="434" r="13"/><circle class="pt" cx="668" cy="434" r="13"/><circle class="pt" cx="716" cy="434" r="13"/><circle class="pt" cx="764" cy="434" r="13"/><circle class="pt" cx="164" cy="486" r="13"/><circle class="pt" cx="212" cy="486" r="13"/><circle class="pt" cx="260" cy="486" r="13"/><circle class="pt" cx="308" cy="486" r="13"/><circle class="pt" cx="356" cy="486" r="13"/><circle class="pt" cx="404" cy="486" r="13"/><circle class="pt" cx="452" cy="486" r="13"/><circle class="pt" cx="500" cy="486" r="13"/><circle class="pt" cx="548" cy="486" r="13"/><circle class="pt" cx="596" cy="486" r="13"/><circle class="pt" cx="644" cy="486" r="13"/><circle class="pt" cx="692" cy="486" r="13"/><circle class="pt" cx="740" cy="486" r="13"/><circle class="pt" cx="788" cy="486" r="13"/><circle class="pt" cx="140" cy="538" r="13"/><circle class="pt" cx="188" cy="538" r="13"/><circle class="pt" cx="236" cy="538" r="13"/><circle class="pt" cx="284" cy="538" r="13"/><circle class="pt" cx="332" cy="538" r="13"/><circle class="pt" cx="380" cy="538" r="13"/><circle class="pt" cx="428" cy="538" r="13"/><circle class="pt sai" cx="476" cy="538" r="13"/><circle class="pt" cx="524" cy="538" r="13"/><circle class="pt" cx="572" cy="538" r="13"/><circle class="pt" cx="620" cy="538" r="13"/><circle class="pt" cx="668" cy="538" r="13"/><circle class="pt" cx="716" cy="538" r="13"/><circle class="pt" cx="764" cy="538" r="13"/><circle class="pt" cx="164" cy="590" r="13"/><circle class="pt" cx="212" cy="590" r="13"/><circle class="pt" cx="260" cy="590" r="13"/><circle class="pt" cx="308" cy="590" r="13"/><circle class="pt" cx="356" cy="590" r="13"/><circle class="pt" cx="404" cy="590" r="13"/><circle class="pt" cx="452" cy="590" r="13"/><circle class="pt" cx="500" cy="590" r="13"/><circle class="pt" cx="548" cy="590" r="13"/><circle class="pt" cx="596" cy="590" r="13"/><circle class="pt" cx="644" cy="590" r="13"/><circle class="pt" cx="692" cy="590" r="13"/><circle class="pt" cx="740" cy="590" r="13"/><circle class="pt" cx="788" cy="590" r="13"/><circle class="pt" cx="140" cy="642" r="13"/><circle class="pt" cx="188" cy="642" r="13"/><circle class="pt" cx="236" cy="642" r="13"/><circle class="pt" cx="284" cy="642" r="13"/><circle class="pt" cx="332" cy="642" r="13"/><circle class="pt" cx="380" cy="642" r="13"/><circle class="pt" cx="428" cy="642" r="13"/><circle class="pt" cx="476" cy="642" r="13"/><circle class="pt" cx="524" cy="642" r="13"/><circle class="pt" cx="572" cy="642" r="13"/><circle class="pt" cx="620" cy="642" r="13"/><circle class="pt" cx="668" cy="642" r="13"/><circle class="pt" cx="716" cy="642" r="13"/><circle class="pt" cx="764" cy="642" r="13"/><circle class="pt" cx="164" cy="694" r="13"/><circle class="pt" cx="212" cy="694" r="13"/><circle class="pt" cx="260" cy="694" r="13"/><circle class="pt" cx="308" cy="694" r="13"/><circle class="pt" cx="356" cy="694" r="13"/><circle class="pt" cx="404" cy="694" r="13"/><circle class="pt" cx="452" cy="694" r="13"/><circle class="pt" cx="500" cy="694" r="13"/><circle class="pt" cx="548" cy="694" r="13"/><circle class="pt" cx="596" cy="694" r="13"/><circle class="pt" cx="644" cy="694" r="13"/><circle class="pt" cx="692" cy="694" r="13"/><circle class="pt" cx="740" cy="694" r="13"/><circle class="pt" cx="788" cy="694" r="13"/><circle class="pt" cx="140" cy="746" r="13"/><circle class="pt" cx="188" cy="746" r="13"/><circle class="pt" cx="236" cy="746" r="13"/><circle class="pt" cx="284" cy="746" r="13"/><circle class="pt" cx="332" cy="746" r="13"/><circle class="pt" cx="380" cy="746" r="13"/><circle class="pt" cx="428" cy="746" r="13"/><circle class="pt" cx="476" cy="746" r="13"/><circle class="pt" cx="524" cy="746" r="13"/><circle class="pt" cx="572" cy="746" r="13"/><circle class="pt" cx="620" cy="746" r="13"/><circle class="pt" cx="668" cy="746" r="13"/><circle class="pt" cx="716" cy="746" r="13"/><circle class="pt" cx="764" cy="746" r="13"/></svg><div class="mtit"><span class="chip" style="background:#4ade802a;color:#4ade80">E O MARCOS?</span></div><div class="mlist"><div class="mi" id="m84"><b>1</b><span>não decide essa corrida</span></div><div class="mi" id="m85"><b>2</b><span>vai só assistir?</span></div><div class="mi" id="m86"><b>3</b><span>ou aprender a supervisionar a máquina</span></div></div></div></div><div id="c93" class="clip scene" data-start="230.72" data-duration="13.61" data-track-index="4" ><div class="in opaque" id="in88"><div class="cmp"><div class="cc" id="cc89" style="border-top:8px solid #9a9aa6"><img src="assets/marcos-2026.png" alt=""/><span style="color:#9a9aa6">HOJE</span><p>corre de sol a sol</p></div><div class="cc" id="cc90" style="border-top:8px solid #38bdf8"><img src="assets/digital-marcos.png" alt=""/><span style="color:#38bdf8">IA DIGITAL</span><p>ganha tempo</p></div><div class="cc" id="cc91" style="border-top:8px solid #FACC15"><img src="assets/robos-oficina.png" alt=""/><span style="color:#FACC15">ROBÔS</span><p>perde o posto de melhor</p></div><div class="cc" id="cc92" style="border-top:8px solid #ff4d4d"><img src="assets/risco-corrida.png" alt=""/><span style="color:#ff4d4d">O RISCO</span><p>ninguém garante o controle</p></div></div><div class="frase" id="in88fr"><div>Dois caminhos.</div><div style="color:#FACC15">O mesmo Marcos.</div></div></div></div><div id="c98" class="clip scene" data-start="244.13" data-duration="26.31" data-track-index="5" ><div class="in opaque" id="in94"><div class="chip" style="position:absolute;left:420px;top:130px;background:rgba(74,222,128,.16);color:#4ade80">O QUE FAZER, HOJE</div><div class="passos"><div class="ps" id="p95"><b>1</b><span>crie agentes agora: atendimento, vendas, processos</span></div><div class="ps" id="p96"><b>2</b><span>prepare-se para os robôs: simulação e Real2Sim</span></div><div class="ps" id="p97"><b>3</b><span>dirija sistemas: intenção, contexto, agentes, validação, supervisão</span></div></div></div></div><div id="c100" class="clip scene" data-start="270.04" data-duration="9.17" data-track-index="5" ><div class="in opaque" id="in99"><img class="foto" src="assets/final-marcos.png" alt="" style="opacity:.28;filter:blur(4px)"/><div class="quote"><span class="chip" style="background:#FACC152e;color:#FACC15">NÃO BASTA USAR A IA</span><div class="qt">Construir, coordenar e controlar.</div><div class="qs" id="in99s">enquanto ainda dá para escolher</div></div></div></div><div id="c102" class="clip scene" data-start="280.71" data-duration="9.87" data-track-index="6" ><div class="in" id="in101"><div class="full" style="background:rgba(12,12,16,.86)"></div><div class="fim"><h2>De que lado você quer estar?</h2><div class="sub">comenta: “eu vou aprender a dirigir” 👇</div><div class="pill" id="in101p">inema.club</div></div><div class="printc" id="in101pr"><img src="assets/print-inema.png" alt="inema.club"/><span>aberto e gratuito · inema.club</span></div></div></div>
+ <div id="topo" class="clip full" data-start="0" data-duration="290.58" data-track-index="8"><div id="marca">INEMA <span>· DOIS CAMINHOS DA IA</span></div><div id="fonte">Elon Musk a Walter Isaacson · estimativas dele, sem cronograma verificável</div></div>
+ <div id="avw" style="left:36px;top:684px;width:320px;height:360px;"><video id="av" src="assets/avatar-a.mp4" data-start="0" data-duration="289.98" data-track-index="9" data-has-audio="true" data-volume="1" playsinline></video><div class="avtag">Nei Maldaner · INEMA</div></div>
+ <div id="legenda" class="clip full" data-start="0" data-duration="290.58" data-track-index="10"><div class="cap" id="cap0"><b>E</b> <b>se</b></div><div class="cap" id="cap1"><b>daqui</b> <b>a</b> <b>alguns</b></div><div class="cap" id="cap2"><b>anos</b></div><div class="cap" id="cap3"><b>não</b> <b>existir</b> <b>mais</b></div><div class="cap" id="cap4"><b>nada</b> <b>que</b> <b>você</b></div><div class="cap" id="cap5"><b>faça</b> <b>melhor</b> <b>do</b></div><div class="cap" id="cap6"><b>que</b> <b>uma</b> <b>máquina?</b></div><div class="cap" id="cap7"><b>Não</b> <b>sou</b> <b>eu</b></div><div class="cap" id="cap8"><b>que</b> <b>estou</b> <b>dizendo</b></div><div class="cap" id="cap9"><b>É</b> <b>o</b> <b>Elon</b></div><div class="cap" id="cap10"><b>Musk</b></div><div class="cap" id="cap11"><b>numa</b> <b>entrevista</b> <b>ao</b></div><div class="cap" id="cap12"><b>Walter</b> <b>Isaacson</b></div><div class="cap" id="cap13"><b>o</b> <b>biógrafo</b> <b>dele</b></div><div class="cap" id="cap14"><b>Para</b> <b>ele</b></div><div class="cap" id="cap15"><b>o</b> <b>futuro</b> <b>tem</b></div><div class="cap" id="cap16"><b>dois</b> <b>caminhos</b></div><div class="cap" id="cap17"><b>a</b> <b>inteligência</b> <b>artificial</b></div><div class="cap" id="cap18"><b>digital</b></div><div class="cap" id="cap19"><b>e</b> <b>os</b> <b>robôs</b></div><div class="cap" id="cap20"><b>E</b> <b>ele</b> <b>admite</b></div><div class="cap" id="cap21"><b>uma</b> <b>coisa</b> <b>que</b></div><div class="cap" id="cap22"><b>assusta</b></div><div class="cap" id="cap23"><b>ninguém</b> <b>controla</b> <b>o</b></div><div class="cap" id="cap24"><b>resultado</b></div><div class="cap" id="cap25"><b>Olha</b> <b>este</b> <b>gráfico</b></div><div class="cap" id="cap26"><b>é</b> <b>o</b> <b>tamanho</b></div><div class="cap" id="cap27"><b>da</b> <b>economia</b> <b>do</b></div><div class="cap" id="cap28"><b>mundo</b></div><div class="cap" id="cap29"><b>Nós</b> <b>estamos</b> <b>aqui</b></div><div class="cap" id="cap30"><b>hoje</b></div><div class="cap" id="cap31"><b>Agora</b> <b>conheça</b> <b>o</b></div><div class="cap" id="cap32"><b>Marcos</b></div><div class="cap" id="cap33"><b>quarenta</b> <b>anos</b></div><div class="cap" id="cap34"><b>dono</b> <b>de</b> <b>uma</b></div><div class="cap" id="cap35"><b>oficina</b> <b>mecânica</b></div><div class="cap" id="cap36"><b>trabalha</b> <b>de</b> <b>sol</b></div><div class="cap" id="cap37"><b>a</b> <b>sol</b></div><div class="cap" id="cap38"><b>Vamos</b> <b>ver</b> <b>o</b></div><div class="cap" id="cap39"><b>mesmo</b> <b>dia</b> <b>dele</b></div><div class="cap" id="cap40"><b>em</b> <b>cada</b> <b>caminho</b></div><div class="cap" id="cap41"><b>e</b> <b>o</b> <b>que</b></div><div class="cap" id="cap42"><b>você</b> <b>pode</b> <b>fazer</b></div><div class="cap" id="cap43"><b>em</b> <b>cada</b> <b>um</b></div><div class="cap" id="cap44"><b>Caminho</b> <b>um</b></div><div class="cap" id="cap45"><b>a</b> <b>IA</b> <b>digital</b></div><div class="cap" id="cap46"><b>O</b> <b>que</b> <b>é?</b></div><div class="cap" id="cap47"><b>Programas</b> <b>que</b> <b>pensam</b></div><div class="cap" id="cap48"><b>agentes</b> <b>que</b> <b>pesquisam</b></div><div class="cap" id="cap49"><b>programam</b></div><div class="cap" id="cap50"><b>analisam</b> <b>e</b> <b>atendem</b></div><div class="cap" id="cap51"><b>Como</b> <b>o</b> <b>Marcos</b></div><div class="cap" id="cap52"><b>vive?</b></div><div class="cap" id="cap53"><b>O</b> <b>telefone</b> <b>da</b></div><div class="cap" id="cap54"><b>oficina</b> <b>é</b> <b>atendido</b></div><div class="cap" id="cap55"><b>por</b> <b>um</b> <b>agente</b></div><div class="cap" id="cap56"><b>O</b> <b>orçamento</b> <b>sai</b></div><div class="cap" id="cap57"><b>sozinho</b></div><div class="cap" id="cap58"><b>a</b> <b>agenda</b> <b>se</b></div><div class="cap" id="cap59"><b>organiza</b></div><div class="cap" id="cap60"><b>e</b> <b>ele</b> <b>ganha</b></div><div class="cap" id="cap61"><b>horas</b> <b>no</b> <b>dia</b></div><div class="cap" id="cap62"><b>Mas</b> <b>quem</b> <b>conserta</b></div><div class="cap" id="cap63"><b>o</b> <b>carro</b> <b>ainda</b></div><div class="cap" id="cap64"><b>é</b> <b>ele</b></div><div class="cap" id="cap65"><b>Quanto</b> <b>isso</b> <b>muda</b></div><div class="cap" id="cap66"><b>a</b> <b>economia?</b></div><div class="cap" id="cap67"><b>Para</b> <b>o</b> <b>Musk</b></div><div class="cap" id="cap68"><b>de</b> <b>vinte</b> <b>a</b></div><div class="cap" id="cap69"><b>trinta</b> <b>por</b> <b>cento</b></div><div class="cap" id="cap70"><b>a</b> <b>mais</b></div><div class="cap" id="cap71"><b>É</b> <b>muito</b> <b>dinheiro</b></div><div class="cap" id="cap72"><b>Mas</b></div><div class="cap" id="cap73"><b>no</b> <b>gráfico</b></div><div class="cap" id="cap74"><b>é</b> <b>só</b> <b>um</b></div><div class="cap" id="cap75"><b>degrau</b></div><div class="cap" id="cap76"><b>O</b> <b>que</b> <b>leva</b></div><div class="cap" id="cap77"><b>até</b> <b>lá</b></div><div class="cap" id="cap78"><b>modelos</b> <b>cada</b> <b>vez</b></div><div class="cap" id="cap79"><b>melhores</b></div><div class="cap" id="cap80"><b>agentes</b> <b>ligados</b> <b>às</b></div><div class="cap" id="cap81"><b>ferramentas</b></div><div class="cap" id="cap82"><b>e</b> <b>empresas</b> <b>que</b></div><div class="cap" id="cap83"><b>aprendem</b> <b>a</b> <b>usar</b></div><div class="cap" id="cap84"><b>Como</b> <b>não</b> <b>ficar</b></div><div class="cap" id="cap85"><b>para</b> <b>trás?</b></div><div class="cap" id="cap86"><b>Aprenda</b> <b>agora</b> <b>a</b></div><div class="cap" id="cap87"><b>montar</b> <b>agentes</b> <b>para</b></div><div class="cap" id="cap88"><b>o</b> <b>seu</b> <b>trabalho</b></div><div class="cap" id="cap89"><b>Quem</b> <b>espera</b> <b>vira</b></div><div class="cap" id="cap90"><b>cliente</b></div><div class="cap" id="cap91"><b>Quem</b> <b>aprende</b> <b>vira</b></div><div class="cap" id="cap92"><b>dono</b></div><div class="cap" id="cap93"><b>Caminho</b> <b>dois</b></div><div class="cap" id="cap94"><b>os</b> <b>robôs</b></div><div class="cap" id="cap95"><b>E</b></div><div class="cap" id="cap96"><b>para</b> <b>o</b> <b>Musk</b></div><div class="cap" id="cap97"><b>esse</b> <b>é</b> <b>muito</b></div><div class="cap" id="cap98"><b>maior</b></div><div class="cap" id="cap99"><b>O</b> <b>que</b> <b>é?</b></div><div class="cap" id="cap100"><b>Inteligência</b> <b>com</b> <b>mãos</b></div><div class="cap" id="cap101"><b>robôs</b> <b>que</b> <b>montam</b></div><div class="cap" id="cap102"><b>constroem</b></div><div class="cap" id="cap103"><b>carregam</b> <b>e</b> <b>consertam</b></div><div class="cap" id="cap104"><b>em</b> <b>fábricas</b></div><div class="cap" id="cap105"><b>laboratórios</b> <b>e</b> <b>obras</b></div><div class="cap" id="cap106"><b>Como</b> <b>o</b> <b>Marcos</b></div><div class="cap" id="cap107"><b>vive?</b></div><div class="cap" id="cap108"><b>Um</b> <b>robô</b> <b>troca</b></div><div class="cap" id="cap109"><b>o</b> <b>óleo</b></div><div class="cap" id="cap110"><b>desmonta</b> <b>o</b> <b>motor</b></div><div class="cap" id="cap111"><b>e</b> <b>trabalha</b> <b>a</b></div><div class="cap" id="cap112"><b>noite</b> <b>inteira</b></div><div class="cap" id="cap113"><b>E</b> <b>o</b> <b>Marcos</b></div><div class="cap" id="cap114"><b>já</b> <b>não</b> <b>é</b></div><div class="cap" id="cap115"><b>o</b> <b>melhor</b> <b>mecânico</b></div><div class="cap" id="cap116"><b>da</b> <b>própria</b> <b>oficina</b></div><div class="cap" id="cap117"><b>Na</b> <b>visão</b> <b>do</b></div><div class="cap" id="cap118"><b>Musk</b></div><div class="cap" id="cap119"><b>os</b> <b>humanos</b> <b>deixam</b></div><div class="cap" id="cap120"><b>de</b> <b>ser</b> <b>os</b></div><div class="cap" id="cap121"><b>melhores</b> <b>em</b> <b>qualquer</b></div><div class="cap" id="cap122"><b>trabalho</b></div><div class="cap" id="cap123"><b>até</b> <b>nos</b> <b>criativos</b></div><div class="cap" id="cap124"><b>É</b> <b>uma</b> <b>previsão</b></div><div class="cap" id="cap125"><b>não</b> <b>um</b> <b>fato</b></div><div class="cap" id="cap126"><b>Quanto</b> <b>isso</b> <b>muda</b></div><div class="cap" id="cap127"><b>a</b> <b>economia?</b></div><div class="cap" id="cap128"><b>Com</b> <b>robôs</b> <b>e</b></div><div class="cap" id="cap129"><b>a</b> <b>expansão</b> <b>pelo</b></div><div class="cap" id="cap130"><b>espaço</b></div><div class="cap" id="cap131"><b>ele</b> <b>fala</b> <b>em</b></div><div class="cap" id="cap132"><b>até</b> <b>um</b> <b>milhão</b></div><div class="cap" id="cap133"><b>de</b> <b>vezes</b> <b>a</b></div><div class="cap" id="cap134"><b>economia</b> <b>de</b> <b>hoje</b></div><div class="cap" id="cap135"><b>Tanta</b> <b>coisa</b> <b>produzida</b></div><div class="cap" id="cap136"><b>que</b> <b>dinheiro</b> <b>e</b></div><div class="cap" id="cap137"><b>emprego</b> <b>perdem</b> <b>importância</b></div><div class="cap" id="cap138"><b>O</b> <b>que</b> <b>leva</b></div><div class="cap" id="cap139"><b>até</b> <b>lá</b></div><div class="cap" id="cap140"><b>na</b> <b>visão</b> <b>dele</b></div><div class="cap" id="cap141"><b>produção</b> <b>automatizada</b></div><div class="cap" id="cap142"><b>energia</b> <b>do</b> <b>sol</b></div><div class="cap" id="cap143"><b>captada</b> <b>no</b> <b>espaço</b></div><div class="cap" id="cap144"><b>e</b> <b>recursos</b> <b>tirados</b></div><div class="cap" id="cap145"><b>de</b> <b>fora</b> <b>da</b></div><div class="cap" id="cap146"><b>Terra</b></div><div class="cap" id="cap147"><b>Como</b> <b>não</b> <b>ficar</b></div><div class="cap" id="cap148"><b>para</b> <b>trás?</b></div><div class="cap" id="cap149"><b>Entenda</b> <b>como</b> <b>um</b></div><div class="cap" id="cap150"><b>robô</b> <b>aprende</b></div><div class="cap" id="cap151"><b>do</b> <b>mundo</b> <b>real</b></div><div class="cap" id="cap152"><b>para</b> <b>o</b> <b>simulador</b></div><div class="cap" id="cap153"><b>e</b> <b>de</b> <b>volta</b></div><div class="cap" id="cap154"><b>Quem</b> <b>entende</b> <b>o</b></div><div class="cap" id="cap155"><b>robô</b> <b>dirige</b> <b>o</b></div><div class="cap" id="cap156"><b>robô</b></div><div class="cap" id="cap157"><b>Agora</b></div><div class="cap" id="cap158"><b>a</b> <b>parte</b> <b>que</b></div><div class="cap" id="cap159"><b>ele</b> <b>mesmo</b> <b>admite</b></div><div class="cap" id="cap160"><b>Essa</b> <b>corrida</b> <b>não</b></div><div class="cap" id="cap161"><b>vai</b> <b>parar</b></div><div class="cap" id="cap162"><b>O</b> <b>Musk</b> <b>diz</b></div><div class="cap" id="cap163"><b>que</b> <b>entrou</b> <b>nela</b></div><div class="cap" id="cap164"><b>porque</b> <b>não</b> <b>conseguiria</b></div><div class="cap" id="cap165"><b>pará-la</b></div><div class="cap" id="cap166"><b>e</b> <b>prefere</b> <b>tentar</b></div><div class="cap" id="cap167"><b>influenciar</b></div><div class="cap" id="cap168"><b>E</b> <b>ele</b> <b>acha</b></div><div class="cap" id="cap169"><b>improvável</b> <b>que</b> <b>a</b></div><div class="cap" id="cap170"><b>gente</b> <b>consiga</b> <b>controlar</b></div><div class="cap" id="cap171"><b>inteligências</b></div><div class="cap" id="cap172"><b>milhares</b> <b>ou</b> <b>milhões</b></div><div class="cap" id="cap173"><b>de</b> <b>vezes</b> <b>maiores</b></div><div class="cap" id="cap174"><b>que</b> <b>a</b> <b>nossa</b></div><div class="cap" id="cap175"><b>Qual</b> <b>é</b> <b>a</b></div><div class="cap" id="cap176"><b>aposta</b> <b>dele?</b></div><div class="cap" id="cap177"><b>Uma</b> <b>IA</b> <b>que</b></div><div class="cap" id="cap178"><b>busque</b> <b>a</b> <b>verdade</b></div><div class="cap" id="cap179"><b>que</b> <b>evite</b> <b>contradições</b></div><div class="cap" id="cap180"><b>e</b> <b>que</b> <b>tenha</b></div><div class="cap" id="cap181"><b>curiosidade</b> <b>pela</b> <b>humanidade</b></div><div class="cap" id="cap182"><b>E</b> <b>laboratórios</b> <b>fiscalizando</b></div><div class="cap" id="cap183"><b>uns</b> <b>aos</b> <b>outros</b></div><div class="cap" id="cap184"><b>reuniões</b> <b>toda</b> <b>semana</b></div><div class="cap" id="cap185"><b>e</b> <b>acesso</b> <b>antecipado</b></div><div class="cap" id="cap186"><b>aos</b> <b>modelos</b> <b>dos</b></div><div class="cap" id="cap187"><b>concorrentes</b></div><div class="cap" id="cap188"><b>para</b> <b>achar</b> <b>o</b></div><div class="cap" id="cap189"><b>perigo</b> <b>antes</b> <b>do</b></div><div class="cap" id="cap190"><b>lançamento</b></div><div class="cap" id="cap191"><b>Ele</b> <b>também</b> <b>reconhece</b></div><div class="cap" id="cap192"><b>um</b> <b>erro</b></div><div class="cap" id="cap193"><b>ficou</b> <b>tempo</b> <b>demais</b></div><div class="cap" id="cap194"><b>na</b> <b>política</b></div><div class="cap" id="cap195"><b>longe</b> <b>das</b> <b>empresas</b></div><div class="cap" id="cap196"><b>É</b> <b>uma</b> <b>aposta</b></div><div class="cap" id="cap197"><b>não</b> <b>uma</b> <b>garantia</b></div><div class="cap" id="cap198"><b>E</b> <b>o</b> <b>Marcos?</b></div><div class="cap" id="cap199"><b>Ele</b> <b>não</b> <b>decide</b></div><div class="cap" id="cap200"><b>essa</b> <b>corrida</b></div><div class="cap" id="cap201"><b>Mas</b> <b>pode</b> <b>decidir</b></div><div class="cap" id="cap202"><b>se</b> <b>vai</b> <b>só</b></div><div class="cap" id="cap203"><b>assistir</b></div><div class="cap" id="cap204"><b>ou</b> <b>aprender</b> <b>a</b></div><div class="cap" id="cap205"><b>supervisionar</b></div><div class="cap" id="cap206"><b>o</b> <b>que</b> <b>a</b></div><div class="cap" id="cap207"><b>máquina</b> <b>faz</b></div><div class="cap" id="cap208"><b>Dois</b> <b>caminhos</b></div><div class="cap" id="cap209"><b>O</b> <b>mesmo</b> <b>Marcos</b></div><div class="cap" id="cap210"><b>Na</b> <b>IA</b> <b>digital</b></div><div class="cap" id="cap211"><b>ele</b> <b>ganha</b> <b>tempo</b></div><div class="cap" id="cap212"><b>Nos</b> <b>robôs</b></div><div class="cap" id="cap213"><b>ele</b> <b>perde</b> <b>o</b></div><div class="cap" id="cap214"><b>posto</b> <b>de</b> <b>melhor</b></div><div class="cap" id="cap215"><b>E</b> <b>em</b> <b>nenhum</b></div><div class="cap" id="cap216"><b>dos</b> <b>dois</b> <b>alguém</b></div><div class="cap" id="cap217"><b>garante</b> <b>o</b> <b>controle</b></div><div class="cap" id="cap218"><b>Então</b></div><div class="cap" id="cap219"><b>o</b> <b>que</b> <b>fazer</b></div><div class="cap" id="cap220"><b>hoje?</b></div><div class="cap" id="cap221"><b>Primeiro</b></div><div class="cap" id="cap222"><b>aprenda</b> <b>a</b> <b>criar</b></div><div class="cap" id="cap223"><b>agentes</b> <b>agora</b></div><div class="cap" id="cap224"><b>É</b> <b>a</b> <b>porta</b></div><div class="cap" id="cap225"><b>de</b> <b>entrada</b> <b>para</b></div><div class="cap" id="cap226"><b>automatizar</b> <b>atendimento</b></div><div class="cap" id="cap227"><b>vendas</b> <b>e</b> <b>processos</b></div><div class="cap" id="cap228"><b>Segundo</b></div><div class="cap" id="cap229"><b>prepare-se</b> <b>para</b> <b>os</b></div><div class="cap" id="cap230"><b>robôs</b></div><div class="cap" id="cap231"><b>Simulação</b> <b>e</b> <b>robótica</b></div><div class="cap" id="cap232"><b>são</b> <b>o</b> <b>próximo</b></div><div class="cap" id="cap233"><b>salto</b></div><div class="cap" id="cap234"><b>Terceiro</b></div><div class="cap" id="cap235"><b>aprenda</b> <b>a</b> <b>dirigir</b></div><div class="cap" id="cap236"><b>sistemas</b></div><div class="cap" id="cap237"><b>e</b> <b>não</b> <b>só</b></div><div class="cap" id="cap238"><b>a</b> <b>usar</b> <b>ferramentas</b></div><div class="cap" id="cap239"><b>intenção</b></div><div class="cap" id="cap240"><b>contexto</b></div><div class="cap" id="cap241"><b>agentes</b></div><div class="cap" id="cap242"><b>validação</b> <b>e</b> <b>supervisão</b></div><div class="cap" id="cap243"><b>Não</b> <b>basta</b> <b>usar</b></div><div class="cap" id="cap244"><b>a</b> <b>IA</b></div><div class="cap" id="cap245"><b>Precisamos</b> <b>aprender</b> <b>a</b></div><div class="cap" id="cap246"><b>construir</b></div><div class="cap" id="cap247"><b>coordenar</b> <b>e</b> <b>controlar</b></div><div class="cap" id="cap248"><b>enquanto</b> <b>ainda</b> <b>dá</b></div><div class="cap" id="cap249"><b>para</b> <b>escolher</b></div><div class="cap" id="cap250"><b>E</b> <b>você</b></div><div class="cap" id="cap251"><b>de</b> <b>que</b> <b>lado</b></div><div class="cap" id="cap252"><b>quer</b> <b>estar?</b></div><div class="cap" id="cap253"><b>Escreve</b> <b>aqui</b> <b>nos</b></div><div class="cap" id="cap254"><b>comentários</b></div><div class="cap" id="cap255"><b>eu</b> <b>vou</b> <b>aprender</b></div><div class="cap" id="cap256"><b>a</b> <b>dirigir</b></div><div class="cap" id="cap257"><b>E</b> <b>tá</b> <b>tudo</b></div><div class="cap" id="cap258"><b>no</b> <b>inema</b> <b>ponto</b></div><div class="cap" id="cap259"><b>club</b></div><div class="cap" id="cap260"><b>aberto</b> <b>e</b> <b>gratuito</b></div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#in1f", {scale:0.93, transformOrigin:"0% 0%"}, {scale:0.95, transformOrigin:"0% 0%", duration:2.68, ease:"none"}, 0);
+tl.to("#in1", {opacity:0, duration:0.6}, 2.08);
+tl.set("#cam", {opacity:0}, -0.40); tl.set("#cam", {opacity:1}, 2.08);
+tl.set("#avw", {x:924, y:-684, scale:3.000, transformOrigin:"0 0", opacity:1}, 0);
+tl.to("#avw", {x:0, y:0, scale:1, duration:0.7, ease:"power2.inOut"}, 26.31);
+tl.set("#legenda", {x:-480}, 0); tl.to("#legenda", {x:0, duration:0.5}, 26.51);
+tl.set(["#marca","#fonte"], {opacity:0}, 0); tl.to("#marca", {opacity:1, duration:0.5}, 2.08); tl.to("#fonte", {opacity:1, duration:0.5}, 27.01);
+tl.fromTo("#in3", {opacity:0}, {opacity:1, duration:0.5}, 2.08);
+tl.to("#in3", {opacity:0, duration:0.5}, 26.81);
+tl.set("#cam", {opacity:0}, 2.68); tl.set("#cam", {opacity:1}, 26.41);
+tl.fromTo("#a4", {opacity:0, x:40}, {opacity:1, x:0, duration:0.45}, 19.13);
+tl.fromTo("#a5", {opacity:0, x:40}, {opacity:1, x:0, duration:0.45}, 20.22);
+tl.fromTo("#in3rs", {opacity:0, y:24}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 23.81);
+tl.fromTo("#eixos", {opacity:0}, {opacity:1, duration:0.8}, 27.01);
+tl.fromTo("#dot", {opacity:0, attr:{r:4}}, {opacity:1, attr:{r:17}, duration:0.5, ease:"back.out(3)"}, 31.06);
+tl.fromTo("#aqui", {opacity:0, y:-20}, {opacity:1, y:0, duration:0.6}, 31.36);
+tl.fromTo("#qq", {opacity:0}, {opacity:1, duration:0.5}, 32.06);
+tl.to("#qq", {opacity:0, duration:0.3}, 33.39); tl.to("#qq", {opacity:1, duration:0.4}, 42.48);
+tl.fromTo("#in7", {opacity:0}, {opacity:1, duration:0.5}, 33.69);
+tl.to("#in7", {opacity:0, duration:0.5}, 41.98);
+tl.set("#cam", {opacity:0}, 34.29); tl.set("#cam", {opacity:1}, 41.88);
+tl.fromTo("#in7f", {scale:1.0}, {scale:1.07, duration:9.59, ease:"none"}, 33.69);
+tl.fromTo("#tg9", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 34.62);
+tl.fromTo("#tg9", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 34.62);
+tl.fromTo("#tg10", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 36.48);
+tl.fromTo("#tg10", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 36.48);
+tl.fromTo("#tg11", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 38.56);
+tl.fromTo("#tg11", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 38.56);
+tl.fromTo("#banM", {opacity:0, y:24}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 42.48);
+tl.to("#aqui", {opacity:0, duration:0.4}, 42.28);
+tl.to("#qq", {opacity:0, duration:0.4}, 45.95);
+(()=>{const p=document.getElementById("lD"),L=p.getTotalLength(); tl.fromTo(p,{strokeDasharray:"0 "+L},{strokeDasharray:L+" 0",duration:1.6,ease:"power2.out"},46.15);})();
+tl.fromTo("#tD", {opacity:0, x:20}, {opacity:1, x:0, duration:0.5}, 47.45);
+tl.to("#gF", {opacity:0.15, duration:0.6}, 46.75); tl.to("#gD", {opacity:1, duration:0.6}, 46.75);
+tl.to("#cam", {scale:1.2, transformOrigin:"1150px 705px", duration:1.6, ease:"power2.inOut"}, 46.75);
+tl.to("#ticks", {opacity:0, duration:0.4}, 46.75);
+tl.fromTo("#tc14", {opacity:0, y:-20}, {opacity:1, y:0, duration:0.5}, 46.35);
+tl.to("#ticks", {opacity:0, duration:0.3}, 46.05);
+tl.to("#tc14 .tnome", {scale:0.5, transformOrigin:"0 0", duration:0.6}, 48.95);
+tl.to("#tc14", {opacity:0, duration:0.4}, 56.09);
+tl.fromTo("#c19 .card", {opacity:0, x:60}, {opacity:1, x:0, duration:0.5}, 49.57);
+tl.to("#c19 .card", {opacity:0, duration:0.4}, 55.99);
+tl.fromTo("#r16", {opacity:0, x:40}, {opacity:1, x:0, duration:0.45}, 51.75);
+tl.fromTo("#r17", {opacity:0, x:40}, {opacity:1, x:0, duration:0.45}, 52.56);
+tl.fromTo("#r18", {opacity:0, x:40}, {opacity:1, x:0, duration:0.45}, 54.06);
+tl.fromTo("#in20", {opacity:0}, {opacity:1, duration:0.5}, 56.29);
+tl.to("#in20", {opacity:0, duration:0.5}, 69.93);
+tl.set("#cam", {opacity:0}, 56.89); tl.set("#cam", {opacity:1}, 69.83);
+tl.fromTo("#in20f", {scale:1.0}, {scale:1.07, duration:14.94, ease:"none"}, 56.29);
+tl.fromTo("#tg22", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 57.80);
+tl.fromTo("#tg22", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 57.80);
+tl.fromTo("#tg23", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 61.62);
+tl.fromTo("#tg23", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 61.62);
+tl.fromTo("#tg24", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 63.42);
+tl.fromTo("#tg24", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 63.42);
+tl.fromTo("#tg25", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 65.73);
+tl.fromTo("#tg25", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 65.73);
+tl.fromTo("#tg26", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 67.60);
+tl.fromTo("#tg26", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 67.60);
+tl.fromTo("#bn28", {opacity:0, y:30}, {opacity:1, y:0, duration:0.5}, 70.23);
+tl.fromTo("#bn28 .b1", {width:0}, {width:250, duration:0.6}, 70.63);
+tl.fromTo("#bn28 .b2", {width:0}, {width:310, duration:0.9}, 73.80);
+tl.fromTo("#bn28a", {opacity:0}, {opacity:1, duration:0.4}, 75.00);
+tl.to("#bn28", {opacity:0, duration:0.4}, 81.09);
+tl.fromTo("#degrau", {opacity:0}, {opacity:1, duration:0.5}, 79.45);
+tl.fromTo("#in30", {opacity:0}, {opacity:1, duration:0.5}, 81.19);
+tl.to("#in30", {opacity:0, duration:0.5}, 89.10);
+tl.set("#cam", {opacity:0}, 81.79); tl.set("#cam", {opacity:1}, 89.00);
+tl.to("#no31", {opacity:1, borderColor:"#FACC15", duration:0.4}, 82.45);
+tl.fromTo("#no31", {y:16}, {y:0, duration:0.4, ease:"back.out(2)"}, 82.45);
+tl.fromTo("#no32s", {opacity:0.2, x:-10}, {opacity:1, x:0, duration:0.4}, 84.08);
+tl.to("#no32", {opacity:1, borderColor:"#FACC15", duration:0.4}, 84.28);
+tl.fromTo("#no32", {y:16}, {y:0, duration:0.4, ease:"back.out(2)"}, 84.28);
+tl.fromTo("#no33s", {opacity:0.2, x:-10}, {opacity:1, x:0, duration:0.4}, 86.53);
+tl.to("#no33", {opacity:1, borderColor:"#38bdf8", duration:0.4}, 86.73);
+tl.fromTo("#no33", {y:16}, {y:0, duration:0.4, ease:"back.out(2)"}, 86.73);
+tl.to("#degrau", {opacity:0, duration:0.3}, 81.39);
+tl.fromTo("#in35", {opacity:0}, {opacity:1, duration:0.5}, 89.40);
+tl.to("#in35", {opacity:0, duration:0.5}, 99.17);
+tl.set("#cam", {opacity:0}, 90.00); tl.set("#cam", {opacity:1}, 99.07);
+tl.fromTo("#in35 .pt", {opacity:0}, {opacity:1, duration:0.4, stagger:0.004}, 89.40);
+tl.to("#in35 .sai", {fill:"#FACC15", y:-60, duration:0.8, ease:"back.out(2)"}, 90.30);
+tl.fromTo("#m36", {opacity:0, x:50}, {opacity:1, x:0, duration:0.45, ease:"back.out(2)"}, 92.86);
+tl.to("#in35 .mlist", {opacity:0.3, duration:0.3}, 95.35);
+tl.fromTo("#in35fa", {opacity:0, y:16}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 95.50);
+tl.fromTo("#in35fb", {opacity:0, y:16}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 97.55);
+tl.set(".mfecho", {opacity:1}, 0);
+tl.to("#cam", {scale:1, duration:1.2, ease:"power2.inOut"}, 99.37);
+tl.to(["#gD","#gF"], {opacity:1, duration:0.6}, 99.37);
+tl.to("#gD", {opacity:0.35, duration:0.6}, 99.77);
+(()=>{const p=document.getElementById("lF"); tl.fromTo(p,{opacity:0},{opacity:1,duration:0.3},104.11); const m=document.getElementById("mkF"),L=m.getTotalLength(); tl.fromTo(m,{strokeDasharray:L,strokeDashoffset:L},{strokeDashoffset:0,duration:2.2,ease:"power2.in"},104.11);})();
+tl.fromTo("#tF", {opacity:0, x:20}, {opacity:1, x:0, duration:0.5}, 106.01);
+tl.fromTo("#tc38", {opacity:0, y:-20}, {opacity:1, y:0, duration:0.5}, 99.77);
+tl.to("#ticks", {opacity:0, duration:0.3}, 99.47);
+tl.to("#tc38 .tnome", {scale:0.5, transformOrigin:"0 0", duration:0.6}, 102.37);
+tl.to("#tc38", {opacity:0, duration:0.4}, 114.62);
+tl.fromTo("#c42 .card", {opacity:0, x:60}, {opacity:1, x:0, duration:0.5}, 105.72);
+tl.to("#c42 .card", {opacity:0, duration:0.4}, 114.52);
+tl.fromTo("#r40", {opacity:0, x:40}, {opacity:1, x:0, duration:0.45}, 108.63);
+tl.fromTo("#r41", {opacity:0, x:40}, {opacity:1, x:0, duration:0.45}, 111.77);
+tl.fromTo("#in43", {opacity:0}, {opacity:1, duration:0.5}, 114.82);
+tl.to("#in43", {opacity:0, duration:0.5}, 126.12);
+tl.set("#cam", {opacity:0}, 115.42); tl.set("#cam", {opacity:1}, 126.02);
+tl.fromTo("#in43f", {scale:1.0}, {scale:1.07, duration:12.60, ease:"none"}, 114.82);
+tl.fromTo("#tg45", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 117.31);
+tl.fromTo("#tg45", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 117.31);
+tl.fromTo("#tg46", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 118.56);
+tl.fromTo("#tg46", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 118.56);
+tl.fromTo("#tg47", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 120.06);
+tl.fromTo("#tg47", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 120.06);
+tl.fromTo("#tg48", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 123.31);
+tl.fromTo("#tg48", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 123.31);
+tl.fromTo("#in50", {opacity:0}, {opacity:1, duration:0.5}, 126.22);
+tl.to("#in50", {opacity:0, duration:0.5}, 135.28);
+tl.set("#cam", {opacity:0}, 126.82); tl.set("#cam", {opacity:1}, 135.18);
+tl.fromTo("#in50s", {opacity:0, y:14}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 133.59);
+tl.to("#avw", {x:924, y:-684, scale:3.000, transformOrigin:"0 0", duration:0.7, ease:"power2.inOut"}, 126.32);
+tl.to("#avw", {x:0, y:0, scale:1, duration:0.7, ease:"power2.inOut"}, 135.08);
+tl.to("#legenda", {x:-480, duration:0.5}, 126.32); tl.to("#legenda", {x:0, duration:0.5}, 135.28);
+tl.to("#fonte", {opacity:0, duration:0.3}, 126.22); tl.to("#fonte", {opacity:1, duration:0.4}, 135.78);
+tl.to("#cam", {scale:1, duration:1.2, ease:"power2.inOut"}, 135.58);
+tl.to(["#gD","#gF"], {opacity:1, duration:0.6}, 135.58);
+tl.to("#ticks", {opacity:1, duration:0.6}, 135.98);
+tl.to("#gF", {opacity:1, duration:0.4}, 135.58); tl.to("#lF", {attr:{"stroke-width":11}, duration:0.6}, 135.58);
+tl.fromTo("#bn52", {opacity:0, y:30}, {opacity:1, y:0, duration:0.5}, 135.58);
+(()=>{const o={v:0}; tl.to(o, {v:6, duration:2.2, ease:"power2.in", onUpdate:()=>{document.getElementById("bn52n").textContent=Math.round(Math.pow(10,o.v)).toLocaleString("pt-BR")}}, 140.32);})();
+tl.fromTo("#bn52a", {opacity:0}, {opacity:1, duration:0.4}, 142.92);
+tl.fromTo("#bn52p div", {opacity:0, y:20}, {opacity:1, y:0, duration:0.4, stagger:0.5}, 146.49);
+tl.to("#bn52", {opacity:0, duration:0.4}, 149.84);
+tl.fromTo("#in54", {opacity:0}, {opacity:1, duration:0.5}, 149.94);
+tl.to("#in54", {opacity:0, duration:0.5}, 159.11);
+tl.set("#cam", {opacity:0}, 150.54); tl.set("#cam", {opacity:1}, 159.01);
+tl.to("#no55", {opacity:1, borderColor:"#FACC15", duration:0.4}, 152.25);
+tl.fromTo("#no55", {y:16}, {y:0, duration:0.4, ease:"back.out(2)"}, 152.25);
+tl.fromTo("#no56s", {opacity:0.2, x:-10}, {opacity:1, x:0, duration:0.4}, 153.62);
+tl.to("#no56", {opacity:1, borderColor:"#FACC15", duration:0.4}, 153.82);
+tl.fromTo("#no56", {y:16}, {y:0, duration:0.4, ease:"back.out(2)"}, 153.82);
+tl.fromTo("#no57s", {opacity:0.2, x:-10}, {opacity:1, x:0, duration:0.4}, 156.23);
+tl.to("#no57", {opacity:1, borderColor:"#FACC15", duration:0.4}, 156.43);
+tl.fromTo("#no57", {y:16}, {y:0, duration:0.4, ease:"back.out(2)"}, 156.43);
+tl.fromTo("#in59", {opacity:0}, {opacity:1, duration:0.5}, 159.41);
+tl.to("#in59", {opacity:0, duration:0.5}, 169.97);
+tl.set("#cam", {opacity:0}, 160.01); tl.set("#cam", {opacity:1}, 169.88);
+tl.fromTo("#in59 .pt", {opacity:0}, {opacity:1, duration:0.4, stagger:0.004}, 159.41);
+tl.to("#in59 .sai", {fill:"#FACC15", y:-60, duration:0.8, ease:"back.out(2)"}, 160.31);
+tl.fromTo("#m60", {opacity:0, x:50}, {opacity:1, x:0, duration:0.45, ease:"back.out(2)"}, 162.66);
+tl.fromTo("#m61", {opacity:0, x:50}, {opacity:1, x:0, duration:0.45, ease:"back.out(2)"}, 165.12);
+tl.to("#in59 .mlist", {opacity:0.3, duration:0.3}, 167.25);
+tl.fromTo("#in59fa", {opacity:0, y:16}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 167.40);
+tl.fromTo("#in59fb", {opacity:0, y:16}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 168.51);
+tl.set(".mfecho", {opacity:1}, 0);
+tl.to("#cam", {scale:1, duration:1.2, ease:"power2.inOut"}, 170.17);
+tl.to(["#gD","#gF"], {opacity:1, duration:0.6}, 170.17);
+tl.fromTo("#nev", {opacity:0}, {opacity:1, duration:1.2}, 170.97);
+tl.fromTo("#tc63", {opacity:0, y:-20}, {opacity:1, y:0, duration:0.5}, 170.57);
+tl.to("#ticks", {opacity:0, duration:0.3}, 170.27);
+tl.to("#tc63 .tnome", {scale:0.5, transformOrigin:"0 0", duration:0.6}, 173.17);
+tl.to("#tc63", {opacity:0, duration:0.4}, 173.60);
+tl.fromTo("#in65", {opacity:0}, {opacity:1, duration:0.5}, 173.80);
+tl.to("#in65", {opacity:0, duration:0.5}, 190.81);
+tl.set("#cam", {opacity:0}, 174.40); tl.set("#cam", {opacity:1}, 190.71);
+tl.to("#no66", {opacity:1, borderColor:"#FACC15", duration:0.4}, 173.90);
+tl.fromTo("#no66", {y:16}, {y:0, duration:0.4, ease:"back.out(2)"}, 173.90);
+tl.fromTo("#no67s", {opacity:0.2, x:-10}, {opacity:1, x:0, duration:0.4}, 180.89);
+tl.to("#no67", {opacity:1, borderColor:"#FACC15", duration:0.4}, 181.09);
+tl.fromTo("#no67", {y:16}, {y:0, duration:0.4, ease:"back.out(2)"}, 181.09);
+tl.fromTo("#no68s", {opacity:0.2, x:-10}, {opacity:1, x:0, duration:0.4}, 185.11);
+tl.to("#no68", {opacity:1, borderColor:"#ff4d4d", duration:0.4}, 185.31);
+tl.fromTo("#no68", {y:16}, {y:0, duration:0.4, ease:"back.out(2)"}, 185.31);
+tl.to("#nev", {opacity:0, duration:0.5}, 191.11);
+tl.fromTo("#c73 .card", {opacity:0, x:60}, {opacity:1, x:0, duration:0.5}, 191.51);
+tl.to("#c73 .card", {opacity:0, duration:0.4}, 199.52);
+tl.fromTo("#r70", {opacity:0, x:40}, {opacity:1, x:0, duration:0.45}, 194.28);
+tl.fromTo("#r71", {opacity:0, x:40}, {opacity:1, x:0, duration:0.45}, 195.55);
+tl.fromTo("#r72", {opacity:0, x:40}, {opacity:1, x:0, duration:0.45}, 197.42);
+tl.fromTo("#in74", {opacity:0}, {opacity:1, duration:0.5}, 199.82);
+tl.to("#in74", {opacity:0, duration:0.5}, 212.72);
+tl.set("#cam", {opacity:0}, 200.42); tl.set("#cam", {opacity:1}, 212.62);
+tl.fromTo("#in74f", {scale:1.0}, {scale:1.07, duration:14.20, ease:"none"}, 199.82);
+tl.fromTo("#tg76", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 199.92);
+tl.fromTo("#tg76", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 199.92);
+tl.fromTo("#tg77", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 204.01);
+tl.fromTo("#tg77", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 204.01);
+tl.fromTo("#tg78", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 205.28);
+tl.fromTo("#tg78", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 205.28);
+tl.fromTo("#tg79", {opacity:0, y:0}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 209.03);
+tl.fromTo("#tg79", {x:40}, {x:0, duration:0.45, ease:"back.out(2)"}, 209.03);
+tl.fromTo("#in81", {opacity:0}, {opacity:1, duration:0.5}, 212.82);
+tl.to("#in81", {opacity:0, duration:0.5}, 220.10);
+tl.set("#cam", {opacity:0}, 213.42); tl.set("#cam", {opacity:1}, 220.00);
+tl.fromTo("#in81s", {opacity:0, y:14}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 218.05);
+tl.to("#avw", {x:924, y:-684, scale:3.000, transformOrigin:"0 0", duration:0.7, ease:"power2.inOut"}, 212.92);
+tl.to("#avw", {x:0, y:0, scale:1, duration:0.7, ease:"power2.inOut"}, 219.90);
+tl.to("#legenda", {x:-480, duration:0.5}, 212.92); tl.to("#legenda", {x:0, duration:0.5}, 220.10);
+tl.to("#fonte", {opacity:0, duration:0.3}, 212.82); tl.to("#fonte", {opacity:1, duration:0.4}, 220.60);
+tl.fromTo("#in83", {opacity:0}, {opacity:1, duration:0.5}, 220.40);
+tl.to("#in83", {opacity:0, duration:0.5}, 230.12);
+tl.set("#cam", {opacity:0}, 221.00); tl.set("#cam", {opacity:1}, 230.02);
+tl.fromTo("#in83 .pt", {opacity:0}, {opacity:1, duration:0.4, stagger:0.004}, 220.40);
+tl.to("#in83 .sai", {fill:"#FACC15", y:-60, duration:0.8, ease:"back.out(2)"}, 221.30);
+tl.fromTo("#m84", {opacity:0, x:50}, {opacity:1, x:0, duration:0.45, ease:"back.out(2)"}, 221.86);
+tl.fromTo("#m85", {opacity:0, x:50}, {opacity:1, x:0, duration:0.45, ease:"back.out(2)"}, 225.47);
+tl.fromTo("#m86", {opacity:0, x:50}, {opacity:1, x:0, duration:0.45, ease:"back.out(2)"}, 227.24);
+tl.set(".mfecho", {opacity:1}, 0);
+tl.to("#nev", {opacity:0, duration:0.4}, 230.42);
+tl.fromTo("#in88", {opacity:0}, {opacity:1, duration:0.5}, 230.72);
+tl.to("#in88", {opacity:0, duration:0.5}, 243.83);
+tl.set("#cam", {opacity:0}, 231.32); tl.set("#cam", {opacity:1}, 243.53);
+tl.fromTo("#cc89", {opacity:0, y:40}, {opacity:1, y:0, duration:0.5, ease:"back.out(2)"}, 230.87);
+tl.fromTo("#cc90", {opacity:0, y:40}, {opacity:1, y:0, duration:0.5, ease:"back.out(2)"}, 234.03);
+tl.fromTo("#cc91", {opacity:0, y:40}, {opacity:1, y:0, duration:0.5, ease:"back.out(2)"}, 236.35);
+tl.fromTo("#cc92", {opacity:0, y:40}, {opacity:1, y:0, duration:0.5, ease:"back.out(2)"}, 242.02);
+tl.set("#in88fr", {opacity:0}, 0);
+tl.fromTo("#in94", {opacity:0}, {opacity:1, duration:0.5}, 244.13);
+tl.to("#in94", {opacity:0, duration:0.5}, 269.94);
+tl.set("#cam", {opacity:0}, 244.73); tl.set("#cam", {opacity:1}, 269.64);
+tl.fromTo("#p95", {opacity:0, x:60}, {opacity:1, x:0, duration:0.45, ease:"back.out(2)"}, 247.23);
+tl.to("#p95 b", {backgroundColor:"#4ade80", duration:0.3}, 247.68);
+tl.fromTo("#p96", {opacity:0, x:60}, {opacity:1, x:0, duration:0.45, ease:"back.out(2)"}, 256.23);
+tl.to("#p96 b", {backgroundColor:"#4ade80", duration:0.3}, 256.68);
+tl.fromTo("#p97", {opacity:0, x:60}, {opacity:1, x:0, duration:0.45, ease:"back.out(2)"}, 262.09);
+tl.to("#p97 b", {backgroundColor:"#4ade80", duration:0.3}, 262.54);
+tl.fromTo("#in99", {opacity:0}, {opacity:1, duration:0.5}, 270.04);
+tl.to("#in99", {opacity:0, duration:0.5}, 278.71);
+tl.set("#cam", {opacity:0}, 270.64); tl.set("#cam", {opacity:1}, 278.61);
+tl.fromTo("#in99s", {opacity:0, y:14}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 277.29);
+tl.to("#avw", {x:924, y:-684, scale:3.000, transformOrigin:"0 0", duration:0.7, ease:"power2.inOut"}, 270.14);
+tl.to("#avw", {x:0, y:0, scale:1, duration:0.7, ease:"power2.inOut"}, 278.51);
+tl.to("#legenda", {x:-480, duration:0.5}, 270.14); tl.to("#legenda", {x:0, duration:0.5}, 278.71);
+tl.to("#fonte", {opacity:0, duration:0.3}, 270.04); tl.to("#fonte", {opacity:1, duration:0.4}, 279.21);
+tl.to("#cam", {scale:1, duration:1.2, ease:"power2.inOut"}, 278.91);
+tl.to(["#gD","#gF"], {opacity:1, duration:0.6}, 278.91);
+tl.to("#ticks", {opacity:1, duration:0.6}, 279.31);
+tl.fromTo("#empurra", {opacity:0}, {opacity:1, duration:0.3}, 279.51);
+(()=>{const p=document.getElementById("pEmp"),L=p.getTotalLength(); tl.fromTo(p,{strokeDasharray:L,strokeDashoffset:L},{strokeDashoffset:0,duration:1.0,ease:"power2.out"},279.61);})();
+tl.fromTo("#in101", {opacity:0}, {opacity:1, duration:0.6}, 280.71);
+tl.fromTo("#in101p", {opacity:0, y:24}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 286.49);
+tl.fromTo("#in101pr", {opacity:0, x:80}, {opacity:1, x:0, duration:0.6, ease:"back.out(2)"}, 286.59);
+tl.set("#cap0", {opacity:1}, 0.15); tl.set("#cap0", {opacity:0}, 0.66);
+tl.set("#cap0 b:nth-child(1)", {color:"#FACC15"}, 0.20); tl.set("#cap0 b:nth-child(1)", {color:"#fff"}, 0.65);
+tl.set("#cap0 b:nth-child(2)", {color:"#FACC15"}, 0.44); tl.set("#cap0 b:nth-child(2)", {color:"#fff"}, 0.66);
+tl.set("#cap1", {opacity:1}, 0.66); tl.set("#cap1", {opacity:0}, 1.78);
+tl.set("#cap1 b:nth-child(1)", {color:"#FACC15"}, 0.71); tl.set("#cap1 b:nth-child(1)", {color:"#fff"}, 1.16);
+tl.set("#cap1 b:nth-child(2)", {color:"#FACC15"}, 1.11); tl.set("#cap1 b:nth-child(2)", {color:"#fff"}, 1.56);
+tl.set("#cap1 b:nth-child(3)", {color:"#FACC15"}, 1.35); tl.set("#cap1 b:nth-child(3)", {color:"#fff"}, 1.78);
+tl.set("#cap2", {opacity:1}, 1.78); tl.set("#cap2", {opacity:0}, 2.18);
+tl.set("#cap2 b:nth-child(1)", {color:"#FACC15"}, 1.83); tl.set("#cap2 b:nth-child(1)", {color:"#fff"}, 2.18);
+tl.set("#cap3", {opacity:1}, 2.18); tl.set("#cap3", {opacity:0}, 3.33);
+tl.set("#cap3 b:nth-child(1)", {color:"#FACC15"}, 2.23); tl.set("#cap3 b:nth-child(1)", {color:"#fff"}, 2.68);
+tl.set("#cap3 b:nth-child(2)", {color:"#FACC15"}, 2.50); tl.set("#cap3 b:nth-child(2)", {color:"#fff"}, 2.95);
+tl.set("#cap3 b:nth-child(3)", {color:"#FACC15"}, 3.04); tl.set("#cap3 b:nth-child(3)", {color:"#fff"}, 3.33);
+tl.set("#cap4", {opacity:1}, 3.33); tl.set("#cap4", {opacity:0}, 4.26);
+tl.set("#cap4 b:nth-child(1)", {color:"#FACC15"}, 3.38); tl.set("#cap4 b:nth-child(1)", {color:"#fff"}, 3.83);
+tl.set("#cap4 b:nth-child(2)", {color:"#FACC15"}, 3.71); tl.set("#cap4 b:nth-child(2)", {color:"#fff"}, 4.16);
+tl.set("#cap4 b:nth-child(3)", {color:"#FACC15"}, 3.98); tl.set("#cap4 b:nth-child(3)", {color:"#fff"}, 4.26);
+tl.set("#cap5", {opacity:1}, 4.26); tl.set("#cap5", {opacity:0}, 5.31);
+tl.set("#cap5 b:nth-child(1)", {color:"#FACC15"}, 4.31); tl.set("#cap5 b:nth-child(1)", {color:"#fff"}, 4.76);
+tl.set("#cap5 b:nth-child(2)", {color:"#FACC15"}, 4.65); tl.set("#cap5 b:nth-child(2)", {color:"#fff"}, 5.10);
+tl.set("#cap5 b:nth-child(3)", {color:"#FACC15"}, 5.12); tl.set("#cap5 b:nth-child(3)", {color:"#fff"}, 5.31);
+tl.set("#cap6", {opacity:1}, 5.31); tl.set("#cap6", {opacity:0}, 6.75);
+tl.set("#cap6 b:nth-child(1)", {color:"#FACC15"}, 5.36); tl.set("#cap6 b:nth-child(1)", {color:"#fff"}, 5.81);
+tl.set("#cap6 b:nth-child(2)", {color:"#FACC15"}, 5.63); tl.set("#cap6 b:nth-child(2)", {color:"#fff"}, 6.08);
+tl.set("#cap6 b:nth-child(3)", {color:"#FACC15"}, 5.90); tl.set("#cap6 b:nth-child(3)", {color:"#fff"}, 6.35);
+tl.set("#cap7", {opacity:1}, 6.75); tl.set("#cap7", {opacity:0}, 7.52);
+tl.set("#cap7 b:nth-child(1)", {color:"#FACC15"}, 6.80); tl.set("#cap7 b:nth-child(1)", {color:"#fff"}, 7.25);
+tl.set("#cap7 b:nth-child(2)", {color:"#FACC15"}, 7.07); tl.set("#cap7 b:nth-child(2)", {color:"#fff"}, 7.52);
+tl.set("#cap7 b:nth-child(3)", {color:"#FACC15"}, 7.33); tl.set("#cap7 b:nth-child(3)", {color:"#fff"}, 7.52);
+tl.set("#cap8", {opacity:1}, 7.52); tl.set("#cap8", {opacity:0}, 9.10);
+tl.set("#cap8 b:nth-child(1)", {color:"#FACC15"}, 7.57); tl.set("#cap8 b:nth-child(1)", {color:"#fff"}, 8.02);
+tl.set("#cap8 b:nth-child(2)", {color:"#FACC15"}, 7.84); tl.set("#cap8 b:nth-child(2)", {color:"#fff"}, 8.29);
+tl.set("#cap8 b:nth-child(3)", {color:"#FACC15"}, 8.25); tl.set("#cap8 b:nth-child(3)", {color:"#fff"}, 8.70);
+tl.set("#cap9", {opacity:1}, 9.10); tl.set("#cap9", {opacity:0}, 9.91);
+tl.set("#cap9 b:nth-child(1)", {color:"#FACC15"}, 9.15); tl.set("#cap9 b:nth-child(1)", {color:"#fff"}, 9.60);
+tl.set("#cap9 b:nth-child(2)", {color:"#FACC15"}, 9.39); tl.set("#cap9 b:nth-child(2)", {color:"#fff"}, 9.84);
+tl.set("#cap9 b:nth-child(3)", {color:"#FACC15"}, 9.63); tl.set("#cap9 b:nth-child(3)", {color:"#fff"}, 9.91);
+tl.set("#cap10", {opacity:1}, 9.91); tl.set("#cap10", {opacity:0}, 10.32);
+tl.set("#cap10 b:nth-child(1)", {color:"#FACC15"}, 9.96); tl.set("#cap10 b:nth-child(1)", {color:"#fff"}, 10.32);
+tl.set("#cap11", {opacity:1}, 10.32); tl.set("#cap11", {opacity:0}, 11.64);
+tl.set("#cap11 b:nth-child(1)", {color:"#FACC15"}, 10.37); tl.set("#cap11 b:nth-child(1)", {color:"#fff"}, 10.82);
+tl.set("#cap11 b:nth-child(2)", {color:"#FACC15"}, 10.70); tl.set("#cap11 b:nth-child(2)", {color:"#fff"}, 11.15);
+tl.set("#cap11 b:nth-child(3)", {color:"#FACC15"}, 11.45); tl.set("#cap11 b:nth-child(3)", {color:"#fff"}, 11.64);
+tl.set("#cap12", {opacity:1}, 11.64); tl.set("#cap12", {opacity:0}, 12.80);
+tl.set("#cap12 b:nth-child(1)", {color:"#FACC15"}, 11.69); tl.set("#cap12 b:nth-child(1)", {color:"#fff"}, 12.14);
+tl.set("#cap12 b:nth-child(2)", {color:"#FACC15"}, 12.17); tl.set("#cap12 b:nth-child(2)", {color:"#fff"}, 12.62);
+tl.set("#cap13", {opacity:1}, 12.80); tl.set("#cap13", {opacity:0}, 14.34);
+tl.set("#cap13 b:nth-child(1)", {color:"#FACC15"}, 12.85); tl.set("#cap13 b:nth-child(1)", {color:"#fff"}, 13.30);
+tl.set("#cap13 b:nth-child(2)", {color:"#FACC15"}, 13.09); tl.set("#cap13 b:nth-child(2)", {color:"#fff"}, 13.54);
+tl.set("#cap13 b:nth-child(3)", {color:"#FACC15"}, 13.70); tl.set("#cap13 b:nth-child(3)", {color:"#fff"}, 14.15);
+tl.set("#cap14", {opacity:1}, 14.34); tl.set("#cap14", {opacity:0}, 15.02);
+tl.set("#cap14 b:nth-child(1)", {color:"#FACC15"}, 14.39); tl.set("#cap14 b:nth-child(1)", {color:"#fff"}, 14.84);
+tl.set("#cap14 b:nth-child(2)", {color:"#FACC15"}, 14.73); tl.set("#cap14 b:nth-child(2)", {color:"#fff"}, 15.02);
+tl.set("#cap15", {opacity:1}, 15.02); tl.set("#cap15", {opacity:0}, 16.00);
+tl.set("#cap15 b:nth-child(1)", {color:"#FACC15"}, 15.07); tl.set("#cap15 b:nth-child(1)", {color:"#fff"}, 15.52);
+tl.set("#cap15 b:nth-child(2)", {color:"#FACC15"}, 15.31); tl.set("#cap15 b:nth-child(2)", {color:"#fff"}, 15.76);
+tl.set("#cap15 b:nth-child(3)", {color:"#FACC15"}, 15.78); tl.set("#cap15 b:nth-child(3)", {color:"#fff"}, 16.00);
+tl.set("#cap16", {opacity:1}, 16.00); tl.set("#cap16", {opacity:0}, 17.30);
+tl.set("#cap16 b:nth-child(1)", {color:"#FACC15"}, 16.05); tl.set("#cap16 b:nth-child(1)", {color:"#fff"}, 16.50);
+tl.set("#cap16 b:nth-child(2)", {color:"#FACC15"}, 16.38); tl.set("#cap16 b:nth-child(2)", {color:"#fff"}, 16.83);
+tl.set("#cap17", {opacity:1}, 17.30); tl.set("#cap17", {opacity:0}, 19.18);
+tl.set("#cap17 b:nth-child(1)", {color:"#FACC15"}, 17.35); tl.set("#cap17 b:nth-child(1)", {color:"#fff"}, 17.80);
+tl.set("#cap17 b:nth-child(2)", {color:"#FACC15"}, 17.59); tl.set("#cap17 b:nth-child(2)", {color:"#fff"}, 18.04);
+tl.set("#cap17 b:nth-child(3)", {color:"#FACC15"}, 18.48); tl.set("#cap17 b:nth-child(3)", {color:"#fff"}, 18.93);
+tl.set("#cap18", {opacity:1}, 19.18); tl.set("#cap18", {opacity:0}, 19.79);
+tl.set("#cap18 b:nth-child(1)", {color:"#38bdf8"}, 19.23); tl.set("#cap18 b:nth-child(1)", {color:"#fff"}, 19.68);
+tl.set("#cap19", {opacity:1}, 19.79); tl.set("#cap19", {opacity:0}, 21.04);
+tl.set("#cap19 b:nth-child(1)", {color:"#FACC15"}, 19.84); tl.set("#cap19 b:nth-child(1)", {color:"#fff"}, 20.29);
+tl.set("#cap19 b:nth-child(2)", {color:"#FACC15"}, 20.08); tl.set("#cap19 b:nth-child(2)", {color:"#fff"}, 20.53);
+tl.set("#cap19 b:nth-child(3)", {color:"#FACC15"}, 20.32); tl.set("#cap19 b:nth-child(3)", {color:"#fff"}, 20.77);
+tl.set("#cap20", {opacity:1}, 21.04); tl.set("#cap20", {opacity:0}, 22.02);
+tl.set("#cap20 b:nth-child(1)", {color:"#FACC15"}, 21.09); tl.set("#cap20 b:nth-child(1)", {color:"#fff"}, 21.54);
+tl.set("#cap20 b:nth-child(2)", {color:"#FACC15"}, 21.33); tl.set("#cap20 b:nth-child(2)", {color:"#fff"}, 21.78);
+tl.set("#cap20 b:nth-child(3)", {color:"#FACC15"}, 21.59); tl.set("#cap20 b:nth-child(3)", {color:"#fff"}, 22.02);
+tl.set("#cap21", {opacity:1}, 22.02); tl.set("#cap21", {opacity:0}, 22.96);
+tl.set("#cap21 b:nth-child(1)", {color:"#FACC15"}, 22.07); tl.set("#cap21 b:nth-child(1)", {color:"#fff"}, 22.52);
+tl.set("#cap21 b:nth-child(2)", {color:"#FACC15"}, 22.33); tl.set("#cap21 b:nth-child(2)", {color:"#fff"}, 22.78);
+tl.set("#cap21 b:nth-child(3)", {color:"#FACC15"}, 22.74); tl.set("#cap21 b:nth-child(3)", {color:"#fff"}, 22.96);
+tl.set("#cap22", {opacity:1}, 22.96); tl.set("#cap22", {opacity:0}, 23.86);
+tl.set("#cap22 b:nth-child(1)", {color:"#FACC15"}, 23.01); tl.set("#cap22 b:nth-child(1)", {color:"#fff"}, 23.46);
+tl.set("#cap23", {opacity:1}, 23.86); tl.set("#cap23", {opacity:0}, 25.25);
+tl.set("#cap23 b:nth-child(1)", {color:"#FACC15"}, 23.91); tl.set("#cap23 b:nth-child(1)", {color:"#fff"}, 24.36);
+tl.set("#cap23 b:nth-child(2)", {color:"#ff4d4d"}, 24.45); tl.set("#cap23 b:nth-child(2)", {color:"#fff"}, 24.90);
+tl.set("#cap23 b:nth-child(3)", {color:"#FACC15"}, 25.06); tl.set("#cap23 b:nth-child(3)", {color:"#fff"}, 25.25);
+tl.set("#cap24", {opacity:1}, 25.25); tl.set("#cap24", {opacity:0}, 26.29);
+tl.set("#cap24 b:nth-child(1)", {color:"#FACC15"}, 25.30); tl.set("#cap24 b:nth-child(1)", {color:"#fff"}, 25.75);
+tl.set("#cap25", {opacity:1}, 26.29); tl.set("#cap25", {opacity:0}, 27.86);
+tl.set("#cap25 b:nth-child(1)", {color:"#FACC15"}, 26.34); tl.set("#cap25 b:nth-child(1)", {color:"#fff"}, 26.79);
+tl.set("#cap25 b:nth-child(2)", {color:"#FACC15"}, 26.68); tl.set("#cap25 b:nth-child(2)", {color:"#fff"}, 27.13);
+tl.set("#cap25 b:nth-child(3)", {color:"#FACC15"}, 27.01); tl.set("#cap25 b:nth-child(3)", {color:"#fff"}, 27.46);
+tl.set("#cap26", {opacity:1}, 27.86); tl.set("#cap26", {opacity:0}, 28.89);
+tl.set("#cap26 b:nth-child(1)", {color:"#FACC15"}, 27.91); tl.set("#cap26 b:nth-child(1)", {color:"#fff"}, 28.36);
+tl.set("#cap26 b:nth-child(2)", {color:"#FACC15"}, 28.15); tl.set("#cap26 b:nth-child(2)", {color:"#fff"}, 28.60);
+tl.set("#cap26 b:nth-child(3)", {color:"#FACC15"}, 28.39); tl.set("#cap26 b:nth-child(3)", {color:"#fff"}, 28.84);
+tl.set("#cap27", {opacity:1}, 28.89); tl.set("#cap27", {opacity:0}, 29.98);
+tl.set("#cap27 b:nth-child(1)", {color:"#FACC15"}, 28.94); tl.set("#cap27 b:nth-child(1)", {color:"#fff"}, 29.39);
+tl.set("#cap27 b:nth-child(2)", {color:"#FACC15"}, 29.18); tl.set("#cap27 b:nth-child(2)", {color:"#fff"}, 29.63);
+tl.set("#cap27 b:nth-child(3)", {color:"#FACC15"}, 29.79); tl.set("#cap27 b:nth-child(3)", {color:"#fff"}, 29.98);
+tl.set("#cap28", {opacity:1}, 29.98); tl.set("#cap28", {opacity:0}, 30.74);
+tl.set("#cap28 b:nth-child(1)", {color:"#FACC15"}, 30.03); tl.set("#cap28 b:nth-child(1)", {color:"#fff"}, 30.48);
+tl.set("#cap29", {opacity:1}, 30.74); tl.set("#cap29", {opacity:0}, 31.96);
+tl.set("#cap29 b:nth-child(1)", {color:"#FACC15"}, 30.79); tl.set("#cap29 b:nth-child(1)", {color:"#fff"}, 31.24);
+tl.set("#cap29 b:nth-child(2)", {color:"#FACC15"}, 31.06); tl.set("#cap29 b:nth-child(2)", {color:"#fff"}, 31.51);
+tl.set("#cap29 b:nth-child(3)", {color:"#FACC15"}, 31.60); tl.set("#cap29 b:nth-child(3)", {color:"#fff"}, 31.96);
+tl.set("#cap30", {opacity:1}, 31.96); tl.set("#cap30", {opacity:0}, 32.65);
+tl.set("#cap30 b:nth-child(1)", {color:"#FACC15"}, 32.01); tl.set("#cap30 b:nth-child(1)", {color:"#fff"}, 32.46);
+tl.set("#cap31", {opacity:1}, 32.65); tl.set("#cap31", {opacity:0}, 33.84);
+tl.set("#cap31 b:nth-child(1)", {color:"#FACC15"}, 32.70); tl.set("#cap31 b:nth-child(1)", {color:"#fff"}, 33.15);
+tl.set("#cap31 b:nth-child(2)", {color:"#FACC15"}, 33.11); tl.set("#cap31 b:nth-child(2)", {color:"#fff"}, 33.56);
+tl.set("#cap31 b:nth-child(3)", {color:"#FACC15"}, 33.65); tl.set("#cap31 b:nth-child(3)", {color:"#fff"}, 33.84);
+tl.set("#cap32", {opacity:1}, 33.84); tl.set("#cap32", {opacity:0}, 34.67);
+tl.set("#cap32 b:nth-child(1)", {color:"#FACC15"}, 33.89); tl.set("#cap32 b:nth-child(1)", {color:"#fff"}, 34.34);
+tl.set("#cap33", {opacity:1}, 34.67); tl.set("#cap33", {opacity:0}, 35.69);
+tl.set("#cap33 b:nth-child(1)", {color:"#FACC15"}, 34.72); tl.set("#cap33 b:nth-child(1)", {color:"#fff"}, 35.17);
+tl.set("#cap33 b:nth-child(2)", {color:"#FACC15"}, 35.33); tl.set("#cap33 b:nth-child(2)", {color:"#fff"}, 35.69);
+tl.set("#cap34", {opacity:1}, 35.69); tl.set("#cap34", {opacity:0}, 36.53);
+tl.set("#cap34 b:nth-child(1)", {color:"#FACC15"}, 35.74); tl.set("#cap34 b:nth-child(1)", {color:"#fff"}, 36.19);
+tl.set("#cap34 b:nth-child(2)", {color:"#FACC15"}, 36.07); tl.set("#cap34 b:nth-child(2)", {color:"#fff"}, 36.52);
+tl.set("#cap34 b:nth-child(3)", {color:"#FACC15"}, 36.31); tl.set("#cap34 b:nth-child(3)", {color:"#fff"}, 36.53);
+tl.set("#cap35", {opacity:1}, 36.53); tl.set("#cap35", {opacity:0}, 37.76);
+tl.set("#cap35 b:nth-child(1)", {color:"#FACC15"}, 36.58); tl.set("#cap35 b:nth-child(1)", {color:"#fff"}, 37.03);
+tl.set("#cap35 b:nth-child(2)", {color:"#FACC15"}, 37.12); tl.set("#cap35 b:nth-child(2)", {color:"#fff"}, 37.57);
+tl.set("#cap36", {opacity:1}, 37.76); tl.set("#cap36", {opacity:0}, 38.87);
+tl.set("#cap36 b:nth-child(1)", {color:"#FACC15"}, 37.81); tl.set("#cap36 b:nth-child(1)", {color:"#fff"}, 38.26);
+tl.set("#cap36 b:nth-child(2)", {color:"#FACC15"}, 38.42); tl.set("#cap36 b:nth-child(2)", {color:"#fff"}, 38.87);
+tl.set("#cap36 b:nth-child(3)", {color:"#FACC15"}, 38.66); tl.set("#cap36 b:nth-child(3)", {color:"#fff"}, 38.87);
+tl.set("#cap37", {opacity:1}, 38.87); tl.set("#cap37", {opacity:0}, 39.74);
+tl.set("#cap37 b:nth-child(1)", {color:"#FACC15"}, 38.92); tl.set("#cap37 b:nth-child(1)", {color:"#fff"}, 39.37);
+tl.set("#cap37 b:nth-child(2)", {color:"#FACC15"}, 39.16); tl.set("#cap37 b:nth-child(2)", {color:"#fff"}, 39.61);
+tl.set("#cap38", {opacity:1}, 39.74); tl.set("#cap38", {opacity:0}, 40.65);
+tl.set("#cap38 b:nth-child(1)", {color:"#FACC15"}, 39.79); tl.set("#cap38 b:nth-child(1)", {color:"#fff"}, 40.24);
+tl.set("#cap38 b:nth-child(2)", {color:"#FACC15"}, 40.19); tl.set("#cap38 b:nth-child(2)", {color:"#fff"}, 40.64);
+tl.set("#cap38 b:nth-child(3)", {color:"#FACC15"}, 40.46); tl.set("#cap38 b:nth-child(3)", {color:"#fff"}, 40.65);
+tl.set("#cap39", {opacity:1}, 40.65); tl.set("#cap39", {opacity:0}, 41.66);
+tl.set("#cap39 b:nth-child(1)", {color:"#FACC15"}, 40.70); tl.set("#cap39 b:nth-child(1)", {color:"#fff"}, 41.15);
+tl.set("#cap39 b:nth-child(2)", {color:"#FACC15"}, 41.11); tl.set("#cap39 b:nth-child(2)", {color:"#fff"}, 41.56);
+tl.set("#cap39 b:nth-child(3)", {color:"#FACC15"}, 41.37); tl.set("#cap39 b:nth-child(3)", {color:"#fff"}, 41.66);
+tl.set("#cap40", {opacity:1}, 41.66); tl.set("#cap40", {opacity:0}, 42.85);
+tl.set("#cap40 b:nth-child(1)", {color:"#FACC15"}, 41.71); tl.set("#cap40 b:nth-child(1)", {color:"#fff"}, 42.16);
+tl.set("#cap40 b:nth-child(2)", {color:"#FACC15"}, 41.95); tl.set("#cap40 b:nth-child(2)", {color:"#fff"}, 42.40);
+tl.set("#cap40 b:nth-child(3)", {color:"#FACC15"}, 42.28); tl.set("#cap40 b:nth-child(3)", {color:"#fff"}, 42.73);
+tl.set("#cap41", {opacity:1}, 42.85); tl.set("#cap41", {opacity:0}, 43.59);
+tl.set("#cap41 b:nth-child(1)", {color:"#FACC15"}, 42.90); tl.set("#cap41 b:nth-child(1)", {color:"#fff"}, 43.35);
+tl.set("#cap41 b:nth-child(2)", {color:"#FACC15"}, 43.14); tl.set("#cap41 b:nth-child(2)", {color:"#fff"}, 43.59);
+tl.set("#cap41 b:nth-child(3)", {color:"#FACC15"}, 43.38); tl.set("#cap41 b:nth-child(3)", {color:"#fff"}, 43.59);
+tl.set("#cap42", {opacity:1}, 43.59); tl.set("#cap42", {opacity:0}, 44.67);
+tl.set("#cap42 b:nth-child(1)", {color:"#FACC15"}, 43.64); tl.set("#cap42 b:nth-child(1)", {color:"#fff"}, 44.09);
+tl.set("#cap42 b:nth-child(2)", {color:"#FACC15"}, 43.98); tl.set("#cap42 b:nth-child(2)", {color:"#fff"}, 44.43);
+tl.set("#cap42 b:nth-child(3)", {color:"#FACC15"}, 44.32); tl.set("#cap42 b:nth-child(3)", {color:"#fff"}, 44.67);
+tl.set("#cap43", {opacity:1}, 44.67); tl.set("#cap43", {opacity:0}, 46.50);
+tl.set("#cap43 b:nth-child(1)", {color:"#FACC15"}, 44.72); tl.set("#cap43 b:nth-child(1)", {color:"#fff"}, 45.17);
+tl.set("#cap43 b:nth-child(2)", {color:"#FACC15"}, 44.96); tl.set("#cap43 b:nth-child(2)", {color:"#fff"}, 45.41);
+tl.set("#cap43 b:nth-child(3)", {color:"#FACC15"}, 45.30); tl.set("#cap43 b:nth-child(3)", {color:"#fff"}, 45.75);
+tl.set("#cap44", {opacity:1}, 46.50); tl.set("#cap44", {opacity:0}, 47.60);
+tl.set("#cap44 b:nth-child(1)", {color:"#FACC15"}, 46.55); tl.set("#cap44 b:nth-child(1)", {color:"#fff"}, 47.00);
+tl.set("#cap44 b:nth-child(2)", {color:"#FACC15"}, 47.09); tl.set("#cap44 b:nth-child(2)", {color:"#fff"}, 47.54);
+tl.set("#cap45", {opacity:1}, 47.60); tl.set("#cap45", {opacity:0}, 48.98);
+tl.set("#cap45 b:nth-child(1)", {color:"#FACC15"}, 47.65); tl.set("#cap45 b:nth-child(1)", {color:"#fff"}, 48.10);
+tl.set("#cap45 b:nth-child(2)", {color:"#FACC15"}, 47.89); tl.set("#cap45 b:nth-child(2)", {color:"#fff"}, 48.34);
+tl.set("#cap45 b:nth-child(3)", {color:"#38bdf8"}, 48.13); tl.set("#cap45 b:nth-child(3)", {color:"#fff"}, 48.58);
+tl.set("#cap46", {opacity:1}, 48.98); tl.set("#cap46", {opacity:0}, 50.02);
+tl.set("#cap46 b:nth-child(1)", {color:"#FACC15"}, 49.03); tl.set("#cap46 b:nth-child(1)", {color:"#fff"}, 49.48);
+tl.set("#cap46 b:nth-child(2)", {color:"#FACC15"}, 49.27); tl.set("#cap46 b:nth-child(2)", {color:"#fff"}, 49.72);
+tl.set("#cap46 b:nth-child(3)", {color:"#FACC15"}, 49.54); tl.set("#cap46 b:nth-child(3)", {color:"#fff"}, 49.99);
+tl.set("#cap47", {opacity:1}, 50.02); tl.set("#cap47", {opacity:0}, 51.80);
+tl.set("#cap47 b:nth-child(1)", {color:"#FACC15"}, 50.07); tl.set("#cap47 b:nth-child(1)", {color:"#fff"}, 50.52);
+tl.set("#cap47 b:nth-child(2)", {color:"#FACC15"}, 50.75); tl.set("#cap47 b:nth-child(2)", {color:"#fff"}, 51.20);
+tl.set("#cap47 b:nth-child(3)", {color:"#FACC15"}, 51.02); tl.set("#cap47 b:nth-child(3)", {color:"#fff"}, 51.47);
+tl.set("#cap48", {opacity:1}, 51.80); tl.set("#cap48", {opacity:0}, 53.36);
+tl.set("#cap48 b:nth-child(1)", {color:"#FACC15"}, 51.85); tl.set("#cap48 b:nth-child(1)", {color:"#fff"}, 52.30);
+tl.set("#cap48 b:nth-child(2)", {color:"#FACC15"}, 52.39); tl.set("#cap48 b:nth-child(2)", {color:"#fff"}, 52.84);
+tl.set("#cap48 b:nth-child(3)", {color:"#FACC15"}, 52.66); tl.set("#cap48 b:nth-child(3)", {color:"#fff"}, 53.11);
+tl.set("#cap49", {opacity:1}, 53.36); tl.set("#cap49", {opacity:0}, 54.11);
+tl.set("#cap49 b:nth-child(1)", {color:"#FACC15"}, 53.41); tl.set("#cap49 b:nth-child(1)", {color:"#fff"}, 53.86);
+tl.set("#cap50", {opacity:1}, 54.11); tl.set("#cap50", {opacity:0}, 55.86);
+tl.set("#cap50 b:nth-child(1)", {color:"#FACC15"}, 54.16); tl.set("#cap50 b:nth-child(1)", {color:"#fff"}, 54.61);
+tl.set("#cap50 b:nth-child(2)", {color:"#FACC15"}, 54.77); tl.set("#cap50 b:nth-child(2)", {color:"#fff"}, 55.22);
+tl.set("#cap50 b:nth-child(3)", {color:"#FACC15"}, 55.01); tl.set("#cap50 b:nth-child(3)", {color:"#fff"}, 55.46);
+tl.set("#cap51", {opacity:1}, 55.86); tl.set("#cap51", {opacity:0}, 56.91);
+tl.set("#cap51 b:nth-child(1)", {color:"#FACC15"}, 55.91); tl.set("#cap51 b:nth-child(1)", {color:"#fff"}, 56.36);
+tl.set("#cap51 b:nth-child(2)", {color:"#FACC15"}, 56.25); tl.set("#cap51 b:nth-child(2)", {color:"#fff"}, 56.70);
+tl.set("#cap51 b:nth-child(3)", {color:"#FACC15"}, 56.49); tl.set("#cap51 b:nth-child(3)", {color:"#fff"}, 56.91);
+tl.set("#cap52", {opacity:1}, 56.91); tl.set("#cap52", {opacity:0}, 57.61);
+tl.set("#cap52 b:nth-child(1)", {color:"#FACC15"}, 56.96); tl.set("#cap52 b:nth-child(1)", {color:"#fff"}, 57.41);
+tl.set("#cap53", {opacity:1}, 57.61); tl.set("#cap53", {opacity:0}, 58.70);
+tl.set("#cap53 b:nth-child(1)", {color:"#FACC15"}, 57.66); tl.set("#cap53 b:nth-child(1)", {color:"#fff"}, 58.11);
+tl.set("#cap53 b:nth-child(2)", {color:"#FACC15"}, 57.90); tl.set("#cap53 b:nth-child(2)", {color:"#fff"}, 58.35);
+tl.set("#cap53 b:nth-child(3)", {color:"#FACC15"}, 58.51); tl.set("#cap53 b:nth-child(3)", {color:"#fff"}, 58.70);
+tl.set("#cap54", {opacity:1}, 58.70); tl.set("#cap54", {opacity:0}, 60.09);
+tl.set("#cap54 b:nth-child(1)", {color:"#FACC15"}, 58.75); tl.set("#cap54 b:nth-child(1)", {color:"#fff"}, 59.20);
+tl.set("#cap54 b:nth-child(2)", {color:"#FACC15"}, 59.29); tl.set("#cap54 b:nth-child(2)", {color:"#fff"}, 59.74);
+tl.set("#cap54 b:nth-child(3)", {color:"#FACC15"}, 59.53); tl.set("#cap54 b:nth-child(3)", {color:"#fff"}, 59.98);
+tl.set("#cap55", {opacity:1}, 60.09); tl.set("#cap55", {opacity:0}, 61.43);
+tl.set("#cap55 b:nth-child(1)", {color:"#FACC15"}, 60.14); tl.set("#cap55 b:nth-child(1)", {color:"#fff"}, 60.59);
+tl.set("#cap55 b:nth-child(2)", {color:"#FACC15"}, 60.41); tl.set("#cap55 b:nth-child(2)", {color:"#fff"}, 60.86);
+tl.set("#cap55 b:nth-child(3)", {color:"#FACC15"}, 60.65); tl.set("#cap55 b:nth-child(3)", {color:"#fff"}, 61.10);
+tl.set("#cap56", {opacity:1}, 61.43); tl.set("#cap56", {opacity:0}, 62.62);
+tl.set("#cap56 b:nth-child(1)", {color:"#FACC15"}, 61.48); tl.set("#cap56 b:nth-child(1)", {color:"#fff"}, 61.93);
+tl.set("#cap56 b:nth-child(2)", {color:"#FACC15"}, 61.72); tl.set("#cap56 b:nth-child(2)", {color:"#fff"}, 62.17);
+tl.set("#cap56 b:nth-child(3)", {color:"#FACC15"}, 62.40); tl.set("#cap56 b:nth-child(3)", {color:"#fff"}, 62.62);
+tl.set("#cap57", {opacity:1}, 62.62); tl.set("#cap57", {opacity:0}, 63.23);
+tl.set("#cap57 b:nth-child(1)", {color:"#FACC15"}, 62.67); tl.set("#cap57 b:nth-child(1)", {color:"#fff"}, 63.12);
+tl.set("#cap58", {opacity:1}, 63.23); tl.set("#cap58", {opacity:0}, 64.18);
+tl.set("#cap58 b:nth-child(1)", {color:"#FACC15"}, 63.28); tl.set("#cap58 b:nth-child(1)", {color:"#fff"}, 63.73);
+tl.set("#cap58 b:nth-child(2)", {color:"#FACC15"}, 63.52); tl.set("#cap58 b:nth-child(2)", {color:"#fff"}, 63.97);
+tl.set("#cap58 b:nth-child(3)", {color:"#FACC15"}, 63.99); tl.set("#cap58 b:nth-child(3)", {color:"#fff"}, 64.18);
+tl.set("#cap59", {opacity:1}, 64.18); tl.set("#cap59", {opacity:0}, 64.87);
+tl.set("#cap59 b:nth-child(1)", {color:"#FACC15"}, 64.23); tl.set("#cap59 b:nth-child(1)", {color:"#fff"}, 64.68);
+tl.set("#cap60", {opacity:1}, 64.87); tl.set("#cap60", {opacity:0}, 65.78);
+tl.set("#cap60 b:nth-child(1)", {color:"#FACC15"}, 64.92); tl.set("#cap60 b:nth-child(1)", {color:"#fff"}, 65.37);
+tl.set("#cap60 b:nth-child(2)", {color:"#FACC15"}, 65.16); tl.set("#cap60 b:nth-child(2)", {color:"#fff"}, 65.61);
+tl.set("#cap60 b:nth-child(3)", {color:"#FACC15"}, 65.42); tl.set("#cap60 b:nth-child(3)", {color:"#fff"}, 65.78);
+tl.set("#cap61", {opacity:1}, 65.78); tl.set("#cap61", {opacity:0}, 67.05);
+tl.set("#cap61 b:nth-child(1)", {color:"#FACC15"}, 65.83); tl.set("#cap61 b:nth-child(1)", {color:"#fff"}, 66.28);
+tl.set("#cap61 b:nth-child(2)", {color:"#FACC15"}, 66.23); tl.set("#cap61 b:nth-child(2)", {color:"#fff"}, 66.68);
+tl.set("#cap61 b:nth-child(3)", {color:"#FACC15"}, 66.47); tl.set("#cap61 b:nth-child(3)", {color:"#fff"}, 66.92);
+tl.set("#cap62", {opacity:1}, 67.05); tl.set("#cap62", {opacity:0}, 68.26);
+tl.set("#cap62 b:nth-child(1)", {color:"#FACC15"}, 67.10); tl.set("#cap62 b:nth-child(1)", {color:"#fff"}, 67.55);
+tl.set("#cap62 b:nth-child(2)", {color:"#FACC15"}, 67.36); tl.set("#cap62 b:nth-child(2)", {color:"#fff"}, 67.81);
+tl.set("#cap62 b:nth-child(3)", {color:"#FACC15"}, 67.70); tl.set("#cap62 b:nth-child(3)", {color:"#fff"}, 68.15);
+tl.set("#cap63", {opacity:1}, 68.26); tl.set("#cap63", {opacity:0}, 69.31);
+tl.set("#cap63 b:nth-child(1)", {color:"#FACC15"}, 68.31); tl.set("#cap63 b:nth-child(1)", {color:"#fff"}, 68.76);
+tl.set("#cap63 b:nth-child(2)", {color:"#FACC15"}, 68.55); tl.set("#cap63 b:nth-child(2)", {color:"#fff"}, 69.00);
+tl.set("#cap63 b:nth-child(3)", {color:"#FACC15"}, 68.96); tl.set("#cap63 b:nth-child(3)", {color:"#fff"}, 69.31);
+tl.set("#cap64", {opacity:1}, 69.31); tl.set("#cap64", {opacity:0}, 70.18);
+tl.set("#cap64 b:nth-child(1)", {color:"#FACC15"}, 69.36); tl.set("#cap64 b:nth-child(1)", {color:"#fff"}, 69.81);
+tl.set("#cap64 b:nth-child(2)", {color:"#FACC15"}, 69.60); tl.set("#cap64 b:nth-child(2)", {color:"#fff"}, 70.05);
+tl.set("#cap65", {opacity:1}, 70.18); tl.set("#cap65", {opacity:0}, 71.32);
+tl.set("#cap65 b:nth-child(1)", {color:"#FACC15"}, 70.23); tl.set("#cap65 b:nth-child(1)", {color:"#fff"}, 70.68);
+tl.set("#cap65 b:nth-child(2)", {color:"#FACC15"}, 70.70); tl.set("#cap65 b:nth-child(2)", {color:"#fff"}, 71.15);
+tl.set("#cap65 b:nth-child(3)", {color:"#FACC15"}, 71.04); tl.set("#cap65 b:nth-child(3)", {color:"#fff"}, 71.32);
+tl.set("#cap66", {opacity:1}, 71.32); tl.set("#cap66", {opacity:0}, 72.53);
+tl.set("#cap66 b:nth-child(1)", {color:"#FACC15"}, 71.37); tl.set("#cap66 b:nth-child(1)", {color:"#fff"}, 71.82);
+tl.set("#cap66 b:nth-child(2)", {color:"#FACC15"}, 71.61); tl.set("#cap66 b:nth-child(2)", {color:"#fff"}, 72.06);
+tl.set("#cap67", {opacity:1}, 72.53); tl.set("#cap67", {opacity:0}, 73.51);
+tl.set("#cap67 b:nth-child(1)", {color:"#FACC15"}, 72.58); tl.set("#cap67 b:nth-child(1)", {color:"#fff"}, 73.03);
+tl.set("#cap67 b:nth-child(2)", {color:"#FACC15"}, 72.92); tl.set("#cap67 b:nth-child(2)", {color:"#fff"}, 73.37);
+tl.set("#cap67 b:nth-child(3)", {color:"#FACC15"}, 73.16); tl.set("#cap67 b:nth-child(3)", {color:"#fff"}, 73.51);
+tl.set("#cap68", {opacity:1}, 73.51); tl.set("#cap68", {opacity:0}, 74.40);
+tl.set("#cap68 b:nth-child(1)", {color:"#FACC15"}, 73.56); tl.set("#cap68 b:nth-child(1)", {color:"#fff"}, 74.01);
+tl.set("#cap68 b:nth-child(2)", {color:"#FACC15"}, 73.80); tl.set("#cap68 b:nth-child(2)", {color:"#fff"}, 74.25);
+tl.set("#cap68 b:nth-child(3)", {color:"#FACC15"}, 74.21); tl.set("#cap68 b:nth-child(3)", {color:"#fff"}, 74.40);
+tl.set("#cap69", {opacity:1}, 74.40); tl.set("#cap69", {opacity:0}, 75.54);
+tl.set("#cap69 b:nth-child(1)", {color:"#FACC15"}, 74.45); tl.set("#cap69 b:nth-child(1)", {color:"#fff"}, 74.90);
+tl.set("#cap69 b:nth-child(2)", {color:"#FACC15"}, 74.92); tl.set("#cap69 b:nth-child(2)", {color:"#fff"}, 75.37);
+tl.set("#cap69 b:nth-child(3)", {color:"#FACC15"}, 75.19); tl.set("#cap69 b:nth-child(3)", {color:"#fff"}, 75.54);
+tl.set("#cap70", {opacity:1}, 75.54); tl.set("#cap70", {opacity:0}, 76.48);
+tl.set("#cap70 b:nth-child(1)", {color:"#FACC15"}, 75.59); tl.set("#cap70 b:nth-child(1)", {color:"#fff"}, 76.04);
+tl.set("#cap70 b:nth-child(2)", {color:"#FACC15"}, 75.83); tl.set("#cap70 b:nth-child(2)", {color:"#fff"}, 76.28);
+tl.set("#cap71", {opacity:1}, 76.48); tl.set("#cap71", {opacity:0}, 78.10);
+tl.set("#cap71 b:nth-child(1)", {color:"#FACC15"}, 76.53); tl.set("#cap71 b:nth-child(1)", {color:"#fff"}, 76.98);
+tl.set("#cap71 b:nth-child(2)", {color:"#FACC15"}, 76.77); tl.set("#cap71 b:nth-child(2)", {color:"#fff"}, 77.22);
+tl.set("#cap71 b:nth-child(3)", {color:"#FACC15"}, 77.17); tl.set("#cap71 b:nth-child(3)", {color:"#fff"}, 77.62);
+tl.set("#cap72", {opacity:1}, 78.10); tl.set("#cap72", {opacity:0}, 78.43);
+tl.set("#cap72 b:nth-child(1)", {color:"#FACC15"}, 78.15); tl.set("#cap72 b:nth-child(1)", {color:"#fff"}, 78.43);
+tl.set("#cap73", {opacity:1}, 78.43); tl.set("#cap73", {opacity:0}, 79.28);
+tl.set("#cap73 b:nth-child(1)", {color:"#FACC15"}, 78.48); tl.set("#cap73 b:nth-child(1)", {color:"#fff"}, 78.93);
+tl.set("#cap73 b:nth-child(2)", {color:"#FACC15"}, 78.72); tl.set("#cap73 b:nth-child(2)", {color:"#fff"}, 79.17);
+tl.set("#cap74", {opacity:1}, 79.28); tl.set("#cap74", {opacity:0}, 80.00);
+tl.set("#cap74 b:nth-child(1)", {color:"#FACC15"}, 79.33); tl.set("#cap74 b:nth-child(1)", {color:"#fff"}, 79.78);
+tl.set("#cap74 b:nth-child(2)", {color:"#FACC15"}, 79.57); tl.set("#cap74 b:nth-child(2)", {color:"#fff"}, 80.00);
+tl.set("#cap74 b:nth-child(3)", {color:"#FACC15"}, 79.81); tl.set("#cap74 b:nth-child(3)", {color:"#fff"}, 80.00);
+tl.set("#cap75", {opacity:1}, 80.00); tl.set("#cap75", {opacity:0}, 80.84);
+tl.set("#cap75 b:nth-child(1)", {color:"#FACC15"}, 80.05); tl.set("#cap75 b:nth-child(1)", {color:"#fff"}, 80.50);
+tl.set("#cap76", {opacity:1}, 80.84); tl.set("#cap76", {opacity:0}, 81.68);
+tl.set("#cap76 b:nth-child(1)", {color:"#FACC15"}, 80.89); tl.set("#cap76 b:nth-child(1)", {color:"#fff"}, 81.34);
+tl.set("#cap76 b:nth-child(2)", {color:"#FACC15"}, 81.13); tl.set("#cap76 b:nth-child(2)", {color:"#fff"}, 81.58);
+tl.set("#cap76 b:nth-child(3)", {color:"#FACC15"}, 81.39); tl.set("#cap76 b:nth-child(3)", {color:"#fff"}, 81.68);
+tl.set("#cap77", {opacity:1}, 81.68); tl.set("#cap77", {opacity:0}, 82.50);
+tl.set("#cap77 b:nth-child(1)", {color:"#FACC15"}, 81.73); tl.set("#cap77 b:nth-child(1)", {color:"#fff"}, 82.18);
+tl.set("#cap77 b:nth-child(2)", {color:"#FACC15"}, 82.00); tl.set("#cap77 b:nth-child(2)", {color:"#fff"}, 82.45);
+tl.set("#cap78", {opacity:1}, 82.50); tl.set("#cap78", {opacity:0}, 83.65);
+tl.set("#cap78 b:nth-child(1)", {color:"#FACC15"}, 82.55); tl.set("#cap78 b:nth-child(1)", {color:"#fff"}, 83.00);
+tl.set("#cap78 b:nth-child(2)", {color:"#FACC15"}, 83.09); tl.set("#cap78 b:nth-child(2)", {color:"#fff"}, 83.54);
+tl.set("#cap78 b:nth-child(3)", {color:"#FACC15"}, 83.43); tl.set("#cap78 b:nth-child(3)", {color:"#fff"}, 83.65);
+tl.set("#cap79", {opacity:1}, 83.65); tl.set("#cap79", {opacity:0}, 84.33);
+tl.set("#cap79 b:nth-child(1)", {color:"#FACC15"}, 83.70); tl.set("#cap79 b:nth-child(1)", {color:"#fff"}, 84.15);
+tl.set("#cap80", {opacity:1}, 84.33); tl.set("#cap80", {opacity:0}, 85.65);
+tl.set("#cap80 b:nth-child(1)", {color:"#FACC15"}, 84.38); tl.set("#cap80 b:nth-child(1)", {color:"#fff"}, 84.83);
+tl.set("#cap80 b:nth-child(2)", {color:"#FACC15"}, 84.92); tl.set("#cap80 b:nth-child(2)", {color:"#fff"}, 85.37);
+tl.set("#cap80 b:nth-child(3)", {color:"#FACC15"}, 85.46); tl.set("#cap80 b:nth-child(3)", {color:"#fff"}, 85.65);
+tl.set("#cap81", {opacity:1}, 85.65); tl.set("#cap81", {opacity:0}, 86.54);
+tl.set("#cap81 b:nth-child(1)", {color:"#FACC15"}, 85.70); tl.set("#cap81 b:nth-child(1)", {color:"#fff"}, 86.15);
+tl.set("#cap82", {opacity:1}, 86.54); tl.set("#cap82", {opacity:0}, 87.66);
+tl.set("#cap82 b:nth-child(1)", {color:"#FACC15"}, 86.59); tl.set("#cap82 b:nth-child(1)", {color:"#fff"}, 87.04);
+tl.set("#cap82 b:nth-child(2)", {color:"#FACC15"}, 86.83); tl.set("#cap82 b:nth-child(2)", {color:"#fff"}, 87.28);
+tl.set("#cap82 b:nth-child(3)", {color:"#FACC15"}, 87.44); tl.set("#cap82 b:nth-child(3)", {color:"#fff"}, 87.66);
+tl.set("#cap83", {opacity:1}, 87.66); tl.set("#cap83", {opacity:0}, 89.21);
+tl.set("#cap83 b:nth-child(1)", {color:"#FACC15"}, 87.71); tl.set("#cap83 b:nth-child(1)", {color:"#fff"}, 88.16);
+tl.set("#cap83 b:nth-child(2)", {color:"#FACC15"}, 88.32); tl.set("#cap83 b:nth-child(2)", {color:"#fff"}, 88.77);
+tl.set("#cap83 b:nth-child(3)", {color:"#FACC15"}, 88.56); tl.set("#cap83 b:nth-child(3)", {color:"#fff"}, 89.01);
+tl.set("#cap84", {opacity:1}, 89.21); tl.set("#cap84", {opacity:0}, 90.21);
+tl.set("#cap84 b:nth-child(1)", {color:"#FACC15"}, 89.26); tl.set("#cap84 b:nth-child(1)", {color:"#fff"}, 89.71);
+tl.set("#cap84 b:nth-child(2)", {color:"#FACC15"}, 89.59); tl.set("#cap84 b:nth-child(2)", {color:"#fff"}, 90.04);
+tl.set("#cap84 b:nth-child(3)", {color:"#FACC15"}, 89.86); tl.set("#cap84 b:nth-child(3)", {color:"#fff"}, 90.21);
+tl.set("#cap85", {opacity:1}, 90.21); tl.set("#cap85", {opacity:0}, 91.24);
+tl.set("#cap85 b:nth-child(1)", {color:"#FACC15"}, 90.26); tl.set("#cap85 b:nth-child(1)", {color:"#fff"}, 90.71);
+tl.set("#cap85 b:nth-child(2)", {color:"#FACC15"}, 90.60); tl.set("#cap85 b:nth-child(2)", {color:"#fff"}, 91.05);
+tl.set("#cap86", {opacity:1}, 91.24); tl.set("#cap86", {opacity:0}, 92.43);
+tl.set("#cap86 b:nth-child(1)", {color:"#FACC15"}, 91.29); tl.set("#cap86 b:nth-child(1)", {color:"#fff"}, 91.74);
+tl.set("#cap86 b:nth-child(2)", {color:"#FACC15"}, 91.84); tl.set("#cap86 b:nth-child(2)", {color:"#fff"}, 92.29);
+tl.set("#cap86 b:nth-child(3)", {color:"#FACC15"}, 92.24); tl.set("#cap86 b:nth-child(3)", {color:"#fff"}, 92.43);
+tl.set("#cap87", {opacity:1}, 92.43); tl.set("#cap87", {opacity:0}, 93.78);
+tl.set("#cap87 b:nth-child(1)", {color:"#FACC15"}, 92.48); tl.set("#cap87 b:nth-child(1)", {color:"#fff"}, 92.93);
+tl.set("#cap87 b:nth-child(2)", {color:"#FACC15"}, 92.96); tl.set("#cap87 b:nth-child(2)", {color:"#fff"}, 93.41);
+tl.set("#cap87 b:nth-child(3)", {color:"#FACC15"}, 93.50); tl.set("#cap87 b:nth-child(3)", {color:"#fff"}, 93.78);
+tl.set("#cap88", {opacity:1}, 93.78); tl.set("#cap88", {opacity:0}, 95.26);
+tl.set("#cap88 b:nth-child(1)", {color:"#FACC15"}, 93.83); tl.set("#cap88 b:nth-child(1)", {color:"#fff"}, 94.28);
+tl.set("#cap88 b:nth-child(2)", {color:"#FACC15"}, 94.07); tl.set("#cap88 b:nth-child(2)", {color:"#fff"}, 94.52);
+tl.set("#cap88 b:nth-child(3)", {color:"#FACC15"}, 94.34); tl.set("#cap88 b:nth-child(3)", {color:"#fff"}, 94.79);
+tl.set("#cap89", {opacity:1}, 95.26); tl.set("#cap89", {opacity:0}, 96.41);
+tl.set("#cap89 b:nth-child(1)", {color:"#FACC15"}, 95.31); tl.set("#cap89 b:nth-child(1)", {color:"#fff"}, 95.76);
+tl.set("#cap89 b:nth-child(2)", {color:"#FACC15"}, 95.65); tl.set("#cap89 b:nth-child(2)", {color:"#fff"}, 96.10);
+tl.set("#cap89 b:nth-child(3)", {color:"#FACC15"}, 96.12); tl.set("#cap89 b:nth-child(3)", {color:"#fff"}, 96.41);
+tl.set("#cap90", {opacity:1}, 96.41); tl.set("#cap90", {opacity:0}, 97.31);
+tl.set("#cap90 b:nth-child(1)", {color:"#FACC15"}, 96.46); tl.set("#cap90 b:nth-child(1)", {color:"#fff"}, 96.91);
+tl.set("#cap91", {opacity:1}, 97.31); tl.set("#cap91", {opacity:0}, 98.52);
+tl.set("#cap91 b:nth-child(1)", {color:"#FACC15"}, 97.36); tl.set("#cap91 b:nth-child(1)", {color:"#fff"}, 97.81);
+tl.set("#cap91 b:nth-child(2)", {color:"#FACC15"}, 97.70); tl.set("#cap91 b:nth-child(2)", {color:"#fff"}, 98.15);
+tl.set("#cap91 b:nth-child(3)", {color:"#FACC15"}, 98.24); tl.set("#cap91 b:nth-child(3)", {color:"#fff"}, 98.52);
+tl.set("#cap92", {opacity:1}, 98.52); tl.set("#cap92", {opacity:0}, 99.92);
+tl.set("#cap92 b:nth-child(1)", {color:"#FACC15"}, 98.57); tl.set("#cap92 b:nth-child(1)", {color:"#fff"}, 99.02);
+tl.set("#cap93", {opacity:1}, 99.92); tl.set("#cap93", {opacity:0}, 101.16);
+tl.set("#cap93 b:nth-child(1)", {color:"#FACC15"}, 99.97); tl.set("#cap93 b:nth-child(1)", {color:"#fff"}, 100.42);
+tl.set("#cap93 b:nth-child(2)", {color:"#FACC15"}, 100.51); tl.set("#cap93 b:nth-child(2)", {color:"#fff"}, 100.96);
+tl.set("#cap94", {opacity:1}, 101.16); tl.set("#cap94", {opacity:0}, 102.16);
+tl.set("#cap94 b:nth-child(1)", {color:"#FACC15"}, 101.21); tl.set("#cap94 b:nth-child(1)", {color:"#fff"}, 101.66);
+tl.set("#cap94 b:nth-child(2)", {color:"#FACC15"}, 101.45); tl.set("#cap94 b:nth-child(2)", {color:"#fff"}, 101.90);
+tl.set("#cap95", {opacity:1}, 102.16); tl.set("#cap95", {opacity:0}, 102.40);
+tl.set("#cap95 b:nth-child(1)", {color:"#FACC15"}, 102.21); tl.set("#cap95 b:nth-child(1)", {color:"#fff"}, 102.40);
+tl.set("#cap96", {opacity:1}, 102.40); tl.set("#cap96", {opacity:0}, 103.38);
+tl.set("#cap96 b:nth-child(1)", {color:"#FACC15"}, 102.45); tl.set("#cap96 b:nth-child(1)", {color:"#fff"}, 102.90);
+tl.set("#cap96 b:nth-child(2)", {color:"#FACC15"}, 102.79); tl.set("#cap96 b:nth-child(2)", {color:"#fff"}, 103.24);
+tl.set("#cap96 b:nth-child(3)", {color:"#FACC15"}, 103.03); tl.set("#cap96 b:nth-child(3)", {color:"#fff"}, 103.38);
+tl.set("#cap97", {opacity:1}, 103.38); tl.set("#cap97", {opacity:0}, 104.36);
+tl.set("#cap97 b:nth-child(1)", {color:"#FACC15"}, 103.43); tl.set("#cap97 b:nth-child(1)", {color:"#fff"}, 103.88);
+tl.set("#cap97 b:nth-child(2)", {color:"#FACC15"}, 103.77); tl.set("#cap97 b:nth-child(2)", {color:"#fff"}, 104.22);
+tl.set("#cap97 b:nth-child(3)", {color:"#FACC15"}, 104.01); tl.set("#cap97 b:nth-child(3)", {color:"#fff"}, 104.36);
+tl.set("#cap98", {opacity:1}, 104.36); tl.set("#cap98", {opacity:0}, 105.13);
+tl.set("#cap98 b:nth-child(1)", {color:"#FACC15"}, 104.41); tl.set("#cap98 b:nth-child(1)", {color:"#fff"}, 104.86);
+tl.set("#cap99", {opacity:1}, 105.13); tl.set("#cap99", {opacity:0}, 106.16);
+tl.set("#cap99 b:nth-child(1)", {color:"#FACC15"}, 105.18); tl.set("#cap99 b:nth-child(1)", {color:"#fff"}, 105.63);
+tl.set("#cap99 b:nth-child(2)", {color:"#FACC15"}, 105.42); tl.set("#cap99 b:nth-child(2)", {color:"#fff"}, 105.87);
+tl.set("#cap99 b:nth-child(3)", {color:"#FACC15"}, 105.68); tl.set("#cap99 b:nth-child(3)", {color:"#fff"}, 106.13);
+tl.set("#cap100", {opacity:1}, 106.16); tl.set("#cap100", {opacity:0}, 108.01);
+tl.set("#cap100 b:nth-child(1)", {color:"#FACC15"}, 106.21); tl.set("#cap100 b:nth-child(1)", {color:"#fff"}, 106.66);
+tl.set("#cap100 b:nth-child(2)", {color:"#FACC15"}, 107.10); tl.set("#cap100 b:nth-child(2)", {color:"#fff"}, 107.55);
+tl.set("#cap100 b:nth-child(3)", {color:"#FACC15"}, 107.37); tl.set("#cap100 b:nth-child(3)", {color:"#fff"}, 107.82);
+tl.set("#cap101", {opacity:1}, 108.01); tl.set("#cap101", {opacity:0}, 109.23);
+tl.set("#cap101 b:nth-child(1)", {color:"#FACC15"}, 108.06); tl.set("#cap101 b:nth-child(1)", {color:"#fff"}, 108.51);
+tl.set("#cap101 b:nth-child(2)", {color:"#FACC15"}, 108.47); tl.set("#cap101 b:nth-child(2)", {color:"#fff"}, 108.92);
+tl.set("#cap101 b:nth-child(3)", {color:"#FACC15"}, 108.73); tl.set("#cap101 b:nth-child(3)", {color:"#fff"}, 109.18);
+tl.set("#cap102", {opacity:1}, 109.23); tl.set("#cap102", {opacity:0}, 109.98);
+tl.set("#cap102 b:nth-child(1)", {color:"#FACC15"}, 109.28); tl.set("#cap102 b:nth-child(1)", {color:"#fff"}, 109.73);
+tl.set("#cap103", {opacity:1}, 109.98); tl.set("#cap103", {opacity:0}, 111.58);
+tl.set("#cap103 b:nth-child(1)", {color:"#FACC15"}, 110.03); tl.set("#cap103 b:nth-child(1)", {color:"#fff"}, 110.48);
+tl.set("#cap103 b:nth-child(2)", {color:"#FACC15"}, 110.64); tl.set("#cap103 b:nth-child(2)", {color:"#fff"}, 111.09);
+tl.set("#cap103 b:nth-child(3)", {color:"#FACC15"}, 110.88); tl.set("#cap103 b:nth-child(3)", {color:"#fff"}, 111.33);
+tl.set("#cap104", {opacity:1}, 111.58); tl.set("#cap104", {opacity:0}, 112.50);
+tl.set("#cap104 b:nth-child(1)", {color:"#FACC15"}, 111.63); tl.set("#cap104 b:nth-child(1)", {color:"#fff"}, 112.08);
+tl.set("#cap104 b:nth-child(2)", {color:"#FACC15"}, 111.87); tl.set("#cap104 b:nth-child(2)", {color:"#fff"}, 112.32);
+tl.set("#cap105", {opacity:1}, 112.50); tl.set("#cap105", {opacity:0}, 114.39);
+tl.set("#cap105 b:nth-child(1)", {color:"#FACC15"}, 112.55); tl.set("#cap105 b:nth-child(1)", {color:"#fff"}, 113.00);
+tl.set("#cap105 b:nth-child(2)", {color:"#FACC15"}, 113.44); tl.set("#cap105 b:nth-child(2)", {color:"#fff"}, 113.89);
+tl.set("#cap105 b:nth-child(3)", {color:"#FACC15"}, 113.68); tl.set("#cap105 b:nth-child(3)", {color:"#fff"}, 114.13);
+tl.set("#cap106", {opacity:1}, 114.39); tl.set("#cap106", {opacity:0}, 115.44);
+tl.set("#cap106 b:nth-child(1)", {color:"#FACC15"}, 114.44); tl.set("#cap106 b:nth-child(1)", {color:"#fff"}, 114.89);
+tl.set("#cap106 b:nth-child(2)", {color:"#FACC15"}, 114.78); tl.set("#cap106 b:nth-child(2)", {color:"#fff"}, 115.23);
+tl.set("#cap106 b:nth-child(3)", {color:"#FACC15"}, 115.02); tl.set("#cap106 b:nth-child(3)", {color:"#fff"}, 115.44);
+tl.set("#cap107", {opacity:1}, 115.44); tl.set("#cap107", {opacity:0}, 116.13);
+tl.set("#cap107 b:nth-child(1)", {color:"#FACC15"}, 115.49); tl.set("#cap107 b:nth-child(1)", {color:"#fff"}, 115.94);
+tl.set("#cap108", {opacity:1}, 116.13); tl.set("#cap108", {opacity:0}, 117.12);
+tl.set("#cap108 b:nth-child(1)", {color:"#FACC15"}, 116.18); tl.set("#cap108 b:nth-child(1)", {color:"#fff"}, 116.63);
+tl.set("#cap108 b:nth-child(2)", {color:"#FACC15"}, 116.42); tl.set("#cap108 b:nth-child(2)", {color:"#fff"}, 116.87);
+tl.set("#cap108 b:nth-child(3)", {color:"#FACC15"}, 116.76); tl.set("#cap108 b:nth-child(3)", {color:"#fff"}, 117.12);
+tl.set("#cap109", {opacity:1}, 117.12); tl.set("#cap109", {opacity:0}, 117.76);
+tl.set("#cap109 b:nth-child(1)", {color:"#FACC15"}, 117.17); tl.set("#cap109 b:nth-child(1)", {color:"#fff"}, 117.62);
+tl.set("#cap109 b:nth-child(2)", {color:"#FACC15"}, 117.41); tl.set("#cap109 b:nth-child(2)", {color:"#fff"}, 117.76);
+tl.set("#cap110", {opacity:1}, 117.76); tl.set("#cap110", {opacity:0}, 119.02);
+tl.set("#cap110 b:nth-child(1)", {color:"#FACC15"}, 117.81); tl.set("#cap110 b:nth-child(1)", {color:"#fff"}, 118.26);
+tl.set("#cap110 b:nth-child(2)", {color:"#FACC15"}, 118.42); tl.set("#cap110 b:nth-child(2)", {color:"#fff"}, 118.87);
+tl.set("#cap110 b:nth-child(3)", {color:"#FACC15"}, 118.66); tl.set("#cap110 b:nth-child(3)", {color:"#fff"}, 119.02);
+tl.set("#cap111", {opacity:1}, 119.02); tl.set("#cap111", {opacity:0}, 120.11);
+tl.set("#cap111 b:nth-child(1)", {color:"#FACC15"}, 119.07); tl.set("#cap111 b:nth-child(1)", {color:"#fff"}, 119.52);
+tl.set("#cap111 b:nth-child(2)", {color:"#FACC15"}, 119.31); tl.set("#cap111 b:nth-child(2)", {color:"#fff"}, 119.76);
+tl.set("#cap111 b:nth-child(3)", {color:"#FACC15"}, 119.92); tl.set("#cap111 b:nth-child(3)", {color:"#fff"}, 120.11);
+tl.set("#cap112", {opacity:1}, 120.11); tl.set("#cap112", {opacity:0}, 121.42);
+tl.set("#cap112 b:nth-child(1)", {color:"#FACC15"}, 120.16); tl.set("#cap112 b:nth-child(1)", {color:"#fff"}, 120.61);
+tl.set("#cap112 b:nth-child(2)", {color:"#FACC15"}, 120.56); tl.set("#cap112 b:nth-child(2)", {color:"#fff"}, 121.01);
+tl.set("#cap113", {opacity:1}, 121.42); tl.set("#cap113", {opacity:0}, 122.37);
+tl.set("#cap113 b:nth-child(1)", {color:"#FACC15"}, 121.47); tl.set("#cap113 b:nth-child(1)", {color:"#fff"}, 121.92);
+tl.set("#cap113 b:nth-child(2)", {color:"#FACC15"}, 121.71); tl.set("#cap113 b:nth-child(2)", {color:"#fff"}, 122.16);
+tl.set("#cap113 b:nth-child(3)", {color:"#FACC15"}, 121.95); tl.set("#cap113 b:nth-child(3)", {color:"#fff"}, 122.37);
+tl.set("#cap114", {opacity:1}, 122.37); tl.set("#cap114", {opacity:0}, 123.12);
+tl.set("#cap114 b:nth-child(1)", {color:"#FACC15"}, 122.42); tl.set("#cap114 b:nth-child(1)", {color:"#fff"}, 122.87);
+tl.set("#cap114 b:nth-child(2)", {color:"#FACC15"}, 122.66); tl.set("#cap114 b:nth-child(2)", {color:"#fff"}, 123.11);
+tl.set("#cap114 b:nth-child(3)", {color:"#FACC15"}, 122.93); tl.set("#cap114 b:nth-child(3)", {color:"#fff"}, 123.12);
+tl.set("#cap115", {opacity:1}, 123.12); tl.set("#cap115", {opacity:0}, 124.44);
+tl.set("#cap115 b:nth-child(1)", {color:"#FACC15"}, 123.17); tl.set("#cap115 b:nth-child(1)", {color:"#fff"}, 123.62);
+tl.set("#cap115 b:nth-child(2)", {color:"#FACC15"}, 123.41); tl.set("#cap115 b:nth-child(2)", {color:"#fff"}, 123.86);
+tl.set("#cap115 b:nth-child(3)", {color:"#FACC15"}, 123.88); tl.set("#cap115 b:nth-child(3)", {color:"#fff"}, 124.33);
+tl.set("#cap116", {opacity:1}, 124.44); tl.set("#cap116", {opacity:0}, 126.13);
+tl.set("#cap116 b:nth-child(1)", {color:"#FACC15"}, 124.49); tl.set("#cap116 b:nth-child(1)", {color:"#fff"}, 124.94);
+tl.set("#cap116 b:nth-child(2)", {color:"#FACC15"}, 124.73); tl.set("#cap116 b:nth-child(2)", {color:"#fff"}, 125.18);
+tl.set("#cap116 b:nth-child(3)", {color:"#FACC15"}, 125.27); tl.set("#cap116 b:nth-child(3)", {color:"#fff"}, 125.72);
+tl.set("#cap117", {opacity:1}, 126.13); tl.set("#cap117", {opacity:0}, 127.01);
+tl.set("#cap117 b:nth-child(1)", {color:"#FACC15"}, 126.18); tl.set("#cap117 b:nth-child(1)", {color:"#fff"}, 126.63);
+tl.set("#cap117 b:nth-child(2)", {color:"#FACC15"}, 126.42); tl.set("#cap117 b:nth-child(2)", {color:"#fff"}, 126.87);
+tl.set("#cap117 b:nth-child(3)", {color:"#FACC15"}, 126.82); tl.set("#cap117 b:nth-child(3)", {color:"#fff"}, 127.01);
+tl.set("#cap118", {opacity:1}, 127.01); tl.set("#cap118", {opacity:0}, 127.42);
+tl.set("#cap118 b:nth-child(1)", {color:"#FACC15"}, 127.06); tl.set("#cap118 b:nth-child(1)", {color:"#fff"}, 127.42);
+tl.set("#cap119", {opacity:1}, 127.42); tl.set("#cap119", {opacity:0}, 128.67);
+tl.set("#cap119 b:nth-child(1)", {color:"#FACC15"}, 127.47); tl.set("#cap119 b:nth-child(1)", {color:"#fff"}, 127.92);
+tl.set("#cap119 b:nth-child(2)", {color:"#FACC15"}, 127.71); tl.set("#cap119 b:nth-child(2)", {color:"#fff"}, 128.16);
+tl.set("#cap119 b:nth-child(3)", {color:"#FACC15"}, 128.25); tl.set("#cap119 b:nth-child(3)", {color:"#fff"}, 128.67);
+tl.set("#cap120", {opacity:1}, 128.67); tl.set("#cap120", {opacity:0}, 129.42);
+tl.set("#cap120 b:nth-child(1)", {color:"#FACC15"}, 128.72); tl.set("#cap120 b:nth-child(1)", {color:"#fff"}, 129.17);
+tl.set("#cap120 b:nth-child(2)", {color:"#FACC15"}, 128.96); tl.set("#cap120 b:nth-child(2)", {color:"#fff"}, 129.41);
+tl.set("#cap120 b:nth-child(3)", {color:"#FACC15"}, 129.23); tl.set("#cap120 b:nth-child(3)", {color:"#fff"}, 129.42);
+tl.set("#cap121", {opacity:1}, 129.42); tl.set("#cap121", {opacity:0}, 130.88);
+tl.set("#cap121 b:nth-child(1)", {color:"#FACC15"}, 129.47); tl.set("#cap121 b:nth-child(1)", {color:"#fff"}, 129.92);
+tl.set("#cap121 b:nth-child(2)", {color:"#FACC15"}, 130.08); tl.set("#cap121 b:nth-child(2)", {color:"#fff"}, 130.53);
+tl.set("#cap121 b:nth-child(3)", {color:"#FACC15"}, 130.32); tl.set("#cap121 b:nth-child(3)", {color:"#fff"}, 130.77);
+tl.set("#cap122", {opacity:1}, 130.88); tl.set("#cap122", {opacity:0}, 131.56);
+tl.set("#cap122 b:nth-child(1)", {color:"#FACC15"}, 130.93); tl.set("#cap122 b:nth-child(1)", {color:"#fff"}, 131.38);
+tl.set("#cap123", {opacity:1}, 131.56); tl.set("#cap123", {opacity:0}, 133.14);
+tl.set("#cap123 b:nth-child(1)", {color:"#FACC15"}, 131.61); tl.set("#cap123 b:nth-child(1)", {color:"#fff"}, 132.06);
+tl.set("#cap123 b:nth-child(2)", {color:"#FACC15"}, 131.88); tl.set("#cap123 b:nth-child(2)", {color:"#fff"}, 132.33);
+tl.set("#cap123 b:nth-child(3)", {color:"#FACC15"}, 132.15); tl.set("#cap123 b:nth-child(3)", {color:"#fff"}, 132.60);
+tl.set("#cap124", {opacity:1}, 133.14); tl.set("#cap124", {opacity:0}, 134.32);
+tl.set("#cap124 b:nth-child(1)", {color:"#FACC15"}, 133.19); tl.set("#cap124 b:nth-child(1)", {color:"#fff"}, 133.64);
+tl.set("#cap124 b:nth-child(2)", {color:"#FACC15"}, 133.43); tl.set("#cap124 b:nth-child(2)", {color:"#fff"}, 133.88);
+tl.set("#cap124 b:nth-child(3)", {color:"#FACC15"}, 133.69); tl.set("#cap124 b:nth-child(3)", {color:"#fff"}, 134.14);
+tl.set("#cap125", {opacity:1}, 134.32); tl.set("#cap125", {opacity:0}, 135.53);
+tl.set("#cap125 b:nth-child(1)", {color:"#FACC15"}, 134.37); tl.set("#cap125 b:nth-child(1)", {color:"#fff"}, 134.82);
+tl.set("#cap125 b:nth-child(2)", {color:"#FACC15"}, 134.64); tl.set("#cap125 b:nth-child(2)", {color:"#fff"}, 135.09);
+tl.set("#cap125 b:nth-child(3)", {color:"#FACC15"}, 134.88); tl.set("#cap125 b:nth-child(3)", {color:"#fff"}, 135.33);
+tl.set("#cap126", {opacity:1}, 135.53); tl.set("#cap126", {opacity:0}, 136.67);
+tl.set("#cap126 b:nth-child(1)", {color:"#FACC15"}, 135.58); tl.set("#cap126 b:nth-child(1)", {color:"#fff"}, 136.03);
+tl.set("#cap126 b:nth-child(2)", {color:"#FACC15"}, 136.05); tl.set("#cap126 b:nth-child(2)", {color:"#fff"}, 136.50);
+tl.set("#cap126 b:nth-child(3)", {color:"#FACC15"}, 136.39); tl.set("#cap126 b:nth-child(3)", {color:"#fff"}, 136.67);
+tl.set("#cap127", {opacity:1}, 136.67); tl.set("#cap127", {opacity:0}, 137.88);
+tl.set("#cap127 b:nth-child(1)", {color:"#FACC15"}, 136.72); tl.set("#cap127 b:nth-child(1)", {color:"#fff"}, 137.17);
+tl.set("#cap127 b:nth-child(2)", {color:"#FACC15"}, 136.96); tl.set("#cap127 b:nth-child(2)", {color:"#fff"}, 137.41);
+tl.set("#cap128", {opacity:1}, 137.88); tl.set("#cap128", {opacity:0}, 138.79);
+tl.set("#cap128 b:nth-child(1)", {color:"#FACC15"}, 137.93); tl.set("#cap128 b:nth-child(1)", {color:"#fff"}, 138.38);
+tl.set("#cap128 b:nth-child(2)", {color:"#FACC15"}, 138.20); tl.set("#cap128 b:nth-child(2)", {color:"#fff"}, 138.65);
+tl.set("#cap128 b:nth-child(3)", {color:"#FACC15"}, 138.60); tl.set("#cap128 b:nth-child(3)", {color:"#fff"}, 138.79);
+tl.set("#cap129", {opacity:1}, 138.79); tl.set("#cap129", {opacity:0}, 139.98);
+tl.set("#cap129 b:nth-child(1)", {color:"#FACC15"}, 138.84); tl.set("#cap129 b:nth-child(1)", {color:"#fff"}, 139.29);
+tl.set("#cap129 b:nth-child(2)", {color:"#FACC15"}, 139.08); tl.set("#cap129 b:nth-child(2)", {color:"#fff"}, 139.53);
+tl.set("#cap129 b:nth-child(3)", {color:"#FACC15"}, 139.70); tl.set("#cap129 b:nth-child(3)", {color:"#fff"}, 139.98);
+tl.set("#cap130", {opacity:1}, 139.98); tl.set("#cap130", {opacity:0}, 140.52);
+tl.set("#cap130 b:nth-child(1)", {color:"#FACC15"}, 140.03); tl.set("#cap130 b:nth-child(1)", {color:"#fff"}, 140.48);
+tl.set("#cap131", {opacity:1}, 140.52); tl.set("#cap131", {opacity:0}, 141.37);
+tl.set("#cap131 b:nth-child(1)", {color:"#FACC15"}, 140.57); tl.set("#cap131 b:nth-child(1)", {color:"#fff"}, 141.02);
+tl.set("#cap131 b:nth-child(2)", {color:"#FACC15"}, 140.84); tl.set("#cap131 b:nth-child(2)", {color:"#fff"}, 141.29);
+tl.set("#cap131 b:nth-child(3)", {color:"#FACC15"}, 141.18); tl.set("#cap131 b:nth-child(3)", {color:"#fff"}, 141.37);
+tl.set("#cap132", {opacity:1}, 141.37); tl.set("#cap132", {opacity:0}, 142.35);
+tl.set("#cap132 b:nth-child(1)", {color:"#FACC15"}, 141.42); tl.set("#cap132 b:nth-child(1)", {color:"#fff"}, 141.87);
+tl.set("#cap132 b:nth-child(2)", {color:"#FACC15"}, 141.68); tl.set("#cap132 b:nth-child(2)", {color:"#fff"}, 142.13);
+tl.set("#cap132 b:nth-child(3)", {color:"#FACC15"}, 141.92); tl.set("#cap132 b:nth-child(3)", {color:"#fff"}, 142.35);
+tl.set("#cap133", {opacity:1}, 142.35); tl.set("#cap133", {opacity:0}, 143.23);
+tl.set("#cap133 b:nth-child(1)", {color:"#FACC15"}, 142.40); tl.set("#cap133 b:nth-child(1)", {color:"#fff"}, 142.85);
+tl.set("#cap133 b:nth-child(2)", {color:"#FACC15"}, 142.64); tl.set("#cap133 b:nth-child(2)", {color:"#fff"}, 143.09);
+tl.set("#cap133 b:nth-child(3)", {color:"#FACC15"}, 143.04); tl.set("#cap133 b:nth-child(3)", {color:"#fff"}, 143.23);
+tl.set("#cap134", {opacity:1}, 143.23); tl.set("#cap134", {opacity:0}, 144.78);
+tl.set("#cap134 b:nth-child(1)", {color:"#FACC15"}, 143.28); tl.set("#cap134 b:nth-child(1)", {color:"#fff"}, 143.73);
+tl.set("#cap134 b:nth-child(2)", {color:"#FACC15"}, 143.89); tl.set("#cap134 b:nth-child(2)", {color:"#fff"}, 144.34);
+tl.set("#cap134 b:nth-child(3)", {color:"#FACC15"}, 144.13); tl.set("#cap134 b:nth-child(3)", {color:"#fff"}, 144.58);
+tl.set("#cap135", {opacity:1}, 144.78); tl.set("#cap135", {opacity:0}, 146.27);
+tl.set("#cap135 b:nth-child(1)", {color:"#FACC15"}, 144.83); tl.set("#cap135 b:nth-child(1)", {color:"#fff"}, 145.28);
+tl.set("#cap135 b:nth-child(2)", {color:"#FACC15"}, 145.23); tl.set("#cap135 b:nth-child(2)", {color:"#fff"}, 145.68);
+tl.set("#cap135 b:nth-child(3)", {color:"#FACC15"}, 145.64); tl.set("#cap135 b:nth-child(3)", {color:"#fff"}, 146.09);
+tl.set("#cap136", {opacity:1}, 146.27); tl.set("#cap136", {opacity:0}, 147.39);
+tl.set("#cap136 b:nth-child(1)", {color:"#FACC15"}, 146.32); tl.set("#cap136 b:nth-child(1)", {color:"#fff"}, 146.77);
+tl.set("#cap136 b:nth-child(2)", {color:"#FACC15"}, 146.59); tl.set("#cap136 b:nth-child(2)", {color:"#fff"}, 147.04);
+tl.set("#cap136 b:nth-child(3)", {color:"#FACC15"}, 147.20); tl.set("#cap136 b:nth-child(3)", {color:"#fff"}, 147.39);
+tl.set("#cap137", {opacity:1}, 147.39); tl.set("#cap137", {opacity:0}, 149.58);
+tl.set("#cap137 b:nth-child(1)", {color:"#FACC15"}, 147.44); tl.set("#cap137 b:nth-child(1)", {color:"#fff"}, 147.89);
+tl.set("#cap137 b:nth-child(2)", {color:"#FACC15"}, 147.98); tl.set("#cap137 b:nth-child(2)", {color:"#fff"}, 148.43);
+tl.set("#cap137 b:nth-child(3)", {color:"#FACC15"}, 148.45); tl.set("#cap137 b:nth-child(3)", {color:"#fff"}, 148.90);
+tl.set("#cap138", {opacity:1}, 149.58); tl.set("#cap138", {opacity:0}, 150.42);
+tl.set("#cap138 b:nth-child(1)", {color:"#FACC15"}, 149.63); tl.set("#cap138 b:nth-child(1)", {color:"#fff"}, 150.08);
+tl.set("#cap138 b:nth-child(2)", {color:"#FACC15"}, 149.87); tl.set("#cap138 b:nth-child(2)", {color:"#fff"}, 150.32);
+tl.set("#cap138 b:nth-child(3)", {color:"#FACC15"}, 150.14); tl.set("#cap138 b:nth-child(3)", {color:"#fff"}, 150.42);
+tl.set("#cap139", {opacity:1}, 150.42); tl.set("#cap139", {opacity:0}, 150.96);
+tl.set("#cap139 b:nth-child(1)", {color:"#FACC15"}, 150.47); tl.set("#cap139 b:nth-child(1)", {color:"#fff"}, 150.92);
+tl.set("#cap139 b:nth-child(2)", {color:"#FACC15"}, 150.74); tl.set("#cap139 b:nth-child(2)", {color:"#fff"}, 150.96);
+tl.set("#cap140", {opacity:1}, 150.96); tl.set("#cap140", {opacity:0}, 152.30);
+tl.set("#cap140 b:nth-child(1)", {color:"#FACC15"}, 151.01); tl.set("#cap140 b:nth-child(1)", {color:"#fff"}, 151.46);
+tl.set("#cap140 b:nth-child(2)", {color:"#FACC15"}, 151.25); tl.set("#cap140 b:nth-child(2)", {color:"#fff"}, 151.70);
+tl.set("#cap140 b:nth-child(3)", {color:"#FACC15"}, 151.65); tl.set("#cap140 b:nth-child(3)", {color:"#fff"}, 152.10);
+tl.set("#cap141", {opacity:1}, 152.30); tl.set("#cap141", {opacity:0}, 153.87);
+tl.set("#cap141 b:nth-child(1)", {color:"#FACC15"}, 152.35); tl.set("#cap141 b:nth-child(1)", {color:"#fff"}, 152.80);
+tl.set("#cap141 b:nth-child(2)", {color:"#FACC15"}, 152.96); tl.set("#cap141 b:nth-child(2)", {color:"#fff"}, 153.41);
+tl.set("#cap142", {opacity:1}, 153.87); tl.set("#cap142", {opacity:0}, 154.92);
+tl.set("#cap142 b:nth-child(1)", {color:"#FACC15"}, 153.92); tl.set("#cap142 b:nth-child(1)", {color:"#fff"}, 154.37);
+tl.set("#cap142 b:nth-child(2)", {color:"#FACC15"}, 154.46); tl.set("#cap142 b:nth-child(2)", {color:"#fff"}, 154.91);
+tl.set("#cap142 b:nth-child(3)", {color:"#FACC15"}, 154.70); tl.set("#cap142 b:nth-child(3)", {color:"#fff"}, 154.92);
+tl.set("#cap143", {opacity:1}, 154.92); tl.set("#cap143", {opacity:0}, 156.24);
+tl.set("#cap143 b:nth-child(1)", {color:"#FACC15"}, 154.97); tl.set("#cap143 b:nth-child(1)", {color:"#fff"}, 155.42);
+tl.set("#cap143 b:nth-child(2)", {color:"#FACC15"}, 155.51); tl.set("#cap143 b:nth-child(2)", {color:"#fff"}, 155.96);
+tl.set("#cap143 b:nth-child(3)", {color:"#FACC15"}, 155.75); tl.set("#cap143 b:nth-child(3)", {color:"#fff"}, 156.20);
+tl.set("#cap144", {opacity:1}, 156.24); tl.set("#cap144", {opacity:0}, 157.64);
+tl.set("#cap144 b:nth-child(1)", {color:"#FACC15"}, 156.29); tl.set("#cap144 b:nth-child(1)", {color:"#fff"}, 156.74);
+tl.set("#cap144 b:nth-child(2)", {color:"#FACC15"}, 156.53); tl.set("#cap144 b:nth-child(2)", {color:"#fff"}, 156.98);
+tl.set("#cap144 b:nth-child(3)", {color:"#FACC15"}, 157.14); tl.set("#cap144 b:nth-child(3)", {color:"#fff"}, 157.59);
+tl.set("#cap145", {opacity:1}, 157.64); tl.set("#cap145", {opacity:0}, 158.45);
+tl.set("#cap145 b:nth-child(1)", {color:"#FACC15"}, 157.69); tl.set("#cap145 b:nth-child(1)", {color:"#fff"}, 158.14);
+tl.set("#cap145 b:nth-child(2)", {color:"#FACC15"}, 157.93); tl.set("#cap145 b:nth-child(2)", {color:"#fff"}, 158.38);
+tl.set("#cap145 b:nth-child(3)", {color:"#FACC15"}, 158.26); tl.set("#cap145 b:nth-child(3)", {color:"#fff"}, 158.45);
+tl.set("#cap146", {opacity:1}, 158.45); tl.set("#cap146", {opacity:0}, 159.22);
+tl.set("#cap146 b:nth-child(1)", {color:"#FACC15"}, 158.50); tl.set("#cap146 b:nth-child(1)", {color:"#fff"}, 158.95);
+tl.set("#cap147", {opacity:1}, 159.22); tl.set("#cap147", {opacity:0}, 160.22);
+tl.set("#cap147 b:nth-child(1)", {color:"#FACC15"}, 159.27); tl.set("#cap147 b:nth-child(1)", {color:"#fff"}, 159.72);
+tl.set("#cap147 b:nth-child(2)", {color:"#FACC15"}, 159.60); tl.set("#cap147 b:nth-child(2)", {color:"#fff"}, 160.05);
+tl.set("#cap147 b:nth-child(3)", {color:"#FACC15"}, 159.87); tl.set("#cap147 b:nth-child(3)", {color:"#fff"}, 160.22);
+tl.set("#cap148", {opacity:1}, 160.22); tl.set("#cap148", {opacity:0}, 161.25);
+tl.set("#cap148 b:nth-child(1)", {color:"#FACC15"}, 160.27); tl.set("#cap148 b:nth-child(1)", {color:"#fff"}, 160.72);
+tl.set("#cap148 b:nth-child(2)", {color:"#FACC15"}, 160.61); tl.set("#cap148 b:nth-child(2)", {color:"#fff"}, 161.06);
+tl.set("#cap149", {opacity:1}, 161.25); tl.set("#cap149", {opacity:0}, 162.37);
+tl.set("#cap149 b:nth-child(1)", {color:"#FACC15"}, 161.30); tl.set("#cap149 b:nth-child(1)", {color:"#fff"}, 161.75);
+tl.set("#cap149 b:nth-child(2)", {color:"#FACC15"}, 161.85); tl.set("#cap149 b:nth-child(2)", {color:"#fff"}, 162.30);
+tl.set("#cap149 b:nth-child(3)", {color:"#FACC15"}, 162.18); tl.set("#cap149 b:nth-child(3)", {color:"#fff"}, 162.37);
+tl.set("#cap150", {opacity:1}, 162.37); tl.set("#cap150", {opacity:0}, 163.61);
+tl.set("#cap150 b:nth-child(1)", {color:"#FACC15"}, 162.42); tl.set("#cap150 b:nth-child(1)", {color:"#fff"}, 162.87);
+tl.set("#cap150 b:nth-child(2)", {color:"#FACC15"}, 162.76); tl.set("#cap150 b:nth-child(2)", {color:"#fff"}, 163.21);
+tl.set("#cap151", {opacity:1}, 163.61); tl.set("#cap151", {opacity:0}, 164.59);
+tl.set("#cap151 b:nth-child(1)", {color:"#FACC15"}, 163.66); tl.set("#cap151 b:nth-child(1)", {color:"#fff"}, 164.11);
+tl.set("#cap151 b:nth-child(2)", {color:"#FACC15"}, 163.90); tl.set("#cap151 b:nth-child(2)", {color:"#fff"}, 164.35);
+tl.set("#cap151 b:nth-child(3)", {color:"#FACC15"}, 164.31); tl.set("#cap151 b:nth-child(3)", {color:"#fff"}, 164.59);
+tl.set("#cap152", {opacity:1}, 164.59); tl.set("#cap152", {opacity:0}, 165.92);
+tl.set("#cap152 b:nth-child(1)", {color:"#FACC15"}, 164.64); tl.set("#cap152 b:nth-child(1)", {color:"#fff"}, 165.09);
+tl.set("#cap152 b:nth-child(2)", {color:"#FACC15"}, 164.98); tl.set("#cap152 b:nth-child(2)", {color:"#fff"}, 165.43);
+tl.set("#cap152 b:nth-child(3)", {color:"#FACC15"}, 165.22); tl.set("#cap152 b:nth-child(3)", {color:"#fff"}, 165.67);
+tl.set("#cap153", {opacity:1}, 165.92); tl.set("#cap153", {opacity:0}, 167.16);
+tl.set("#cap153 b:nth-child(1)", {color:"#FACC15"}, 165.97); tl.set("#cap153 b:nth-child(1)", {color:"#fff"}, 166.42);
+tl.set("#cap153 b:nth-child(2)", {color:"#FACC15"}, 166.21); tl.set("#cap153 b:nth-child(2)", {color:"#fff"}, 166.66);
+tl.set("#cap153 b:nth-child(3)", {color:"#FACC15"}, 166.45); tl.set("#cap153 b:nth-child(3)", {color:"#fff"}, 166.90);
+tl.set("#cap154", {opacity:1}, 167.16); tl.set("#cap154", {opacity:0}, 168.28);
+tl.set("#cap154 b:nth-child(1)", {color:"#FACC15"}, 167.21); tl.set("#cap154 b:nth-child(1)", {color:"#fff"}, 167.66);
+tl.set("#cap154 b:nth-child(2)", {color:"#FACC15"}, 167.55); tl.set("#cap154 b:nth-child(2)", {color:"#fff"}, 168.00);
+tl.set("#cap154 b:nth-child(3)", {color:"#FACC15"}, 168.09); tl.set("#cap154 b:nth-child(3)", {color:"#fff"}, 168.28);
+tl.set("#cap155", {opacity:1}, 168.28); tl.set("#cap155", {opacity:0}, 169.33);
+tl.set("#cap155 b:nth-child(1)", {color:"#FACC15"}, 168.33); tl.set("#cap155 b:nth-child(1)", {color:"#fff"}, 168.78);
+tl.set("#cap155 b:nth-child(2)", {color:"#FACC15"}, 168.66); tl.set("#cap155 b:nth-child(2)", {color:"#fff"}, 169.11);
+tl.set("#cap155 b:nth-child(3)", {color:"#FACC15"}, 169.14); tl.set("#cap155 b:nth-child(3)", {color:"#fff"}, 169.33);
+tl.set("#cap156", {opacity:1}, 169.33); tl.set("#cap156", {opacity:0}, 170.72);
+tl.set("#cap156 b:nth-child(1)", {color:"#FACC15"}, 169.38); tl.set("#cap156 b:nth-child(1)", {color:"#fff"}, 169.83);
+tl.set("#cap157", {opacity:1}, 170.72); tl.set("#cap157", {opacity:0}, 171.19);
+tl.set("#cap157 b:nth-child(1)", {color:"#FACC15"}, 170.77); tl.set("#cap157 b:nth-child(1)", {color:"#fff"}, 171.19);
+tl.set("#cap158", {opacity:1}, 171.19); tl.set("#cap158", {opacity:0}, 172.11);
+tl.set("#cap158 b:nth-child(1)", {color:"#FACC15"}, 171.24); tl.set("#cap158 b:nth-child(1)", {color:"#fff"}, 171.69);
+tl.set("#cap158 b:nth-child(2)", {color:"#FACC15"}, 171.48); tl.set("#cap158 b:nth-child(2)", {color:"#fff"}, 171.93);
+tl.set("#cap158 b:nth-child(3)", {color:"#FACC15"}, 171.89); tl.set("#cap158 b:nth-child(3)", {color:"#fff"}, 172.11);
+tl.set("#cap159", {opacity:1}, 172.11); tl.set("#cap159", {opacity:0}, 173.61);
+tl.set("#cap159 b:nth-child(1)", {color:"#FACC15"}, 172.16); tl.set("#cap159 b:nth-child(1)", {color:"#fff"}, 172.61);
+tl.set("#cap159 b:nth-child(2)", {color:"#FACC15"}, 172.42); tl.set("#cap159 b:nth-child(2)", {color:"#fff"}, 172.87);
+tl.set("#cap159 b:nth-child(3)", {color:"#FACC15"}, 172.83); tl.set("#cap159 b:nth-child(3)", {color:"#fff"}, 173.28);
+tl.set("#cap160", {opacity:1}, 173.61); tl.set("#cap160", {opacity:0}, 174.76);
+tl.set("#cap160 b:nth-child(1)", {color:"#FACC15"}, 173.66); tl.set("#cap160 b:nth-child(1)", {color:"#fff"}, 174.11);
+tl.set("#cap160 b:nth-child(2)", {color:"#ff4d4d"}, 174.00); tl.set("#cap160 b:nth-child(2)", {color:"#fff"}, 174.45);
+tl.set("#cap160 b:nth-child(3)", {color:"#FACC15"}, 174.54); tl.set("#cap160 b:nth-child(3)", {color:"#fff"}, 174.76);
+tl.set("#cap161", {opacity:1}, 174.76); tl.set("#cap161", {opacity:0}, 175.79);
+tl.set("#cap161 b:nth-child(1)", {color:"#FACC15"}, 174.81); tl.set("#cap161 b:nth-child(1)", {color:"#fff"}, 175.26);
+tl.set("#cap161 b:nth-child(2)", {color:"#FACC15"}, 175.07); tl.set("#cap161 b:nth-child(2)", {color:"#fff"}, 175.52);
+tl.set("#cap162", {opacity:1}, 175.79); tl.set("#cap162", {opacity:0}, 176.64);
+tl.set("#cap162 b:nth-child(1)", {color:"#FACC15"}, 175.84); tl.set("#cap162 b:nth-child(1)", {color:"#fff"}, 176.29);
+tl.set("#cap162 b:nth-child(2)", {color:"#FACC15"}, 176.08); tl.set("#cap162 b:nth-child(2)", {color:"#fff"}, 176.53);
+tl.set("#cap162 b:nth-child(3)", {color:"#FACC15"}, 176.41); tl.set("#cap162 b:nth-child(3)", {color:"#fff"}, 176.64);
+tl.set("#cap163", {opacity:1}, 176.64); tl.set("#cap163", {opacity:0}, 177.71);
+tl.set("#cap163 b:nth-child(1)", {color:"#FACC15"}, 176.69); tl.set("#cap163 b:nth-child(1)", {color:"#fff"}, 177.14);
+tl.set("#cap163 b:nth-child(2)", {color:"#FACC15"}, 176.95); tl.set("#cap163 b:nth-child(2)", {color:"#fff"}, 177.40);
+tl.set("#cap163 b:nth-child(3)", {color:"#FACC15"}, 177.42); tl.set("#cap163 b:nth-child(3)", {color:"#fff"}, 177.71);
+tl.set("#cap164", {opacity:1}, 177.71); tl.set("#cap164", {opacity:0}, 179.26);
+tl.set("#cap164 b:nth-child(1)", {color:"#FACC15"}, 177.76); tl.set("#cap164 b:nth-child(1)", {color:"#fff"}, 178.21);
+tl.set("#cap164 b:nth-child(2)", {color:"#FACC15"}, 178.23); tl.set("#cap164 b:nth-child(2)", {color:"#fff"}, 178.68);
+tl.set("#cap164 b:nth-child(3)", {color:"#FACC15"}, 178.50); tl.set("#cap164 b:nth-child(3)", {color:"#fff"}, 178.95);
+tl.set("#cap165", {opacity:1}, 179.26); tl.set("#cap165", {opacity:0}, 179.89);
+tl.set("#cap165 b:nth-child(1)", {color:"#FACC15"}, 179.31); tl.set("#cap165 b:nth-child(1)", {color:"#fff"}, 179.76);
+tl.set("#cap166", {opacity:1}, 179.89); tl.set("#cap166", {opacity:0}, 181.14);
+tl.set("#cap166 b:nth-child(1)", {color:"#FACC15"}, 179.94); tl.set("#cap166 b:nth-child(1)", {color:"#fff"}, 180.39);
+tl.set("#cap166 b:nth-child(2)", {color:"#FACC15"}, 180.17); tl.set("#cap166 b:nth-child(2)", {color:"#fff"}, 180.62);
+tl.set("#cap166 b:nth-child(3)", {color:"#FACC15"}, 180.71); tl.set("#cap166 b:nth-child(3)", {color:"#fff"}, 181.14);
+tl.set("#cap167", {opacity:1}, 181.14); tl.set("#cap167", {opacity:0}, 182.31);
+tl.set("#cap167 b:nth-child(1)", {color:"#FACC15"}, 181.19); tl.set("#cap167 b:nth-child(1)", {color:"#fff"}, 181.64);
+tl.set("#cap168", {opacity:1}, 182.31); tl.set("#cap168", {opacity:0}, 183.15);
+tl.set("#cap168 b:nth-child(1)", {color:"#FACC15"}, 182.36); tl.set("#cap168 b:nth-child(1)", {color:"#fff"}, 182.81);
+tl.set("#cap168 b:nth-child(2)", {color:"#FACC15"}, 182.60); tl.set("#cap168 b:nth-child(2)", {color:"#fff"}, 183.05);
+tl.set("#cap168 b:nth-child(3)", {color:"#FACC15"}, 182.88); tl.set("#cap168 b:nth-child(3)", {color:"#fff"}, 183.15);
+tl.set("#cap169", {opacity:1}, 183.15); tl.set("#cap169", {opacity:0}, 184.41);
+tl.set("#cap169 b:nth-child(1)", {color:"#FACC15"}, 183.20); tl.set("#cap169 b:nth-child(1)", {color:"#fff"}, 183.65);
+tl.set("#cap169 b:nth-child(2)", {color:"#FACC15"}, 183.95); tl.set("#cap169 b:nth-child(2)", {color:"#fff"}, 184.40);
+tl.set("#cap169 b:nth-child(3)", {color:"#FACC15"}, 184.22); tl.set("#cap169 b:nth-child(3)", {color:"#fff"}, 184.41);
+tl.set("#cap170", {opacity:1}, 184.41); tl.set("#cap170", {opacity:0}, 186.04);
+tl.set("#cap170 b:nth-child(1)", {color:"#FACC15"}, 184.46); tl.set("#cap170 b:nth-child(1)", {color:"#fff"}, 184.91);
+tl.set("#cap170 b:nth-child(2)", {color:"#FACC15"}, 184.86); tl.set("#cap170 b:nth-child(2)", {color:"#fff"}, 185.31);
+tl.set("#cap170 b:nth-child(3)", {color:"#FACC15"}, 185.41); tl.set("#cap170 b:nth-child(3)", {color:"#fff"}, 185.86);
+tl.set("#cap171", {opacity:1}, 186.04); tl.set("#cap171", {opacity:0}, 186.99);
+tl.set("#cap171 b:nth-child(1)", {color:"#FACC15"}, 186.09); tl.set("#cap171 b:nth-child(1)", {color:"#fff"}, 186.54);
+tl.set("#cap172", {opacity:1}, 186.99); tl.set("#cap172", {opacity:0}, 188.39);
+tl.set("#cap172 b:nth-child(1)", {color:"#FACC15"}, 187.04); tl.set("#cap172 b:nth-child(1)", {color:"#fff"}, 187.49);
+tl.set("#cap172 b:nth-child(2)", {color:"#FACC15"}, 187.66); tl.set("#cap172 b:nth-child(2)", {color:"#fff"}, 188.11);
+tl.set("#cap172 b:nth-child(3)", {color:"#FACC15"}, 187.90); tl.set("#cap172 b:nth-child(3)", {color:"#fff"}, 188.35);
+tl.set("#cap173", {opacity:1}, 188.39); tl.set("#cap173", {opacity:0}, 189.58);
+tl.set("#cap173 b:nth-child(1)", {color:"#FACC15"}, 188.44); tl.set("#cap173 b:nth-child(1)", {color:"#fff"}, 188.89);
+tl.set("#cap173 b:nth-child(2)", {color:"#FACC15"}, 188.69); tl.set("#cap173 b:nth-child(2)", {color:"#fff"}, 189.14);
+tl.set("#cap173 b:nth-child(3)", {color:"#FACC15"}, 189.08); tl.set("#cap173 b:nth-child(3)", {color:"#fff"}, 189.53);
+tl.set("#cap174", {opacity:1}, 189.58); tl.set("#cap174", {opacity:0}, 190.85);
+tl.set("#cap174 b:nth-child(1)", {color:"#FACC15"}, 189.63); tl.set("#cap174 b:nth-child(1)", {color:"#fff"}, 190.08);
+tl.set("#cap174 b:nth-child(2)", {color:"#FACC15"}, 189.89); tl.set("#cap174 b:nth-child(2)", {color:"#fff"}, 190.34);
+tl.set("#cap174 b:nth-child(3)", {color:"#FACC15"}, 190.13); tl.set("#cap174 b:nth-child(3)", {color:"#fff"}, 190.58);
+tl.set("#cap175", {opacity:1}, 190.85); tl.set("#cap175", {opacity:0}, 191.66);
+tl.set("#cap175 b:nth-child(1)", {color:"#FACC15"}, 190.90); tl.set("#cap175 b:nth-child(1)", {color:"#fff"}, 191.35);
+tl.set("#cap175 b:nth-child(2)", {color:"#FACC15"}, 191.23); tl.set("#cap175 b:nth-child(2)", {color:"#fff"}, 191.66);
+tl.set("#cap175 b:nth-child(3)", {color:"#FACC15"}, 191.47); tl.set("#cap175 b:nth-child(3)", {color:"#fff"}, 191.66);
+tl.set("#cap176", {opacity:1}, 191.66); tl.set("#cap176", {opacity:0}, 192.83);
+tl.set("#cap176 b:nth-child(1)", {color:"#FACC15"}, 191.71); tl.set("#cap176 b:nth-child(1)", {color:"#fff"}, 192.16);
+tl.set("#cap176 b:nth-child(2)", {color:"#FACC15"}, 192.19); tl.set("#cap176 b:nth-child(2)", {color:"#fff"}, 192.64);
+tl.set("#cap177", {opacity:1}, 192.83); tl.set("#cap177", {opacity:0}, 193.61);
+tl.set("#cap177 b:nth-child(1)", {color:"#FACC15"}, 192.88); tl.set("#cap177 b:nth-child(1)", {color:"#fff"}, 193.33);
+tl.set("#cap177 b:nth-child(2)", {color:"#FACC15"}, 193.15); tl.set("#cap177 b:nth-child(2)", {color:"#fff"}, 193.60);
+tl.set("#cap177 b:nth-child(3)", {color:"#FACC15"}, 193.39); tl.set("#cap177 b:nth-child(3)", {color:"#fff"}, 193.61);
+tl.set("#cap178", {opacity:1}, 193.61); tl.set("#cap178", {opacity:0}, 194.93);
+tl.set("#cap178 b:nth-child(1)", {color:"#FACC15"}, 193.66); tl.set("#cap178 b:nth-child(1)", {color:"#fff"}, 194.11);
+tl.set("#cap178 b:nth-child(2)", {color:"#FACC15"}, 194.13); tl.set("#cap178 b:nth-child(2)", {color:"#fff"}, 194.58);
+tl.set("#cap178 b:nth-child(3)", {color:"#FACC15"}, 194.38); tl.set("#cap178 b:nth-child(3)", {color:"#fff"}, 194.83);
+tl.set("#cap179", {opacity:1}, 194.93); tl.set("#cap179", {opacity:0}, 196.56);
+tl.set("#cap179 b:nth-child(1)", {color:"#FACC15"}, 194.98); tl.set("#cap179 b:nth-child(1)", {color:"#fff"}, 195.43);
+tl.set("#cap179 b:nth-child(2)", {color:"#FACC15"}, 195.25); tl.set("#cap179 b:nth-child(2)", {color:"#fff"}, 195.70);
+tl.set("#cap179 b:nth-child(3)", {color:"#FACC15"}, 195.65); tl.set("#cap179 b:nth-child(3)", {color:"#fff"}, 196.10);
+tl.set("#cap180", {opacity:1}, 196.56); tl.set("#cap180", {opacity:0}, 197.47);
+tl.set("#cap180 b:nth-child(1)", {color:"#FACC15"}, 196.61); tl.set("#cap180 b:nth-child(1)", {color:"#fff"}, 197.06);
+tl.set("#cap180 b:nth-child(2)", {color:"#FACC15"}, 196.85); tl.set("#cap180 b:nth-child(2)", {color:"#fff"}, 197.30);
+tl.set("#cap180 b:nth-child(3)", {color:"#FACC15"}, 197.12); tl.set("#cap180 b:nth-child(3)", {color:"#fff"}, 197.47);
+tl.set("#cap181", {opacity:1}, 197.47); tl.set("#cap181", {opacity:0}, 199.73);
+tl.set("#cap181 b:nth-child(1)", {color:"#FACC15"}, 197.52); tl.set("#cap181 b:nth-child(1)", {color:"#fff"}, 197.97);
+tl.set("#cap181 b:nth-child(2)", {color:"#FACC15"}, 198.34); tl.set("#cap181 b:nth-child(2)", {color:"#fff"}, 198.79);
+tl.set("#cap181 b:nth-child(3)", {color:"#FACC15"}, 198.69); tl.set("#cap181 b:nth-child(3)", {color:"#fff"}, 199.14);
+tl.set("#cap182", {opacity:1}, 199.73); tl.set("#cap182", {opacity:0}, 201.75);
+tl.set("#cap182 b:nth-child(1)", {color:"#FACC15"}, 199.78); tl.set("#cap182 b:nth-child(1)", {color:"#fff"}, 200.23);
+tl.set("#cap182 b:nth-child(2)", {color:"#FACC15"}, 200.02); tl.set("#cap182 b:nth-child(2)", {color:"#fff"}, 200.47);
+tl.set("#cap182 b:nth-child(3)", {color:"#FACC15"}, 200.91); tl.set("#cap182 b:nth-child(3)", {color:"#fff"}, 201.36);
+tl.set("#cap183", {opacity:1}, 201.75); tl.set("#cap183", {opacity:0}, 203.12);
+tl.set("#cap183 b:nth-child(1)", {color:"#FACC15"}, 201.80); tl.set("#cap183 b:nth-child(1)", {color:"#fff"}, 202.25);
+tl.set("#cap183 b:nth-child(2)", {color:"#FACC15"}, 202.07); tl.set("#cap183 b:nth-child(2)", {color:"#fff"}, 202.52);
+tl.set("#cap183 b:nth-child(3)", {color:"#FACC15"}, 202.33); tl.set("#cap183 b:nth-child(3)", {color:"#fff"}, 202.78);
+tl.set("#cap184", {opacity:1}, 203.12); tl.set("#cap184", {opacity:0}, 204.61);
+tl.set("#cap184 b:nth-child(1)", {color:"#FACC15"}, 203.17); tl.set("#cap184 b:nth-child(1)", {color:"#fff"}, 203.62);
+tl.set("#cap184 b:nth-child(2)", {color:"#FACC15"}, 203.78); tl.set("#cap184 b:nth-child(2)", {color:"#fff"}, 204.23);
+tl.set("#cap184 b:nth-child(3)", {color:"#FACC15"}, 204.11); tl.set("#cap184 b:nth-child(3)", {color:"#fff"}, 204.56);
+tl.set("#cap185", {opacity:1}, 204.61); tl.set("#cap185", {opacity:0}, 206.07);
+tl.set("#cap185 b:nth-child(1)", {color:"#FACC15"}, 204.66); tl.set("#cap185 b:nth-child(1)", {color:"#fff"}, 205.11);
+tl.set("#cap185 b:nth-child(2)", {color:"#FACC15"}, 204.90); tl.set("#cap185 b:nth-child(2)", {color:"#fff"}, 205.35);
+tl.set("#cap185 b:nth-child(3)", {color:"#FACC15"}, 205.38); tl.set("#cap185 b:nth-child(3)", {color:"#fff"}, 205.83);
+tl.set("#cap186", {opacity:1}, 206.07); tl.set("#cap186", {opacity:0}, 207.15);
+tl.set("#cap186 b:nth-child(1)", {color:"#FACC15"}, 206.12); tl.set("#cap186 b:nth-child(1)", {color:"#fff"}, 206.57);
+tl.set("#cap186 b:nth-child(2)", {color:"#FACC15"}, 206.39); tl.set("#cap186 b:nth-child(2)", {color:"#fff"}, 206.84);
+tl.set("#cap186 b:nth-child(3)", {color:"#FACC15"}, 206.94); tl.set("#cap186 b:nth-child(3)", {color:"#fff"}, 207.15);
+tl.set("#cap187", {opacity:1}, 207.15); tl.set("#cap187", {opacity:0}, 208.10);
+tl.set("#cap187 b:nth-child(1)", {color:"#FACC15"}, 207.20); tl.set("#cap187 b:nth-child(1)", {color:"#fff"}, 207.65);
+tl.set("#cap188", {opacity:1}, 208.10); tl.set("#cap188", {opacity:0}, 209.08);
+tl.set("#cap188 b:nth-child(1)", {color:"#FACC15"}, 208.15); tl.set("#cap188 b:nth-child(1)", {color:"#fff"}, 208.60);
+tl.set("#cap188 b:nth-child(2)", {color:"#FACC15"}, 208.50); tl.set("#cap188 b:nth-child(2)", {color:"#fff"}, 208.95);
+tl.set("#cap188 b:nth-child(3)", {color:"#FACC15"}, 208.89); tl.set("#cap188 b:nth-child(3)", {color:"#fff"}, 209.08);
+tl.set("#cap189", {opacity:1}, 209.08); tl.set("#cap189", {opacity:0}, 210.20);
+tl.set("#cap189 b:nth-child(1)", {color:"#FACC15"}, 209.13); tl.set("#cap189 b:nth-child(1)", {color:"#fff"}, 209.58);
+tl.set("#cap189 b:nth-child(2)", {color:"#FACC15"}, 209.61); tl.set("#cap189 b:nth-child(2)", {color:"#fff"}, 210.06);
+tl.set("#cap189 b:nth-child(3)", {color:"#FACC15"}, 210.01); tl.set("#cap189 b:nth-child(3)", {color:"#fff"}, 210.20);
+tl.set("#cap190", {opacity:1}, 210.20); tl.set("#cap190", {opacity:0}, 211.31);
+tl.set("#cap190 b:nth-child(1)", {color:"#FACC15"}, 210.25); tl.set("#cap190 b:nth-child(1)", {color:"#fff"}, 210.70);
+tl.set("#cap191", {opacity:1}, 211.31); tl.set("#cap191", {opacity:0}, 212.73);
+tl.set("#cap191 b:nth-child(1)", {color:"#FACC15"}, 211.36); tl.set("#cap191 b:nth-child(1)", {color:"#fff"}, 211.81);
+tl.set("#cap191 b:nth-child(2)", {color:"#FACC15"}, 211.63); tl.set("#cap191 b:nth-child(2)", {color:"#fff"}, 212.08);
+tl.set("#cap191 b:nth-child(3)", {color:"#FACC15"}, 212.10); tl.set("#cap191 b:nth-child(3)", {color:"#fff"}, 212.55);
+tl.set("#cap192", {opacity:1}, 212.73); tl.set("#cap192", {opacity:0}, 213.67);
+tl.set("#cap192 b:nth-child(1)", {color:"#FACC15"}, 212.78); tl.set("#cap192 b:nth-child(1)", {color:"#fff"}, 213.23);
+tl.set("#cap192 b:nth-child(2)", {color:"#ff4d4d"}, 213.02); tl.set("#cap192 b:nth-child(2)", {color:"#fff"}, 213.47);
+tl.set("#cap193", {opacity:1}, 213.67); tl.set("#cap193", {opacity:0}, 214.95);
+tl.set("#cap193 b:nth-child(1)", {color:"#FACC15"}, 213.72); tl.set("#cap193 b:nth-child(1)", {color:"#fff"}, 214.17);
+tl.set("#cap193 b:nth-child(2)", {color:"#FACC15"}, 214.12); tl.set("#cap193 b:nth-child(2)", {color:"#fff"}, 214.57);
+tl.set("#cap193 b:nth-child(3)", {color:"#FACC15"}, 214.53); tl.set("#cap193 b:nth-child(3)", {color:"#fff"}, 214.95);
+tl.set("#cap194", {opacity:1}, 214.95); tl.set("#cap194", {opacity:0}, 215.87);
+tl.set("#cap194 b:nth-child(1)", {color:"#FACC15"}, 215.00); tl.set("#cap194 b:nth-child(1)", {color:"#fff"}, 215.45);
+tl.set("#cap194 b:nth-child(2)", {color:"#FACC15"}, 215.25); tl.set("#cap194 b:nth-child(2)", {color:"#fff"}, 215.70);
+tl.set("#cap195", {opacity:1}, 215.87); tl.set("#cap195", {opacity:0}, 217.51);
+tl.set("#cap195 b:nth-child(1)", {color:"#FACC15"}, 215.92); tl.set("#cap195 b:nth-child(1)", {color:"#fff"}, 216.37);
+tl.set("#cap195 b:nth-child(2)", {color:"#FACC15"}, 216.33); tl.set("#cap195 b:nth-child(2)", {color:"#fff"}, 216.78);
+tl.set("#cap195 b:nth-child(3)", {color:"#FACC15"}, 216.59); tl.set("#cap195 b:nth-child(3)", {color:"#fff"}, 217.04);
+tl.set("#cap196", {opacity:1}, 217.51); tl.set("#cap196", {opacity:0}, 218.56);
+tl.set("#cap196 b:nth-child(1)", {color:"#FACC15"}, 217.56); tl.set("#cap196 b:nth-child(1)", {color:"#fff"}, 218.01);
+tl.set("#cap196 b:nth-child(2)", {color:"#FACC15"}, 217.80); tl.set("#cap196 b:nth-child(2)", {color:"#fff"}, 218.25);
+tl.set("#cap196 b:nth-child(3)", {color:"#FACC15"}, 218.07); tl.set("#cap196 b:nth-child(3)", {color:"#fff"}, 218.52);
+tl.set("#cap197", {opacity:1}, 218.56); tl.set("#cap197", {opacity:0}, 220.07);
+tl.set("#cap197 b:nth-child(1)", {color:"#FACC15"}, 218.61); tl.set("#cap197 b:nth-child(1)", {color:"#fff"}, 219.06);
+tl.set("#cap197 b:nth-child(2)", {color:"#FACC15"}, 218.88); tl.set("#cap197 b:nth-child(2)", {color:"#fff"}, 219.33);
+tl.set("#cap197 b:nth-child(3)", {color:"#FACC15"}, 219.15); tl.set("#cap197 b:nth-child(3)", {color:"#fff"}, 219.60);
+tl.set("#cap198", {opacity:1}, 220.07); tl.set("#cap198", {opacity:0}, 221.39);
+tl.set("#cap198 b:nth-child(1)", {color:"#FACC15"}, 220.12); tl.set("#cap198 b:nth-child(1)", {color:"#fff"}, 220.57);
+tl.set("#cap198 b:nth-child(2)", {color:"#FACC15"}, 220.36); tl.set("#cap198 b:nth-child(2)", {color:"#fff"}, 220.81);
+tl.set("#cap198 b:nth-child(3)", {color:"#FACC15"}, 220.60); tl.set("#cap198 b:nth-child(3)", {color:"#fff"}, 221.05);
+tl.set("#cap199", {opacity:1}, 221.39); tl.set("#cap199", {opacity:0}, 222.39);
+tl.set("#cap199 b:nth-child(1)", {color:"#FACC15"}, 221.44); tl.set("#cap199 b:nth-child(1)", {color:"#fff"}, 221.89);
+tl.set("#cap199 b:nth-child(2)", {color:"#FACC15"}, 221.70); tl.set("#cap199 b:nth-child(2)", {color:"#fff"}, 222.15);
+tl.set("#cap199 b:nth-child(3)", {color:"#FACC15"}, 221.96); tl.set("#cap199 b:nth-child(3)", {color:"#fff"}, 222.39);
+tl.set("#cap200", {opacity:1}, 222.39); tl.set("#cap200", {opacity:0}, 223.64);
+tl.set("#cap200 b:nth-child(1)", {color:"#FACC15"}, 222.44); tl.set("#cap200 b:nth-child(1)", {color:"#fff"}, 222.89);
+tl.set("#cap200 b:nth-child(2)", {color:"#ff4d4d"}, 222.77); tl.set("#cap200 b:nth-child(2)", {color:"#fff"}, 223.22);
+tl.set("#cap201", {opacity:1}, 223.64); tl.set("#cap201", {opacity:0}, 224.77);
+tl.set("#cap201 b:nth-child(1)", {color:"#FACC15"}, 223.69); tl.set("#cap201 b:nth-child(1)", {color:"#fff"}, 224.14);
+tl.set("#cap201 b:nth-child(2)", {color:"#FACC15"}, 223.94); tl.set("#cap201 b:nth-child(2)", {color:"#fff"}, 224.39);
+tl.set("#cap201 b:nth-child(3)", {color:"#FACC15"}, 224.28); tl.set("#cap201 b:nth-child(3)", {color:"#fff"}, 224.73);
+tl.set("#cap202", {opacity:1}, 224.77); tl.set("#cap202", {opacity:0}, 225.52);
+tl.set("#cap202 b:nth-child(1)", {color:"#FACC15"}, 224.82); tl.set("#cap202 b:nth-child(1)", {color:"#fff"}, 225.27);
+tl.set("#cap202 b:nth-child(2)", {color:"#FACC15"}, 225.06); tl.set("#cap202 b:nth-child(2)", {color:"#fff"}, 225.51);
+tl.set("#cap202 b:nth-child(3)", {color:"#FACC15"}, 225.33); tl.set("#cap202 b:nth-child(3)", {color:"#fff"}, 225.52);
+tl.set("#cap203", {opacity:1}, 225.52); tl.set("#cap203", {opacity:0}, 226.20);
+tl.set("#cap203 b:nth-child(1)", {color:"#FACC15"}, 225.57); tl.set("#cap203 b:nth-child(1)", {color:"#fff"}, 226.02);
+tl.set("#cap204", {opacity:1}, 226.20); tl.set("#cap204", {opacity:0}, 227.29);
+tl.set("#cap204 b:nth-child(1)", {color:"#FACC15"}, 226.25); tl.set("#cap204 b:nth-child(1)", {color:"#fff"}, 226.70);
+tl.set("#cap204 b:nth-child(2)", {color:"#FACC15"}, 226.50); tl.set("#cap204 b:nth-child(2)", {color:"#fff"}, 226.95);
+tl.set("#cap204 b:nth-child(3)", {color:"#FACC15"}, 227.10); tl.set("#cap204 b:nth-child(3)", {color:"#fff"}, 227.29);
+tl.set("#cap205", {opacity:1}, 227.29); tl.set("#cap205", {opacity:0}, 228.25);
+tl.set("#cap205 b:nth-child(1)", {color:"#FACC15"}, 227.34); tl.set("#cap205 b:nth-child(1)", {color:"#fff"}, 227.79);
+tl.set("#cap206", {opacity:1}, 228.25); tl.set("#cap206", {opacity:0}, 228.99);
+tl.set("#cap206 b:nth-child(1)", {color:"#FACC15"}, 228.30); tl.set("#cap206 b:nth-child(1)", {color:"#fff"}, 228.75);
+tl.set("#cap206 b:nth-child(2)", {color:"#FACC15"}, 228.54); tl.set("#cap206 b:nth-child(2)", {color:"#fff"}, 228.99);
+tl.set("#cap206 b:nth-child(3)", {color:"#FACC15"}, 228.80); tl.set("#cap206 b:nth-child(3)", {color:"#fff"}, 228.99);
+tl.set("#cap207", {opacity:1}, 228.99); tl.set("#cap207", {opacity:0}, 230.87);
+tl.set("#cap207 b:nth-child(1)", {color:"#FACC15"}, 229.04); tl.set("#cap207 b:nth-child(1)", {color:"#fff"}, 229.49);
+tl.set("#cap207 b:nth-child(2)", {color:"#FACC15"}, 229.59); tl.set("#cap207 b:nth-child(2)", {color:"#fff"}, 230.04);
+tl.set("#cap208", {opacity:1}, 230.87); tl.set("#cap208", {opacity:0}, 232.18);
+tl.set("#cap208 b:nth-child(1)", {color:"#FACC15"}, 230.92); tl.set("#cap208 b:nth-child(1)", {color:"#fff"}, 231.37);
+tl.set("#cap208 b:nth-child(2)", {color:"#FACC15"}, 231.26); tl.set("#cap208 b:nth-child(2)", {color:"#fff"}, 231.71);
+tl.set("#cap209", {opacity:1}, 232.18); tl.set("#cap209", {opacity:0}, 233.65);
+tl.set("#cap209 b:nth-child(1)", {color:"#FACC15"}, 232.23); tl.set("#cap209 b:nth-child(1)", {color:"#fff"}, 232.68);
+tl.set("#cap209 b:nth-child(2)", {color:"#FACC15"}, 232.47); tl.set("#cap209 b:nth-child(2)", {color:"#fff"}, 232.92);
+tl.set("#cap209 b:nth-child(3)", {color:"#FACC15"}, 232.87); tl.set("#cap209 b:nth-child(3)", {color:"#fff"}, 233.32);
+tl.set("#cap210", {opacity:1}, 233.65); tl.set("#cap210", {opacity:0}, 234.75);
+tl.set("#cap210 b:nth-child(1)", {color:"#FACC15"}, 233.70); tl.set("#cap210 b:nth-child(1)", {color:"#fff"}, 234.15);
+tl.set("#cap210 b:nth-child(2)", {color:"#FACC15"}, 233.94); tl.set("#cap210 b:nth-child(2)", {color:"#fff"}, 234.39);
+tl.set("#cap210 b:nth-child(3)", {color:"#38bdf8"}, 234.18); tl.set("#cap210 b:nth-child(3)", {color:"#fff"}, 234.63);
+tl.set("#cap211", {opacity:1}, 234.75); tl.set("#cap211", {opacity:0}, 236.18);
+tl.set("#cap211 b:nth-child(1)", {color:"#FACC15"}, 234.80); tl.set("#cap211 b:nth-child(1)", {color:"#fff"}, 235.25);
+tl.set("#cap211 b:nth-child(2)", {color:"#FACC15"}, 235.06); tl.set("#cap211 b:nth-child(2)", {color:"#fff"}, 235.51);
+tl.set("#cap211 b:nth-child(3)", {color:"#FACC15"}, 235.47); tl.set("#cap211 b:nth-child(3)", {color:"#fff"}, 235.92);
+tl.set("#cap212", {opacity:1}, 236.18); tl.set("#cap212", {opacity:0}, 236.92);
+tl.set("#cap212 b:nth-child(1)", {color:"#FACC15"}, 236.23); tl.set("#cap212 b:nth-child(1)", {color:"#fff"}, 236.68);
+tl.set("#cap212 b:nth-child(2)", {color:"#FACC15"}, 236.50); tl.set("#cap212 b:nth-child(2)", {color:"#fff"}, 236.92);
+tl.set("#cap213", {opacity:1}, 236.92); tl.set("#cap213", {opacity:0}, 237.83);
+tl.set("#cap213 b:nth-child(1)", {color:"#FACC15"}, 236.97); tl.set("#cap213 b:nth-child(1)", {color:"#fff"}, 237.42);
+tl.set("#cap213 b:nth-child(2)", {color:"#FACC15"}, 237.24); tl.set("#cap213 b:nth-child(2)", {color:"#fff"}, 237.69);
+tl.set("#cap213 b:nth-child(3)", {color:"#FACC15"}, 237.64); tl.set("#cap213 b:nth-child(3)", {color:"#fff"}, 237.83);
+tl.set("#cap214", {opacity:1}, 237.83); tl.set("#cap214", {opacity:0}, 239.31);
+tl.set("#cap214 b:nth-child(1)", {color:"#FACC15"}, 237.88); tl.set("#cap214 b:nth-child(1)", {color:"#fff"}, 238.33);
+tl.set("#cap214 b:nth-child(2)", {color:"#FACC15"}, 238.29); tl.set("#cap214 b:nth-child(2)", {color:"#fff"}, 238.74);
+tl.set("#cap214 b:nth-child(3)", {color:"#FACC15"}, 238.53); tl.set("#cap214 b:nth-child(3)", {color:"#fff"}, 238.98);
+tl.set("#cap215", {opacity:1}, 239.31); tl.set("#cap215", {opacity:0}, 240.27);
+tl.set("#cap215 b:nth-child(1)", {color:"#FACC15"}, 239.36); tl.set("#cap215 b:nth-child(1)", {color:"#fff"}, 239.81);
+tl.set("#cap215 b:nth-child(2)", {color:"#FACC15"}, 239.60); tl.set("#cap215 b:nth-child(2)", {color:"#fff"}, 240.05);
+tl.set("#cap215 b:nth-child(3)", {color:"#FACC15"}, 239.84); tl.set("#cap215 b:nth-child(3)", {color:"#fff"}, 240.27);
+tl.set("#cap216", {opacity:1}, 240.27); tl.set("#cap216", {opacity:0}, 241.34);
+tl.set("#cap216 b:nth-child(1)", {color:"#FACC15"}, 240.32); tl.set("#cap216 b:nth-child(1)", {color:"#fff"}, 240.77);
+tl.set("#cap216 b:nth-child(2)", {color:"#FACC15"}, 240.58); tl.set("#cap216 b:nth-child(2)", {color:"#fff"}, 241.03);
+tl.set("#cap216 b:nth-child(3)", {color:"#FACC15"}, 240.92); tl.set("#cap216 b:nth-child(3)", {color:"#fff"}, 241.34);
+tl.set("#cap217", {opacity:1}, 241.34); tl.set("#cap217", {opacity:0}, 243.10);
+tl.set("#cap217 b:nth-child(1)", {color:"#FACC15"}, 241.39); tl.set("#cap217 b:nth-child(1)", {color:"#fff"}, 241.84);
+tl.set("#cap217 b:nth-child(2)", {color:"#FACC15"}, 241.93); tl.set("#cap217 b:nth-child(2)", {color:"#fff"}, 242.38);
+tl.set("#cap217 b:nth-child(3)", {color:"#ff4d4d"}, 242.17); tl.set("#cap217 b:nth-child(3)", {color:"#fff"}, 242.62);
+tl.set("#cap218", {opacity:1}, 243.10); tl.set("#cap218", {opacity:0}, 243.57);
+tl.set("#cap218 b:nth-child(1)", {color:"#FACC15"}, 243.15); tl.set("#cap218 b:nth-child(1)", {color:"#fff"}, 243.57);
+tl.set("#cap219", {opacity:1}, 243.57); tl.set("#cap219", {opacity:0}, 244.48);
+tl.set("#cap219 b:nth-child(1)", {color:"#FACC15"}, 243.62); tl.set("#cap219 b:nth-child(1)", {color:"#fff"}, 244.07);
+tl.set("#cap219 b:nth-child(2)", {color:"#FACC15"}, 243.86); tl.set("#cap219 b:nth-child(2)", {color:"#fff"}, 244.31);
+tl.set("#cap219 b:nth-child(3)", {color:"#FACC15"}, 244.13); tl.set("#cap219 b:nth-child(3)", {color:"#fff"}, 244.48);
+tl.set("#cap220", {opacity:1}, 244.48); tl.set("#cap220", {opacity:0}, 245.18);
+tl.set("#cap220 b:nth-child(1)", {color:"#FACC15"}, 244.53); tl.set("#cap220 b:nth-child(1)", {color:"#fff"}, 244.98);
+tl.set("#cap221", {opacity:1}, 245.18); tl.set("#cap221", {opacity:0}, 246.15);
+tl.set("#cap221 b:nth-child(1)", {color:"#FACC15"}, 245.23); tl.set("#cap221 b:nth-child(1)", {color:"#fff"}, 245.68);
+tl.set("#cap222", {opacity:1}, 246.15); tl.set("#cap222", {opacity:0}, 247.33);
+tl.set("#cap222 b:nth-child(1)", {color:"#FACC15"}, 246.20); tl.set("#cap222 b:nth-child(1)", {color:"#fff"}, 246.65);
+tl.set("#cap222 b:nth-child(2)", {color:"#FACC15"}, 246.74); tl.set("#cap222 b:nth-child(2)", {color:"#fff"}, 247.19);
+tl.set("#cap222 b:nth-child(3)", {color:"#FACC15"}, 246.98); tl.set("#cap222 b:nth-child(3)", {color:"#fff"}, 247.33);
+tl.set("#cap223", {opacity:1}, 247.33); tl.set("#cap223", {opacity:0}, 248.64);
+tl.set("#cap223 b:nth-child(1)", {color:"#FACC15"}, 247.38); tl.set("#cap223 b:nth-child(1)", {color:"#fff"}, 247.83);
+tl.set("#cap223 b:nth-child(2)", {color:"#FACC15"}, 247.93); tl.set("#cap223 b:nth-child(2)", {color:"#fff"}, 248.38);
+tl.set("#cap224", {opacity:1}, 248.64); tl.set("#cap224", {opacity:0}, 249.53);
+tl.set("#cap224 b:nth-child(1)", {color:"#FACC15"}, 248.69); tl.set("#cap224 b:nth-child(1)", {color:"#fff"}, 249.14);
+tl.set("#cap224 b:nth-child(2)", {color:"#FACC15"}, 248.93); tl.set("#cap224 b:nth-child(2)", {color:"#fff"}, 249.38);
+tl.set("#cap224 b:nth-child(3)", {color:"#FACC15"}, 249.17); tl.set("#cap224 b:nth-child(3)", {color:"#fff"}, 249.53);
+tl.set("#cap225", {opacity:1}, 249.53); tl.set("#cap225", {opacity:0}, 250.64);
+tl.set("#cap225 b:nth-child(1)", {color:"#FACC15"}, 249.58); tl.set("#cap225 b:nth-child(1)", {color:"#fff"}, 250.03);
+tl.set("#cap225 b:nth-child(2)", {color:"#FACC15"}, 249.82); tl.set("#cap225 b:nth-child(2)", {color:"#fff"}, 250.27);
+tl.set("#cap225 b:nth-child(3)", {color:"#FACC15"}, 250.36); tl.set("#cap225 b:nth-child(3)", {color:"#fff"}, 250.64);
+tl.set("#cap226", {opacity:1}, 250.64); tl.set("#cap226", {opacity:0}, 252.35);
+tl.set("#cap226 b:nth-child(1)", {color:"#FACC15"}, 250.69); tl.set("#cap226 b:nth-child(1)", {color:"#fff"}, 251.14);
+tl.set("#cap226 b:nth-child(2)", {color:"#FACC15"}, 251.51); tl.set("#cap226 b:nth-child(2)", {color:"#fff"}, 251.96);
+tl.set("#cap227", {opacity:1}, 252.35); tl.set("#cap227", {opacity:0}, 254.10);
+tl.set("#cap227 b:nth-child(1)", {color:"#FACC15"}, 252.40); tl.set("#cap227 b:nth-child(1)", {color:"#fff"}, 252.85);
+tl.set("#cap227 b:nth-child(2)", {color:"#FACC15"}, 252.87); tl.set("#cap227 b:nth-child(2)", {color:"#fff"}, 253.32);
+tl.set("#cap227 b:nth-child(3)", {color:"#FACC15"}, 253.11); tl.set("#cap227 b:nth-child(3)", {color:"#fff"}, 253.56);
+tl.set("#cap228", {opacity:1}, 254.10); tl.set("#cap228", {opacity:0}, 255.01);
+tl.set("#cap228 b:nth-child(1)", {color:"#FACC15"}, 254.15); tl.set("#cap228 b:nth-child(1)", {color:"#fff"}, 254.60);
+tl.set("#cap229", {opacity:1}, 255.01); tl.set("#cap229", {opacity:0}, 256.33);
+tl.set("#cap229 b:nth-child(1)", {color:"#FACC15"}, 255.06); tl.set("#cap229 b:nth-child(1)", {color:"#fff"}, 255.51);
+tl.set("#cap229 b:nth-child(2)", {color:"#FACC15"}, 255.80); tl.set("#cap229 b:nth-child(2)", {color:"#fff"}, 256.25);
+tl.set("#cap229 b:nth-child(3)", {color:"#FACC15"}, 256.14); tl.set("#cap229 b:nth-child(3)", {color:"#fff"}, 256.33);
+tl.set("#cap230", {opacity:1}, 256.33); tl.set("#cap230", {opacity:0}, 257.09);
+tl.set("#cap230 b:nth-child(1)", {color:"#FACC15"}, 256.38); tl.set("#cap230 b:nth-child(1)", {color:"#fff"}, 256.83);
+tl.set("#cap231", {opacity:1}, 257.09); tl.set("#cap231", {opacity:0}, 258.63);
+tl.set("#cap231 b:nth-child(1)", {color:"#FACC15"}, 257.14); tl.set("#cap231 b:nth-child(1)", {color:"#fff"}, 257.59);
+tl.set("#cap231 b:nth-child(2)", {color:"#FACC15"}, 257.83); tl.set("#cap231 b:nth-child(2)", {color:"#fff"}, 258.28);
+tl.set("#cap231 b:nth-child(3)", {color:"#FACC15"}, 258.07); tl.set("#cap231 b:nth-child(3)", {color:"#fff"}, 258.52);
+tl.set("#cap232", {opacity:1}, 258.63); tl.set("#cap232", {opacity:0}, 259.68);
+tl.set("#cap232 b:nth-child(1)", {color:"#FACC15"}, 258.68); tl.set("#cap232 b:nth-child(1)", {color:"#fff"}, 259.13);
+tl.set("#cap232 b:nth-child(2)", {color:"#FACC15"}, 258.94); tl.set("#cap232 b:nth-child(2)", {color:"#fff"}, 259.39);
+tl.set("#cap232 b:nth-child(3)", {color:"#FACC15"}, 259.18); tl.set("#cap232 b:nth-child(3)", {color:"#fff"}, 259.63);
+tl.set("#cap233", {opacity:1}, 259.68); tl.set("#cap233", {opacity:0}, 260.44);
+tl.set("#cap233 b:nth-child(1)", {color:"#FACC15"}, 259.73); tl.set("#cap233 b:nth-child(1)", {color:"#fff"}, 260.18);
+tl.set("#cap234", {opacity:1}, 260.44); tl.set("#cap234", {opacity:0}, 261.41);
+tl.set("#cap234 b:nth-child(1)", {color:"#FACC15"}, 260.49); tl.set("#cap234 b:nth-child(1)", {color:"#fff"}, 260.94);
+tl.set("#cap235", {opacity:1}, 261.41); tl.set("#cap235", {opacity:0}, 262.74);
+tl.set("#cap235 b:nth-child(1)", {color:"#FACC15"}, 261.46); tl.set("#cap235 b:nth-child(1)", {color:"#fff"}, 261.91);
+tl.set("#cap235 b:nth-child(2)", {color:"#FACC15"}, 262.00); tl.set("#cap235 b:nth-child(2)", {color:"#fff"}, 262.45);
+tl.set("#cap235 b:nth-child(3)", {color:"#FACC15"}, 262.24); tl.set("#cap235 b:nth-child(3)", {color:"#fff"}, 262.69);
+tl.set("#cap236", {opacity:1}, 262.74); tl.set("#cap236", {opacity:0}, 263.42);
+tl.set("#cap236 b:nth-child(1)", {color:"#FACC15"}, 262.79); tl.set("#cap236 b:nth-child(1)", {color:"#fff"}, 263.24);
+tl.set("#cap237", {opacity:1}, 263.42); tl.set("#cap237", {opacity:0}, 264.16);
+tl.set("#cap237 b:nth-child(1)", {color:"#FACC15"}, 263.47); tl.set("#cap237 b:nth-child(1)", {color:"#fff"}, 263.92);
+tl.set("#cap237 b:nth-child(2)", {color:"#FACC15"}, 263.71); tl.set("#cap237 b:nth-child(2)", {color:"#fff"}, 264.16);
+tl.set("#cap237 b:nth-child(3)", {color:"#FACC15"}, 263.97); tl.set("#cap237 b:nth-child(3)", {color:"#fff"}, 264.16);
+tl.set("#cap238", {opacity:1}, 264.16); tl.set("#cap238", {opacity:0}, 265.92);
+tl.set("#cap238 b:nth-child(1)", {color:"#FACC15"}, 264.21); tl.set("#cap238 b:nth-child(1)", {color:"#fff"}, 264.66);
+tl.set("#cap238 b:nth-child(2)", {color:"#FACC15"}, 264.45); tl.set("#cap238 b:nth-child(2)", {color:"#fff"}, 264.90);
+tl.set("#cap238 b:nth-child(3)", {color:"#FACC15"}, 264.79); tl.set("#cap238 b:nth-child(3)", {color:"#fff"}, 265.24);
+tl.set("#cap239", {opacity:1}, 265.92); tl.set("#cap239", {opacity:0}, 266.60);
+tl.set("#cap239 b:nth-child(1)", {color:"#FACC15"}, 265.97); tl.set("#cap239 b:nth-child(1)", {color:"#fff"}, 266.42);
+tl.set("#cap240", {opacity:1}, 266.60); tl.set("#cap240", {opacity:0}, 267.28);
+tl.set("#cap240 b:nth-child(1)", {color:"#FACC15"}, 266.65); tl.set("#cap240 b:nth-child(1)", {color:"#fff"}, 267.10);
+tl.set("#cap241", {opacity:1}, 267.28); tl.set("#cap241", {opacity:0}, 267.89);
+tl.set("#cap241 b:nth-child(1)", {color:"#FACC15"}, 267.33); tl.set("#cap241 b:nth-child(1)", {color:"#fff"}, 267.78);
+tl.set("#cap242", {opacity:1}, 267.89); tl.set("#cap242", {opacity:0}, 269.92);
+tl.set("#cap242 b:nth-child(1)", {color:"#FACC15"}, 267.94); tl.set("#cap242 b:nth-child(1)", {color:"#fff"}, 268.39);
+tl.set("#cap242 b:nth-child(2)", {color:"#FACC15"}, 268.62); tl.set("#cap242 b:nth-child(2)", {color:"#fff"}, 269.07);
+tl.set("#cap242 b:nth-child(3)", {color:"#FACC15"}, 268.86); tl.set("#cap242 b:nth-child(3)", {color:"#fff"}, 269.31);
+tl.set("#cap243", {opacity:1}, 269.92); tl.set("#cap243", {opacity:0}, 270.93);
+tl.set("#cap243 b:nth-child(1)", {color:"#FACC15"}, 269.97); tl.set("#cap243 b:nth-child(1)", {color:"#fff"}, 270.42);
+tl.set("#cap243 b:nth-child(2)", {color:"#FACC15"}, 270.24); tl.set("#cap243 b:nth-child(2)", {color:"#fff"}, 270.69);
+tl.set("#cap243 b:nth-child(3)", {color:"#FACC15"}, 270.64); tl.set("#cap243 b:nth-child(3)", {color:"#fff"}, 270.93);
+tl.set("#cap244", {opacity:1}, 270.93); tl.set("#cap244", {opacity:0}, 271.72);
+tl.set("#cap244 b:nth-child(1)", {color:"#FACC15"}, 270.98); tl.set("#cap244 b:nth-child(1)", {color:"#fff"}, 271.43);
+tl.set("#cap244 b:nth-child(2)", {color:"#FACC15"}, 271.22); tl.set("#cap244 b:nth-child(2)", {color:"#fff"}, 271.67);
+tl.set("#cap245", {opacity:1}, 271.72); tl.set("#cap245", {opacity:0}, 273.33);
+tl.set("#cap245 b:nth-child(1)", {color:"#FACC15"}, 271.77); tl.set("#cap245 b:nth-child(1)", {color:"#fff"}, 272.22);
+tl.set("#cap245 b:nth-child(2)", {color:"#FACC15"}, 272.52); tl.set("#cap245 b:nth-child(2)", {color:"#fff"}, 272.97);
+tl.set("#cap245 b:nth-child(3)", {color:"#FACC15"}, 273.14); tl.set("#cap245 b:nth-child(3)", {color:"#fff"}, 273.33);
+tl.set("#cap246", {opacity:1}, 273.33); tl.set("#cap246", {opacity:0}, 274.08);
+tl.set("#cap246 b:nth-child(1)", {color:"#FACC15"}, 273.38); tl.set("#cap246 b:nth-child(1)", {color:"#fff"}, 273.83);
+tl.set("#cap247", {opacity:1}, 274.08); tl.set("#cap247", {opacity:0}, 275.75);
+tl.set("#cap247 b:nth-child(1)", {color:"#FACC15"}, 274.13); tl.set("#cap247 b:nth-child(1)", {color:"#fff"}, 274.58);
+tl.set("#cap247 b:nth-child(2)", {color:"#FACC15"}, 274.81); tl.set("#cap247 b:nth-child(2)", {color:"#fff"}, 275.26);
+tl.set("#cap247 b:nth-child(3)", {color:"#FACC15"}, 275.05); tl.set("#cap247 b:nth-child(3)", {color:"#fff"}, 275.50);
+tl.set("#cap248", {opacity:1}, 275.75); tl.set("#cap248", {opacity:0}, 277.00);
+tl.set("#cap248 b:nth-child(1)", {color:"#FACC15"}, 275.80); tl.set("#cap248 b:nth-child(1)", {color:"#fff"}, 276.25);
+tl.set("#cap248 b:nth-child(2)", {color:"#FACC15"}, 276.41); tl.set("#cap248 b:nth-child(2)", {color:"#fff"}, 276.86);
+tl.set("#cap248 b:nth-child(3)", {color:"#FACC15"}, 276.81); tl.set("#cap248 b:nth-child(3)", {color:"#fff"}, 277.00);
+tl.set("#cap249", {opacity:1}, 277.00); tl.set("#cap249", {opacity:0}, 278.31);
+tl.set("#cap249 b:nth-child(1)", {color:"#FACC15"}, 277.05); tl.set("#cap249 b:nth-child(1)", {color:"#fff"}, 277.50);
+tl.set("#cap249 b:nth-child(2)", {color:"#FACC15"}, 277.39); tl.set("#cap249 b:nth-child(2)", {color:"#fff"}, 277.84);
+tl.set("#cap250", {opacity:1}, 278.31); tl.set("#cap250", {opacity:0}, 278.95);
+tl.set("#cap250 b:nth-child(1)", {color:"#FACC15"}, 278.36); tl.set("#cap250 b:nth-child(1)", {color:"#fff"}, 278.81);
+tl.set("#cap250 b:nth-child(2)", {color:"#FACC15"}, 278.60); tl.set("#cap250 b:nth-child(2)", {color:"#fff"}, 278.95);
+tl.set("#cap251", {opacity:1}, 278.95); tl.set("#cap251", {opacity:0}, 279.80);
+tl.set("#cap251 b:nth-child(1)", {color:"#FACC15"}, 279.00); tl.set("#cap251 b:nth-child(1)", {color:"#fff"}, 279.45);
+tl.set("#cap251 b:nth-child(2)", {color:"#FACC15"}, 279.24); tl.set("#cap251 b:nth-child(2)", {color:"#fff"}, 279.69);
+tl.set("#cap251 b:nth-child(3)", {color:"#FACC15"}, 279.51); tl.set("#cap251 b:nth-child(3)", {color:"#fff"}, 279.80);
+tl.set("#cap252", {opacity:1}, 279.80); tl.set("#cap252", {opacity:0}, 280.90);
+tl.set("#cap252 b:nth-child(1)", {color:"#FACC15"}, 279.85); tl.set("#cap252 b:nth-child(1)", {color:"#fff"}, 280.30);
+tl.set("#cap252 b:nth-child(2)", {color:"#FACC15"}, 280.18); tl.set("#cap252 b:nth-child(2)", {color:"#fff"}, 280.63);
+tl.set("#cap253", {opacity:1}, 280.90); tl.set("#cap253", {opacity:0}, 282.04);
+tl.set("#cap253 b:nth-child(1)", {color:"#FACC15"}, 280.95); tl.set("#cap253 b:nth-child(1)", {color:"#fff"}, 281.40);
+tl.set("#cap253 b:nth-child(2)", {color:"#FACC15"}, 281.49); tl.set("#cap253 b:nth-child(2)", {color:"#fff"}, 281.94);
+tl.set("#cap253 b:nth-child(3)", {color:"#FACC15"}, 281.82); tl.set("#cap253 b:nth-child(3)", {color:"#fff"}, 282.04);
+tl.set("#cap254", {opacity:1}, 282.04); tl.set("#cap254", {opacity:0}, 283.22);
+tl.set("#cap254 b:nth-child(1)", {color:"#FACC15"}, 282.09); tl.set("#cap254 b:nth-child(1)", {color:"#fff"}, 282.54);
+tl.set("#cap255", {opacity:1}, 283.22); tl.set("#cap255", {opacity:0}, 284.34);
+tl.set("#cap255 b:nth-child(1)", {color:"#FACC15"}, 283.27); tl.set("#cap255 b:nth-child(1)", {color:"#fff"}, 283.72);
+tl.set("#cap255 b:nth-child(2)", {color:"#FACC15"}, 283.51); tl.set("#cap255 b:nth-child(2)", {color:"#fff"}, 283.96);
+tl.set("#cap255 b:nth-child(3)", {color:"#FACC15"}, 283.78); tl.set("#cap255 b:nth-child(3)", {color:"#fff"}, 284.23);
+tl.set("#cap256", {opacity:1}, 284.34); tl.set("#cap256", {opacity:0}, 285.48);
+tl.set("#cap256 b:nth-child(1)", {color:"#FACC15"}, 284.39); tl.set("#cap256 b:nth-child(1)", {color:"#fff"}, 284.84);
+tl.set("#cap256 b:nth-child(2)", {color:"#FACC15"}, 284.63); tl.set("#cap256 b:nth-child(2)", {color:"#fff"}, 285.08);
+tl.set("#cap257", {opacity:1}, 285.48); tl.set("#cap257", {opacity:0}, 286.30);
+tl.set("#cap257 b:nth-child(1)", {color:"#FACC15"}, 285.53); tl.set("#cap257 b:nth-child(1)", {color:"#fff"}, 285.98);
+tl.set("#cap257 b:nth-child(2)", {color:"#FACC15"}, 285.77); tl.set("#cap257 b:nth-child(2)", {color:"#fff"}, 286.22);
+tl.set("#cap257 b:nth-child(3)", {color:"#FACC15"}, 286.01); tl.set("#cap257 b:nth-child(3)", {color:"#fff"}, 286.30);
+tl.set("#cap258", {opacity:1}, 286.30); tl.set("#cap258", {opacity:0}, 287.35);
+tl.set("#cap258 b:nth-child(1)", {color:"#FACC15"}, 286.35); tl.set("#cap258 b:nth-child(1)", {color:"#fff"}, 286.80);
+tl.set("#cap258 b:nth-child(2)", {color:"#FACC15"}, 286.59); tl.set("#cap258 b:nth-child(2)", {color:"#fff"}, 287.04);
+tl.set("#cap258 b:nth-child(3)", {color:"#FACC15"}, 286.99); tl.set("#cap258 b:nth-child(3)", {color:"#fff"}, 287.35);
+tl.set("#cap259", {opacity:1}, 287.35); tl.set("#cap259", {opacity:0}, 287.75);
+tl.set("#cap259 b:nth-child(1)", {color:"#FACC15"}, 287.40); tl.set("#cap259 b:nth-child(1)", {color:"#fff"}, 287.75);
+tl.set("#cap260", {opacity:1}, 287.75); tl.set("#cap260", {opacity:0}, 289.91);
+tl.set("#cap260 b:nth-child(1)", {color:"#FACC15"}, 287.80); tl.set("#cap260 b:nth-child(1)", {color:"#fff"}, 288.25);
+tl.set("#cap260 b:nth-child(2)", {color:"#FACC15"}, 288.27); tl.set("#cap260 b:nth-child(2)", {color:"#fff"}, 288.72);
+tl.set("#cap260 b:nth-child(3)", {color:"#FACC15"}, 288.51); tl.set("#cap260 b:nth-child(3)", {color:"#fff"}, 288.96);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body></html>

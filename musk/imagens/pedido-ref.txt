@@ -1,0 +1,5 @@
+Gere 1 imagem com a ferramenta de geração de imagem (image_gen) e salve nesta pasta como marcos-2026.png, em PNG, formato PAISAGEM 16:9 (o maior tamanho horizontal disponível).
+MARCOS, personagem fixa de um vídeo: homem brasileiro de 40 anos, pele morena, cabelo preto curto com alguns fios grisalhos nas têmporas, barba curta por fazer, macacão de mecânico azul-marinho com as mangas dobradas, mãos com um pouco de graxa. Rosto genérico (não é pessoa real).
+Cena: hoje, numa pequena oficina mecânica brasileira de bairro, de dia; ele está ao lado de um carro com o capô aberto, segurando uma chave de boca, e ao mesmo tempo atende o celular apoiado no ombro, com ar cansado e corrido; ao fundo, bancada com ferramentas, um quadro com papéis de orçamento, pneus empilhados. Plano médio, ele à DIREITA do quadro, rosto bem visível.
+Estilo: ilustração cinematográfica realista, luz NEUTRA de dia (nada amarelado/âmbar), cores naturais. SEM texto legível e SEM logos.
+Ao final, diga o caminho do arquivo salvo.

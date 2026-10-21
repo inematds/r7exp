@@ -1,0 +1,21 @@
+# Ficha r7exp — "Musk: dois caminhos da IA" (21/10/2026). Fonte: texto do Nei sobre a entrevista de Elon Musk a
+# Walter Isaacson (~/projetos/output/musk-isaacson-2026-10-21/fonte.md). Uma versão só (a).
+# A ordem das falas (aberturas.a → caminhos → final) é a que motor/monta_avatar.py usa; as âncoras e as peças de tela
+# estão em musk/gera_musk.py (o mapa aqui é de escala log da economia, não o dos 5 futuros).
+slug: musk-dois-caminhos
+marca: "INEMA · DOIS CAMINHOS DA IA"
+fonte: "Elon Musk a Walter Isaacson · estimativas dele, sem cronograma verificável"
+personagem: "Marcos, 40 anos, dono de oficina mecânica (marcos-2026.png)"
+
+mapa:
+  linhas:
+    D: {nome: "IA DIGITAL", cor: "#38bdf8", d: "M600,820 C760,820 860,814 1000,812 L1700,809", y: 790}
+    F: {nome: "ROBÔS + ESPAÇO", cor: "#FACC15", d: "M600,820 C900,816 1080,720 1260,520 S1560,250 1700,220", y: 190, pontilhada: true}
+
+aberturas:
+  a: {fala: 0-intro, capa: capa.png}
+caminhos:
+  - {id: D, n: 1, fala: 1-digital}
+  - {id: F, n: 2, fala: 2-robos}
+  - {id: R, n: 3, fala: 3-risco}
+final: {fala: 4-final, url: "https://inema.club"}

@@ -558,6 +558,10 @@ CORRIGE = {"ia": "IA", "Ia": "IA", "inema.club": "inema.club"}
 
 def main():
     pasta, versao = Path(sys.argv[1]).resolve(), sys.argv[2]
+    # "limpo": sem avatar e sem legenda (faixa explicativa dos reels 9:16); "ate=N" corta a duração
+    extras = sys.argv[3:]
+    limpo = "limpo" in extras
+    ate = next((float(x[4:]) for x in extras if x.startswith("ate=")), None)
     f = yaml.safe_load((pasta / "ficha.yaml").read_text())
     seg = json.loads((pasta / "build" / f"segmentos-{versao}.json").read_text())
     falas = {}
@@ -581,11 +585,16 @@ def main():
             if pal and wd[:1] in "-." and len(wd) > 1:          # whisper separa "ex -funcionário", "inema .club"
                 pal[-1]["word"] += wd; continue
             pal.append({"word": wd, "t": round(s["ini"] + x["start"], 2)})
-    leg = legenda(cena, pal, total)
+    leg = "" if limpo else legenda(cena, pal, total)
+    if ate:
+        total = ate
     pip = PIP
     av = (f'<div id="avw" style="left:{pip["left"]}px;top:{pip["top"]}px;width:{pip["w"]}px;height:{pip["h"]}px;">'
           f'<video id="av" src="assets/avatar-{versao}.mp4" data-start="0" data-duration="{seg["total"]:.2f}" data-track-index="9" data-has-audio="true" data-volume="1" playsinline></video>'
           f'<div class="avtag">Nei Maldaner · INEMA</div></div>')
+    if limpo:
+        av = ""
+        cena.js = [l for l in cena.js if '"#avw"' not in l and '"#legenda"' not in l]
     html = f'''<!doctype html>
 <html lang="pt-BR" data-resolution="landscape">
 <head><meta charset="UTF-8"/><meta name="viewport" content="width=1920, height=1080"/>
@@ -606,7 +615,7 @@ window.__timelines["main"] = tl;
 tl.seek(0);
 </script>
 </body></html>'''
-    out = pasta / f"cena-{versao}"
+    out = pasta / (f"cena-{versao}-limpo" if limpo else f"cena-{versao}")
     (out / "assets").mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(html)
     print(f"ok {out/'index.html'} · {total:.1f} s · {len(cena.js)} eventos")

@@ -15,3 +15,7 @@ nos 5 caminhos e no final "como se preparar"; cada caminho ensina como se adapta
 - A → lives11 (INEMA Futuros): https://www.youtube.com/watch?v=ddWUJbfPgPk — thumb NÃO aplicada (canal sem verificação de telefone); arte em build/thumb-a.jpg
 - B → lives1 (INEMA TDS): https://www.youtube.com/watch?v=W2tBGNYlzi4 — capa nova capa-b1 ("2027. VOCÊ TEM ESCOLHA?"), thumb aplicada
 - v3: vídeos A/B identificados + capas + 3 opções de capa B; links no inemaytbot
+
+## Reels 9:16 (21/10/2026 ~18h)
+- `gera.py . a|b limpo` → reels/limpo-*.mp4; `motor/gera_reels.py .` → reels/<slug>/; render → reels/final/ (cópias v3 em final/v3)
+- v3 msgs 2160 (índice) · 2162 · 2164 · 2166 · 2170 · 2172 (caminhos 1–5). Sem YouTube até o Nei decidir.

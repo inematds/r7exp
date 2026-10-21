@@ -34,6 +34,11 @@ confirmar e não impor; a emoção vem primeiro, senão não atingimos nunca o r
 ## 3. Reels que saem do completo
 - Um reel por opção (o bloco 3 em 9:16, 35–60 s), sempre terminando com "existem outros N caminhos".
 - Um reel-índice: o mapa + as N versões da personagem em 2 s cada + "qual é o seu?".
+- **Reels tirados do completo (1º: 5 futuros, 21/10/2026, `motor/gera_reels.py`):** `gera.py <pasta> a limpo` (sem avatar e sem
+  legenda) → render → faixas 1080x1920: título do caminho (0–170) · explicativo 16:9 limpo (170–778) · avatar (778–1338, legenda
+  no peito) · a Ana 2026 → 2040 naquele futuro (1338–1920); cartão final "existem outros 4 caminhos" (3,5 s, sem fala).
+  Índice = abertura B cortada antes de "começando pelo pior", capa empilhada no quadro 0, as 5 Anas a cada 2,2 s, "qual é o seu?".
+  Painel que no 16:9 dividia a tela com o avatar em meia tela: enquadrar com zoom ≤ 1,2×.
 - **Reel explicativo 9:16 avulso (1º: Thwaites, 21/10/2026, `reels/thwaites/`):** gerador próprio `gera_v.py` (o `motor/gera.py` é 16:9).
   Palco em cima (0–1180 px) com o diagrama que cresce na palavra, legenda karaokê em 1196, painel + avatar (354×500) embaixo.
   Mesma personagem ("você") do corte à escada da praia, "o que fazer" no fim. Fala para o estúdio HeyGen em UMA linha

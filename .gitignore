@@ -18,3 +18,10 @@ reels/*/avatar/*.mp4
 reels/*/build/*.mp4
 reels/*/tempos/*.mp4
 reels/*/tempos/w*/
+completo/reels/*/assets/
+completo/reels/*/snap*/
+completo/reels/*.mp4
+completo/reels/final/
+completo/reels/*/.hyperframes
+completo/cena-*-limpo/
+completo/reels/work-*/

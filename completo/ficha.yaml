@@ -1,0 +1,88 @@
+# Ficha r7exp — completo "5 futuros com a IA" (21/10/2026). Duas versões com a mesma espinha:
+#   a = "Em qual destes 5 futuros você vai acordar em 2040? / Um deles é a extinção"
+#   b = "O mundo vai mudar. E você vai junto. / Será que você tem escolha?" (AI 2027 + Stanford)
+# Âncora "de": a palavra da fala (sem acento/caixa) em que o elemento entra; procura a partir da âncora anterior do bloco.
+slug: cinco-futuros
+marca: "INEMA · QUAL O CAMINHO?"
+fonte: "cenários inspirados em Max Tegmark, Life 3.0 (2017) · ilustrativo, não previsão"
+
+mapa:
+  linhas:
+    U: {nome: "UTOPIA VERDADEIRA", cor: "#a78bfa", d: "M760,680 C840,520 900,470 1040,430 S1450,300 1700,170", y: 258, pontilhada: true}
+    P: {nome: "PARAÍSO FEITO PELA IA", cor: "#4ade80", d: "M760,680 C900,520 1020,380 1200,350 S1500,340 1700,340", y: 322}
+    G: {nome: "GOVERNO MUNDIAL DA IA", cor: "#facc15", d: "M760,680 C840,560 900,520 1040,520 L1700,520", y: 502}
+    Z: {nome: "ZOOLÓGICO HUMANO", cor: "#e052e6", d: "M760,680 C830,630 880,615 940,618 S1060,650 1200,655 L1700,655", y: 637}
+    E: {nome: "EXTINÇÃO TOTAL", cor: "#ff4d4d", d: "M760,680 C840,680 900,720 1000,800 S1200,880 1300,885 L1700,885", y: 867}
+
+aberturas:
+  a:
+    fala: 0a-intro-futuros
+    capa: capa-futuros.png
+    capa_ate: durante            # segura a capa até esta palavra
+    mapa: {linha: linha, agora: agora, abre: cinco}
+    card:  {de: previsao, chip: "CENÁRIOS, NÃO PREVISÃO", titulo: "Max Tegmark · MIT", sub: "Life 3.0 (2017): 12 futuros possíveis quando a IA nos superar"}
+    ana:   {de: ana, tags: [[corrida, "vida corrida"], [decide, "✓ quem decide é ela"]]}
+    pre:   {de: futuro, texto: "O MESMO DIA DELA EM 5 FUTUROS"}
+    massa: {de: massa, texto: "E COMO NÃO SER A MASSA EM CADA UM"}
+    pior:  pior
+  b:
+    fala: 0b-intro-mundo-muda
+    capa: capa-mundo.png
+    capa_ate: grupo
+    ai2027:
+      de: grupo
+      titulo: "AI 2027"
+      sub: "cenário de Daniel Kokotajlo (ex-OpenAI) e equipe · ai-2027.com"
+      itens: [[programa, "💻", "a IA programa melhor que os melhores programadores"], [acelerar, "🔁", "e acelera a própria pesquisa"]]
+      ressalva: {de: demorar, texto: "os próprios autores: pode demorar mais"}
+    stanford: {de: stanford, ate: 19, unid: "ABAIXO NO EMPREGO", l: "jovens nas funções mais expostas à IA", fonte: "Stanford Digital Economy Lab · ago/2026"}
+    mapa: {abre: caminhos}
+    ana:   {de: ana, tags: [[corrida, "vida corrida"], [decide, "✓ quem decide é ela"]]}
+    pre:   {de: futuro, texto: "COMO ELA VIVE · O QUE LEVA ATÉ LÁ · COMO NÃO SER A MASSA"}
+    pior:  pior
+
+caminhos:
+  - id: E
+    n: 1
+    fala: 1-extincao
+    o_que_e: {de: "que", itens: [[capaz, "🤖", "uma IA muito mais capaz que nós"], [objetivos, "🎯", "com objetivos que não são os nossos"], [odiar, "⚠️", "não precisa nos odiar: basta a gente atrapalhar"]]}
+    vive: {de: ana, imagem: extincao-casa.png, carimbo: "ANA · 2040", tags: [[vive, "✕ não vive"], [vazia, "a casa está vazia"]]}
+    leva: {de: leva, imagem: extincao-corrida.png, nos: [[corrida, "UMA CORRIDA", "empresas e países"], [medo, "MEDO DE FICAR PARA TRÁS", ""], [entende, "SISTEMAS QUE NINGUÉM ENTENDE", ""], [freio, "SEM FREIO", "e sem fiscalização"]]}
+    massa: {de: massa, itens: [[entenda, "entenda o assunto: nem pânico, nem deboche"], [segurança, "apoie testes de segurança antes de lançar"], [voz, "voz, voto e dinheiro com quem leva a sério"]], fecho: {de: pressiona, a: "A massa ignora.", b: "Quem entende, pressiona."}}
+  - id: Z
+    n: 2
+    fala: 2-zoologico
+    o_que_e: {de: "inteligencia", itens: [[decide, "🤖", "uma IA que decide tudo"], [destroi, "🛡️", "não nos destrói"], [vivos, "💚", "nos mantém vivos e bem cuidados"], [zoologico, "🔒", "como animais num zoológico"]]}
+    vive: {de: ana, imagem: ana-2040-zoo.png, imagem2: ana-2040-vidro.png, revela: true, carimbo: "ANA · 2040", lista: [[comida, ok, "COMIDA"], [casa, ok, "CASA"], [saude, ok, "SAÚDE"], [trabalho, nao, "TRABALHO"], [conta, nao, "CONTAS"], [escolha, bad, "ESCOLHA"]]}
+    nota_mapa: {de: grafico, sobe: sobe, acomoda: acomoda, medidor: conforto}
+    leva: {de: chega, imagem: ana-2040-vidro.png, nos: [[melhor, "A IA FICA MELHOR", "em quase tudo"], [conforto, "POR CONFORTO", ""], [decisoes, "ENTREGAMOS AS DECISÕES", "uma de cada vez"]]}
+    massa: {de: massa, itens: [[terceirize, "use a IA, mas não terceirize seu julgamento"], [maos, "saiba fazer o importante com as próprias mãos"], [decidir, "guarde o hábito de decidir"]]}
+  - id: G
+    n: 3
+    fala: 3-governo
+    o_que_e: {de: "todo", itens: [[governa, "🏛️", "todo mundo sabe: a IA governa"], [duras, "⚖️", "regras duras, mas funcionam"], [crime, "📉", "menos crime, guerra e fome"]]}
+    vive: {de: ana, imagem: governo-ana.png, imagem2: governo-rua.png, carimbo: "ANA · 2040", tags: [[emprego, "emprego escolhido pelo sistema"], [nota, "nota de cidadã"], [cameras, "câmeras em cada esquina"], [regra, "⚠ desde que siga a regra"]]}
+    leva: {de: leva, imagem: governo-rua.png, nos: [[crises, "CRISES SEGUIDAS", "pandemia, guerra, clima"], [resolva, "PEDIMOS QUEM RESOLVA", ""], [resolve, "A IA RESOLVE", ""], [fica, "E FICA", ""]]}
+    massa: {de: massa, itens: [[decidem, "aprenda como esses sistemas decidem"], [dados, "proteja seus dados e sua privacidade"], [comunidades, "comunidades de verdade, com gente"]]}
+  - id: P
+    n: 4
+    fala: 4-paraiso
+    o_que_e: {de: "inteligencia", itens: [[felicidade, "💚", "uma IA cuida da nossa felicidade"], [discreto, "🫥", "tão discreta que nos sentimos no controle"], [acredita, "❓", "muita gente nem acredita que ela exista"]]}
+    vive: {de: ana, imagem: paraiso-ana.png, imagem2: paraiso-cidade.png, carimbo: "ANA · 2040", tags: [[gosta, "trabalha no que gosta"], [doencas, "doenças vencidas"], [energia, "energia barata"], [verde, "cidade verde"]]}
+    leva: {de: leva, imagem: paraiso-cidade.png, nos: [[alinhada, "IA ALINHADA", "com valores humanos"], [testada, "TESTADA A FUNDO", ""], [abundancia, "ABUNDÂNCIA", "bem distribuída"]], risco: {de: risco, texto: "O RISCO: quem decide o que é a sua felicidade?"}}
+    massa: {de: massa, itens: [[proposito, "um propósito seu, não de um algoritmo"], [humano, "criar, cuidar, ensinar, liderar"], [dirigir, "dirija a IA, não só consuma"]]}
+  - id: U
+    n: 5
+    fala: 5-utopia
+    o_que_e: {de: "humanos", itens: [[paz, "🤝", "humanos e IAs convivem em paz"], [multiplica, "✖️", "a tecnologia multiplica cada pessoa"], [todos, "🌍", "a riqueza chega a todos"]]}
+    vive: {de: ana, imagem: utopia-ana.png, imagem2: utopia-familia.png, carimbo: "ANA · 2040", tags: [[equipe, "equipe de agentes de IA"], [lidera, "lidera o próprio projeto"], [familia, "tempo para a família"]]}
+    leva: {de: leva, imagem: utopia-familia.png, nos: [[abertos, "MODELOS ABERTOS", ""], [regras, "REGRAS CLARAS", ""], [educacao, "EDUCAÇÃO PARA TODOS", ""], [gente, "MUITA GENTE USANDO IA", "não só meia dúzia de empresas"]]}
+    massa: {de: massa, itens: [[aprenda, "aprenda agora"], [construa, "construa algo seu"], [compartilhe, "compartilhe o que sabe"]]}
+
+final:
+  fala: 6-final-preparar
+  compara: {de: cinco}
+  frase: {de: decide, a: "Não é a tecnologia.", b: "É quem decide — e quanto as pessoas sabem."}
+  passos: {de: preparar, itens: [[aprenda, "1", "use a IA nas suas tarefas reais e meça"], [computador, "2", "uma IA no seu próprio computador"], [construa, "3", "construa algo seu"], [humano, "4", "cuide do que é humano"], [sozinho, "5", "não fique sozinho"]]}
+  massa: {de: massa, a: "A massa espera.", b: "Quem se prepara desenha a linha."}
+  cta: {de: comentarios, pergunta: "Qual desses futuros você quer?", url: "https://inematds.github.io/sobreviver-ia/guia/"}

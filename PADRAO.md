@@ -34,6 +34,10 @@ confirmar e não impor; a emoção vem primeiro, senão não atingimos nunca o r
 ## 3. Reels que saem do completo
 - Um reel por opção (o bloco 3 em 9:16, 35–60 s), sempre terminando com "existem outros N caminhos".
 - Um reel-índice: o mapa + as N versões da personagem em 2 s cada + "qual é o seu?".
+- **Reel explicativo 9:16 avulso (1º: Thwaites, 21/10/2026, `reels/thwaites/`):** gerador próprio `gera_v.py` (o `motor/gera.py` é 16:9).
+  Palco em cima (0–1180 px) com o diagrama que cresce na palavra, legenda karaokê em 1196, painel + avatar (354×500) embaixo.
+  Mesma personagem ("você") do corte à escada da praia, "o que fazer" no fim. Fala para o estúdio HeyGen em UMA linha
+  (com quebras ele só falou a 1ª frase). O whisper pode pular trechos longos: conferir buracos > 0,8 s e transcrever o trecho à parte.
 
 ## 4. Tela (linguagem visual)
 - Mapa SVG animado: linhas desenhadas por `stroke-dashoffset`, a linha ativa acende, as outras ficam a 15%.

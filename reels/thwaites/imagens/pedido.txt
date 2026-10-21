@@ -1,0 +1,7 @@
+Gere 2 imagens com a ferramenta de geração de imagem (image_gen) e salve NESTA pasta, em PNG, formato RETRATO 9:16 (o maior tamanho vertical disponível). Luz neutra/fria, sem amarelado. Sem logos nem marcas d'água.
+
+1. abertura.png — Cinematic realistic photography, movie poster impact, deep shadows, high contrast. Main subject LARGE entirely in the TOP HALF, bottom 50% smooth near-black #0c0c10 negative space fading naturally. Subject: the colossal blue-white ice cliff of an Antarctic glacier seen from sea level, a dark sea at its foot, and a thin glowing measuring line (like a tide gauge mark) across the water, cold backlight, a red #ff2a1f accent in the storm sky. Typography is essential, at the very top: bold condensed sans serif, exact Portuguese with accents: white headline 'O MAR VAI SUBIR?' and immediately below, even larger, yellow #FACC15 'FAÇA A CONTA COMIGO'. All text and subject confined to the upper half. Lower half dark, no text. No other text.
+
+2. praia.png — Realistic photography, NO TEXT whatsoever. A Brazilian urban beach seen from the sand at eye level: calm sea on the left, a long row of tall residential buildings (about 20 floors) along the seafront avenue on the right, one adult person standing on the wet sand seen from behind, looking at the sea, small in the frame. Overcast neutral daylight, natural colors, no yellow cast. Main subject in the TOP 60% of the frame; the bottom 40% darker sand fading to near-black #0c0c10.
+
+Ao final, liste os arquivos salvos.

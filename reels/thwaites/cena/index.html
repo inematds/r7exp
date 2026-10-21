@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="portrait">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face { font-family:"Sora"; src:url("assets/fonts/sora-latin-700-normal.woff2") format("woff2"); font-weight:700; }
+@font-face { font-family:"Sora"; src:url("assets/fonts/sora-latin-400-normal.woff2") format("woff2"); font-weight:400; }
+@font-face { font-family:"Inter"; src:url("assets/fonts/Inter-500.woff2") format("woff2"); font-weight:500; }
+@font-face { font-family:"Inter"; src:url("assets/fonts/Inter-700.woff2") format("woff2"); font-weight:700; }
+@font-face { font-family:"Montserrat"; src:url("assets/fonts/Montserrat-Black.ttf") format("truetype"); font-weight:900; }
+:root { --bg:#0c0c10; --am:#FACC15; --tx:#ECECF1; --mu:#a3a3ae; --red:#ff4d4d; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:var(--bg); }
+#root { width:100%; height:100%; position:relative; font-family:Inter, sans-serif; color:var(--tx); background:var(--bg); }
+.full { position:absolute; inset:0; }
+.stage { position:absolute; left:0; top:0; width:1080px; height:1180px; overflow:hidden; }
+.in { position:absolute; inset:0; opacity:0; overflow:hidden; }
+.foto { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.vin { position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,12,16,.0) 60%, rgba(12,12,16,.95) 100%); }
+.dg { position:absolute; left:0; top:0; }
+.dg text { font-family:Sora, sans-serif; font-weight:700; }
+.t1 { font-size:52px; fill:#fff; letter-spacing:.02em; } .t2 { font-size:40px; } .t3 { font-size:30px; } .t4 { font-size:26px; }
+.chip { display:inline-block; font-family:Sora; font-weight:700; font-size:22px; letter-spacing:.14em; padding:8px 16px; border-radius:999px; }
+#marca { position:absolute; left:30px; top:28px; padding:8px 16px; border-radius:10px; background:rgba(12,12,16,.85); font-family:Sora; font-weight:700; font-size:24px; letter-spacing:.14em; color:var(--am); z-index:5; }
+#marca span { color:var(--tx); }
+#fonte { position:absolute; left:36px; right:36px; top:1836px; font-size:19px; line-height:1.35; color:#9a9aa6; }
+.chips { position:absolute; left:0; right:0; top:1000px; display:flex; justify-content:center; gap:24px; }
+.ch { opacity:0; font-family:Sora; font-weight:700; font-size:40px; padding:14px 28px; border-radius:16px; background:rgba(12,12,16,.88); border:3px solid var(--am); color:#fff; }
+.lbl1, .lbl2 { position:absolute; left:50px; opacity:0; font-family:Sora; font-weight:700; font-size:44px; line-height:1.2; padding:16px 24px; border-radius:16px; background:rgba(12,12,16,.88); }
+.lbl1 { top:120px; } .lbl2 { top:940px; } .lbl2 small { font-size:26px; color:#c9c9d2; font-weight:400; }
+/* painel */
+.painel { position:absolute; left:36px; top:1300px; width:630px; height:500px; padding:28px 30px; border-radius:20px; background:#14141c; border:3px solid #2c2c38; opacity:0; }
+.pgr { font-family:Sora; font-weight:700; font-size:78px; line-height:1.05; margin:18px 0 10px; opacity:0; }
+.prow { font-family:Sora; font-weight:700; font-size:34px; line-height:1.25; margin-top:18px; opacity:0; }
+.prow small { font-size:22px; color:#9a9aa6; font-weight:400; }
+.painel.red { background:#c81e1e; border-color:#ff6b6b; display:flex; flex-direction:column; justify-content:center; }
+.ptg { font-family:Sora; font-weight:700; font-size:64px; line-height:1.1; color:#fff; }
+.psub { font-size:36px; color:#ffe4e4; margin-top:18px; font-weight:700; }
+/* avatar */
+#avw { position:absolute; overflow:hidden; border-radius:18px; border:3px solid var(--am); background:#000; }
+#av { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:58% 30%; }
+.avtag { position:absolute; left:0; right:0; bottom:0; padding:6px 10px; font-family:Sora; font-weight:700; font-size:18px; background:rgba(12,12,16,.85); color:#fff; }
+/* legenda */
+.cap { position:absolute; left:20px; right:20px; top:1196px; text-align:center; font-family:Montserrat; font-weight:900; font-size:64px; text-transform:uppercase; opacity:0;
+       color:#fff; -webkit-text-stroke:8px #000; paint-order:stroke fill; }
+/* conta */
+.conta { position:absolute; inset:0; padding:90px 60px; background:radial-gradient(ellipse at 50% 30%, #0f2a40 0%, #0c0c10 70%); }
+.t1h { font-family:Sora; font-weight:700; font-size:56px; text-align:center; margin-bottom:40px; }
+.eq { font-family:Sora; font-weight:700; font-size:46px; line-height:1.2; margin:22px 0; opacity:0; } .eq b { color:#7cc4ff; }
+.eq.big { font-size:62px; } .eq.big b { color:var(--am); }
+.cnts { display:flex; gap:30px; margin-top:60px; }
+.cnt { flex:1; padding:26px; border-radius:18px; background:#1a1014; border:3px solid var(--red); opacity:0; text-align:center; }
+.cnt small { display:block; font-family:Sora; font-weight:700; font-size:26px; letter-spacing:.1em; color:#ffb3b3; }
+.cnt span { display:block; font-family:Sora; font-weight:700; font-size:150px; line-height:1.05; color:var(--red); }
+.cnt i { font-style:normal; font-size:30px; font-weight:700; }
+/* cta */
+.ctas { position:absolute; inset:0; padding:140px 50px 0; background:radial-gradient(ellipse at 50% 20%, #10283a 0%, #0c0c10 70%); }
+.cbox { padding:30px; border-radius:20px; background:#14141c; border:3px solid #7cc4ff; margin-bottom:34px; opacity:0; }
+.cbox small { display:block; font-family:Sora; font-weight:700; font-size:26px; letter-spacing:.08em; color:#7cc4ff; }
+.cbox b { display:block; font-family:Sora; font-weight:700; font-size:52px; margin-top:10px; color:#fff; }
+.cbox i { display:block; font-style:normal; font-size:30px; color:#c9c9d2; margin-top:8px; }
+.cbox.vid { display:flex; gap:24px; align-items:center; border-color:var(--am); } .cbox.vid img { width:380px; border-radius:12px; }
+.cbox.vid small { color:var(--am); } .cbox.vid b { font-size:40px; }
+.club { display:inline-block; padding:22px 40px; border-radius:999px; background:var(--am); color:#1a1206; opacity:0; }
+.club b { font-family:Sora; font-weight:700; font-size:56px; } .club i { font-style:normal; font-size:28px; font-weight:700; margin-left:16px; }
+</style></head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="76.78" data-width="1080" data-height="1920">
+ <div id="c2" class="clip stage" data-start="0.00" data-duration="4.21" data-track-index="2"><div class="in" id="im1"><img class="foto" id="im1f" src="assets/abertura.png" style="object-position:50% 0%" alt=""/><div class="vin"></div><div class="chips"><span class="ch" id="chD">✏️ DESENHO</span><span class="ch" id="chC">🧮 CONTA</span></div></div></div><div id="c7" class="clip full" data-start="0.20" data-duration="3.71" data-track-index="5"><div class="painel" id="pn3" style="border-color:#ff4d4d66"><div class="chip" style="background:#ff4d4d2e;color:#ff4d4d">A PERGUNTA</div><div class="pgr" id="g4" style="color:#ff4d4d">É EXAGERO?</div><div class="prow" id="r5">✏️ com desenho</div><div class="prow" id="r6">🧮 e com conta</div></div></div><div id="c9" class="clip stage" data-start="3.91" data-duration="6.52" data-track-index="2"><div class="in" id="im8"><img class="foto" id="im8f" src="assets/map-ant-parana-v.png" style="object-position:50% 0%" alt=""/><div class="vin"></div><div class="lbl1" id="mT"><b style="color:#ff4d4d">THWAITES</b><br>192 mil km²</div><div class="lbl2" id="mP">≈ o <b style="color:#FACC15">PARANÁ</b> inteiro<br><small>199 mil km² · IBGE · mesma escala</small></div></div></div><div id="c14" class="clip full" data-start="3.91" data-duration="6.22" data-track-index="5"><div class="painel" id="pn10" style="border-color:#ff4d4d66"><div class="chip" style="background:#ff4d4d2e;color:#ff4d4d">ESTUDO NOVO · OUT/2026</div><div class="pgr" id="g11" style="color:#ff4d4d">1,5 → 3 cm</div><div class="prow" id="r12">contribuição da Thwaites ao mar até 2100</div><div class="prow" id="r13"><small>Nature Communications · UC Irvine + NASA</small></div></div></div><div id="c16" class="clip stage" data-start="10.13" data-duration="11.04" data-track-index="2"><div class="in" id="pl15"><svg class="dg" width="1080" height="1180" viewBox="0 0 1080 1180"><defs>
+ <filter id="glow" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1300" height="1400"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <marker id="ah" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff"/></marker>
+ <marker id="ahr" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff4d4d"/></marker>
+ <marker id="ahy" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FACC15"/></marker>
+ <linearGradient id="agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b6ea8"/><stop offset="1" stop-color="#0a2740"/></linearGradient>
+ <linearGradient id="gelo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2f8ff"/><stop offset="1" stop-color="#a9cdea"/></linearGradient>
+</defs>
+ <text class="t1" x="540" y="150" text-anchor="middle">CORTE DA GELEIRA</text>
+ <rect x="0" y="420" width="1080" height="760" fill="url(#agua)"/>
+ <g id="nivel"><path d="M0,420 H1080" stroke="#7cc4ff" stroke-width="4" stroke-dasharray="14 10"/><text x="24" y="405" class="t3" fill="#7cc4ff">NÍVEL DO MAR</text></g>
+ <path d="M0,960 C120,950 260,880 420,770 C520,820 700,940 1080,1080 L1080,1180 L0,1180 Z" fill="#3a2f2a" stroke="#6b5a50" stroke-width="3"/>
+ <g id="gl"><path d="M420,770 C520,820 700,940 1080,1080 L1200,1130 L1200,180 L1080,200 C860,230 640,280 420,330 Z" fill="url(#gelo)"/><path id="plat" d="M300,392 L420,330 L420,770 C390,640 350,520 300,455 Z" fill="#d8ebfa" opacity=".92"/></g>
+ <g id="cApo" opacity="0"><rect x="600" y="515" width="360" height="110" rx="12" fill="#ffffff" opacity=".9"/><text x="780" y="560" class="t2" fill="#0c0c10" text-anchor="middle">GELO APOIADO</text><text x="780" y="605" class="t2" fill="#0c0c10" text-anchor="middle">NA ROCHA</text></g>
+ <g id="cPla" opacity="0"><text x="380" y="300" class="t4" fill="#fff" text-anchor="middle">BOIA ↓</text></g>
+ <g id="cKm" opacity="0"><path d="M960,430 V1020" stroke="#FACC15" stroke-width="5" marker-end="url(#ahy)" marker-start="url(#ahy)"/>
+   <rect x="610" y="900" width="330" height="96" rx="12" fill="#0c0c10" opacity=".85"/><text x="775" y="940" class="t3" fill="#FACC15" text-anchor="middle">LEITO ATÉ</text><text x="775" y="982" class="t3" fill="#FACC15" text-anchor="middle">≈ 2 KM ABAIXO</text></g>
+ <g id="cMa" opacity="0"><path id="seta" d="M30,880 C180,870 320,820 430,790 C520,830 600,870 700,905" stroke="#ff4d4d" stroke-width="10" fill="none" stroke-dasharray="26 18" marker-end="url(#ahr)" filter="url(#glow)"/>
+   <text x="60" y="840" class="t2" fill="#ff4d4d">ÁGUA MORNA</text><text x="60" y="1080" class="t3" fill="#ffb3b3">a maré bombeia por baixo</text></g>
+ <path id="cDe" d="M425,782 C520,832 640,900 760,948" stroke="#ff4d4d" stroke-width="16" fill="none" opacity="0" filter="url(#glow)"/>
+ <g id="cPt"><circle id="pt" cx="420" cy="770" r="16" fill="#FACC15" filter="url(#glow)" opacity="0"/></g>
+ <g id="cSo" opacity="0"><text x="300" y="1140" class="t3" fill="#FACC15">← o ponto de apoio recua</text></g>
+ <g id="cOc" opacity="0"><path d="M120,300 V230" stroke="#7cc4ff" stroke-width="8" marker-end="url(#ah)"/><text x="160" y="270" class="t2" fill="#fff">MAR SOBE</text></g>
+</svg></div></div><div id="c21" class="clip full" data-start="10.13" data-duration="10.74" data-track-index="5"><div class="painel" id="pn17" style="border-color:#ff4d4d66"><div class="chip" style="background:#ff4d4d2e;color:#ff4d4d">COMO ELA DERRETE</div><div class="prow" id="r18">① a maré empurra água morna</div><div class="prow" id="r19">② derrete a base, por baixo</div><div class="prow" id="r20">③ solta da rocha e escorrega</div></div></div><div id="c23" class="clip stage" data-start="20.87" data-duration="8.14" data-track-index="2"><div class="in" id="pl22"><svg class="dg" width="1080" height="1180" viewBox="0 0 1080 1180"><defs>
+ <filter id="glow" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1300" height="1400"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <marker id="ah" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff"/></marker>
+ <marker id="ahr" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff4d4d"/></marker>
+ <marker id="ahy" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FACC15"/></marker>
+ <linearGradient id="agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b6ea8"/><stop offset="1" stop-color="#0a2740"/></linearGradient>
+ <linearGradient id="gelo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2f8ff"/><stop offset="1" stop-color="#a9cdea"/></linearGradient>
+</defs>
+ <text class="t1" x="540" y="150" text-anchor="middle">O QUE SOBE O MAR?</text>
+ <g id="k1">
+ <g id="cA">
+  <rect id="cAa" x="72" y="560" width="376" height="440" fill="url(#agua)" opacity=".9"/>
+  <path d="M72,560 H448" stroke="#7cc4ff" stroke-width="3" stroke-dasharray="10 8"/>
+  
+  <rect id="cAg" x="180" y="520" width="160" height="110" rx="14" fill="url(#gelo)" stroke="#fff" stroke-width="2"/>
+  <path d="M60,300 L72,1010 L448,1010 L460,300" stroke="#e7eef7" stroke-width="7" fill="none" opacity=".85"/>
+ </g><text x="260" y="1090" class="t2" fill="#7cc4ff" text-anchor="middle">GELO QUE BOIA</text></g>
+ <g id="k2" opacity="0">
+ <g id="cB">
+  <rect id="cBa" x="632" y="560" width="376" height="440" fill="url(#agua)" opacity=".9"/>
+  <path d="M632,560 H1008" stroke="#7cc4ff" stroke-width="3" stroke-dasharray="10 8"/>
+  <path d="M660,1000 L980,1000 L950,500 L690,500 Z" fill="#3a2f2a" stroke="#6b5a50" stroke-width="3"/>
+  <rect id="cBg" x="740" y="410" width="160" height="90" rx="14" fill="url(#gelo)" stroke="#fff" stroke-width="2"/>
+  <path d="M620,300 L632,1010 L1008,1010 L1020,300" stroke="#e7eef7" stroke-width="7" fill="none" opacity=".85"/>
+ </g><text x="820" y="1090" class="t2" fill="#FACC15" text-anchor="middle">GELO EM TERRA</text></g>
+ <g id="rA" opacity="0"><rect x="70" y="200" width="380" height="80" rx="12" fill="#0c0c10"/><text x="260" y="254" class="t2" fill="#7cc4ff" text-anchor="middle">QUASE NADA</text></g>
+ <g id="rB" opacity="0"><rect x="630" y="200" width="380" height="80" rx="12" fill="#3b0d0d"/><text x="820" y="254" class="t2" fill="#ff4d4d" text-anchor="middle">↑ ÁGUA NOVA</text></g>
+</svg></div></div><div id="c28" class="clip full" data-start="20.87" data-duration="7.84" data-track-index="5"><div class="painel" id="pn24" style="border-color:#FACC1566"><div class="chip" style="background:#FACC152e;color:#FACC15">A DIFERENÇA</div><div class="prow" id="r25">🧊 gelo que boia: quase nada</div><div class="prow" id="r26">🏔️ gelo em cima da rocha…</div><div class="prow" id="r27">…vira <b style='color:#ff4d4d'>água nova</b> no mar</div></div></div><div id="c30" class="clip stage" data-start="28.71" data-duration="13.60" data-track-index="2"><div class="in" id="pl29"><div class="conta">
+ <div class="t1h">A CONTA</div>
+ <div class="eq" id="e1">🌊 oceanos: <b>361,8 milhões de km²</b></div>
+ <div class="eq" id="e2">× <b>1 mm</b> de altura</div>
+ <div class="eq big" id="e3">= <b>≈ 360 km³</b> de água</div>
+ <div class="cnts"><div class="cnt" id="n1"><small>SÓ A THWAITES</small><span id="v1">0</span><i>cm de mar</i></div>
+ <div class="cnt" id="n2"><small>A ANTÁRTICA TODA</small><span id="v2">0</span><i>metros de mar</i></div></div>
+</div></div></div><div id="c35" class="clip full" data-start="28.71" data-duration="13.30" data-track-index="5"><div class="painel" id="pn31" style="border-color:#FACC1566"><div class="chip" style="background:#FACC152e;color:#FACC15">FAÇA A CONTA</div><div class="prow" id="r32">1 mm no planeta inteiro</div><div class="prow" id="r33">= ≈ 360 km³ de água</div><div class="prow" id="r34"><small>BedMachine (Morlighem) · antarcticglaciers.org</small></div></div></div><div id="c37" class="clip stage" data-start="42.01" data-duration="2.23" data-track-index="2"><div class="in" id="im36"><img class="foto" id="im36f" src="assets/praia.png" style="object-position:50% 0%" alt=""/><div class="vin"></div><div class="lbl1" id="voce" style="top:860px"><b style="color:#FACC15">VOCÊ</b>, NA PRAIA</div></div></div><div id="c39" class="clip stage" data-start="43.64" data-duration="13.27" data-track-index="2"><div class="in" id="pl38"><svg class="dg" width="1080" height="1180" viewBox="0 0 1080 1180"><defs>
+ <filter id="glow" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1300" height="1400"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <marker id="ah" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff"/></marker>
+ <marker id="ahr" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff4d4d"/></marker>
+ <marker id="ahy" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FACC15"/></marker>
+ <linearGradient id="agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b6ea8"/><stop offset="1" stop-color="#0a2740"/></linearGradient>
+ <linearGradient id="gelo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2f8ff"/><stop offset="1" stop-color="#a9cdea"/></linearGradient>
+</defs><g id="d1" opacity="0">
+ <rect x="0" y="0" width="1080" height="1180" fill="#0c0c10"/>
+ <rect x="0" y="1040" width="1080" height="140" fill="#3b3226"/>
+ <g transform="translate(540,1040) scale(4.6)" fill="#FACC15"><circle cx="0" cy="-158" r="12"/><rect x="-16" y="-144" width="32" height="62" rx="10"/><rect x="-27" y="-140" width="10" height="56" rx="5"/><rect x="17" y="-140" width="10" height="56" rx="5"/><rect x="-15" y="-86" width="13" height="86" rx="5"/><rect x="2" y="-86" width="13" height="86" rx="5"/></g><path d="M760,960 L620,1025" stroke="#FACC15" stroke-width="5" marker-end="url(#ahy)"/><text x="770" y="950" class="t2" fill="#FACC15">3 cm: no pé</text>
+ <path d="M60,1040 V160" stroke="#9a9aa6" stroke-width="3"/><path d="M60,1040 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="1049" class="t4" fill="#d4d4dc">0 cm</text><path d="M60,810 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="819" class="t4" fill="#d4d4dc">50 cm</text><path d="M60,580 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="589" class="t4" fill="#d4d4dc">100 cm</text><path d="M60,350 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="359" class="t4" fill="#d4d4dc">150 cm</text>
+ <rect id="d1a" x="0" y="1040" width="1080" height="0" fill="#1b6ea8" opacity=".72"/>
+ 
+ <text class="t1" x="1040" y="150" text-anchor="end" fill="#7cc4ff" id="d1t">3 cm</text>
+ <text class="t3" x="1040" y="200" text-anchor="end" fill="#c9c9d2">até 2100 · só a Thwaites</text>
+</g><g id="d2" opacity="0">
+ <rect x="0" y="0" width="1080" height="1180" fill="#0c0c10"/>
+ <rect x="0" y="1040" width="1080" height="140" fill="#3b3226"/>
+ <g transform="translate(540,1040) scale(4.6)" fill="#FACC15"><circle cx="0" cy="-158" r="12"/><rect x="-16" y="-144" width="32" height="62" rx="10"/><rect x="-27" y="-140" width="10" height="56" rx="5"/><rect x="17" y="-140" width="10" height="56" rx="5"/><rect x="-15" y="-86" width="13" height="86" rx="5"/><rect x="2" y="-86" width="13" height="86" rx="5"/></g>
+ <path d="M60,1040 V160" stroke="#9a9aa6" stroke-width="3"/><path d="M60,1040 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="1049" class="t4" fill="#d4d4dc">0 cm</text><path d="M60,810 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="819" class="t4" fill="#d4d4dc">50 cm</text><path d="M60,580 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="589" class="t4" fill="#d4d4dc">100 cm</text><path d="M60,350 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="359" class="t4" fill="#d4d4dc">150 cm</text>
+ <rect id="d2a" x="0" y="1040" width="1080" height="0" fill="#1b6ea8" opacity=".72"/>
+ 
+ <text class="t1" x="1040" y="150" text-anchor="end" fill="#7cc4ff" id="d2t">≈ 1 m</text>
+ <text class="t3" x="1040" y="200" text-anchor="end" fill="#c9c9d2">até 2100 · tudo somado (IPCC: 26–98 cm)</text>
+</g><g id="d3" opacity="0">
+ <rect x="0" y="0" width="1080" height="1180" fill="#0c0c10"/>
+ <rect x="0" y="1040" width="1080" height="140" fill="#3b3226"/>
+ <rect x="560" y="530.0" width="420" height="510.0" fill="#26262f" stroke="#55555f" stroke-width="3"/><g transform="translate(330,1040) scale(1.7)" fill="#FACC15"><circle cx="0" cy="-158" r="12"/><rect x="-16" y="-144" width="32" height="62" rx="10"/><rect x="-27" y="-140" width="10" height="56" rx="5"/><rect x="17" y="-140" width="10" height="56" rx="5"/><rect x="-15" y="-86" width="13" height="86" rx="5"/><rect x="2" y="-86" width="13" height="86" rx="5"/></g>
+ <path d="M60,1040 V160" stroke="#9a9aa6" stroke-width="3"/><path d="M60,1040 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="1049" class="t4" fill="#d4d4dc">0 m</text><path d="M60,870 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="879" class="t4" fill="#d4d4dc">1 m</text><path d="M60,700 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="709" class="t4" fill="#d4d4dc">2 m</text><path d="M60,530 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="539" class="t4" fill="#d4d4dc">3 m</text><path d="M60,360 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="369" class="t4" fill="#d4d4dc">4 m</text><path d="M60,190 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="199" class="t4" fill="#d4d4dc">5 m</text>
+ <rect id="d3a" x="0" y="1040" width="1080" height="0" fill="#1b6ea8" opacity=".72"/>
+ <text x="770" y="590" class="t2" fill="#fff" text-anchor="middle">TÉRREO · 3 m</text>
+ <text class="t1" x="1040" y="150" text-anchor="end" fill="#7cc4ff" id="d3t">3,3 m</text>
+ <text class="t3" x="1040" y="200" text-anchor="end" fill="#c9c9d2">Antártica Ocidental · séculos</text>
+</g><g id="d4" opacity="0">
+ <rect x="0" y="0" width="1080" height="1180" fill="#0c0c10"/>
+ <rect x="0" y="1040" width="1080" height="140" fill="#3b3226"/>
+ <rect x="600" y="999.4" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="958.8" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="918.2" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="877.6" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="837.0" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="796.4" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="755.8" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="715.2" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="674.6" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="634.0" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="593.4" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="552.8" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="512.2" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="471.6" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="431.0" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="390.4" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="349.8" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="309.2" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="268.6" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><rect x="600" y="228.0" width="300" height="36.6" fill="#26262f" stroke="#55555f" stroke-width="2"/><g transform="translate(330,1040) scale(0.14)" fill="#FACC15"><circle cx="0" cy="-158" r="12"/><rect x="-16" y="-144" width="32" height="62" rx="10"/><rect x="-27" y="-140" width="10" height="56" rx="5"/><rect x="17" y="-140" width="10" height="56" rx="5"/><rect x="-15" y="-86" width="13" height="86" rx="5"/><rect x="2" y="-86" width="13" height="86" rx="5"/></g>
+ <path d="M60,1040 V160" stroke="#9a9aa6" stroke-width="3"/><path d="M60,1040 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="1049" class="t4" fill="#d4d4dc">0 m</text><path d="M60,900 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="909" class="t4" fill="#d4d4dc">10 m</text><path d="M60,760 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="769" class="t4" fill="#d4d4dc">20 m</text><path d="M60,620 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="629" class="t4" fill="#d4d4dc">30 m</text><path d="M60,480 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="489" class="t4" fill="#d4d4dc">40 m</text><path d="M60,340 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="349" class="t4" fill="#d4d4dc">50 m</text><path d="M60,200 H90" stroke="#9a9aa6" stroke-width="3"/><text x="100" y="209" class="t4" fill="#d4d4dc">60 m</text>
+ <rect id="d4a" x="0" y="1040" width="1080" height="0" fill="#1b6ea8" opacity=".72"/>
+ <rect x="600" y="999.4" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="958.8" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="918.2" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="877.6" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="837.0" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="796.4" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="755.8" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="715.2" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="674.6" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="634.0" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="593.4" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="552.8" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="512.2" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="471.6" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="431.0" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="390.4" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="349.8" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="309.2" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="268.6" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><rect x="600" y="228.0" width="300" height="36.6" fill="none" stroke="#e6e6ee" stroke-width="2"/><g transform="translate(330,1040) scale(0.14)" fill="#FACC15"><circle cx="0" cy="-158" r="12"/><rect x="-16" y="-144" width="32" height="62" rx="10"/><rect x="-27" y="-140" width="10" height="56" rx="5"/><rect x="17" y="-140" width="10" height="56" rx="5"/><rect x="-15" y="-86" width="13" height="86" rx="5"/><rect x="2" y="-86" width="13" height="86" rx="5"/></g><circle cx="330" cy="1024" r="30" fill="none" stroke="#FACC15" stroke-width="5"/><path d="M330,930 V982" stroke="#FACC15" stroke-width="6" marker-end="url(#ahy)"/><text x="330" y="910" class="t2" fill="#FACC15" text-anchor="middle">VOCÊ</text>
+ <text class="t1" x="1040" y="150" text-anchor="end" fill="#7cc4ff" id="d4t">58 m</text>
+ <text class="t3" x="1040" y="200" text-anchor="end" fill="#c9c9d2">a Antártica toda · prédio de ~20 andares</text>
+</g></svg></div></div><div id="c45" class="clip full" data-start="43.64" data-duration="12.97" data-track-index="5"><div class="painel" id="pn40" style="border-color:#7cc4ff66"><div class="chip" style="background:#7cc4ff2e;color:#7cc4ff">A MESMA PRAIA</div><div class="prow" id="r41"><b>3 cm</b> · só a Thwaites · 2100</div><div class="prow" id="r42"><b>≈ 1 m</b> · tudo somado · 2100</div><div class="prow" id="r43"><b>3,3 m</b> · Antártica Ocidental</div><div class="prow" id="r44"><b>58 m</b> · a Antártica toda</div></div></div><div id="c47" class="clip stage" data-start="56.61" data-duration="7.38" data-track-index="2"><div class="in" id="pl46"><svg class="dg" width="1080" height="1180" viewBox="0 0 1080 1180"><defs>
+ <filter id="glow" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1300" height="1400"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <marker id="ah" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#fff"/></marker>
+ <marker id="ahr" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff4d4d"/></marker>
+ <marker id="ahy" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#FACC15"/></marker>
+ <linearGradient id="agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b6ea8"/><stop offset="1" stop-color="#0a2740"/></linearGradient>
+ <linearGradient id="gelo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2f8ff"/><stop offset="1" stop-color="#a9cdea"/></linearGradient>
+</defs>
+ <text class="t1" x="540" y="150" text-anchor="middle">O MAR JÁ SUBIU</text>
+ <text class="t3" x="540" y="200" text-anchor="middle" fill="#c9c9d2">nível médio do mar, em cm (curva ilustrativa · NOAA)</text>
+ <path d="M140,960 H1000" stroke="#22222c" stroke-width="2"/><text x="120" y="969" class="t4" fill="#9a9aa6" text-anchor="end">0</text><path d="M140,820 H1000" stroke="#22222c" stroke-width="2"/><text x="120" y="829" class="t4" fill="#9a9aa6" text-anchor="end">5</text><path d="M140,680 H1000" stroke="#22222c" stroke-width="2"/><text x="120" y="689" class="t4" fill="#9a9aa6" text-anchor="end">10</text><path d="M140,540 H1000" stroke="#22222c" stroke-width="2"/><text x="120" y="549" class="t4" fill="#9a9aa6" text-anchor="end">15</text><path d="M140,400 H1000" stroke="#22222c" stroke-width="2"/><text x="120" y="409" class="t4" fill="#9a9aa6" text-anchor="end">20</text><path d="M140,260 H1000" stroke="#22222c" stroke-width="2"/><text x="120" y="269" class="t4" fill="#9a9aa6" text-anchor="end">25</text><text x="140" y="1010" class="t4" fill="#c9c9d2" text-anchor="middle">1880</text><text x="386" y="1010" class="t4" fill="#c9c9d2" text-anchor="middle">1920</text><text x="631" y="1010" class="t4" fill="#c9c9d2" text-anchor="middle">1960</text><text x="877" y="1010" class="t4" fill="#c9c9d2" text-anchor="middle">2000</text><text x="1000" y="1010" class="t4" fill="#c9c9d2" text-anchor="middle">2020</text>
+ <path id="crv" d="M140,960 L263,904 L386,834 L509,736 L631,652 L754,568 L834,512 L877,470 L939,386 L1000,316" stroke="#7cc4ff" stroke-width="9" fill="none" filter="url(#glow)" stroke-dasharray="1400" stroke-dashoffset="1400"/>
+ <g id="kV" opacity="0"><rect x="560" y="300" width="440" height="92" rx="14" fill="#0c0c10" stroke="#7cc4ff" stroke-width="3"/><text x="780" y="360" class="t2" fill="#fff" text-anchor="middle">+21 a 24 cm</text></g>
+ <g id="kR" opacity="0"><rect x="180" y="430" width="560" height="150" rx="14" fill="#3b0d0d" stroke="#ff4d4d" stroke-width="3"/>
+   <text x="460" y="490" class="t3" fill="#fff" text-anchor="middle">século XX: 1,4 mm/ano</text><text x="460" y="550" class="t2" fill="#ff4d4d" text-anchor="middle">2006–2015: 3,6 mm/ano</text></g>
+</svg></div></div><div id="c51" class="clip full" data-start="56.61" data-duration="7.08" data-track-index="5"><div class="painel" id="pn48" style="border-color:#ff4d4d66"><div class="chip" style="background:#ff4d4d2e;color:#ff4d4d">JÁ COMEÇOU · NOAA</div><div class="pgr" id="g49" style="color:#ff4d4d">+21–24 cm</div><div class="prow" id="r50">o ritmo <b style='color:#ff4d4d'>mais que dobrou</b></div></div></div><div id="c53" class="clip stage" data-start="63.69" data-duration="4.32" data-track-index="2"><div class="in" id="im52"><img class="foto" id="im52f" src="assets/nei-antartica.png" style="object-position:50% 30%" alt=""/><div class="vin"></div></div></div><div id="c57" class="clip full" data-start="63.69" data-duration="4.02" data-track-index="5"><div class="painel" id="pn54" style="border-color:#FACC1566"><div class="chip" style="background:#FACC152e;color:#FACC15">FOTO: NEI MALDANER</div><div class="pgr" id="g55" style="color:#FACC15">ANTÁRTICA<br>2004 · 2006</div><div class="prow" id="r56">eu vi esse gelo de perto</div></div></div><div id="c59" class="clip stage" data-start="67.71" data-duration="9.07" data-track-index="2"><div class="in" id="pl58"><div class="ctas">
+ <div class="cbox" id="q1"><small>VEJA SE A ÁGUA CHEGA NA SUA RUA</small><b>coastal.climatecentral.org</b><i>mapa de risco do mar subindo</i></div>
+ <div class="cbox vid" id="q2"><img src="assets/thumb16.jpg" alt=""/><div><small>▶ VÍDEO COMPLETO NO CANAL</small><b>Geleira do Juízo Final</b></div></div>
+ <div class="club" id="q3"><b>inema.club</b><i>aprenda inteligência artificial</i></div>
+</div></div></div><div id="c61" class="clip full" data-start="72.42" data-duration="4.36" data-track-index="5"><div class="painel red" id="pn60"><div class="ptg">DE QUE CIDADE<br>VOCÊ É? 👇</div><div class="psub">o mar chega até aí?</div></div></div>
+ <div id="topo" class="clip full" data-start="0" data-duration="76.78" data-track-index="8"><div id="marca">INEMA <span>· EVENTOS EXTREMOS</span></div><div id="fonte">Poinelli et al., Nature Communications (out/2026) · NOAA · BedMachine · IBGE · IPCC/PBMC · foto: Nei Maldaner · ilustrativo</div></div>
+ <div id="avw" style="left:690px;top:1300px;width:354px;height:500px;"><video id="av" src="assets/avatar.mp4" data-start="0" data-duration="76.78" data-track-index="9" data-has-audio="true" data-volume="1" playsinline></video><div class="avtag">NEI MALDANER · INEMA</div></div>
+ <div id="legenda" class="clip full" data-start="0" data-duration="76.78" data-track-index="10"><div class="cap" id="cap0"><b>Você</b> <b>acha</b> <b>que</b></div><div class="cap" id="cap1"><b>o</b> <b>mar</b> <b>subir</b></div><div class="cap" id="cap2"><b>é</b> <b>exagero?</b></div><div class="cap" id="cap3"><b>Então</b> <b>olha</b> <b>comigo</b></div><div class="cap" id="cap4"><b>com</b> <b>desenho</b> <b>e</b></div><div class="cap" id="cap5"><b>com</b> <b>conta</b></div><div class="cap" id="cap6"><b>Esta</b> <b>é</b> <b>a</b></div><div class="cap" id="cap7"><b>Thwaites</b></div><div class="cap" id="cap8"><b>a</b> <b>geleira</b> <b>do</b></div><div class="cap" id="cap9"><b>juízo</b> <b>final</b></div><div class="cap" id="cap10"><b>Ela</b> <b>é</b> <b>do</b></div><div class="cap" id="cap11"><b>tamanho</b> <b>do</b> <b>Paraná</b></div><div class="cap" id="cap12"><b>e</b> <b>um</b> <b>estudo</b></div><div class="cap" id="cap13"><b>novo</b> <b>dobrou</b> <b>a</b></div><div class="cap" id="cap14"><b>conta</b> <b>dela</b></div><div class="cap" id="cap15"><b>Olha</b> <b>o</b> <b>corte</b></div><div class="cap" id="cap16"><b>Ela</b> <b>não</b> <b>boia</b></div><div class="cap" id="cap17"><b>Está</b> <b>apoiada</b> <b>na</b></div><div class="cap" id="cap18"><b>rocha</b></div><div class="cap" id="cap19"><b>mais</b> <b>de</b> <b>2 km</b></div><div class="cap" id="cap20"><b>abaixo</b> <b>do</b> <b>mar</b></div><div class="cap" id="cap21"><b>A</b> <b>maré</b> <b>bombeia</b></div><div class="cap" id="cap22"><b>água</b> <b>morna</b> <b>por</b></div><div class="cap" id="cap23"><b>baixo</b> <b>e</b> <b>derrete</b></div><div class="cap" id="cap24"><b>a</b> <b>base</b></div><div class="cap" id="cap25"><b>Ela</b> <b>vai</b> <b>soltando</b></div><div class="cap" id="cap26"><b>da</b> <b>rocha</b> <b>e</b></div><div class="cap" id="cap27"><b>escorrega</b> <b>para</b> <b>o</b></div><div class="cap" id="cap28"><b>oceano</b></div><div class="cap" id="cap29"><b>Mas</b> <b>gelo</b> <b>no</b></div><div class="cap" id="cap30"><b>copo</b> <b>não</b> <b>transborda</b></div><div class="cap" id="cap31"><b>né?</b></div><div class="cap" id="cap32"><b>Só</b> <b>o</b> <b>gelo</b></div><div class="cap" id="cap33"><b>que</b> <b>boia</b></div><div class="cap" id="cap34"><b>O</b> <b>gelo</b> <b>que</b></div><div class="cap" id="cap35"><b>estava</b> <b>em</b> <b>cima</b></div><div class="cap" id="cap36"><b>da</b> <b>rocha</b></div><div class="cap" id="cap37"><b>quando</b> <b>cai</b> <b>na</b></div><div class="cap" id="cap38"><b>água</b></div><div class="cap" id="cap39"><b>é</b> <b>água</b> <b>nova</b></div><div class="cap" id="cap40"><b>no</b> <b>seu</b> <b>mar</b></div><div class="cap" id="cap41"><b>Agora</b> <b>a</b> <b>conta</b></div><div class="cap" id="cap42"><b>Para</b> <b>o</b> <b>mar</b></div><div class="cap" id="cap43"><b>do</b> <b>planeta</b> <b>inteiro</b></div><div class="cap" id="cap44"><b>subir</b> <b>1 mm</b></div><div class="cap" id="cap45"><b>são</b> <b>360 km³</b></div><div class="cap" id="cap46"><b>de</b> <b>água</b></div><div class="cap" id="cap47"><b>A</b> <b>Thwaites</b></div><div class="cap" id="cap48"><b>sozinha</b> <b>guarda</b></div><div class="cap" id="cap49"><b>65 cm</b></div><div class="cap" id="cap50"><b>A</b> <b>Antártica</b> <b>inteira</b></div><div class="cap" id="cap51"><b>58 m</b></div><div class="cap" id="cap52"><b>Agora</b> <b>imagina</b> <b>você</b></div><div class="cap" id="cap53"><b>na</b> <b>praia</b></div><div class="cap" id="cap54"><b>Até</b> <b>2100</b></div><div class="cap" id="cap55"><b>só</b> <b>a</b> <b>Thwaites</b></div><div class="cap" id="cap56"><b>põe</b> <b>3 cm</b></div><div class="cap" id="cap57"><b>Somando</b> <b>tudo</b></div><div class="cap" id="cap58"><b>o</b> <b>mar</b> <b>pode</b></div><div class="cap" id="cap59"><b>chegar</b> <b>perto</b> <b>de</b></div><div class="cap" id="cap60"><b>1 metro</b></div><div class="cap" id="cap61"><b>na</b> <b>sua</b> <b>cintura</b></div><div class="cap" id="cap62"><b>A</b> <b>Antártica</b> <b>Ocidental</b></div><div class="cap" id="cap63"><b>mais</b> <b>de</b> <b>3 m</b></div><div class="cap" id="cap64"><b>O</b> <b>térreo</b> <b>inteiro</b></div><div class="cap" id="cap65"><b>A</b> <b>Antártica</b> <b>toda</b></div><div class="cap" id="cap66"><b>um</b> <b>prédio</b> <b>de</b></div><div class="cap" id="cap67"><b>quase</b> <b>20</b> <b>andares</b></div><div class="cap" id="cap68"><b>Isso</b> <b>leva</b> <b>séculos</b></div><div class="cap" id="cap69"><b>mas</b> <b>já</b> <b>começou</b></div><div class="cap" id="cap70"><b>O</b> <b>mar</b> <b>já</b></div><div class="cap" id="cap71"><b>subiu</b> <b>mais</b> <b>de</b></div><div class="cap" id="cap72"><b>20 cm</b> <b>desde</b> <b>1880</b></div><div class="cap" id="cap73"><b>e</b> <b>o</b> <b>ritmo</b></div><div class="cap" id="cap74"><b>mais</b> <b>que</b> <b>dobrou</b></div><div class="cap" id="cap75"><b>Eu</b> <b>estive</b> <b>na</b></div><div class="cap" id="cap76"><b>Antártica</b> <b>em</b> <b>2004</b></div><div class="cap" id="cap77"><b>e</b> <b>2006</b></div><div class="cap" id="cap78"><b>Eu</b> <b>vi</b> <b>esse</b></div><div class="cap" id="cap79"><b>gelo</b> <b>de</b> <b>perto</b></div><div class="cap" id="cap80"><b>Quer</b> <b>saber</b> <b>se</b></div><div class="cap" id="cap81"><b>a</b> <b>água</b> <b>chega</b></div><div class="cap" id="cap82"><b>na</b> <b>sua</b> <b>rua?</b></div><div class="cap" id="cap83"><b>Tem</b> <b>mapa</b> <b>que</b></div><div class="cap" id="cap84"><b>mostra</b> <b>e</b> <b>o</b></div><div class="cap" id="cap85"><b>vídeo</b> <b>completo</b> <b>está</b></div><div class="cap" id="cap86"><b>no</b> <b>canal</b></div><div class="cap" id="cap87"><b>De</b> <b>que</b> <b>cidade</b></div><div class="cap" id="cap88"><b>você</b> <b>é?</b></div><div class="cap" id="cap89"><b>No</b> <b>inema.club</b> <b>você</b></div><div class="cap" id="cap90"><b>pode</b> <b>aprender</b> <b>sobre</b></div><div class="cap" id="cap91"><b>inteligência</b> <b>artificial</b></div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#im1", {opacity:0}, {opacity:1, duration:0.4}, 0.00);
+tl.to("#im1", {opacity:0, duration:0.4}, 3.81);
+tl.fromTo("#im1f", {scale:1.0}, {scale:1.06, duration:4.61, ease:"none"}, 0.00);
+tl.fromTo("#chD", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 2.76);
+tl.fromTo("#chC", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 3.50);
+tl.fromTo("#pn3", {opacity:0, x:-40}, {opacity:1, x:0, duration:0.45}, 0.20);
+tl.to("#pn3", {opacity:0, duration:0.35}, 3.56);
+tl.fromTo("#g4", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 0.30);
+tl.fromTo("#r5", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 2.76);
+tl.fromTo("#r6", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 3.50);
+tl.set("#marca", {opacity:0}, 0); tl.to("#marca", {opacity:1, duration:0.4}, 3.91);
+tl.fromTo("#im8", {opacity:0}, {opacity:1, duration:0.4}, 3.91);
+tl.to("#im8", {opacity:0, duration:0.4}, 10.03);
+tl.fromTo("#im8f", {scale:1.0}, {scale:1.05, duration:6.92, ease:"none"}, 3.91);
+tl.fromTo("#mT", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 4.70);
+tl.fromTo("#mP", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 7.82);
+tl.fromTo("#pn10", {opacity:0, x:-40}, {opacity:1, x:0, duration:0.45}, 3.91);
+tl.to("#pn10", {opacity:0, duration:0.35}, 9.78);
+tl.fromTo("#g11", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 8.82);
+tl.fromTo("#r12", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 9.02);
+tl.fromTo("#r13", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 9.62);
+tl.fromTo("#pl15", {opacity:0}, {opacity:1, duration:0.4}, 10.13);
+tl.to("#pl15", {opacity:0, duration:0.4}, 20.77);
+tl.fromTo("#cApo", {opacity:0}, {opacity:1, duration:0.4}, 12.46);
+tl.fromTo("#cPla", {opacity:0}, {opacity:1, duration:0.4}, 12.76);
+tl.fromTo("#pt", {opacity:0}, {opacity:1, duration:0.4}, 12.76);
+tl.fromTo("#cKm", {opacity:0}, {opacity:1, duration:0.4}, 14.02);
+tl.to("#cKm", {opacity:0, duration:0.3}, 15.34);
+tl.fromTo("#cMa", {opacity:0}, {opacity:1, duration:0.4}, 15.44);
+tl.fromTo("#seta", {strokeDashoffset:0}, {strokeDashoffset:-440, duration:5.63, ease:"none"}, 15.54);
+tl.fromTo("#cDe", {opacity:0}, {opacity:1, duration:0.4}, 17.32);
+tl.to("#cDe", {opacity:0.35, duration:0.5, repeat:3, yoyo:true}, 17.82);
+tl.fromTo("#cSo", {opacity:0}, {opacity:1, duration:0.4}, 18.64);
+tl.to("#pt", {attr:{cx:700, cy:905}, duration:1.8, ease:"power2.inOut"}, 18.74);
+tl.to("#gl", {x:-70, duration:2.2, ease:"power1.inOut"}, 18.94);
+tl.fromTo("#cOc", {opacity:0}, {opacity:1, duration:0.4}, 20.30);
+tl.to("#nivel", {y:-22, duration:1.0}, 20.30);
+tl.fromTo("#pn17", {opacity:0, x:-40}, {opacity:1, x:0, duration:0.45}, 10.13);
+tl.to("#pn17", {opacity:0, duration:0.35}, 20.52);
+tl.fromTo("#r18", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 15.44);
+tl.fromTo("#r19", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 17.32);
+tl.fromTo("#r20", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 18.64);
+tl.fromTo("#pl22", {opacity:0}, {opacity:1, duration:0.4}, 20.87);
+tl.to("#pl22", {opacity:0, duration:0.4}, 28.61);
+tl.to("#cAg", {opacity:0, scale:0.2, transformOrigin:"50% 50%", duration:1.6}, 24.08);
+tl.fromTo("#rA", {opacity:0}, {opacity:1, duration:0.4}, 24.38);
+tl.fromTo("#k2", {opacity:0}, {opacity:1, duration:0.4}, 25.68);
+tl.to("#cBg", {y:170, rotation:20, transformOrigin:"50% 50%", duration:0.9, ease:"power2.in"}, 26.78);
+tl.to("#cBg", {opacity:0, duration:1.0}, 27.78);
+tl.to("#cBa", {attr:{y:490, height:510}, duration:1.2}, 27.76);
+tl.fromTo("#rB", {opacity:0}, {opacity:1, duration:0.4}, 27.86);
+tl.fromTo("#pn24", {opacity:0, x:-40}, {opacity:1, x:0, duration:0.45}, 20.87);
+tl.to("#pn24", {opacity:0, duration:0.35}, 28.36);
+tl.fromTo("#r25", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 23.98);
+tl.fromTo("#r26", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 25.88);
+tl.fromTo("#r27", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 27.86);
+tl.fromTo("#pl29", {opacity:0}, {opacity:1, duration:0.4}, 28.71);
+tl.to("#pl29", {opacity:0, duration:0.4}, 41.91);
+tl.fromTo("#e1", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 31.12);
+tl.fromTo("#e2", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 32.12);
+tl.fromTo("#e3", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 34.38);
+tl.fromTo("#n1", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 36.30);
+tl.fromTo("#n2", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 39.64);
+tl.fromTo("#v1", {innerText:0}, {innerText:65, duration:1.4, snap:{innerText:1}}, 36.40);
+tl.fromTo("#v2", {innerText:0}, {innerText:58, duration:1.4, snap:{innerText:1}}, 39.74);
+tl.fromTo("#pn31", {opacity:0, x:-40}, {opacity:1, x:0, duration:0.45}, 28.71);
+tl.to("#pn31", {opacity:0, duration:0.35}, 41.66);
+tl.fromTo("#r32", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 32.12);
+tl.fromTo("#r33", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 34.48);
+tl.fromTo("#r34", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 39.64);
+
+tl.fromTo("#im36", {opacity:0}, {opacity:1, duration:0.4}, 42.01);
+tl.to("#im36", {opacity:0, duration:0.4}, 43.84);
+tl.fromTo("#im36f", {scale:1.0}, {scale:1.06, duration:2.63, ease:"none"}, 42.01);
+tl.fromTo("#voce", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 42.80);
+tl.fromTo("#pl38", {opacity:0}, {opacity:1, duration:0.4}, 43.64);
+tl.to("#pl38", {opacity:0, duration:0.4}, 56.51);
+tl.to("#d1", {opacity:1, duration:0.35}, 43.84);
+tl.to("#d1a", {attr:{y:1026, height:14}, duration:1.6, ease:"power2.out"}, 44.04);
+tl.to("#d1", {opacity:0, duration:0.35}, 46.50);
+tl.to("#d2", {opacity:1, duration:0.35}, 46.50);
+tl.to("#d2a", {attr:{y:589, height:451}, duration:1.6, ease:"power2.out"}, 46.70);
+tl.to("#d2", {opacity:0, duration:0.35}, 51.02);
+tl.to("#d3", {opacity:1, duration:0.35}, 51.02);
+tl.to("#d3a", {attr:{y:479, height:561}, duration:1.6, ease:"power2.out"}, 51.22);
+tl.to("#d3", {opacity:0, duration:0.35}, 54.66);
+tl.to("#d4", {opacity:1, duration:0.35}, 54.66);
+tl.to("#d4a", {attr:{y:228, height:812}, duration:1.6, ease:"power2.out"}, 54.86);
+tl.fromTo("#pn40", {opacity:0, x:-40}, {opacity:1, x:0, duration:0.45}, 43.64);
+tl.to("#pn40", {opacity:0, duration:0.35}, 56.26);
+tl.fromTo("#r41", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 43.74);
+tl.fromTo("#r42", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 49.60);
+tl.fromTo("#r43", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 52.82);
+tl.fromTo("#r44", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 56.06);
+tl.fromTo("#pl46", {opacity:0}, {opacity:1, duration:0.4}, 56.61);
+tl.to("#pl46", {opacity:0, duration:0.4}, 63.59);
+tl.to("#crv", {strokeDashoffset:0, duration:2.4, ease:"power1.inOut"}, 57.86);
+tl.fromTo("#kV", {opacity:0}, {opacity:1, duration:0.4}, 59.66);
+tl.fromTo("#kR", {opacity:0}, {opacity:1, duration:0.4}, 62.44);
+tl.fromTo("#pn48", {opacity:0, x:-40}, {opacity:1, x:0, duration:0.45}, 56.61);
+tl.to("#pn48", {opacity:0, duration:0.35}, 63.34);
+tl.fromTo("#g49", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 59.56);
+tl.fromTo("#r50", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 62.44);
+tl.fromTo("#im52", {opacity:0}, {opacity:1, duration:0.4}, 63.69);
+tl.to("#im52", {opacity:0, duration:0.4}, 67.61);
+tl.fromTo("#im52f", {scale:1.0}, {scale:1.06, duration:4.72, ease:"none"}, 63.69);
+tl.fromTo("#pn54", {opacity:0, x:-40}, {opacity:1, x:0, duration:0.45}, 63.69);
+tl.to("#pn54", {opacity:0, duration:0.35}, 67.36);
+tl.fromTo("#g55", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 64.38);
+tl.fromTo("#r56", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 66.76);
+tl.fromTo("#pl58", {opacity:0}, {opacity:1, duration:0.4}, 67.71);
+tl.to("#pl58", {opacity:0, duration:0.4}, 76.38);
+tl.fromTo("#q1", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 69.86);
+tl.fromTo("#q2", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 71.02);
+tl.fromTo("#q3", {opacity:0, y:26}, {opacity:1, y:0, duration:0.45, ease:"back.out(2)"}, 73.70);
+tl.fromTo("#pn60", {opacity:0, scale:0.9}, {opacity:1, scale:1, duration:0.45, ease:"back.out(2)"}, 72.42);
+tl.set("#cap0", {opacity:1}, -0.05); tl.set("#cap0", {opacity:0}, 0.53);
+tl.set("#cap0 b:nth-child(1)", {color:"#FACC15"}, 0.00); tl.set("#cap0 b:nth-child(1)", {color:"#fff"}, 0.45);
+tl.set("#cap0 b:nth-child(2)", {color:"#FACC15"}, 0.22); tl.set("#cap0 b:nth-child(2)", {color:"#fff"}, 0.53);
+tl.set("#cap0 b:nth-child(3)", {color:"#FACC15"}, 0.44); tl.set("#cap0 b:nth-child(3)", {color:"#fff"}, 0.53);
+tl.set("#cap1", {opacity:1}, 0.53); tl.set("#cap1", {opacity:0}, 0.89);
+tl.set("#cap1 b:nth-child(1)", {color:"#FACC15"}, 0.58); tl.set("#cap1 b:nth-child(1)", {color:"#fff"}, 0.89);
+tl.set("#cap1 b:nth-child(2)", {color:"#FACC15"}, 0.62); tl.set("#cap1 b:nth-child(2)", {color:"#fff"}, 0.89);
+tl.set("#cap1 b:nth-child(3)", {color:"#FACC15"}, 0.76); tl.set("#cap1 b:nth-child(3)", {color:"#fff"}, 0.89);
+tl.set("#cap2", {opacity:1}, 0.89); tl.set("#cap2", {opacity:0}, 1.65);
+tl.set("#cap2 b:nth-child(1)", {color:"#FACC15"}, 0.94); tl.set("#cap2 b:nth-child(1)", {color:"#fff"}, 1.39);
+tl.set("#cap2 b:nth-child(2)", {color:"#ff4d4d"}, 1.10); tl.set("#cap2 b:nth-child(2)", {color:"#fff"}, 1.55);
+tl.set("#cap3", {opacity:1}, 1.65); tl.set("#cap3", {opacity:0}, 2.55);
+tl.set("#cap3 b:nth-child(1)", {color:"#FACC15"}, 1.70); tl.set("#cap3 b:nth-child(1)", {color:"#fff"}, 2.15);
+tl.set("#cap3 b:nth-child(2)", {color:"#FACC15"}, 2.06); tl.set("#cap3 b:nth-child(2)", {color:"#fff"}, 2.51);
+tl.set("#cap3 b:nth-child(3)", {color:"#FACC15"}, 2.22); tl.set("#cap3 b:nth-child(3)", {color:"#fff"}, 2.55);
+tl.set("#cap4", {opacity:1}, 2.55); tl.set("#cap4", {opacity:0}, 3.41);
+tl.set("#cap4 b:nth-child(1)", {color:"#FACC15"}, 2.60); tl.set("#cap4 b:nth-child(1)", {color:"#fff"}, 3.05);
+tl.set("#cap4 b:nth-child(2)", {color:"#FACC15"}, 2.86); tl.set("#cap4 b:nth-child(2)", {color:"#fff"}, 3.31);
+tl.set("#cap4 b:nth-child(3)", {color:"#FACC15"}, 3.36); tl.set("#cap4 b:nth-child(3)", {color:"#fff"}, 3.41);
+tl.set("#cap5", {opacity:1}, 3.41); tl.set("#cap5", {opacity:0}, 4.01);
+tl.set("#cap5 b:nth-child(1)", {color:"#FACC15"}, 3.46); tl.set("#cap5 b:nth-child(1)", {color:"#fff"}, 3.91);
+tl.set("#cap5 b:nth-child(2)", {color:"#FACC15"}, 3.60); tl.set("#cap5 b:nth-child(2)", {color:"#fff"}, 4.01);
+tl.set("#cap6", {opacity:1}, 4.01); tl.set("#cap6", {opacity:0}, 4.65);
+tl.set("#cap6 b:nth-child(1)", {color:"#FACC15"}, 4.06); tl.set("#cap6 b:nth-child(1)", {color:"#fff"}, 4.51);
+tl.set("#cap6 b:nth-child(2)", {color:"#FACC15"}, 4.50); tl.set("#cap6 b:nth-child(2)", {color:"#fff"}, 4.65);
+tl.set("#cap6 b:nth-child(3)", {color:"#FACC15"}, 4.68); tl.set("#cap6 b:nth-child(3)", {color:"#fff"}, 4.65);
+tl.set("#cap7", {opacity:1}, 4.65); tl.set("#cap7", {opacity:0}, 5.13);
+tl.set("#cap7 b:nth-child(1)", {color:"#FACC15"}, 4.70); tl.set("#cap7 b:nth-child(1)", {color:"#fff"}, 5.13);
+tl.set("#cap8", {opacity:1}, 5.13); tl.set("#cap8", {opacity:0}, 5.97);
+tl.set("#cap8 b:nth-child(1)", {color:"#FACC15"}, 5.18); tl.set("#cap8 b:nth-child(1)", {color:"#fff"}, 5.63);
+tl.set("#cap8 b:nth-child(2)", {color:"#FACC15"}, 5.50); tl.set("#cap8 b:nth-child(2)", {color:"#fff"}, 5.95);
+tl.set("#cap8 b:nth-child(3)", {color:"#FACC15"}, 5.90); tl.set("#cap8 b:nth-child(3)", {color:"#fff"}, 5.97);
+tl.set("#cap9", {opacity:1}, 5.97); tl.set("#cap9", {opacity:0}, 6.67);
+tl.set("#cap9 b:nth-child(1)", {color:"#ff4d4d"}, 6.02); tl.set("#cap9 b:nth-child(1)", {color:"#fff"}, 6.47);
+tl.set("#cap9 b:nth-child(2)", {color:"#FACC15"}, 6.32); tl.set("#cap9 b:nth-child(2)", {color:"#fff"}, 6.67);
+tl.set("#cap10", {opacity:1}, 6.67); tl.set("#cap10", {opacity:0}, 7.29);
+tl.set("#cap10 b:nth-child(1)", {color:"#FACC15"}, 6.72); tl.set("#cap10 b:nth-child(1)", {color:"#fff"}, 7.17);
+tl.set("#cap10 b:nth-child(2)", {color:"#FACC15"}, 7.12); tl.set("#cap10 b:nth-child(2)", {color:"#fff"}, 7.29);
+tl.set("#cap10 b:nth-child(3)", {color:"#FACC15"}, 7.24); tl.set("#cap10 b:nth-child(3)", {color:"#fff"}, 7.29);
+tl.set("#cap11", {opacity:1}, 7.29); tl.set("#cap11", {opacity:0}, 8.21);
+tl.set("#cap11 b:nth-child(1)", {color:"#FACC15"}, 7.34); tl.set("#cap11 b:nth-child(1)", {color:"#fff"}, 7.79);
+tl.set("#cap11 b:nth-child(2)", {color:"#FACC15"}, 7.62); tl.set("#cap11 b:nth-child(2)", {color:"#fff"}, 8.07);
+tl.set("#cap11 b:nth-child(3)", {color:"#FACC15"}, 7.82); tl.set("#cap11 b:nth-child(3)", {color:"#fff"}, 8.21);
+tl.set("#cap12", {opacity:1}, 8.21); tl.set("#cap12", {opacity:0}, 8.85);
+tl.set("#cap12 b:nth-child(1)", {color:"#FACC15"}, 8.26); tl.set("#cap12 b:nth-child(1)", {color:"#fff"}, 8.71);
+tl.set("#cap12 b:nth-child(2)", {color:"#FACC15"}, 8.48); tl.set("#cap12 b:nth-child(2)", {color:"#fff"}, 8.85);
+tl.set("#cap12 b:nth-child(3)", {color:"#FACC15"}, 8.58); tl.set("#cap12 b:nth-child(3)", {color:"#fff"}, 8.85);
+tl.set("#cap13", {opacity:1}, 8.85); tl.set("#cap13", {opacity:0}, 9.61);
+tl.set("#cap13 b:nth-child(1)", {color:"#FACC15"}, 8.90); tl.set("#cap13 b:nth-child(1)", {color:"#fff"}, 9.35);
+tl.set("#cap13 b:nth-child(2)", {color:"#ff4d4d"}, 9.12); tl.set("#cap13 b:nth-child(2)", {color:"#fff"}, 9.57);
+tl.set("#cap13 b:nth-child(3)", {color:"#FACC15"}, 9.56); tl.set("#cap13 b:nth-child(3)", {color:"#fff"}, 9.61);
+tl.set("#cap14", {opacity:1}, 9.61); tl.set("#cap14", {opacity:0}, 10.23);
+tl.set("#cap14 b:nth-child(1)", {color:"#FACC15"}, 9.66); tl.set("#cap14 b:nth-child(1)", {color:"#fff"}, 10.11);
+tl.set("#cap14 b:nth-child(2)", {color:"#FACC15"}, 9.82); tl.set("#cap14 b:nth-child(2)", {color:"#fff"}, 10.23);
+tl.set("#cap15", {opacity:1}, 10.23); tl.set("#cap15", {opacity:0}, 11.17);
+tl.set("#cap15 b:nth-child(1)", {color:"#FACC15"}, 10.28); tl.set("#cap15 b:nth-child(1)", {color:"#fff"}, 10.73);
+tl.set("#cap15 b:nth-child(2)", {color:"#FACC15"}, 10.60); tl.set("#cap15 b:nth-child(2)", {color:"#fff"}, 11.05);
+tl.set("#cap15 b:nth-child(3)", {color:"#FACC15"}, 10.74); tl.set("#cap15 b:nth-child(3)", {color:"#fff"}, 11.17);
+tl.set("#cap16", {opacity:1}, 11.17); tl.set("#cap16", {opacity:0}, 12.01);
+tl.set("#cap16 b:nth-child(1)", {color:"#FACC15"}, 11.22); tl.set("#cap16 b:nth-child(1)", {color:"#fff"}, 11.67);
+tl.set("#cap16 b:nth-child(2)", {color:"#FACC15"}, 11.50); tl.set("#cap16 b:nth-child(2)", {color:"#fff"}, 11.95);
+tl.set("#cap16 b:nth-child(3)", {color:"#FACC15"}, 11.70); tl.set("#cap16 b:nth-child(3)", {color:"#fff"}, 12.01);
+tl.set("#cap17", {opacity:1}, 12.01); tl.set("#cap17", {opacity:0}, 12.99);
+tl.set("#cap17 b:nth-child(1)", {color:"#FACC15"}, 12.06); tl.set("#cap17 b:nth-child(1)", {color:"#fff"}, 12.51);
+tl.set("#cap17 b:nth-child(2)", {color:"#FACC15"}, 12.46); tl.set("#cap17 b:nth-child(2)", {color:"#fff"}, 12.91);
+tl.set("#cap17 b:nth-child(3)", {color:"#FACC15"}, 12.94); tl.set("#cap17 b:nth-child(3)", {color:"#fff"}, 12.99);
+tl.set("#cap18", {opacity:1}, 12.99); tl.set("#cap18", {opacity:0}, 13.37);
+tl.set("#cap18 b:nth-child(1)", {color:"#FACC15"}, 13.04); tl.set("#cap18 b:nth-child(1)", {color:"#fff"}, 13.37);
+tl.set("#cap19", {opacity:1}, 13.37); tl.set("#cap19", {opacity:0}, 14.45);
+tl.set("#cap19 b:nth-child(1)", {color:"#FACC15"}, 13.42); tl.set("#cap19 b:nth-child(1)", {color:"#fff"}, 13.87);
+tl.set("#cap19 b:nth-child(2)", {color:"#FACC15"}, 13.82); tl.set("#cap19 b:nth-child(2)", {color:"#fff"}, 14.27);
+tl.set("#cap19 b:nth-child(3)", {color:"#FACC15"}, 13.98); tl.set("#cap19 b:nth-child(3)", {color:"#fff"}, 14.43);
+tl.set("#cap20", {opacity:1}, 14.45); tl.set("#cap20", {opacity:0}, 15.21);
+tl.set("#cap20 b:nth-child(1)", {color:"#FACC15"}, 14.50); tl.set("#cap20 b:nth-child(1)", {color:"#fff"}, 14.95);
+tl.set("#cap20 b:nth-child(2)", {color:"#FACC15"}, 14.90); tl.set("#cap20 b:nth-child(2)", {color:"#fff"}, 15.21);
+tl.set("#cap20 b:nth-child(3)", {color:"#FACC15"}, 15.00); tl.set("#cap20 b:nth-child(3)", {color:"#fff"}, 15.21);
+tl.set("#cap21", {opacity:1}, 15.21); tl.set("#cap21", {opacity:0}, 16.13);
+tl.set("#cap21 b:nth-child(1)", {color:"#FACC15"}, 15.26); tl.set("#cap21 b:nth-child(1)", {color:"#fff"}, 15.71);
+tl.set("#cap21 b:nth-child(2)", {color:"#FACC15"}, 15.54); tl.set("#cap21 b:nth-child(2)", {color:"#fff"}, 15.99);
+tl.set("#cap21 b:nth-child(3)", {color:"#FACC15"}, 15.80); tl.set("#cap21 b:nth-child(3)", {color:"#fff"}, 16.13);
+tl.set("#cap22", {opacity:1}, 16.13); tl.set("#cap22", {opacity:0}, 16.85);
+tl.set("#cap22 b:nth-child(1)", {color:"#FACC15"}, 16.18); tl.set("#cap22 b:nth-child(1)", {color:"#fff"}, 16.63);
+tl.set("#cap22 b:nth-child(2)", {color:"#ff4d4d"}, 16.40); tl.set("#cap22 b:nth-child(2)", {color:"#fff"}, 16.85);
+tl.set("#cap22 b:nth-child(3)", {color:"#FACC15"}, 16.82); tl.set("#cap22 b:nth-child(3)", {color:"#fff"}, 16.85);
+tl.set("#cap23", {opacity:1}, 16.85); tl.set("#cap23", {opacity:0}, 17.77);
+tl.set("#cap23 b:nth-child(1)", {color:"#FACC15"}, 16.90); tl.set("#cap23 b:nth-child(1)", {color:"#fff"}, 17.35);
+tl.set("#cap23 b:nth-child(2)", {color:"#FACC15"}, 17.18); tl.set("#cap23 b:nth-child(2)", {color:"#fff"}, 17.63);
+tl.set("#cap23 b:nth-child(3)", {color:"#ff4d4d"}, 17.42); tl.set("#cap23 b:nth-child(3)", {color:"#fff"}, 17.77);
+tl.set("#cap24", {opacity:1}, 17.77); tl.set("#cap24", {opacity:0}, 18.27);
+tl.set("#cap24 b:nth-child(1)", {color:"#FACC15"}, 17.82); tl.set("#cap24 b:nth-child(1)", {color:"#fff"}, 18.27);
+tl.set("#cap24 b:nth-child(2)", {color:"#FACC15"}, 17.88); tl.set("#cap24 b:nth-child(2)", {color:"#fff"}, 18.27);
+tl.set("#cap25", {opacity:1}, 18.27); tl.set("#cap25", {opacity:0}, 19.05);
+tl.set("#cap25 b:nth-child(1)", {color:"#FACC15"}, 18.32); tl.set("#cap25 b:nth-child(1)", {color:"#fff"}, 18.77);
+tl.set("#cap25 b:nth-child(2)", {color:"#FACC15"}, 18.62); tl.set("#cap25 b:nth-child(2)", {color:"#fff"}, 19.05);
+tl.set("#cap25 b:nth-child(3)", {color:"#FACC15"}, 18.74); tl.set("#cap25 b:nth-child(3)", {color:"#fff"}, 19.05);
+tl.set("#cap26", {opacity:1}, 19.05); tl.set("#cap26", {opacity:0}, 19.79);
+tl.set("#cap26 b:nth-child(1)", {color:"#FACC15"}, 19.10); tl.set("#cap26 b:nth-child(1)", {color:"#fff"}, 19.55);
+tl.set("#cap26 b:nth-child(2)", {color:"#FACC15"}, 19.24); tl.set("#cap26 b:nth-child(2)", {color:"#fff"}, 19.69);
+tl.set("#cap26 b:nth-child(3)", {color:"#FACC15"}, 19.58); tl.set("#cap26 b:nth-child(3)", {color:"#fff"}, 19.79);
+tl.set("#cap27", {opacity:1}, 19.79); tl.set("#cap27", {opacity:0}, 20.45);
+tl.set("#cap27 b:nth-child(1)", {color:"#FACC15"}, 19.84); tl.set("#cap27 b:nth-child(1)", {color:"#fff"}, 20.29);
+tl.set("#cap27 b:nth-child(2)", {color:"#FACC15"}, 20.26); tl.set("#cap27 b:nth-child(2)", {color:"#fff"}, 20.45);
+tl.set("#cap27 b:nth-child(3)", {color:"#FACC15"}, 20.38); tl.set("#cap27 b:nth-child(3)", {color:"#fff"}, 20.45);
+tl.set("#cap28", {opacity:1}, 20.45); tl.set("#cap28", {opacity:0}, 20.97);
+tl.set("#cap28 b:nth-child(1)", {color:"#FACC15"}, 20.50); tl.set("#cap28 b:nth-child(1)", {color:"#fff"}, 20.95);
+tl.set("#cap29", {opacity:1}, 20.97); tl.set("#cap29", {opacity:0}, 21.81);
+tl.set("#cap29 b:nth-child(1)", {color:"#FACC15"}, 21.02); tl.set("#cap29 b:nth-child(1)", {color:"#fff"}, 21.47);
+tl.set("#cap29 b:nth-child(2)", {color:"#FACC15"}, 21.46); tl.set("#cap29 b:nth-child(2)", {color:"#fff"}, 21.81);
+tl.set("#cap29 b:nth-child(3)", {color:"#FACC15"}, 21.80); tl.set("#cap29 b:nth-child(3)", {color:"#fff"}, 21.81);
+tl.set("#cap30", {opacity:1}, 21.81); tl.set("#cap30", {opacity:0}, 22.79);
+tl.set("#cap30 b:nth-child(1)", {color:"#FACC15"}, 21.86); tl.set("#cap30 b:nth-child(1)", {color:"#fff"}, 22.31);
+tl.set("#cap30 b:nth-child(2)", {color:"#FACC15"}, 22.18); tl.set("#cap30 b:nth-child(2)", {color:"#fff"}, 22.63);
+tl.set("#cap30 b:nth-child(3)", {color:"#FACC15"}, 22.28); tl.set("#cap30 b:nth-child(3)", {color:"#fff"}, 22.73);
+tl.set("#cap31", {opacity:1}, 22.79); tl.set("#cap31", {opacity:0}, 22.99);
+tl.set("#cap31 b:nth-child(1)", {color:"#FACC15"}, 22.84); tl.set("#cap31 b:nth-child(1)", {color:"#fff"}, 22.99);
+tl.set("#cap32", {opacity:1}, 22.99); tl.set("#cap32", {opacity:0}, 23.95);
+tl.set("#cap32 b:nth-child(1)", {color:"#FACC15"}, 23.04); tl.set("#cap32 b:nth-child(1)", {color:"#fff"}, 23.49);
+tl.set("#cap32 b:nth-child(2)", {color:"#FACC15"}, 23.46); tl.set("#cap32 b:nth-child(2)", {color:"#fff"}, 23.91);
+tl.set("#cap32 b:nth-child(3)", {color:"#FACC15"}, 23.70); tl.set("#cap32 b:nth-child(3)", {color:"#fff"}, 23.95);
+tl.set("#cap33", {opacity:1}, 23.95); tl.set("#cap33", {opacity:0}, 24.49);
+tl.set("#cap33 b:nth-child(1)", {color:"#FACC15"}, 24.00); tl.set("#cap33 b:nth-child(1)", {color:"#fff"}, 24.45);
+tl.set("#cap33 b:nth-child(2)", {color:"#FACC15"}, 24.08); tl.set("#cap33 b:nth-child(2)", {color:"#fff"}, 24.49);
+tl.set("#cap34", {opacity:1}, 24.49); tl.set("#cap34", {opacity:0}, 25.25);
+tl.set("#cap34 b:nth-child(1)", {color:"#FACC15"}, 24.54); tl.set("#cap34 b:nth-child(1)", {color:"#fff"}, 24.99);
+tl.set("#cap34 b:nth-child(2)", {color:"#FACC15"}, 24.90); tl.set("#cap34 b:nth-child(2)", {color:"#fff"}, 25.25);
+tl.set("#cap34 b:nth-child(3)", {color:"#FACC15"}, 25.20); tl.set("#cap34 b:nth-child(3)", {color:"#fff"}, 25.25);
+tl.set("#cap35", {opacity:1}, 25.25); tl.set("#cap35", {opacity:0}, 25.79);
+tl.set("#cap35 b:nth-child(1)", {color:"#FACC15"}, 25.30); tl.set("#cap35 b:nth-child(1)", {color:"#fff"}, 25.75);
+tl.set("#cap35 b:nth-child(2)", {color:"#FACC15"}, 25.50); tl.set("#cap35 b:nth-child(2)", {color:"#fff"}, 25.79);
+tl.set("#cap35 b:nth-child(3)", {color:"#FACC15"}, 25.66); tl.set("#cap35 b:nth-child(3)", {color:"#fff"}, 25.79);
+tl.set("#cap36", {opacity:1}, 25.79); tl.set("#cap36", {opacity:0}, 26.35);
+tl.set("#cap36 b:nth-child(1)", {color:"#FACC15"}, 25.84); tl.set("#cap36 b:nth-child(1)", {color:"#fff"}, 26.29);
+tl.set("#cap36 b:nth-child(2)", {color:"#FACC15"}, 25.98); tl.set("#cap36 b:nth-child(2)", {color:"#fff"}, 26.35);
+tl.set("#cap37", {opacity:1}, 26.35); tl.set("#cap37", {opacity:0}, 27.09);
+tl.set("#cap37 b:nth-child(1)", {color:"#FACC15"}, 26.40); tl.set("#cap37 b:nth-child(1)", {color:"#fff"}, 26.85);
+tl.set("#cap37 b:nth-child(2)", {color:"#FACC15"}, 26.78); tl.set("#cap37 b:nth-child(2)", {color:"#fff"}, 27.09);
+tl.set("#cap37 b:nth-child(3)", {color:"#FACC15"}, 27.00); tl.set("#cap37 b:nth-child(3)", {color:"#fff"}, 27.09);
+tl.set("#cap38", {opacity:1}, 27.09); tl.set("#cap38", {opacity:0}, 27.45);
+tl.set("#cap38 b:nth-child(1)", {color:"#FACC15"}, 27.14); tl.set("#cap38 b:nth-child(1)", {color:"#fff"}, 27.45);
+tl.set("#cap39", {opacity:1}, 27.45); tl.set("#cap39", {opacity:0}, 28.27);
+tl.set("#cap39 b:nth-child(1)", {color:"#FACC15"}, 27.50); tl.set("#cap39 b:nth-child(1)", {color:"#fff"}, 27.95);
+tl.set("#cap39 b:nth-child(2)", {color:"#FACC15"}, 27.74); tl.set("#cap39 b:nth-child(2)", {color:"#fff"}, 28.19);
+tl.set("#cap39 b:nth-child(3)", {color:"#ff4d4d"}, 27.96); tl.set("#cap39 b:nth-child(3)", {color:"#fff"}, 28.27);
+tl.set("#cap40", {opacity:1}, 28.27); tl.set("#cap40", {opacity:0}, 28.81);
+tl.set("#cap40 b:nth-child(1)", {color:"#FACC15"}, 28.32); tl.set("#cap40 b:nth-child(1)", {color:"#fff"}, 28.77);
+tl.set("#cap40 b:nth-child(2)", {color:"#FACC15"}, 28.52); tl.set("#cap40 b:nth-child(2)", {color:"#fff"}, 28.81);
+tl.set("#cap40 b:nth-child(3)", {color:"#FACC15"}, 28.66); tl.set("#cap40 b:nth-child(3)", {color:"#fff"}, 28.81);
+tl.set("#cap41", {opacity:1}, 28.81); tl.set("#cap41", {opacity:0}, 30.33);
+tl.set("#cap41 b:nth-child(1)", {color:"#FACC15"}, 28.86); tl.set("#cap41 b:nth-child(1)", {color:"#fff"}, 29.31);
+tl.set("#cap41 b:nth-child(2)", {color:"#FACC15"}, 29.38); tl.set("#cap41 b:nth-child(2)", {color:"#fff"}, 29.83);
+tl.set("#cap41 b:nth-child(3)", {color:"#FACC15"}, 29.60); tl.set("#cap41 b:nth-child(3)", {color:"#fff"}, 30.05);
+tl.set("#cap42", {opacity:1}, 30.33); tl.set("#cap42", {opacity:0}, 31.15);
+tl.set("#cap42 b:nth-child(1)", {color:"#FACC15"}, 30.38); tl.set("#cap42 b:nth-child(1)", {color:"#fff"}, 30.83);
+tl.set("#cap42 b:nth-child(2)", {color:"#FACC15"}, 30.90); tl.set("#cap42 b:nth-child(2)", {color:"#fff"}, 31.15);
+tl.set("#cap42 b:nth-child(3)", {color:"#FACC15"}, 31.00); tl.set("#cap42 b:nth-child(3)", {color:"#fff"}, 31.15);
+tl.set("#cap43", {opacity:1}, 31.15); tl.set("#cap43", {opacity:0}, 31.73);
+tl.set("#cap43 b:nth-child(1)", {color:"#FACC15"}, 31.20); tl.set("#cap43 b:nth-child(1)", {color:"#fff"}, 31.65);
+tl.set("#cap43 b:nth-child(2)", {color:"#FACC15"}, 31.32); tl.set("#cap43 b:nth-child(2)", {color:"#fff"}, 31.73);
+tl.set("#cap43 b:nth-child(3)", {color:"#FACC15"}, 31.48); tl.set("#cap43 b:nth-child(3)", {color:"#fff"}, 31.73);
+tl.set("#cap44", {opacity:1}, 31.73); tl.set("#cap44", {opacity:0}, 32.71);
+tl.set("#cap44 b:nth-child(1)", {color:"#FACC15"}, 31.78); tl.set("#cap44 b:nth-child(1)", {color:"#fff"}, 32.23);
+tl.set("#cap44 b:nth-child(2)", {color:"#FACC15"}, 32.00); tl.set("#cap44 b:nth-child(2)", {color:"#fff"}, 32.45);
+tl.set("#cap45", {opacity:1}, 32.71); tl.set("#cap45", {opacity:0}, 34.52);
+tl.set("#cap45 b:nth-child(1)", {color:"#FACC15"}, 32.76); tl.set("#cap45 b:nth-child(1)", {color:"#fff"}, 33.21);
+tl.set("#cap45 b:nth-child(2)", {color:"#FACC15"}, 33.12); tl.set("#cap45 b:nth-child(2)", {color:"#fff"}, 33.57);
+tl.set("#cap46", {opacity:1}, 34.99); tl.set("#cap46", {opacity:0}, 35.61);
+tl.set("#cap46 b:nth-child(1)", {color:"#FACC15"}, 35.04); tl.set("#cap46 b:nth-child(1)", {color:"#fff"}, 35.49);
+tl.set("#cap46 b:nth-child(2)", {color:"#FACC15"}, 35.18); tl.set("#cap46 b:nth-child(2)", {color:"#fff"}, 35.61);
+tl.set("#cap47", {opacity:1}, 35.61); tl.set("#cap47", {opacity:0}, 36.35);
+tl.set("#cap47 b:nth-child(1)", {color:"#FACC15"}, 35.66); tl.set("#cap47 b:nth-child(1)", {color:"#fff"}, 36.11);
+tl.set("#cap47 b:nth-child(2)", {color:"#FACC15"}, 35.82); tl.set("#cap47 b:nth-child(2)", {color:"#fff"}, 36.27);
+tl.set("#cap48", {opacity:1}, 36.35); tl.set("#cap48", {opacity:0}, 37.33);
+tl.set("#cap48 b:nth-child(1)", {color:"#FACC15"}, 36.40); tl.set("#cap48 b:nth-child(1)", {color:"#fff"}, 36.85);
+tl.set("#cap48 b:nth-child(2)", {color:"#FACC15"}, 36.96); tl.set("#cap48 b:nth-child(2)", {color:"#fff"}, 37.33);
+tl.set("#cap49", {opacity:1}, 37.33); tl.set("#cap49", {opacity:0}, 38.78);
+tl.set("#cap49 b:nth-child(1)", {color:"#FACC15"}, 37.38); tl.set("#cap49 b:nth-child(1)", {color:"#fff"}, 37.83);
+tl.set("#cap50", {opacity:1}, 38.87); tl.set("#cap50", {opacity:0}, 40.39);
+tl.set("#cap50 b:nth-child(1)", {color:"#FACC15"}, 38.92); tl.set("#cap50 b:nth-child(1)", {color:"#fff"}, 39.37);
+tl.set("#cap50 b:nth-child(2)", {color:"#FACC15"}, 39.26); tl.set("#cap50 b:nth-child(2)", {color:"#fff"}, 39.71);
+tl.set("#cap50 b:nth-child(3)", {color:"#FACC15"}, 39.74); tl.set("#cap50 b:nth-child(3)", {color:"#fff"}, 40.19);
+tl.set("#cap51", {opacity:1}, 40.39); tl.set("#cap51", {opacity:0}, 41.69);
+tl.set("#cap51 b:nth-child(1)", {color:"#FACC15"}, 40.44); tl.set("#cap51 b:nth-child(1)", {color:"#fff"}, 40.89);
+tl.set("#cap52", {opacity:1}, 41.69); tl.set("#cap52", {opacity:0}, 42.67);
+tl.set("#cap52 b:nth-child(1)", {color:"#FACC15"}, 41.74); tl.set("#cap52 b:nth-child(1)", {color:"#fff"}, 42.19);
+tl.set("#cap52 b:nth-child(2)", {color:"#FACC15"}, 42.16); tl.set("#cap52 b:nth-child(2)", {color:"#fff"}, 42.61);
+tl.set("#cap52 b:nth-child(3)", {color:"#FACC15"}, 42.62); tl.set("#cap52 b:nth-child(3)", {color:"#fff"}, 42.67);
+tl.set("#cap53", {opacity:1}, 42.67); tl.set("#cap53", {opacity:0}, 43.29);
+tl.set("#cap53 b:nth-child(1)", {color:"#FACC15"}, 42.72); tl.set("#cap53 b:nth-child(1)", {color:"#fff"}, 43.17);
+tl.set("#cap53 b:nth-child(2)", {color:"#FACC15"}, 42.90); tl.set("#cap53 b:nth-child(2)", {color:"#fff"}, 43.29);
+tl.set("#cap54", {opacity:1}, 43.29); tl.set("#cap54", {opacity:0}, 44.47);
+tl.set("#cap54 b:nth-child(1)", {color:"#FACC15"}, 43.34); tl.set("#cap54 b:nth-child(1)", {color:"#fff"}, 43.79);
+tl.set("#cap54 b:nth-child(2)", {color:"#FACC15"}, 43.84); tl.set("#cap54 b:nth-child(2)", {color:"#fff"}, 44.29);
+tl.set("#cap55", {opacity:1}, 44.47); tl.set("#cap55", {opacity:0}, 45.35);
+tl.set("#cap55 b:nth-child(1)", {color:"#FACC15"}, 44.52); tl.set("#cap55 b:nth-child(1)", {color:"#fff"}, 44.97);
+tl.set("#cap55 b:nth-child(2)", {color:"#FACC15"}, 44.84); tl.set("#cap55 b:nth-child(2)", {color:"#fff"}, 45.29);
+tl.set("#cap55 b:nth-child(3)", {color:"#FACC15"}, 45.00); tl.set("#cap55 b:nth-child(3)", {color:"#fff"}, 45.35);
+tl.set("#cap56", {opacity:1}, 45.35); tl.set("#cap56", {opacity:0}, 46.45);
+tl.set("#cap56 b:nth-child(1)", {color:"#FACC15"}, 45.40); tl.set("#cap56 b:nth-child(1)", {color:"#fff"}, 45.85);
+tl.set("#cap56 b:nth-child(2)", {color:"#FACC15"}, 45.58); tl.set("#cap56 b:nth-child(2)", {color:"#fff"}, 46.03);
+tl.set("#cap57", {opacity:1}, 46.45); tl.set("#cap57", {opacity:0}, 47.35);
+tl.set("#cap57 b:nth-child(1)", {color:"#FACC15"}, 46.50); tl.set("#cap57 b:nth-child(1)", {color:"#fff"}, 46.95);
+tl.set("#cap57 b:nth-child(2)", {color:"#FACC15"}, 47.00); tl.set("#cap57 b:nth-child(2)", {color:"#fff"}, 47.35);
+tl.set("#cap58", {opacity:1}, 47.35); tl.set("#cap58", {opacity:0}, 47.91);
+tl.set("#cap58 b:nth-child(1)", {color:"#FACC15"}, 47.40); tl.set("#cap58 b:nth-child(1)", {color:"#fff"}, 47.85);
+tl.set("#cap58 b:nth-child(2)", {color:"#FACC15"}, 47.64); tl.set("#cap58 b:nth-child(2)", {color:"#fff"}, 47.91);
+tl.set("#cap58 b:nth-child(3)", {color:"#FACC15"}, 47.80); tl.set("#cap58 b:nth-child(3)", {color:"#fff"}, 47.91);
+tl.set("#cap59", {opacity:1}, 47.91); tl.set("#cap59", {opacity:0}, 48.69);
+tl.set("#cap59 b:nth-child(1)", {color:"#FACC15"}, 47.96); tl.set("#cap59 b:nth-child(1)", {color:"#fff"}, 48.41);
+tl.set("#cap59 b:nth-child(2)", {color:"#FACC15"}, 48.22); tl.set("#cap59 b:nth-child(2)", {color:"#fff"}, 48.67);
+tl.set("#cap59 b:nth-child(3)", {color:"#FACC15"}, 48.54); tl.set("#cap59 b:nth-child(3)", {color:"#fff"}, 48.69);
+tl.set("#cap60", {opacity:1}, 48.69); tl.set("#cap60", {opacity:0}, 49.13);
+tl.set("#cap60 b:nth-child(1)", {color:"#FACC15"}, 48.74); tl.set("#cap60 b:nth-child(1)", {color:"#fff"}, 49.13);
+tl.set("#cap61", {opacity:1}, 49.13); tl.set("#cap61", {opacity:0}, 50.21);
+tl.set("#cap61 b:nth-child(1)", {color:"#FACC15"}, 49.18); tl.set("#cap61 b:nth-child(1)", {color:"#fff"}, 49.63);
+tl.set("#cap61 b:nth-child(2)", {color:"#FACC15"}, 49.48); tl.set("#cap61 b:nth-child(2)", {color:"#fff"}, 49.93);
+tl.set("#cap61 b:nth-child(3)", {color:"#FACC15"}, 49.70); tl.set("#cap61 b:nth-child(3)", {color:"#fff"}, 50.15);
+tl.set("#cap62", {opacity:1}, 50.21); tl.set("#cap62", {opacity:0}, 51.57);
+tl.set("#cap62 b:nth-child(1)", {color:"#FACC15"}, 50.26); tl.set("#cap62 b:nth-child(1)", {color:"#fff"}, 50.71);
+tl.set("#cap62 b:nth-child(2)", {color:"#FACC15"}, 50.60); tl.set("#cap62 b:nth-child(2)", {color:"#fff"}, 51.05);
+tl.set("#cap62 b:nth-child(3)", {color:"#FACC15"}, 51.02); tl.set("#cap62 b:nth-child(3)", {color:"#fff"}, 51.47);
+tl.set("#cap63", {opacity:1}, 51.57); tl.set("#cap63", {opacity:0}, 52.63);
+tl.set("#cap63 b:nth-child(1)", {color:"#FACC15"}, 51.62); tl.set("#cap63 b:nth-child(1)", {color:"#fff"}, 52.07);
+tl.set("#cap63 b:nth-child(2)", {color:"#FACC15"}, 51.92); tl.set("#cap63 b:nth-child(2)", {color:"#fff"}, 52.37);
+tl.set("#cap63 b:nth-child(3)", {color:"#FACC15"}, 52.06); tl.set("#cap63 b:nth-child(3)", {color:"#fff"}, 52.51);
+tl.set("#cap64", {opacity:1}, 52.63); tl.set("#cap64", {opacity:0}, 53.77);
+tl.set("#cap64 b:nth-child(1)", {color:"#FACC15"}, 52.68); tl.set("#cap64 b:nth-child(1)", {color:"#fff"}, 53.13);
+tl.set("#cap64 b:nth-child(2)", {color:"#FACC15"}, 52.92); tl.set("#cap64 b:nth-child(2)", {color:"#fff"}, 53.37);
+tl.set("#cap64 b:nth-child(3)", {color:"#FACC15"}, 53.28); tl.set("#cap64 b:nth-child(3)", {color:"#fff"}, 53.73);
+tl.set("#cap65", {opacity:1}, 53.77); tl.set("#cap65", {opacity:0}, 55.01);
+tl.set("#cap65 b:nth-child(1)", {color:"#FACC15"}, 53.82); tl.set("#cap65 b:nth-child(1)", {color:"#fff"}, 54.27);
+tl.set("#cap65 b:nth-child(2)", {color:"#FACC15"}, 54.16); tl.set("#cap65 b:nth-child(2)", {color:"#fff"}, 54.61);
+tl.set("#cap65 b:nth-child(3)", {color:"#FACC15"}, 54.66); tl.set("#cap65 b:nth-child(3)", {color:"#fff"}, 55.01);
+tl.set("#cap66", {opacity:1}, 55.01); tl.set("#cap66", {opacity:0}, 55.75);
+tl.set("#cap66 b:nth-child(1)", {color:"#FACC15"}, 55.06); tl.set("#cap66 b:nth-child(1)", {color:"#fff"}, 55.51);
+tl.set("#cap66 b:nth-child(2)", {color:"#FACC15"}, 55.34); tl.set("#cap66 b:nth-child(2)", {color:"#fff"}, 55.75);
+tl.set("#cap66 b:nth-child(3)", {color:"#FACC15"}, 55.70); tl.set("#cap66 b:nth-child(3)", {color:"#fff"}, 55.75);
+tl.set("#cap67", {opacity:1}, 55.75); tl.set("#cap67", {opacity:0}, 56.71);
+tl.set("#cap67 b:nth-child(1)", {color:"#FACC15"}, 55.80); tl.set("#cap67 b:nth-child(1)", {color:"#fff"}, 56.25);
+tl.set("#cap67 b:nth-child(2)", {color:"#FACC15"}, 55.94); tl.set("#cap67 b:nth-child(2)", {color:"#fff"}, 56.39);
+tl.set("#cap67 b:nth-child(3)", {color:"#FACC15"}, 56.16); tl.set("#cap67 b:nth-child(3)", {color:"#fff"}, 56.61);
+tl.set("#cap68", {opacity:1}, 56.71); tl.set("#cap68", {opacity:0}, 57.63);
+tl.set("#cap68 b:nth-child(1)", {color:"#FACC15"}, 56.76); tl.set("#cap68 b:nth-child(1)", {color:"#fff"}, 57.21);
+tl.set("#cap68 b:nth-child(2)", {color:"#FACC15"}, 57.06); tl.set("#cap68 b:nth-child(2)", {color:"#fff"}, 57.51);
+tl.set("#cap68 b:nth-child(3)", {color:"#FACC15"}, 57.20); tl.set("#cap68 b:nth-child(3)", {color:"#fff"}, 57.63);
+tl.set("#cap69", {opacity:1}, 57.63); tl.set("#cap69", {opacity:0}, 58.81);
+tl.set("#cap69 b:nth-child(1)", {color:"#FACC15"}, 57.68); tl.set("#cap69 b:nth-child(1)", {color:"#fff"}, 58.13);
+tl.set("#cap69 b:nth-child(2)", {color:"#FACC15"}, 57.94); tl.set("#cap69 b:nth-child(2)", {color:"#fff"}, 58.39);
+tl.set("#cap69 b:nth-child(3)", {color:"#ff4d4d"}, 58.06); tl.set("#cap69 b:nth-child(3)", {color:"#fff"}, 58.51);
+tl.set("#cap70", {opacity:1}, 58.81); tl.set("#cap70", {opacity:0}, 59.19);
+tl.set("#cap70 b:nth-child(1)", {color:"#FACC15"}, 58.86); tl.set("#cap70 b:nth-child(1)", {color:"#fff"}, 59.19);
+tl.set("#cap70 b:nth-child(2)", {color:"#FACC15"}, 59.00); tl.set("#cap70 b:nth-child(2)", {color:"#fff"}, 59.19);
+tl.set("#cap70 b:nth-child(3)", {color:"#FACC15"}, 59.14); tl.set("#cap70 b:nth-child(3)", {color:"#fff"}, 59.19);
+tl.set("#cap71", {opacity:1}, 59.19); tl.set("#cap71", {opacity:0}, 59.71);
+tl.set("#cap71 b:nth-child(1)", {color:"#FACC15"}, 59.24); tl.set("#cap71 b:nth-child(1)", {color:"#fff"}, 59.69);
+tl.set("#cap71 b:nth-child(2)", {color:"#FACC15"}, 59.52); tl.set("#cap71 b:nth-child(2)", {color:"#fff"}, 59.71);
+tl.set("#cap71 b:nth-child(3)", {color:"#FACC15"}, 59.64); tl.set("#cap71 b:nth-child(3)", {color:"#fff"}, 59.71);
+tl.set("#cap72", {opacity:1}, 59.71); tl.set("#cap72", {opacity:0}, 61.81);
+tl.set("#cap72 b:nth-child(1)", {color:"#FACC15"}, 59.76); tl.set("#cap72 b:nth-child(1)", {color:"#fff"}, 60.21);
+tl.set("#cap72 b:nth-child(2)", {color:"#FACC15"}, 60.46); tl.set("#cap72 b:nth-child(2)", {color:"#fff"}, 60.91);
+tl.set("#cap72 b:nth-child(3)", {color:"#FACC15"}, 60.74); tl.set("#cap72 b:nth-child(3)", {color:"#fff"}, 61.19);
+tl.set("#cap73", {opacity:1}, 61.81); tl.set("#cap73", {opacity:0}, 62.87);
+tl.set("#cap73 b:nth-child(1)", {color:"#FACC15"}, 61.86); tl.set("#cap73 b:nth-child(1)", {color:"#fff"}, 62.31);
+tl.set("#cap73 b:nth-child(2)", {color:"#FACC15"}, 62.32); tl.set("#cap73 b:nth-child(2)", {color:"#fff"}, 62.77);
+tl.set("#cap73 b:nth-child(3)", {color:"#FACC15"}, 62.54); tl.set("#cap73 b:nth-child(3)", {color:"#fff"}, 62.87);
+tl.set("#cap74", {opacity:1}, 62.87); tl.set("#cap74", {opacity:0}, 63.69);
+tl.set("#cap74 b:nth-child(1)", {color:"#FACC15"}, 62.92); tl.set("#cap74 b:nth-child(1)", {color:"#fff"}, 63.37);
+tl.set("#cap74 b:nth-child(2)", {color:"#FACC15"}, 63.06); tl.set("#cap74 b:nth-child(2)", {color:"#fff"}, 63.51);
+tl.set("#cap74 b:nth-child(3)", {color:"#ff4d4d"}, 63.20); tl.set("#cap74 b:nth-child(3)", {color:"#fff"}, 63.65);
+tl.set("#cap75", {opacity:1}, 63.69); tl.set("#cap75", {opacity:0}, 64.43);
+tl.set("#cap75 b:nth-child(1)", {color:"#FACC15"}, 63.74); tl.set("#cap75 b:nth-child(1)", {color:"#fff"}, 64.19);
+tl.set("#cap75 b:nth-child(2)", {color:"#FACC15"}, 64.14); tl.set("#cap75 b:nth-child(2)", {color:"#fff"}, 64.43);
+tl.set("#cap75 b:nth-child(3)", {color:"#FACC15"}, 64.42); tl.set("#cap75 b:nth-child(3)", {color:"#fff"}, 64.43);
+tl.set("#cap76", {opacity:1}, 64.43); tl.set("#cap76", {opacity:0}, 65.37);
+tl.set("#cap76 b:nth-child(1)", {color:"#FACC15"}, 64.48); tl.set("#cap76 b:nth-child(1)", {color:"#fff"}, 64.93);
+tl.set("#cap76 b:nth-child(2)", {color:"#FACC15"}, 64.92); tl.set("#cap76 b:nth-child(2)", {color:"#fff"}, 65.37);
+tl.set("#cap76 b:nth-child(3)", {color:"#FACC15"}, 65.04); tl.set("#cap76 b:nth-child(3)", {color:"#fff"}, 65.37);
+tl.set("#cap77", {opacity:1}, 65.37); tl.set("#cap77", {opacity:0}, 66.59);
+tl.set("#cap77 b:nth-child(1)", {color:"#FACC15"}, 65.42); tl.set("#cap77 b:nth-child(1)", {color:"#fff"}, 65.87);
+tl.set("#cap77 b:nth-child(2)", {color:"#FACC15"}, 65.92); tl.set("#cap77 b:nth-child(2)", {color:"#fff"}, 66.37);
+tl.set("#cap78", {opacity:1}, 66.59); tl.set("#cap78", {opacity:0}, 67.07);
+tl.set("#cap78 b:nth-child(1)", {color:"#FACC15"}, 66.64); tl.set("#cap78 b:nth-child(1)", {color:"#fff"}, 67.07);
+tl.set("#cap78 b:nth-child(2)", {color:"#FACC15"}, 66.86); tl.set("#cap78 b:nth-child(2)", {color:"#fff"}, 67.07);
+tl.set("#cap78 b:nth-child(3)", {color:"#FACC15"}, 66.98); tl.set("#cap78 b:nth-child(3)", {color:"#fff"}, 67.07);
+tl.set("#cap79", {opacity:1}, 67.07); tl.set("#cap79", {opacity:0}, 67.81);
+tl.set("#cap79 b:nth-child(1)", {color:"#FACC15"}, 67.12); tl.set("#cap79 b:nth-child(1)", {color:"#fff"}, 67.57);
+tl.set("#cap79 b:nth-child(2)", {color:"#FACC15"}, 67.38); tl.set("#cap79 b:nth-child(2)", {color:"#fff"}, 67.81);
+tl.set("#cap79 b:nth-child(3)", {color:"#FACC15"}, 67.48); tl.set("#cap79 b:nth-child(3)", {color:"#fff"}, 67.81);
+tl.set("#cap80", {opacity:1}, 67.81); tl.set("#cap80", {opacity:0}, 68.53);
+tl.set("#cap80 b:nth-child(1)", {color:"#FACC15"}, 67.86); tl.set("#cap80 b:nth-child(1)", {color:"#fff"}, 68.31);
+tl.set("#cap80 b:nth-child(2)", {color:"#FACC15"}, 68.20); tl.set("#cap80 b:nth-child(2)", {color:"#fff"}, 68.53);
+tl.set("#cap80 b:nth-child(3)", {color:"#FACC15"}, 68.40); tl.set("#cap80 b:nth-child(3)", {color:"#fff"}, 68.53);
+tl.set("#cap81", {opacity:1}, 68.53); tl.set("#cap81", {opacity:0}, 68.97);
+tl.set("#cap81 b:nth-child(1)", {color:"#FACC15"}, 68.58); tl.set("#cap81 b:nth-child(1)", {color:"#fff"}, 68.97);
+tl.set("#cap81 b:nth-child(2)", {color:"#FACC15"}, 68.64); tl.set("#cap81 b:nth-child(2)", {color:"#fff"}, 68.97);
+tl.set("#cap81 b:nth-child(3)", {color:"#FACC15"}, 68.84); tl.set("#cap81 b:nth-child(3)", {color:"#fff"}, 68.97);
+tl.set("#cap82", {opacity:1}, 68.97); tl.set("#cap82", {opacity:0}, 69.51);
+tl.set("#cap82 b:nth-child(1)", {color:"#FACC15"}, 69.02); tl.set("#cap82 b:nth-child(1)", {color:"#fff"}, 69.47);
+tl.set("#cap82 b:nth-child(2)", {color:"#FACC15"}, 69.14); tl.set("#cap82 b:nth-child(2)", {color:"#fff"}, 69.51);
+tl.set("#cap82 b:nth-child(3)", {color:"#FACC15"}, 69.26); tl.set("#cap82 b:nth-child(3)", {color:"#fff"}, 69.51);
+tl.set("#cap83", {opacity:1}, 69.51); tl.set("#cap83", {opacity:0}, 70.29);
+tl.set("#cap83 b:nth-child(1)", {color:"#FACC15"}, 69.56); tl.set("#cap83 b:nth-child(1)", {color:"#fff"}, 70.01);
+tl.set("#cap83 b:nth-child(2)", {color:"#FACC15"}, 69.96); tl.set("#cap83 b:nth-child(2)", {color:"#fff"}, 70.29);
+tl.set("#cap83 b:nth-child(3)", {color:"#FACC15"}, 70.16); tl.set("#cap83 b:nth-child(3)", {color:"#fff"}, 70.29);
+tl.set("#cap84", {opacity:1}, 70.29); tl.set("#cap84", {opacity:0}, 70.91);
+tl.set("#cap84 b:nth-child(1)", {color:"#FACC15"}, 70.34); tl.set("#cap84 b:nth-child(1)", {color:"#fff"}, 70.79);
+tl.set("#cap84 b:nth-child(2)", {color:"#FACC15"}, 70.62); tl.set("#cap84 b:nth-child(2)", {color:"#fff"}, 70.91);
+tl.set("#cap84 b:nth-child(3)", {color:"#FACC15"}, 70.88); tl.set("#cap84 b:nth-child(3)", {color:"#fff"}, 70.91);
+tl.set("#cap85", {opacity:1}, 70.91); tl.set("#cap85", {opacity:0}, 71.65);
+tl.set("#cap85 b:nth-child(1)", {color:"#FACC15"}, 70.96); tl.set("#cap85 b:nth-child(1)", {color:"#fff"}, 71.41);
+tl.set("#cap85 b:nth-child(2)", {color:"#FACC15"}, 71.12); tl.set("#cap85 b:nth-child(2)", {color:"#fff"}, 71.57);
+tl.set("#cap85 b:nth-child(3)", {color:"#FACC15"}, 71.44); tl.set("#cap85 b:nth-child(3)", {color:"#fff"}, 71.65);
+tl.set("#cap86", {opacity:1}, 71.65); tl.set("#cap86", {opacity:0}, 72.25);
+tl.set("#cap86 b:nth-child(1)", {color:"#FACC15"}, 71.70); tl.set("#cap86 b:nth-child(1)", {color:"#fff"}, 72.15);
+tl.set("#cap86 b:nth-child(2)", {color:"#FACC15"}, 71.82); tl.set("#cap86 b:nth-child(2)", {color:"#fff"}, 72.25);
+tl.set("#cap87", {opacity:1}, 72.25); tl.set("#cap87", {opacity:0}, 72.83);
+tl.set("#cap87 b:nth-child(1)", {color:"#FACC15"}, 72.30); tl.set("#cap87 b:nth-child(1)", {color:"#fff"}, 72.75);
+tl.set("#cap87 b:nth-child(2)", {color:"#FACC15"}, 72.54); tl.set("#cap87 b:nth-child(2)", {color:"#fff"}, 72.83);
+tl.set("#cap87 b:nth-child(3)", {color:"#ff4d4d"}, 72.62); tl.set("#cap87 b:nth-child(3)", {color:"#fff"}, 72.83);
+tl.set("#cap88", {opacity:1}, 72.83); tl.set("#cap88", {opacity:0}, 73.35);
+tl.set("#cap88 b:nth-child(1)", {color:"#FACC15"}, 72.88); tl.set("#cap88 b:nth-child(1)", {color:"#fff"}, 73.33);
+tl.set("#cap88 b:nth-child(2)", {color:"#FACC15"}, 73.08); tl.set("#cap88 b:nth-child(2)", {color:"#fff"}, 73.35);
+tl.set("#cap89", {opacity:1}, 73.35); tl.set("#cap89", {opacity:0}, 74.57);
+tl.set("#cap89 b:nth-child(1)", {color:"#FACC15"}, 73.40); tl.set("#cap89 b:nth-child(1)", {color:"#fff"}, 73.85);
+tl.set("#cap89 b:nth-child(2)", {color:"#FACC15"}, 73.80); tl.set("#cap89 b:nth-child(2)", {color:"#fff"}, 74.25);
+tl.set("#cap89 b:nth-child(3)", {color:"#FACC15"}, 74.44); tl.set("#cap89 b:nth-child(3)", {color:"#fff"}, 74.57);
+tl.set("#cap90", {opacity:1}, 74.57); tl.set("#cap90", {opacity:0}, 75.21);
+tl.set("#cap90 b:nth-child(1)", {color:"#FACC15"}, 74.62); tl.set("#cap90 b:nth-child(1)", {color:"#fff"}, 75.07);
+tl.set("#cap90 b:nth-child(2)", {color:"#FACC15"}, 74.82); tl.set("#cap90 b:nth-child(2)", {color:"#fff"}, 75.21);
+tl.set("#cap90 b:nth-child(3)", {color:"#FACC15"}, 75.04); tl.set("#cap90 b:nth-child(3)", {color:"#fff"}, 75.21);
+tl.set("#cap91", {opacity:1}, 75.21); tl.set("#cap91", {opacity:0}, 76.78);
+tl.set("#cap91 b:nth-child(1)", {color:"#FACC15"}, 75.26); tl.set("#cap91 b:nth-child(1)", {color:"#fff"}, 75.71);
+tl.set("#cap91 b:nth-child(2)", {color:"#FACC15"}, 75.80); tl.set("#cap91 b:nth-child(2)", {color:"#fff"}, 76.25);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body></html>

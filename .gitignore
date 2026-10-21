@@ -12,3 +12,9 @@ musk/cena-*/assets/
 musk/cena-*/.hyperframes/
 musk/tempos/_*/
 musk/avatar/*.mp4
+reels/*/cena/assets/
+reels/*/cena/.hyperframes/
+reels/*/avatar/*.mp4
+reels/*/build/*.mp4
+reels/*/tempos/*.mp4
+reels/*/tempos/w*/

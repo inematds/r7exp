@@ -10,3 +10,8 @@ nos 5 caminhos e no final "como se preparar"; cada caminho ensina como se adapta
 4. `motor/monta_avatar.py completo a|b` → build/avatar-<v>.mp4 + segmentos + tempos/ (whisper)
 5. `motor/gera.py completo a|b` → cena-<v>/index.html; copiar assets (imagens, fontes, avatar) → check → snapshot → render
 6. v3 ✅ 21/10 ~02h (A e B, cópias de 39 MB) — sem YouTube até o Nei aprovar
+
+## Publicado (21/10/2026 ~02h15)
+- A → lives11 (INEMA Futuros): https://www.youtube.com/watch?v=ddWUJbfPgPk — thumb NÃO aplicada (canal sem verificação de telefone); arte em build/thumb-a.jpg
+- B → lives1 (INEMA TDS): https://www.youtube.com/watch?v=W2tBGNYlzi4 — capa nova capa-b1 ("2027. VOCÊ TEM ESCOLHA?"), thumb aplicada
+- v3: vídeos A/B identificados + capas + 3 opções de capa B; links no inemaytbot

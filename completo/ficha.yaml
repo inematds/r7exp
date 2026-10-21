@@ -27,7 +27,7 @@ aberturas:
     pior:  pior
   b:
     fala: 0b-intro-mundo-muda
-    capa: capa-mundo.png
+    capa: capa-b1.png
     capa_ate: grupo
     ai2027:
       de: grupo

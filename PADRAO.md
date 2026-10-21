@@ -42,4 +42,6 @@ confirmar e não impor; a emoção vem primeiro, senão não atingimos nunca o r
 - Personagem: mesma referência em todas as imagens (Codex com imagem de referência); transição por máscara/varredura.
 - Diagrama de causa: nós que acendem em sequência (A → B → C).
 - Cores: preto `#0c0c10`, amarelo `#FACC15` no destaque, cada opção com sua cor de linha do mapa; fonte Sora/Montserrat.
-- Avatar do Nei: PiP, nunca tela cheia (D8). Sem efeitos sonoros (D7).
+- Avatar do Nei (D16, 21/10/2026): ABRE em meia tela no quadro 0 (16:9: metade direita até o fim da capa — `abertura.avatar_meia_ate`
+  estende; 9:16: metade de baixo 1080x960) e depois PiP, crescendo para meia tela onde o plano pedir (`meia()` no motor).
+  Capa com título à esquerda (16:9) ou no alto (9:16), fora do rosto. Nunca tela cheia (D8). Sem efeitos sonoros (D7).

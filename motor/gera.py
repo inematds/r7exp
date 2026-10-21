@@ -307,7 +307,10 @@ class Cena:
         self.a(f'tl.fromTo("#{inner}f", {{scale:1.0}}, {{scale:1.05, duration:{t_capa + 0.6:.2f}, ease:"none"}}, 0);')
         self.a(f'tl.to("#{inner}", {{opacity:0, duration:0.6}}, {t_capa:.2f});')
         self.esconde_mapa(-1, t_capa + 0.6)
-        self.a(f'tl.set("#avw", {{opacity:0}}, 0); tl.to("#avw", {{opacity:1, duration:0.5}}, {min(3.2, t_capa):.2f});')
+        # avatar ABRE em meia tela (Nei, 21/10/2026: começa meia tela, depois PiP e muda conforme o plano);
+        # `abertura.avatar_meia_ate: <palavra>` na ficha estende; padrão = fim da capa
+        fim_meia = F.t(ab["avatar_meia_ate"]) if ab.get("avatar_meia_ate") else t_capa + 0.6
+        self.abre_meia(fim_meia)
         self.a(f'tl.set(["#marca","#fonte"], {{opacity:0}}, 0); tl.to(["#marca","#fonte"], {{opacity:1, duration:0.5}}, {t_capa:.2f});')
         m = ab["mapa"]
         cur = t_capa
@@ -400,6 +403,14 @@ class Cena:
             alvo = "uMask" if k == "U" else "l" + k
             self.a(f'(()=>{{const p=document.getElementById("{alvo}"),L=p.getTotalLength(); tl.fromTo(p,{{strokeDasharray:L,strokeDashoffset:L}},{{strokeDashoffset:0,duration:1.5,ease:"power2.out"}},{t - 0.2 + j * 0.25:.2f});}})();')
             self.a(f'tl.fromTo("#t{k}", {{opacity:0, x:20}}, {{opacity:1, x:0, duration:0.5}}, {t + 0.6 + j * 0.25:.2f});')
+
+    def abre_meia(self, fim):
+        """avatar já em meia tela no quadro 0 e encolhe para o PiP em `fim`"""
+        a, b = MEIA, PIP
+        k = a["w"] / b["w"]
+        self.a(f'tl.set("#avw", {{x:{a["left"] - b["left"]}, y:{a["top"] - b["top"]}, scale:{k:.3f}, transformOrigin:"0 0", opacity:1}}, 0);')
+        self.a(f'tl.to("#avw", {{x:0, y:0, scale:1, duration:0.7, ease:"power2.inOut"}}, {fim - 0.7:.2f});')
+        self.a(f'tl.set("#legenda", {{x:-480}}, 0); tl.to("#legenda", {{x:0, duration:0.5}}, {fim - 0.5:.2f});')
 
     def meia(self, ini, fim):
         """avatar cresce para meia tela à direita e volta ao canto"""

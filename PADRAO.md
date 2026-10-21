@@ -10,6 +10,18 @@
 | ação | o que a pessoa pode fazer, cada ação ligada a uma alavanca no mapa |
 | destino | página do inema.club |
 
+## 1b. Tom da fala — emoção primeiro, a verdade confirma (Nei, 21/10/2026)
+"Temos nossa ética, que entende o povo e não a máquina; não podemos faltar com a verdade, mas ela vem depois para
+confirmar e não impor; a emoção vem primeiro, senão não atingimos nunca o resultado."
+- Regra de TOM, não de estrutura: as partes, os painéis e o tempo na palavra continuam iguais.
+- A frase abre com a emoção: pergunta em "você", palavra do dia a dia, sentimento ("Se o seu salário parar amanhã,
+  como você sobrevive?"). Jargão copiado da fonte ("gap", "versão mínima", "lacuna") não entra na fala.
+- O número e a fonte vêm DEPOIS e confirmam: no mapa, no painel e na linha de fonte. Pode ser dito quando o painel
+  precisa dele como palavra de entrada, mas nunca abre a frase.
+- A fala pode simplificar no mesmo sentido da fonte; nunca contradizê-la nem inventar.
+- O CTA pede um compromisso positivo que a pessoa tem orgulho de escrever ("qual é o seu caminho? eu escolho…",
+  "eu consigo"), nunca uma confissão de fracasso.
+
 ## 2. Estrutura do completo 16:9 (4–6 min)
 1. **Gancho no mapa** (0–15 s): o gráfico se desenha; "estamos aqui"; a pergunta.
 2. **Personagem hoje** (15–30 s): a pessoa em 2026.

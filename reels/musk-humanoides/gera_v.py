@@ -154,7 +154,9 @@ def bloco_abertura(c, F, fim):
 
 def bloco_cerebro(c, F, ini, fim):
     tCe, tGo, tQu = F.t("cérebro"), F.t("golfinho"), F.t("Quando")
-    tCo, tHu, tEx = F.t("corpo"), F.t("humanoide"), F.t("explode")
+    tCo, tHu = F.t("corpo"), F.t("humanoide")
+    tPMC = [F.t("pega"), F.t("monta"), F.t("constrói")]
+    tEx = F.t("explode")
     c.imagem(ini, tGo + 0.3, "cerebro.png", pos="50% 50%", z=1.08,
              extra='<div class="lbl1" id="lCe">🧠 IA de hoje:<br><b style="color:#FACC15">CÉREBRO SEM MÃOS</b></div>')
     c.entra("#lCe", tCe - 0.1)
@@ -167,21 +169,25 @@ def bloco_cerebro(c, F, ini, fim):
     pts_exp = " L".join(f"{X(k):.0f},{900 - 30 - (2.718 ** (k / 100 * 6.3) - 1) * 1.15:.0f}" for k in range(0, 101, 4))
     corpo = svg(f'''
  <text class="t1" x="540" y="150" text-anchor="middle">CÉREBRO + MÃOS</text>
- <text class="t3" x="540" y="205" text-anchor="middle" fill="#c9c9d2">o valor da inteligência, na conta do Musk</text>
+ <text class="t3" x="540" y="205" text-anchor="middle" fill="#d8d8e0">esquema da ideia do Musk · não é medição</text>
  <path d="M120,260 V900 H1000" stroke="#55555f" stroke-width="4" fill="none"/>
- <text x="100" y="300" class="t4" fill="#9a9aa6" text-anchor="end" transform="rotate(-90 100 300)">VALOR</text>
+ <path d="M120,420 H1000 M120,580 H1000 M120,740 H1000" stroke="#24242e" stroke-width="2"/>
+ <text x="96" y="580" class="t3" fill="#d8d8e0" text-anchor="middle" transform="rotate(-90 96 580)">VALOR ↑</text>
  <path id="cvP" d="M{pts_plana}" stroke="#7cc4ff" stroke-width="8" fill="none" stroke-dasharray="1100" stroke-dashoffset="1100"/>
  <text id="cvPt" x="1000" y="880" class="t3" fill="#7cc4ff" text-anchor="end" opacity="0">🧠 só cérebro</text>
  <path id="cvE" d="M{pts_exp}" stroke="#FACC15" stroke-width="12" fill="none" filter="url(#glow)" stroke-dasharray="1500" stroke-dashoffset="1500"/>
  <g id="cvEt" opacity="0"><rect x="520" y="250" width="470" height="120" rx="16" fill="#0c0c10" stroke="#FACC15" stroke-width="4"/>
    <text x="755" y="305" class="t2" fill="#FACC15" text-anchor="middle">🤖 COM CORPO</text><text x="755" y="350" class="t3" fill="#fff" text-anchor="middle">o valor explode</text></g>
- <g id="cvH" opacity="0"><text x="300" y="1030" class="t2" fill="#fff" text-anchor="middle">pega</text><text x="540" y="1030" class="t2" fill="#fff" text-anchor="middle">monta</text><text x="800" y="1030" class="t2" fill="#fff" text-anchor="middle">constrói</text></g>
+ <g id="cvH0" opacity="0"><rect x="190" y="975" width="220" height="80" rx="40" fill="#1f1a08" stroke="#FACC15" stroke-width="4"/><text x="300" y="1030" class="t2" fill="#FACC15" text-anchor="middle">✋ pega</text></g>
+ <g id="cvH1" opacity="0"><rect x="430" y="975" width="230" height="80" rx="40" fill="#1f1a08" stroke="#FACC15" stroke-width="4"/><text x="545" y="1030" class="t2" fill="#FACC15" text-anchor="middle">🔧 monta</text></g>
+ <g id="cvH2" opacity="0"><rect x="680" y="975" width="280" height="80" rx="40" fill="#1f1a08" stroke="#FACC15" stroke-width="4"/><text x="820" y="1030" class="t2" fill="#FACC15" text-anchor="middle">🏗️ constrói</text></g>
 ''')
     c.palco(tQu - 0.1, fim, corpo)
     c.a(f'tl.to("#cvP", {{strokeDashoffset:0, duration:1.0, ease:"none"}}, {tQu:.2f});')
     c.mostra("#cvPt", tQu + 0.6)
-    c.mostra("#cvH", tHu)
-    c.a(f'tl.to("#cvE", {{strokeDashoffset:0, duration:1.4, ease:"power2.in"}}, {max(tCo, tEx - 1.4):.2f});')
+    for i, tp in enumerate(tPMC):
+        c.entra(f"#cvH{i}", tp - 0.05)
+    c.a(f'tl.to("#cvE", {{strokeDashoffset:0, duration:{max(1.2, tEx - tCo):.2f}, ease:"power2.in"}}, {tCo:.2f});')
     c.entra("#cvEt", tEx)
     c.painel(ini, fim, "A IMAGEM DO MUSK", [(tCe, "🧠 IA de hoje: sem mãos"), (tGo, "🐬 golfinho: igual"),
                                             (tHu, "🤖 com corpo, o valor <b style='color:#FACC15'>explode</b>")])
@@ -189,36 +195,61 @@ def bloco_cerebro(c, F, ini, fim):
 
 def bloco_conta(c, F, ini, fim):
     tCo, tCh, tCr = F.t("conta"), F.t("chat"), F.t("cresce")
+    t30 = F.t("30", obrig=False) or tCr + 0.6
     tRo, tAp, tVe = F.t("robôs"), F.t("aposta"), F.t("vezes")
+    # fase A (v2, 21/10): a economia em US$ — barras grandes, valores grandes, fonte embaixo
+    L, MX = 80, 160 / 900            # x inicial; US$ tri por px
+    wA, wB = 115 / MX, 145 / MX
+    gA = svg(f'''
+ <text class="t1" x="540" y="140" text-anchor="middle">A ECONOMIA DO MUNDO</text>
+ <text class="t3" x="540" y="195" text-anchor="middle" fill="#d8d8e0">por ano, em dólares</text>
+ <g id="ra1" opacity="0"><text x="{L}" y="330" class="t2" fill="#fff">HOJE</text>
+   <text x="1000" y="330" text-anchor="end" fill="#fff" style="font-size:58px;font-weight:800">US$ 115 tri</text></g>
+ <rect id="ba1" x="{L}" y="360" width="0" height="120" rx="14" fill="url(#gb)"/>
+ <g id="ra2" opacity="0"><text x="{L}" y="600" class="t2" fill="#7cc4ff">+ IA DO CHAT</text>
+   <text x="1000" y="600" text-anchor="end" fill="#7cc4ff" style="font-size:58px;font-weight:800">≈ US$ 145 tri</text></g>
+ <rect id="ba2" x="{L}" y="630" width="0" height="120" rx="14" fill="#2f6fa8"/>
+ <rect id="ba2x" x="{L + wA:.0f}" y="630" width="{wB - wA:.0f}" height="120" rx="0" fill="#FACC15" opacity="0"/>
+ <g id="ra3" opacity="0"><text x="540" y="900" text-anchor="middle" fill="#FACC15" style="font-size:110px;font-weight:800">+30%</text>
+   <text x="540" y="970" text-anchor="middle" class="t2" fill="#fff">≈ US$ 30 trilhões a mais</text></g>
+ <text x="540" y="1120" text-anchor="middle" class="t4" fill="#9a9aa6">PIB mundial: FMI, 2025 (aprox.) · +30%: palpite do Musk</text>
+''')
+    pA = c.palco(ini, tRo + 0.2, gA)
+    c.mostra("#ra1", tCo)
+    c.a(f'tl.to("#ba1", {{attr:{{width:{wA:.0f}}}, duration:0.7, ease:"expo.out"}}, {tCo + 0.1:.2f});')
+    c.mostra("#ra2", tCh - 0.2)
+    c.a(f'tl.to("#ba2", {{attr:{{width:{wA:.0f}}}, duration:0.6, ease:"expo.out"}}, {tCh:.2f});')
+    c.a(f'tl.to("#ba2", {{attr:{{width:{wB:.0f}}}, duration:0.6, ease:"power2.out"}}, {tCr:.2f});')
+    c.mostra("#ba2x", tCr + 0.3)
+    c.entra("#ra3", t30 - 0.1)
+    # fase B: escala de 10 em 10 (log), números grandes
     base, dec = 1000, 105
     y = lambda d: base - 40 - d * dec            # d = log10(v)
     grade = ""
     for d, lab in enumerate(["1×", "10×", "100×", "1 mil×", "10 mil×", "100 mil×", "1 milhão×"]):
-        grade += (f'<path d="M190,{y(d):.0f} H1040" stroke="#22222c" stroke-width="2"/>'
-                  f'<text x="180" y="{y(d) + 9:.0f}" class="t4" fill="#9a9aa6" text-anchor="end">{lab}</text>')
+        grade += (f'<path d="M210,{y(d):.0f} H1040" stroke="#2c2c38" stroke-width="2"/>'
+                  f'<text x="196" y="{y(d) + 10:.0f}" class="t3" fill="#d8d8e0" text-anchor="end">{lab}</text>')
     def barra(nome, x, cor):
-        return f'<rect id="{nome}" x="{x}" y="{base}" width="230" height="0" rx="10" fill="url(#{cor})"/>'
+        return f'<rect id="{nome}" x="{x}" y="{base}" width="250" height="0" rx="12" fill="url(#{cor})"/>'
     corpo = svg(f'''
- <text class="t1" x="540" y="150" text-anchor="middle">A CONTA DELE</text>
- <text class="t3" x="540" y="205" text-anchor="middle" fill="#c9c9d2">tamanho da economia · escala que pula de 10 em 10</text>
- {grade}<path d="M190,{base} H1040" stroke="#9a9aa6" stroke-width="3"/>
- {barra("b1", 220, "gb")}{barra("b2", 500, "gb")}{barra("b3", 780, "gy")}
- <g id="l1" opacity="0"><text x="335" y="1045" class="t3" fill="#fff" text-anchor="middle">HOJE</text><text x="335" y="{y(0) - 20:.0f}" class="t3" fill="#c9c9d2" text-anchor="middle">1×</text></g>
- <g id="l2" opacity="0"><text x="615" y="1045" class="t3" fill="#fff" text-anchor="middle">IA DO CHAT</text><text x="615" y="{y(0.12) - 20:.0f}" class="t2" fill="#7cc4ff" text-anchor="middle">+30%</text></g>
- <g id="l3" opacity="0"><text x="895" y="1045" class="t3" fill="#FACC15" text-anchor="middle">ROBÔS +</text><text x="895" y="1085" class="t3" fill="#FACC15" text-anchor="middle">ESPAÇO</text></g>
- <g id="l3v" opacity="0"><text x="895" y="{y(6) - 22:.0f}" class="t2" fill="#FACC15" text-anchor="middle">1 milhão×</text></g>
- <g id="crb" opacity="0" transform="rotate(-12 560 560)"><rect x="300" y="500" width="520" height="120" rx="12" fill="none" stroke="#ff4d4d" stroke-width="8"/>
-   <text x="560" y="582" class="t2" fill="#ff4d4d" text-anchor="middle" style="font-size:54px">PALPITE DO MUSK</text></g>
+ <text class="t1" x="540" y="140" text-anchor="middle">NA ESCALA DE 10 EM 10</text>
+ <text class="t3" x="540" y="195" text-anchor="middle" fill="#d8d8e0">cada linha = 10 vezes a de baixo</text>
+ {grade}<path d="M210,{base} H1040" stroke="#d8d8e0" stroke-width="4"/>
+ {barra("b1", 230, "gb")}{barra("b2", 505, "gb")}{barra("b3", 780, "gy")}
+ <g id="l1"><text x="355" y="1050" class="t2" fill="#fff" text-anchor="middle">HOJE</text><text x="355" y="{y(0) - 24:.0f}" class="t2" fill="#fff" text-anchor="middle">1×</text></g>
+ <g id="l2"><text x="630" y="1050" class="t2" fill="#7cc4ff" text-anchor="middle">IA CHAT</text><text x="630" y="{y(0.12) - 24:.0f}" class="t2" fill="#7cc4ff" text-anchor="middle">1,3×</text></g>
+ <g id="l3" opacity="0"><text x="905" y="1050" class="t2" fill="#FACC15" text-anchor="middle">ROBÔS +</text><text x="905" y="1098" class="t2" fill="#FACC15" text-anchor="middle">ESPAÇO</text></g>
+ <g id="l3v" opacity="0"><rect x="700" y="{y(6) - 100:.0f}" width="370" height="76" rx="14" fill="#FACC15"/><text x="885" y="{y(6) - 44:.0f}" text-anchor="middle" fill="#1a1206" style="font-size:52px;font-weight:800">1 MILHÃO×</text></g>
+ <g id="crb" opacity="0" transform="rotate(-12 470 560)"><rect x="240" y="500" width="460" height="110" rx="12" fill="#0c0c10cc" stroke="#ff4d4d" stroke-width="8"/>
+   <text x="470" y="577" class="t2" fill="#ff4d4d" text-anchor="middle" style="font-size:50px">PALPITE DELE</text></g>
 ''')
-    c.palco(ini, fim, corpo)
-    c.a(f'tl.to("#b1", {{attr:{{y:{y(0):.0f}, height:{base - y(0):.0f}}}, duration:0.6}}, {tCo:.2f});')
-    c.mostra("#l1", tCo)
-    c.a(f'tl.to("#b2", {{attr:{{y:{y(0.12):.0f}, height:{base - y(0.12):.0f}}}, duration:0.6}}, {tCh:.2f});')
-    c.mostra("#l2", tCr - 0.1)
-    c.mostra("#l3", tRo - 0.1)
-    c.a(f'tl.to("#b3", {{attr:{{y:{y(6):.0f}, height:{base - y(6):.0f}}}, duration:{max(0.8, tVe - tAp + 0.3):.2f}, ease:"power2.in"}}, {tAp - 0.1:.2f});')
-    c.mostra("#l3v", tAp + 0.3)
-    c.a(f'tl.fromTo("#crb", {{opacity:0, scale:1.6, transformOrigin:"50% 50%"}}, {{opacity:1, scale:1, duration:0.35, ease:"back.out(2)"}}, {tAp + 0.7:.2f});')
+    c.palco(tRo - 0.1, fim, corpo)
+    c.a(f'tl.to("#b1", {{attr:{{y:{y(0) - 6:.0f}, height:{base - y(0) + 6:.0f}}}, duration:0.4}}, {tRo:.2f});')
+    c.a(f'tl.to("#b2", {{attr:{{y:{y(0.12) - 6:.0f}, height:{base - y(0.12) + 6:.0f}}}, duration:0.4}}, {tRo + 0.15:.2f});')
+    c.mostra("#l3", tRo + 0.3)
+    c.a(f'tl.to("#b3", {{attr:{{y:{y(6):.0f}, height:{base - y(6):.0f}}}, duration:{max(0.8, tVe - tAp + 0.2):.2f}, ease:"power2.in"}}, {tAp - 0.1:.2f});')
+    c.entra("#l3v", tVe)
+    c.a(f'tl.fromTo("#crb", {{opacity:0, scale:1.6, transformOrigin:"50% 50%"}}, {{opacity:1, scale:1, duration:0.35, ease:"back.out(2)"}}, {tVe + 0.2:.2f});')
     c.painel(ini, fim, "A CONTA · PALPITE DELE", [(tCh, "💬 só a IA do chat: <b style='color:#7cc4ff'>+30%</b>"),
                                                   (tRo, "🦾 com robôs e o espaço…")],
              grande=(tAp + 0.2, "ATÉ 1 MILHÃO×"))
@@ -237,7 +268,7 @@ def bloco_dinheiro(c, F, ini, fim):
     c.entra("#coin", tDi - 0.1)
     c.a(f'tl.to("#coin", {{opacity:0.25, scale:0.8, filter:"grayscale(1)", duration:0.5}}, {tEn:.2f});')
     c.mostra("#dset", tEn)
-    c.entra("#dw", tWa - 0.1); c.entra("#dt", tTo - 0.1)
+    c.entra("#dw", tWa - 0.1); c.entra("#dt", min(tTo - 0.1, tWa + 0.35))
     c.painel(ini, fim, "A MOEDA DO FUTURO", [(tWa, "⚡ quantos watts"), (tTo, "⚖️ quantas toneladas")], grande=(tEn, "ENERGIA"))
 
 
@@ -248,9 +279,13 @@ def bloco_marcos(c, F, ini, fim):
     c.imagem(ini, tMe + 0.3, "marcos.png", pos="50% 20%", z=1.06,
              extra='<div class="lbl1" id="lMa" style="top:900px"><b style="color:#FACC15">MARCOS</b>, 45<br>dono de uma oficina</div>')
     c.entra("#lMa", tMa + 0.2)
-    corpo = svg('''
+    corpo = svg(f'''
  <text class="t1" x="540" y="180" text-anchor="middle">MESMO PONTO, DOIS CAMINHOS</text>
  <circle id="mp0" cx="100" cy="400" r="18" fill="#fff" opacity="0"/>
+ <g id="mp0t" opacity="0"><text x="80" y="330" class="t2" fill="#fff">MARCOS HOJE</text><text x="80" y="370" class="t4" fill="#d8d8e0">a oficina como está</text></g>
+ <g id="mh" opacity="0"><text x="40" y="1070" class="t3" fill="#d8d8e0">horas de trabalho por semana</text>
+   <text x="40" y="1118" class="t3" fill="#fff">pessoa</text><rect id="mh1" x="200" y="1090" width="0" height="34" rx="8" fill="#6a6a78"/><text id="mh1t" x="{200 + 44 * 4.3 + 14:.0f}" y="1118" class="t3" fill="#fff" opacity="0">44 h</text>
+   <text x="40" y="1166" class="t3" fill="#ff4d4d">robô</text><rect id="mh2" x="200" y="1138" width="0" height="34" rx="8" fill="#ff4d4d"/><text id="mh2t" x="{200 + 168 * 4.3 + 14:.0f}" y="1166" class="t3" fill="#ff4d4d" opacity="0">168 h</text></g>
  <path id="mR" d="M100,400 C260,410 380,480 500,585" stroke="#ff4d4d" stroke-width="12" fill="none" marker-end="url(#ahr)" stroke-dasharray="600" stroke-dashoffset="600"/>
  <path id="mY" d="M100,400 C360,390 760,350 1010,260" stroke="#FACC15" stroke-width="12" fill="none" marker-end="url(#ahy)" filter="url(#glow)" stroke-dasharray="1000" stroke-dashoffset="1000"/>
  <path id="mG1" d="M100,400 C260,410 380,480 500,585" stroke="#55555f" stroke-width="5" fill="none" stroke-dasharray="12 10" opacity="0"/>
@@ -261,6 +296,11 @@ def bloco_marcos(c, F, ini, fim):
 <div class="card cY" id="kY"><img src="assets/marcos-robo.png" alt=""/><div class="ktag" style="background:#FACC15;color:#1a1206">PARTICIPANTE<br><small>usa o robô</small></div></div>'''
     c.palco(tMe - 0.1, fim, corpo)
     c.mostra("#mp0", tMe)
+    c.entra("#mp0t", tMe + 0.1)
+    c.a(f'tl.to("#mp0t", {{opacity:0, duration:0.3}}, {tAs - 0.2:.2f});')
+    c.mostra("#mh", tBa - 0.3)
+    c.a(f'tl.to("#mh1", {{attr:{{width:{44 * 4.3:.0f}}}, duration:0.5}}, {tBa - 0.2:.2f}); tl.to("#mh2", {{attr:{{width:{168 * 4.3:.0f}}}, duration:0.7, ease:"expo.out"}}, {tBa + 0.1:.2f});')
+    c.mostra("#mh1t", tBa + 0.1); c.mostra("#mh2t", tBa + 0.6)
     c.mostra("#mG1", tCa - 0.1); c.mostra("#mG2", tCa - 0.1)
     c.a(f'tl.to("#mR", {{strokeDashoffset:0, duration:{max(0.8, tCai - tAs):.2f}, ease:"power1.in"}}, {tAs:.2f});')
     c.entra("#kR", tAs)
@@ -399,18 +439,18 @@ html, body { width:1080px; height:1920px; overflow:hidden; background:var(--bg);
 .dbox b { display:block; font-family:Sora; font-weight:700; font-size:54px; color:var(--am); }
 .dbox i { display:block; font-style:normal; font-size:32px; color:#c9c9d2; font-weight:700; margin-top:6px; }
 /* marcos */
-.card { position:absolute; top:610px; width:490px; height:540px; border-radius:20px; overflow:hidden; opacity:0; border:5px solid; }
+.card { position:absolute; top:610px; width:490px; height:410px; border-radius:20px; overflow:hidden; opacity:0; border:5px solid; }
 .card img { width:100%; height:100%; object-fit:cover; object-position:50% 25%; }
 .cR { left:30px; border-color:#ff4d4d; } .cY { left:560px; border-color:var(--am); }
 .ktag { position:absolute; left:0; right:0; bottom:0; padding:12px 16px; font-family:Sora; font-weight:700; font-size:36px; line-height:1.1; color:#fff; text-align:center; }
 .ktag small { font-size:24px; font-weight:400; }
 /* plano */
-.plano { position:absolute; inset:0; padding:110px 60px; background:radial-gradient(ellipse at 50% 25%, #10283a 0%, #0c0c10 70%); }
-.pas { display:flex; gap:28px; align-items:center; padding:28px 30px; border-radius:20px; background:#14141c; border:3px solid #2c2c38; margin-bottom:28px; opacity:0; }
+.plano { position:absolute; inset:0; padding:150px 50px; background:radial-gradient(ellipse at 50% 25%, #10283a 0%, #0c0c10 70%); }
+.pas { display:flex; gap:30px; align-items:center; padding:40px 34px; border-radius:22px; background:#14141c; border:3px solid #FACC1555; margin-bottom:36px; opacity:0; }
 .ck { flex:none; width:96px; height:96px; border-radius:18px; background:var(--am); color:#1a1206; font-size:70px; font-weight:700; display:flex; align-items:center; justify-content:center; opacity:0; }
-.pas b { display:block; font-family:Sora; font-weight:700; font-size:46px; color:#fff; }
-.pas i { display:block; font-style:normal; font-size:30px; color:#c9c9d2; font-weight:700; margin-top:6px; }
-.hum { display:flex; justify-content:center; gap:18px; margin-top:20px; }
+.pas b { display:block; font-family:Sora; font-weight:700; font-size:52px; color:#fff; }
+.pas i { display:block; font-style:normal; font-size:34px; color:#c9c9d2; font-weight:700; margin-top:6px; }
+.hum { display:flex; justify-content:center; gap:18px; margin-top:44px; }
 .hum span { opacity:0; font-family:Sora; font-weight:700; font-size:34px; padding:14px 22px; border-radius:999px; background:#1f1a08; border:3px solid var(--am); }
 /* cta */
 .ctas { position:absolute; inset:0; padding:130px 50px 0; background:radial-gradient(ellipse at 50% 20%, #2a230a 0%, #0c0c10 70%); text-align:center; }

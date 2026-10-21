@@ -15,5 +15,6 @@ When I correct you, or you catch yourself making a mistake: before continuing, a
 TOP of the Lessons section below, so it never happens again.
 
 ## Lessons
+- Gráfico de dado no reel: preencher o palco (barras grossas, valores ≥ 52 px, rótulos claros), entrar já com a 1ª barra e mostrar a fonte embaixo; gráfico pequeno e cinza no fundo preto foi o que o Nei pediu para refazer. (musk-humanoides v2, 21/10/2026)
 - Avatar meia tela → PiP: não animar left/top/width/height (check do HyperFrames reprova); quadro fixo no tamanho da meia tela + clip-path inset + scale/x/y no vídeo. Legenda 9:16: grupo ≤ 20 caracteres, senão quebra e encosta no painel. (musk-humanoides, 21/10/2026)
 - `hyperframes snapshot` chama o Gemini (API) sozinho quando há GEMINI_API_KEY: sempre `--describe false`. Whisper escreve número em algarismo ("40", "20 %"): âncora do gerador = "40", não "quarenta". (musk, 21/10/2026)

@@ -15,3 +15,4 @@ When I correct you, or you catch yourself making a mistake: before continuing, a
 TOP of the Lessons section below, so it never happens again.
 
 ## Lessons
+- `hyperframes snapshot` chama o Gemini (API) sozinho quando há GEMINI_API_KEY: sempre `--describe false`. Whisper escreve número em algarismo ("40", "20 %"): âncora do gerador = "40", não "quarenta". (musk, 21/10/2026)

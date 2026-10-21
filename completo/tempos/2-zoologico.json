@@ -1,0 +1,647 @@
+[
+ {
+  "word": "Caminho",
+  "start": 0.0,
+  "end": 0.38
+ },
+ {
+  "word": "2.",
+  "start": 0.38,
+  "end": 0.58
+ },
+ {
+  "word": "O",
+  "start": 0.82,
+  "end": 1.14
+ },
+ {
+  "word": "zoológico",
+  "start": 1.14,
+  "end": 1.64
+ },
+ {
+  "word": "humano.",
+  "start": 1.64,
+  "end": 1.78
+ },
+ {
+  "word": "Uma",
+  "start": 2.04,
+  "end": 2.38
+ },
+ {
+  "word": "inteligência",
+  "start": 2.38,
+  "end": 2.9
+ },
+ {
+  "word": "artificial",
+  "start": 2.9,
+  "end": 3.12
+ },
+ {
+  "word": "tão",
+  "start": 3.12,
+  "end": 3.56
+ },
+ {
+  "word": "poderosa",
+  "start": 3.56,
+  "end": 4.0
+ },
+ {
+  "word": "que",
+  "start": 4.0,
+  "end": 4.18
+ },
+ {
+  "word": "decide",
+  "start": 4.18,
+  "end": 4.42
+ },
+ {
+  "word": "tudo.",
+  "start": 4.42,
+  "end": 4.74
+ },
+ {
+  "word": "Ela",
+  "start": 4.94,
+  "end": 5.24
+ },
+ {
+  "word": "não",
+  "start": 5.24,
+  "end": 5.4
+ },
+ {
+  "word": "nos",
+  "start": 5.4,
+  "end": 5.56
+ },
+ {
+  "word": "destrói.",
+  "start": 5.56,
+  "end": 5.96
+ },
+ {
+  "word": "Ela",
+  "start": 6.02,
+  "end": 6.32
+ },
+ {
+  "word": "nos",
+  "start": 6.32,
+  "end": 6.44
+ },
+ {
+  "word": "mantém",
+  "start": 6.44,
+  "end": 6.78
+ },
+ {
+  "word": "vivos",
+  "start": 6.78,
+  "end": 7.16
+ },
+ {
+  "word": "e",
+  "start": 7.16,
+  "end": 7.18
+ },
+ {
+  "word": "bem",
+  "start": 7.18,
+  "end": 7.32
+ },
+ {
+  "word": "cuidados",
+  "start": 7.32,
+  "end": 7.74
+ },
+ {
+  "word": "como",
+  "start": 7.74,
+  "end": 8.0
+ },
+ {
+  "word": "animais",
+  "start": 8.0,
+  "end": 8.44
+ },
+ {
+  "word": "num",
+  "start": 8.44,
+  "end": 8.54
+ },
+ {
+  "word": "zoológico.",
+  "start": 8.54,
+  "end": 9.04
+ },
+ {
+  "word": "A",
+  "start": 9.08,
+  "end": 9.36
+ },
+ {
+  "word": "Ana,",
+  "start": 9.36,
+  "end": 9.62
+ },
+ {
+  "word": "em",
+  "start": 9.7,
+  "end": 9.98
+ },
+ {
+  "word": "2040.",
+  "start": 9.98,
+  "end": 10.56
+ },
+ {
+  "word": "Comida,",
+  "start": 10.9,
+  "end": 11.42
+ },
+ {
+  "word": "casa",
+  "start": 11.44,
+  "end": 11.94
+ },
+ {
+  "word": "e",
+  "start": 11.94,
+  "end": 12.34
+ },
+ {
+  "word": "saúde",
+  "start": 12.34,
+  "end": 12.62
+ },
+ {
+  "word": "garantidas.",
+  "start": 12.62,
+  "end": 13.14
+ },
+ {
+  "word": "Nenhum",
+  "start": 13.3,
+  "end": 13.66
+ },
+ {
+  "word": "trabalho,",
+  "start": 13.66,
+  "end": 13.9
+ },
+ {
+  "word": "nenhuma",
+  "start": 14.16,
+  "end": 14.48
+ },
+ {
+  "word": "conta",
+  "start": 14.48,
+  "end": 14.86
+ },
+ {
+  "word": "e",
+  "start": 14.86,
+  "end": 15.12
+ },
+ {
+  "word": "nenhuma",
+  "start": 15.12,
+  "end": 15.46
+ },
+ {
+  "word": "escolha.",
+  "start": 15.46,
+  "end": 15.92
+ },
+ {
+  "word": "No",
+  "start": 15.98,
+  "end": 16.3
+ },
+ {
+  "word": "gráfico,",
+  "start": 16.3,
+  "end": 16.74
+ },
+ {
+  "word": "a",
+  "start": 16.74,
+  "end": 16.92
+ },
+ {
+  "word": "linha",
+  "start": 16.92,
+  "end": 17.1
+ },
+ {
+  "word": "até",
+  "start": 17.1,
+  "end": 17.28
+ },
+ {
+  "word": "sobe",
+  "start": 17.28,
+  "end": 17.5
+ },
+ {
+  "word": "no",
+  "start": 17.5,
+  "end": 17.58
+ },
+ {
+  "word": "começo.",
+  "start": 17.58,
+  "end": 17.84
+ },
+ {
+  "word": "Parece",
+  "start": 18.0,
+  "end": 18.22
+ },
+ {
+  "word": "melhor.",
+  "start": 18.22,
+  "end": 18.46
+ },
+ {
+  "word": "Depois",
+  "start": 18.64,
+  "end": 19.14
+ },
+ {
+  "word": "se",
+  "start": 19.14,
+  "end": 19.26
+ },
+ {
+  "word": "acomoda",
+  "start": 19.26,
+  "end": 19.56
+ },
+ {
+  "word": "perto",
+  "start": 19.56,
+  "end": 19.7
+ },
+ {
+  "word": "de",
+  "start": 19.7,
+  "end": 19.88
+ },
+ {
+  "word": "onde",
+  "start": 19.88,
+  "end": 19.96
+ },
+ {
+  "word": "estamos",
+  "start": 19.96,
+  "end": 20.16
+ },
+ {
+  "word": "hoje.",
+  "start": 20.16,
+  "end": 20.44
+ },
+ {
+  "word": "Conforto",
+  "start": 20.88,
+  "end": 21.4
+ },
+ {
+  "word": "não",
+  "start": 21.4,
+  "end": 21.46
+ },
+ {
+  "word": "é",
+  "start": 21.46,
+  "end": 21.54
+ },
+ {
+  "word": "liberdade.",
+  "start": 21.54,
+  "end": 21.94
+ },
+ {
+  "word": "Como",
+  "start": 22.14,
+  "end": 22.52
+ },
+ {
+  "word": "se",
+  "start": 22.52,
+  "end": 22.62
+ },
+ {
+  "word": "chega",
+  "start": 22.62,
+  "end": 22.8
+ },
+ {
+  "word": "lá,",
+  "start": 22.8,
+  "end": 23.0
+ },
+ {
+  "word": "a",
+  "start": 23.1,
+  "end": 23.26
+ },
+ {
+  "word": "inteligência",
+  "start": 23.26,
+  "end": 23.7
+ },
+ {
+  "word": "artificial",
+  "start": 23.7,
+  "end": 23.96
+ },
+ {
+  "word": "fica",
+  "start": 23.96,
+  "end": 24.36
+ },
+ {
+  "word": "melhor",
+  "start": 24.36,
+  "end": 24.58
+ },
+ {
+  "word": "que",
+  "start": 24.58,
+  "end": 24.78
+ },
+ {
+  "word": "a",
+  "start": 24.78,
+  "end": 24.8
+ },
+ {
+  "word": "gente",
+  "start": 24.8,
+  "end": 25.1
+ },
+ {
+  "word": "em",
+  "start": 25.1,
+  "end": 25.24
+ },
+ {
+  "word": "quase",
+  "start": 25.24,
+  "end": 25.4
+ },
+ {
+  "word": "tudo.",
+  "start": 25.4,
+  "end": 25.64
+ },
+ {
+  "word": "E,",
+  "start": 25.8,
+  "end": 26.06
+ },
+ {
+  "word": "por",
+  "start": 26.16,
+  "end": 26.46
+ },
+ {
+  "word": "conforto,",
+  "start": 26.46,
+  "end": 27.1
+ },
+ {
+  "word": "entregamos",
+  "start": 27.1,
+  "end": 27.74
+ },
+ {
+  "word": "as",
+  "start": 27.74,
+  "end": 27.9
+ },
+ {
+  "word": "decisões",
+  "start": 27.9,
+  "end": 28.36
+ },
+ {
+  "word": "uma",
+  "start": 28.36,
+  "end": 28.76
+ },
+ {
+  "word": "de",
+  "start": 28.76,
+  "end": 28.88
+ },
+ {
+  "word": "cada",
+  "start": 28.88,
+  "end": 28.96
+ },
+ {
+  "word": "vez.",
+  "start": 28.96,
+  "end": 29.22
+ },
+ {
+  "word": "Como",
+  "start": 29.22,
+  "end": 29.88
+ },
+ {
+  "word": "não",
+  "start": 29.88,
+  "end": 30.04
+ },
+ {
+  "word": "ser",
+  "start": 30.04,
+  "end": 30.18
+ },
+ {
+  "word": "a",
+  "start": 30.18,
+  "end": 30.28
+ },
+ {
+  "word": "massa,",
+  "start": 30.28,
+  "end": 30.44
+ },
+ {
+  "word": "use",
+  "start": 30.62,
+  "end": 31.06
+ },
+ {
+  "word": "a",
+  "start": 31.06,
+  "end": 31.2
+ },
+ {
+  "word": "inteligência",
+  "start": 31.2,
+  "end": 31.66
+ },
+ {
+  "word": "artificial,",
+  "start": 31.66,
+  "end": 31.92
+ },
+ {
+  "word": "mas",
+  "start": 32.24,
+  "end": 32.66
+ },
+ {
+  "word": "não",
+  "start": 32.66,
+  "end": 32.82
+ },
+ {
+  "word": "terceirize",
+  "start": 32.82,
+  "end": 33.32
+ },
+ {
+  "word": "o",
+  "start": 33.32,
+  "end": 33.36
+ },
+ {
+  "word": "seu",
+  "start": 33.36,
+  "end": 33.48
+ },
+ {
+  "word": "julgamento",
+  "start": 33.48,
+  "end": 33.82
+ },
+ {
+  "word": "Continue",
+  "start": 33.82,
+  "end": 34.36
+ },
+ {
+  "word": "sabendo",
+  "start": 34.36,
+  "end": 34.86
+ },
+ {
+  "word": "fazer",
+  "start": 34.86,
+  "end": 35.02
+ },
+ {
+  "word": "as",
+  "start": 35.02,
+  "end": 35.14
+ },
+ {
+  "word": "coisas",
+  "start": 35.14,
+  "end": 35.36
+ },
+ {
+  "word": "importantes",
+  "start": 35.36,
+  "end": 35.68
+ },
+ {
+  "word": "com",
+  "start": 35.68,
+  "end": 36.04
+ },
+ {
+  "word": "as",
+  "start": 36.04,
+  "end": 36.12
+ },
+ {
+  "word": "próprias",
+  "start": 36.12,
+  "end": 36.42
+ },
+ {
+  "word": "mãos",
+  "start": 36.42,
+  "end": 36.74
+ },
+ {
+  "word": "E",
+  "start": 36.74,
+  "end": 37.04
+ },
+ {
+  "word": "guarde",
+  "start": 37.04,
+  "end": 37.4
+ },
+ {
+  "word": "o",
+  "start": 37.4,
+  "end": 37.4
+ },
+ {
+  "word": "hábito",
+  "start": 37.4,
+  "end": 37.74
+ },
+ {
+  "word": "de",
+  "start": 37.74,
+  "end": 37.86
+ },
+ {
+  "word": "decidir,",
+  "start": 37.86,
+  "end": 38.3
+ },
+ {
+  "word": "mesmo",
+  "start": 38.32,
+  "end": 38.86
+ },
+ {
+  "word": "quando",
+  "start": 38.86,
+  "end": 39.04
+ },
+ {
+  "word": "a",
+  "start": 39.04,
+  "end": 39.26
+ },
+ {
+  "word": "máquina",
+  "start": 39.26,
+  "end": 39.46
+ },
+ {
+  "word": "decide",
+  "start": 39.46,
+  "end": 39.76
+ },
+ {
+  "word": "mais",
+  "start": 39.76,
+  "end": 39.98
+ },
+ {
+  "word": "rápido",
+  "start": 39.98,
+  "end": 40.26
+ }
+]

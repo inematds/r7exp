@@ -2,3 +2,8 @@ node_modules/
 *.log
 prototipo/*/renders/
 prototipo/*/.hyperframes/
+completo/build/
+completo/cena-*/assets/
+completo/cena-*/.hyperframes/
+completo/tempos/_*/
+completo/avatar/*.mp4

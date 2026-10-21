@@ -210,7 +210,7 @@ class Cena:
     def card_oque(self, F, k, n, itens, ini, fim, track=4):
         L = self.f["mapa"]["linhas"][k]
         corpo = (f'<div class="card oque" style="border-color:{L["cor"]}55"><div class="chip" style="background:{L["cor"]}2e;color:{L["cor"]}">O QUE É</div>'
-                 f'<div class="ctit">{L["nome"].capitalize()}</div>')
+                 f'<div class="ctit">{L["nome"].capitalize().replace(" ia", " IA")}</div>')
         ts = []
         for pal, ic, txt in itens:
             i = self.id("r")
@@ -308,6 +308,7 @@ class Cena:
         self.a(f'tl.to("#{inner}", {{opacity:0, duration:0.6}}, {t_capa:.2f});')
         self.esconde_mapa(-1, t_capa + 0.6)
         self.a(f'tl.set("#avw", {{opacity:0}}, 0); tl.to("#avw", {{opacity:1, duration:0.5}}, {min(3.2, t_capa):.2f});')
+        self.a(f'tl.set(["#marca","#fonte"], {{opacity:0}}, 0); tl.to(["#marca","#fonte"], {{opacity:1, duration:0.5}}, {t_capa:.2f});')
         m = ab["mapa"]
         cur = t_capa
         if "ai2027" in ab:                                   # versão b: AI 2027 + Stanford antes do mapa
@@ -496,14 +497,14 @@ class Cena:
             self.a(f'tl.to("#{j} b", {{backgroundColor:"#4ade80", duration:0.3}}, {t + 0.3:.2f});')
         # massa → desenhar a linha (mapa) → CTA
         td = F.t("desenhar", depois=tmz)
+        tq0 = F.t("futuros", depois=td, obrig=False) or td + 2
         F.cur = tmz - F.ini
-        self.massa(F, [], tmz - 0.2, td + 0.1, fecho={"de": "desenhar", "a": fn["massa"]["a"], "b": fn["massa"]["b"]}, muitos=True)
+        self.massa(F, [], tmz - 0.2, tq0 - 0.3, fecho={"de": "prepara", "a": fn["massa"]["a"], "b": fn["massa"]["b"]}, muitos=True)
         tq = F.t(fn["cta"]["de"], depois=td) if F.t(fn["cta"]["de"], depois=td, obrig=False) else td + 3
         self.mapa_inteiro(td - 0.2, 1.0)
         self.a(f'tl.fromTo("#empurra", {{opacity:0}}, {{opacity:1, duration:0.3}}, {td:.2f});')
         self.a(f'(()=>{{const p=document.getElementById("pEmp"),L=p.getTotalLength(); tl.fromTo(p,{{strokeDasharray:L,strokeDashoffset:L}},{{strokeDashoffset:0,duration:1.0,ease:"power2.out"}},{td + 0.1:.2f});}})();')
         self.a(f'tl.to(["#gE","#gZ"], {{opacity:0.25, duration:0.6}}, {td + 0.6:.2f});')
-        tq0 = F.t("futuros", depois=td, obrig=False) or tq
         i3 = self.id("in")
         corpo = (f'<div class="in" id="{i3}"><div class="full" style="background:rgba(12,12,16,.88)"></div><div class="fim"><h2>{fn["cta"]["pergunta"]}</h2>'
                  f'<div class="sub">comenta aqui 👇</div><div class="pill" id="{i3}p">inema.club</div></div>'
@@ -565,7 +566,10 @@ def main():
     pal = []
     for s in seg["segmentos"]:
         for x in falas[s["fala"]].w:
-            pal.append({"word": CORRIGE.get(x["word"].strip(), x["word"].strip()), "t": round(s["ini"] + x["start"], 2)})
+            wd = CORRIGE.get(x["word"].strip(), x["word"].strip())
+            if pal and wd[:1] in "-." and len(wd) > 1:          # whisper separa "ex -funcionário", "inema .club"
+                pal[-1]["word"] += wd; continue
+            pal.append({"word": wd, "t": round(s["ini"] + x["start"], 2)})
     leg = legenda(cena, pal, total)
     pip = PIP
     av = (f'<div id="avw" style="left:{pip["left"]}px;top:{pip["top"]}px;width:{pip["w"]}px;height:{pip["h"]}px;">'

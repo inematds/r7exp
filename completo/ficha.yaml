@@ -46,7 +46,7 @@ caminhos:
     n: 1
     fala: 1-extincao
     o_que_e: {de: "que", itens: [[capaz, "🤖", "uma IA muito mais capaz que nós"], [objetivos, "🎯", "com objetivos que não são os nossos"], [odiar, "⚠️", "não precisa nos odiar: basta a gente atrapalhar"]]}
-    vive: {de: ana, imagem: extincao-casa.png, carimbo: "ANA · 2040", tags: [[vive, "✕ não vive"], [vazia, "a casa está vazia"]]}
+    vive: {de: ana, imagem: extincao-casa.png, carimbo: "ANA · 2040", tags: [[nao, "✕ não vive"], [vazia, "a casa está vazia"]]}
     leva: {de: leva, imagem: extincao-corrida.png, nos: [[corrida, "UMA CORRIDA", "empresas e países"], [medo, "MEDO DE FICAR PARA TRÁS", ""], [entende, "SISTEMAS QUE NINGUÉM ENTENDE", ""], [freio, "SEM FREIO", "e sem fiscalização"]]}
     massa: {de: massa, itens: [[entenda, "entenda o assunto: nem pânico, nem deboche"], [segurança, "apoie testes de segurança antes de lançar"], [voz, "voz, voto e dinheiro com quem leva a sério"]], fecho: {de: pressiona, a: "A massa ignora.", b: "Quem entende, pressiona."}}
   - id: Z
@@ -67,7 +67,7 @@ caminhos:
   - id: P
     n: 4
     fala: 4-paraiso
-    o_que_e: {de: "inteligencia", itens: [[felicidade, "💚", "uma IA cuida da nossa felicidade"], [discreto, "🫥", "tão discreta que nos sentimos no controle"], [acredita, "❓", "muita gente nem acredita que ela exista"]]}
+    o_que_e: {de: "quase", itens: [[felicidade, "💚", "uma IA cuida da nossa felicidade"], [discreto, "🫥", "tão discreta que nos sentimos no controle"], [acredita, "❓", "muita gente nem acredita que ela exista"]]}
     vive: {de: ana, imagem: paraiso-ana.png, imagem2: paraiso-cidade.png, carimbo: "ANA · 2040", tags: [[gosta, "trabalha no que gosta"], [doencas, "doenças vencidas"], [energia, "energia barata"], [verde, "cidade verde"]]}
     leva: {de: leva, imagem: paraiso-cidade.png, nos: [[alinhada, "IA ALINHADA", "com valores humanos"], [testada, "TESTADA A FUNDO", ""], [abundancia, "ABUNDÂNCIA", "bem distribuída"]], risco: {de: risco, texto: "O RISCO: quem decide o que é a sua felicidade?"}}
     massa: {de: massa, itens: [[proposito, "um propósito seu, não de um algoritmo"], [humano, "criar, cuidar, ensinar, liderar"], [dirigir, "dirija a IA, não só consuma"]]}

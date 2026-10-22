@@ -1,0 +1,19 @@
+# Ficha r7exp — "Qual bot você vai usar?" (22/10/2026). Fonte: teste antecipado do Claude Duet e comparação com
+# Grok Bot, Meta Muse e ChatGPT Dots (vídeo em inglês colado pelo Nei, não citado). Par do refazvideo D-pz8L1orVI.
+# Ordem das falas (aberturas.a → caminhos → final) = a que motor/monta_avatar.py usa; peças em bots/gera_bots.py.
+slug: qual-bot-r7exp
+marca: "INEMA · QUAL BOT VOCÊ VAI USAR?"
+fonte: "lançamentos ago–out 2026 · teste antecipado do Duet"
+personagem: "Carla, 41 anos, consultora autônoma, cem e-mails por dia (carla-2026.png)"
+
+mapa:
+  linhas: {}
+
+aberturas:
+  a: {fala: 0-intro, capa: capa.png}
+caminhos:
+  - {id: G, n: 1, fala: 1-grok}
+  - {id: M, n: 2, fala: 2-muse}
+  - {id: D, n: 3, fala: 3-dots}
+  - {id: C, n: 4, fala: 4-duet}
+final: {fala: 5-final, url: "https://inema.club"}

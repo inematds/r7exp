@@ -1,0 +1,7 @@
+Gere 1 imagem com a ferramenta de geração de imagem (image_gen) e salve nesta pasta como capa-r7.png, em PNG, formato PAISAGEM 16:9 (o maior tamanho horizontal disponível).
+A imagem anexada (carla-2026.png) é a personagem CARLA (41 anos, cabelo castanho ondulado, blusa verde-escura, brinco de argola): use-a como referência de rosto.
+CAPA DE IMPACTO, fundo quase preto #0c0c10 com leve brilho dourado no chão, clima de "batalha" entre opções. TUDO o que importa fica na METADE ESQUERDA da imagem (a metade direita vai ficar coberta por outro vídeo: deixe a metade direita só escura, com leve luz fria, sem nada importante).
+Na metade esquerda, em cima, texto ESCRITO DENTRO da arte, enorme, fonte bold sem serifa com textura metálica, alinhado à esquerda, em 2 linhas: em branco "QUAL BOT" e, maior, em amarelo #FACC15, "É O SEU?". Só essas palavras. Confira a grafia exata, com acento (É).
+Na metade esquerda, embaixo: close da Carla, olhar em dúvida, iluminada por quatro pequenas esferas de luz flutuando à frente dela (uma branca, uma azul, uma verde-água, uma laranja), como quatro opções para escolher. Sem logos, sem outras palavras.
+Estilo: ilustração cinematográfica realista, contraste alto, luz neutra no rosto.
+Ao final, diga o caminho do arquivo salvo.

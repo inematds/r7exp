@@ -1,0 +1,5 @@
+Gere 1 imagem com a ferramenta de geração de imagem (image_gen) e salve nesta pasta como carla-2026.png, em PNG, formato PAISAGEM 16:9 (o maior tamanho horizontal disponível).
+CARLA, personagem fixa de um vídeo: mulher brasileira de 41 anos, pele morena clara, cabelo castanho ondulado na altura dos ombros, blusa verde-escura lisa, brinco pequeno de argola. Rosto genérico (não é pessoa real).
+Cena: hoje, no pequeno escritório em casa, de manhã; ela olha cansada para o notebook e o celular ao mesmo tempo, com uma pilha de papéis e post-its na mesa; a tela mostra uma caixa de e-mail lotada e uma agenda cheia de blocos coloridos (sem texto legível). Plano médio, ela à DIREITA do quadro, rosto bem visível.
+Estilo: ilustração cinematográfica realista, luz NEUTRA de dia (nada amarelado/âmbar), cores naturais. SEM texto legível e SEM logos.
+Ao final, diga o caminho do arquivo salvo.

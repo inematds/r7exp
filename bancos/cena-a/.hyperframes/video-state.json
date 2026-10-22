@@ -1,0 +1,516 @@
+{
+  "version": 1,
+  "historyId": "2497713b-be22-45b3-9f21-84df227ef71e",
+  "currentRevision": "2c0c2f74-4dca-4968-a1fb-d5caa3084eea",
+  "pendingChanges": false,
+  "files": {
+    "assets/fonts/Inter-500.woff2": {
+      "hash": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/34/34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956"
+    },
+    "assets/fonts/Inter-700.woff2": {
+      "hash": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/34/34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956"
+    },
+    "assets/fonts/Montserrat-Black.ttf": {
+      "hash": "ea67b37f8776eebea135cd1fe9adeaf6f9427683e8dc11ab8398b6be5f102c60",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/ea/ea67b37f8776eebea135cd1fe9adeaf6f9427683e8dc11ab8398b6be5f102c60"
+    },
+    "assets/fonts/sora-latin-400-normal.woff2": {
+      "hash": "98141d7eaa6e9ee35e0827d279018cd33c3e59c6650541ec7de1c692efd93942",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/98/98141d7eaa6e9ee35e0827d279018cd33c3e59c6650541ec7de1c692efd93942"
+    },
+    "assets/fonts/sora-latin-700-normal.woff2": {
+      "hash": "c3337a673c9bbbfe433091d3831714dd9a257951f16f41eb3fc650ec593cfac2",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/c3/c3337a673c9bbbfe433091d3831714dd9a257951f16f41eb3fc650ec593cfac2"
+    },
+    "assets/logo-openai.png": {
+      "hash": "375016542ebe78b63c7f36b8f6aee3058f2b706d861e5153fd74f9c27f63b8b7",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/37/375016542ebe78b63c7f36b8f6aee3058f2b706d861e5153fd74f9c27f63b8b7"
+    },
+    "assets/print-inema.png": {
+      "hash": "31e15a35abbc414a0d262cbcda23ea82cb57efdd50dd1f6dc380d25ee5e50337",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/31/31e15a35abbc414a0d262cbcda23ea82cb57efdd50dd1f6dc380d25ee5e50337"
+    },
+    "hyperframes.json": {
+      "hash": "ad5dadeef78a520800a9e5cdd27a92ff5ac37f11b6a07f611b6b52b9f8c79a17",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/ad/ad5dadeef78a520800a9e5cdd27a92ff5ac37f11b6a07f611b6b52b9f8c79a17"
+    },
+    "index.html": {
+      "hash": "bb7198a652baaf61dbdde375810fc5c25a9ef5671359c5bf3cb7814702e7a63b",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/bb/bb7198a652baaf61dbdde375810fc5c25a9ef5671359c5bf3cb7814702e7a63b"
+    },
+    "package.json": {
+      "hash": "ea8ab54e3d52581b68b0e7438467c1c8fe2ccc6dc1cb805ab4ba33cadad2172c",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/ea/ea8ab54e3d52581b68b0e7438467c1c8fe2ccc6dc1cb805ab4ba33cadad2172c"
+    },
+    "assets/capa-r7.png": {
+      "hash": "963355bdb8b92cc2ad251394093ded74c3e417faba0c4fd82c323becd58bcaa2",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/96/963355bdb8b92cc2ad251394093ded74c3e417faba0c4fd82c323becd58bcaa2"
+    },
+    "assets/marcos-hoje.png": {
+      "hash": "b68d6b8e194f973c6c0be5bd7adedbc713890184a94163918c67aa449ea7749c",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/b6/b68d6b8e194f973c6c0be5bd7adedbc713890184a94163918c67aa449ea7749c"
+    },
+    "assets/antigo-marcos.png": {
+      "hash": "e8e8ea4f95ca2be69f156430bb78a7072eaf65d9f4e4ef351d2deb5d56f2a5fa",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/e8/e8e8ea4f95ca2be69f156430bb78a7072eaf65d9f4e4ef351d2deb5d56f2a5fa"
+    },
+    "assets/centavo-marcos.png": {
+      "hash": "1f92d88b779fee179e63bceb71a133e8b560281806302549172a2bf0008789fe",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/1f/1f92d88b779fee179e63bceb71a133e8b560281806302549172a2bf0008789fe"
+    },
+    "assets/empresa-marcos.png": {
+      "hash": "f6acb8c8c8e9657f1a95e3423c99ae7fe7890869964888eebb3cffac3821a3b4",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/f6/f6acb8c8c8e9657f1a95e3423c99ae7fe7890869964888eebb3cffac3821a3b4"
+    },
+    "assets/final-marcos.png": {
+      "hash": "82b4aca53ae48a0d9a5bf7fa5580402c6384ee9383a98de5fba8c18eb05acb5d",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/82/82b4aca53ae48a0d9a5bf7fa5580402c6384ee9383a98de5fba8c18eb05acb5d"
+    },
+    "assets/salto-marcos.png": {
+      "hash": "1d6ff15be07bb24e2d78e594d9aaccbc0fa84a56ba56012047a6bc1fd9a51127",
+      "content": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/1d/1d6ff15be07bb24e2d78e594d9aaccbc0fa84a56ba56012047a6bc1fd9a51127"
+    }
+  },
+  "revisions": {
+    "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792710239830,
+      "endedAt": 1792710239868,
+      "files": {
+        "assets/antigo-marcos.png": {
+          "before": null,
+          "after": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/e8/e8e8ea4f95ca2be69f156430bb78a7072eaf65d9f4e4ef351d2deb5d56f2a5fa"
+        },
+        "assets/centavo-marcos.png": {
+          "before": null,
+          "after": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/1f/1f92d88b779fee179e63bceb71a133e8b560281806302549172a2bf0008789fe"
+        },
+        "assets/empresa-marcos.png": {
+          "before": null,
+          "after": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/f6/f6acb8c8c8e9657f1a95e3423c99ae7fe7890869964888eebb3cffac3821a3b4"
+        },
+        "assets/final-marcos.png": {
+          "before": null,
+          "after": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/82/82b4aca53ae48a0d9a5bf7fa5580402c6384ee9383a98de5fba8c18eb05acb5d"
+        },
+        "assets/salto-marcos.png": {
+          "before": null,
+          "after": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/1d/1d6ff15be07bb24e2d78e594d9aaccbc0fa84a56ba56012047a6bc1fd9a51127"
+        },
+        "index.html": {
+          "before": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/86/86a58267231ff117fe48b21910b78c0e2c16d37c4206c1e8f2ba014e5d3202f8",
+          "after": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/1f/1fd081e81740cb65f3ee475c69c446d3af84faaf48e715104599b6911abf4115"
+        }
+      }
+    },
+    "2c0c2f74-4dca-4968-a1fb-d5caa3084eea": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792710273500,
+      "endedAt": 1792710273500,
+      "files": {
+        "index.html": {
+          "before": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/1f/1fd081e81740cb65f3ee475c69c446d3af84faaf48e715104599b6911abf4115",
+          "after": "/home/nmaldaner/.cache/hyperframes/history/2497713b-be22-45b3-9f21-84df227ef71e/blobs/bb/bb7198a652baaf61dbdde375810fc5c25a9ef5671359c5bf3cb7814702e7a63b"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "2c0c2f74-4dca-4968-a1fb-d5caa3084eea",
+      "id": "6570fc29-e2e7-4b6e-95e3-a7e5543e11b8-3"
+    },
+    "revisions": {
+      "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8": [
+        {
+          "scope": "full",
+          "id": "19c0723a-c3df-4921-a46b-8c46153caf12-0",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapF/frame-00-at-5s.png",
+          "time": 5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 5s",
+              "1 video frames missing at 40s",
+              "1 video frames missing at 58s",
+              "1 video frames missing at 95s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 118s",
+              "1 video frames missing at 190s",
+              "1 video frames missing at 205s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710244645,
+          "contentHash": "2f23fe7200af279f228cdba0f487c6038b73a78d5187065d832b8d15111e86fb",
+          "revision": "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8",
+          "inputFingerprint": "316c06e31f0ce0a71324234958d853769ba1278d038710a9e35b686c2c5b50f0",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "19c0723a-c3df-4921-a46b-8c46153caf12-1",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapF/frame-01-at-40s.png",
+          "time": 40,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 5s",
+              "1 video frames missing at 40s",
+              "1 video frames missing at 58s",
+              "1 video frames missing at 95s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 118s",
+              "1 video frames missing at 190s",
+              "1 video frames missing at 205s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710244645,
+          "contentHash": "923d7a2058e02e3e4d6f994d0fad627b9ff0743e77b1d23dd897bf484f1ab9ff",
+          "revision": "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8",
+          "inputFingerprint": "316c06e31f0ce0a71324234958d853769ba1278d038710a9e35b686c2c5b50f0",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "19c0723a-c3df-4921-a46b-8c46153caf12-2",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapF/frame-02-at-58s.png",
+          "time": 58,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 5s",
+              "1 video frames missing at 40s",
+              "1 video frames missing at 58s",
+              "1 video frames missing at 95s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 118s",
+              "1 video frames missing at 190s",
+              "1 video frames missing at 205s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710244645,
+          "contentHash": "515c8e6e43fe1f15868ea51169e9fd8f6028b6d54da4869b111331e8a65ec42f",
+          "revision": "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8",
+          "inputFingerprint": "316c06e31f0ce0a71324234958d853769ba1278d038710a9e35b686c2c5b50f0",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "19c0723a-c3df-4921-a46b-8c46153caf12-3",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapF/frame-03-at-95s.png",
+          "time": 95,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 5s",
+              "1 video frames missing at 40s",
+              "1 video frames missing at 58s",
+              "1 video frames missing at 95s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 118s",
+              "1 video frames missing at 190s",
+              "1 video frames missing at 205s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710244645,
+          "contentHash": "b0ead942b3c6eedaf923a6eb6f5bf8882ba1404d6b15b53e8a9d120ff268a2d4",
+          "revision": "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8",
+          "inputFingerprint": "316c06e31f0ce0a71324234958d853769ba1278d038710a9e35b686c2c5b50f0",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "19c0723a-c3df-4921-a46b-8c46153caf12-4",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapF/frame-04-at-100s.png",
+          "time": 100,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 5s",
+              "1 video frames missing at 40s",
+              "1 video frames missing at 58s",
+              "1 video frames missing at 95s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 118s",
+              "1 video frames missing at 190s",
+              "1 video frames missing at 205s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710244645,
+          "contentHash": "50bb4fe6953365e8fad5eb732aa61f8b1d6e57816e0d427aa7711e6771390472",
+          "revision": "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8",
+          "inputFingerprint": "316c06e31f0ce0a71324234958d853769ba1278d038710a9e35b686c2c5b50f0",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "19c0723a-c3df-4921-a46b-8c46153caf12-5",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapF/frame-05-at-118s.png",
+          "time": 118,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 5s",
+              "1 video frames missing at 40s",
+              "1 video frames missing at 58s",
+              "1 video frames missing at 95s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 118s",
+              "1 video frames missing at 190s",
+              "1 video frames missing at 205s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710244645,
+          "contentHash": "a1d9e4dd8ffd04d16e6900748248e5d61a9be9b8da921de9e292f0065f46919b",
+          "revision": "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8",
+          "inputFingerprint": "316c06e31f0ce0a71324234958d853769ba1278d038710a9e35b686c2c5b50f0",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "19c0723a-c3df-4921-a46b-8c46153caf12-6",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapF/frame-06-at-190s.png",
+          "time": 190,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 5s",
+              "1 video frames missing at 40s",
+              "1 video frames missing at 58s",
+              "1 video frames missing at 95s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 118s",
+              "1 video frames missing at 190s",
+              "1 video frames missing at 205s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710244645,
+          "contentHash": "5b6c6ac2bd800375a759b87750c01385ca4b062ff0d101c7909852377d63bfce",
+          "revision": "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8",
+          "inputFingerprint": "316c06e31f0ce0a71324234958d853769ba1278d038710a9e35b686c2c5b50f0",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "19c0723a-c3df-4921-a46b-8c46153caf12-7",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapF/frame-07-at-205s.png",
+          "time": 205,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 5s",
+              "1 video frames missing at 40s",
+              "1 video frames missing at 58s",
+              "1 video frames missing at 95s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 118s",
+              "1 video frames missing at 190s",
+              "1 video frames missing at 205s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710244646,
+          "contentHash": "9fcfb0a99dceee7e9e36b517e2b4d5c0fec7a559cbca16010482fcc5b3ece0d1",
+          "revision": "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8",
+          "inputFingerprint": "316c06e31f0ce0a71324234958d853769ba1278d038710a9e35b686c2c5b50f0",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "19c0723a-c3df-4921-a46b-8c46153caf12-8",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapF/frame-08-at-210.461s.png",
+          "time": 210.461,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 5s",
+              "1 video frames missing at 40s",
+              "1 video frames missing at 58s",
+              "1 video frames missing at 95s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 118s",
+              "1 video frames missing at 190s",
+              "1 video frames missing at 205s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710244646,
+          "contentHash": "7b89e116a4b1386b24ce048f0c011b0f5d5e24e1da1aa3e3dd675f37d9715220",
+          "revision": "2e2e5703-06ad-4568-bbd1-1fa3b7e5b5a8",
+          "inputFingerprint": "316c06e31f0ce0a71324234958d853769ba1278d038710a9e35b686c2c5b50f0",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "2c0c2f74-4dca-4968-a1fb-d5caa3084eea": [
+        {
+          "scope": "full",
+          "id": "6570fc29-e2e7-4b6e-95e3-a7e5543e11b8-0",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapG/frame-00-at-99.6s.png",
+          "time": 99.6,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 99.6s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 100.4s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710277472,
+          "contentHash": "aee5f8c3b70526a7add4805277da0514d07cc9052c233d5f2099f23d6571bf93",
+          "revision": "2c0c2f74-4dca-4968-a1fb-d5caa3084eea",
+          "inputFingerprint": "a7ec10d9aeff0d62378983edb3e4a386a5ed55556ef4c3fd1254030245813ea3",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "6570fc29-e2e7-4b6e-95e3-a7e5543e11b8-1",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapG/frame-01-at-100s.png",
+          "time": 100,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 99.6s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 100.4s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710277472,
+          "contentHash": "63f9cad40637e5c992497af26668e848947bdcb30437d4eb6bb18ca194c0a37b",
+          "revision": "2c0c2f74-4dca-4968-a1fb-d5caa3084eea",
+          "inputFingerprint": "a7ec10d9aeff0d62378983edb3e4a386a5ed55556ef4c3fd1254030245813ea3",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "6570fc29-e2e7-4b6e-95e3-a7e5543e11b8-2",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapG/frame-02-at-100.4s.png",
+          "time": 100.4,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 99.6s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 100.4s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710277472,
+          "contentHash": "974e0828b2cfdf7f05a2a3b8a1827acf9867f6a3ea1852375c8f713143da1c72",
+          "revision": "2c0c2f74-4dca-4968-a1fb-d5caa3084eea",
+          "inputFingerprint": "a7ec10d9aeff0d62378983edb3e4a386a5ed55556ef4c3fd1254030245813ea3",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "6570fc29-e2e7-4b6e-95e3-a7e5543e11b8-3",
+          "image": "/home/nmaldaner/projetos/r7exp/bancos/build/snapG/frame-03-at-210.461s.png",
+          "time": 210.461,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [
+              "1 video frames missing at 99.6s",
+              "1 video frames missing at 100s",
+              "1 video frames missing at 100.4s",
+              "1 video frames missing at 210.461s"
+            ],
+            "partial": true
+          },
+          "createdAt": 1792710277472,
+          "contentHash": "7b89e116a4b1386b24ce048f0c011b0f5d5e24e1da1aa3e3dd675f37d9715220",
+          "revision": "2c0c2f74-4dca-4968-a1fb-d5caa3084eea",
+          "inputFingerprint": "a7ec10d9aeff0d62378983edb3e4a386a5ed55556ef4c3fd1254030245813ea3",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  }
+}

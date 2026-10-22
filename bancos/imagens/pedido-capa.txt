@@ -1,0 +1,6 @@
+Gere 1 imagem com a ferramenta de geração de imagem (image_gen) e salve nesta pasta como capa-r7.png, em PNG, formato PAISAGEM 16:9 (o maior tamanho horizontal disponível).
+CAPA DE IMPACTO de telejornal, fundo quase preto #0c0c10. TUDO o que importa fica na METADE ESQUERDA da imagem (a metade direita vai ficar coberta por outro vídeo: deixe a metade direita só escura, com leve luz fria, sem nada importante).
+Na metade esquerda, em cima, texto ESCRITO DENTRO da arte, fonte bold sem serifa com textura metálica, alinhado à esquerda, em 3 linhas: em branco "OPENAI VAI QUEBRAR", maior em amarelo #FACC15 "OS SISTEMAS DOS BANCOS!" e, menor, em branco "EMPRESAS GIGANTES SÃO AS PRÓXIMAS?". Só essas palavras. Confira a grafia exata, com acentos (SÃO, PRÓXIMAS).
+Na metade esquerda, embaixo: a porta redonda de aço de um cofre de banco rachando ao meio, com luz vermelha #ff2a1f vazando pela rachadura e pedaços de metal se soltando. Sem logos, sem outras palavras, sem rostos.
+Estilo: ilustração cinematográfica realista, contraste alto.
+Ao final, diga o caminho do arquivo salvo.

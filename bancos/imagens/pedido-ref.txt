@@ -1,0 +1,5 @@
+Gere 1 imagem com a ferramenta de geração de imagem (image_gen) e salve nesta pasta como marcos-hoje.png, em PNG, formato PAISAGEM 16:9 (o maior tamanho horizontal disponível).
+MARCOS, personagem fixa de um vídeo: homem brasileiro de 52 anos, dono de uma distribuidora, pele clara bronzeada, cabelo grisalho curto, barba curta grisalha, camisa social azul-clara com mangas dobradas, óculos de armação fina. Rosto genérico (não é pessoa real).
+Cena: hoje, no escritório da distribuidora, fim de tarde; ele olha preocupado para um computador velho e bege com monitor de tubo mostrando uma tela verde de sistema antigo (sem texto legível), ao lado de um notebook moderno fechado; pilhas de notas fiscais na mesa; ao fundo, pela janela de vidro, o galpão com prateleiras e caixas. Plano médio, ele à DIREITA do quadro, rosto bem visível.
+Estilo: ilustração cinematográfica realista, luz NEUTRA (nada amarelado/âmbar), cores naturais. SEM texto legível e SEM logos.
+Ao final, diga o caminho do arquivo salvo.

@@ -1,0 +1,11 @@
+Gere 5 imagens com a ferramenta de geração de imagem (image_gen) e salve nesta pasta, em PNG, formato PAISAGEM 16:9 (o maior tamanho horizontal disponível), com os nomes indicados.
+A imagem anexada (marcos-hoje.png) é o personagem MARCOS: use-a como REFERÊNCIA de personagem em todas as imagens — mesmo rosto, 52 anos, cabelo e barba curtos grisalhos, óculos de armação fina, camisa social azul-clara de mangas dobradas. Rosto genérico (não é pessoa real).
+Estilo: ilustração cinematográfica realista, luz NEUTRA (nada amarelado/âmbar), cores naturais. SEM texto legível e SEM logos nem marcas reais. Robôs, se aparecerem, no estilo humanoide realista tipo Tesla Optimus com visor preto (nunca cartoon).
+
+1. antigo-marcos.png — o Marcos numa salinha de servidor apertada da distribuidora, segurando uma lanterna e olhando um gabinete de computador antigo e empoeirado cheio de fios, com um bilhete colado escrito à mão (ilegível) e o telefone de um técnico na mão; sensação: "ninguém mais sabe mexer nisso".
+2. salto-marcos.png — o Marcos no escritório, surpreso e animado, diante de um monitor grande moderno onde, à esquerda, aparecem linhas de código antigo verde e, à direita, as mesmas linhas reescritas em código moderno colorido, ligadas por fios de luz azul como uma tradução (sem texto legível); um robô humanoide de visor preto ao lado aponta para a tela.
+3. centavo-marcos.png — o Marcos atento, lado a lado com uma especialista de TI (mulher de 35 anos, cabelo preso, crachá), os dois comparando duas telas lado a lado com colunas de números (ilegíveis), ela segurando uma única moeda entre os dedos e apontando um detalhe; sensação de conferência cuidadosa.
+4. empresa-marcos.png — o Marcos tranquilo na distribuidora, com um tablet na mão mostrando um painel moderno e limpo (gráficos genéricos, sem texto legível), enquanto ao fundo o computador bege antigo está desligado num canto, com um pano por cima; funcionários trabalhando no galpão. Sensação de liberdade e controle.
+5. final-marcos.png — o Marcos sorrindo, de frente para o espectador, no escritório arrumado da distribuidora; atrás dele, quatro pequenas luzes flutuando lado a lado (uma cinza, uma azul, uma vermelha, uma verde), como quatro peças de uma história. Esperança, luz neutra de dia.
+
+Ao final, liste os arquivos salvos.

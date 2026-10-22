@@ -1,0 +1,19 @@
+# Ficha r7exp — "A IA da OpenAI vai quebrar os sistemas dos bancos?" (22/10/2026). Fonte: pesquisa da OpenAI de 19/10/2026
+# (migração de COBOL, teste da própria OpenAI) + texto-gatilho do Nei. Par do r7ex ~/projetos/r7ex/edicoes/2026-10-22-openai-bancos.
+# Ordem das falas (aberturas.a → caminhos → final) = a que motor/monta_avatar.py usa; peças em bancos/gera_bancos.py.
+slug: openai-bancos-r7exp
+marca: "INEMA · IA NOS BANCOS"
+fonte: "OpenAI, pesquisa 19/10/2026 (teste próprio) · Reuters (estimativa)"
+personagem: "Marcos, 52 anos, dono de distribuidora, sistema de 20 anos (marcos-hoje.png)"
+
+mapa:
+  linhas: {}
+
+aberturas:
+  a: {fala: 0-intro, capa: capa-r7.png}
+caminhos:
+  - {id: A, n: 1, fala: 1-antigo}
+  - {id: S, n: 2, fala: 2-salto}
+  - {id: C, n: 3, fala: 3-centavo}
+  - {id: E, n: 4, fala: 4-empresa}
+final: {fala: 5-final, url: "https://inema.club"}

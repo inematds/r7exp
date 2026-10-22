@@ -27,6 +27,8 @@ renderiza o completo `build/openai-bancos-r7exp.mp4` (+ `-720.mp4`), o limpo e o
 1. Conferir quadros: `env -u GEMINI_API_KEY npx --yes hyperframes@0.8.181 snapshot bancos/cena-a --frames 20 --describe false -o bancos/build/snapR`
    e uma folha de cada reel. Reprovar: texto cortado/sobreposto, tela vazia, avatar em tela cheia, painel atrás do avatar,
    gráfico da peça 2 sem as 3 barras ou com a linha de fonte coberta pela legenda.
+   No `build/reel-peca-2-salto.mp4`, conferir se os valores das barras (5,4 / 86,6 / 97,9) ficam legíveis no 9:16 (lição: valores ≥ 52 px);
+   se ficarem pequenos, pôr uma janela de zoom no gráfico (RP.zooms_rel) ou mandar com a tarja 🟥 SUGESTÃO — não bloqueia.
 2. Mandar ao **bot v3** (só arquivos, legenda sem link): `build/openai-bancos-r7exp-720.mp4` e os 5 reels, com
    `node ~/projetos/refazvideo/ferramentas/enviar_bot_v3.mjs` (cada envio imprime "msg N").
 3. Publicar no **lives8** (Inema Vibe, público), sem citar o autor do vídeo em inglês que serviu de base:

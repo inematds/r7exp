@@ -197,7 +197,7 @@ class Cena(P.Cena):
         tc = F.t("marcos", depois=tg); tv = F.t("vamos", depois=tc)
         self.foto(tc - 0.2, tv + 0.2, "marcos-hoje.png", carimbo="MARCOS · HOJE", sub="O PERSONAGEM")
         F.cur = tc - F.ini - 0.02
-        self.tags(F, [("distribuidora", "dono de distribuidora · 52 anos"), ("vinte", "✕ sistema de 20 anos"),
+        self.tags(F, [("distribuidora", "dono de distribuidora · 52 anos"), ("sistema", "✕ sistema de 20 anos"),
                       ("fornecedor", "✕ só um fornecedor sabe mexer")], tv + 0.2)
         self.faixa("O QUE MUDA PARA ELE · E PARA A SUA EMPRESA", tv, F.fim + 0.5)
 

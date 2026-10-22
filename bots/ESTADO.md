@@ -22,3 +22,6 @@ ChatGPT Dots, Claude Duet (Duet ainda não no Brasil), a Carla (consultora, 41) 
 ## Como refazer
 - `bots/avatar.sh enviar|baixar` → `bash bots/cadeia.sh` (monta avatar, completo, limpo, reels).
 - Só re-render (avatar já baixado): `bash bots/build/refaz.sh`.
+
+## Reels juntos (22/10, 19:02)
+- `build/reels-5-juntos.mp4` (índice + 4 bots, 9:16, 1:49): v3 msg 2314 · lives1 https://www.youtube.com/watch?v=CcL_17pnJsM · inemaytbot msg 2581

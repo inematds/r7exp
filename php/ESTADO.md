@@ -12,7 +12,7 @@ Pedido do Nei (21/10): r7exp urgente "70% dos sites PHP podem ser hackeados, com
 - Revisor independente (completo): aprovado 8/10, impacto 7, sem defeitos (build/revisor.json).
 
 ## Pendente
-- Tópico INEMA.DEV "PHP2Shell - Seu site está exposto?": post pronto em ~/projetos/output/posts-telegram/2026-10-21-php2shell.md (com o link), envio parado aguardando o Nei.
+- Tópico INEMA.DEV publicado 22/10 01:30: https://t.me/c/2389955773/7527 (20 msgs, MENU msg 7548).
 
 ## Como refazer
 - `php/avatar.sh enviar|baixar` → `python3 motor/monta_avatar.py php a` → `python3 php/gera_php.py` → render cena-a.

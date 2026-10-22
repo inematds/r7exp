@@ -1,0 +1,392 @@
+[
+ {
+  "word": "Para",
+  "start": 0.0,
+  "end": 0.24
+ },
+ {
+  "word": "qual",
+  "start": 0.24,
+  "end": 0.42
+ },
+ {
+  "word": "robô",
+  "start": 0.42,
+  "end": 0.74
+ },
+ {
+  "word": "você",
+  "start": 0.74,
+  "end": 0.9
+ },
+ {
+  "word": "vai",
+  "start": 0.9,
+  "end": 1.02
+ },
+ {
+  "word": "entregar",
+  "start": 1.02,
+  "end": 1.36
+ },
+ {
+  "word": "a",
+  "start": 1.36,
+  "end": 1.4
+ },
+ {
+  "word": "sua",
+  "start": 1.4,
+  "end": 1.52
+ },
+ {
+  "word": "rotina?",
+  "start": 1.52,
+  "end": 1.9
+ },
+ {
+  "word": "Em",
+  "start": 1.98,
+  "end": 2.3
+ },
+ {
+  "word": "10",
+  "start": 2.3,
+  "end": 2.5
+ },
+ {
+  "word": "semanas,",
+  "start": 2.5,
+  "end": 2.84
+ },
+ {
+  "word": "4",
+  "start": 3.04,
+  "end": 3.26
+ },
+ {
+  "word": "gigantes",
+  "start": 3.26,
+  "end": 3.8
+ },
+ {
+  "word": "lançaram",
+  "start": 3.8,
+  "end": 4.14
+ },
+ {
+  "word": "um",
+  "start": 4.14,
+  "end": 4.24
+ },
+ {
+  "word": "agente",
+  "start": 4.24,
+  "end": 4.54
+ },
+ {
+  "word": "pessoal.",
+  "start": 4.54,
+  "end": 4.78
+ },
+ {
+  "word": "O",
+  "start": 5.0,
+  "end": 5.28
+ },
+ {
+  "word": "Grockbot,",
+  "start": 5.28,
+  "end": 5.7
+ },
+ {
+  "word": "o",
+  "start": 5.9,
+  "end": 6.14
+ },
+ {
+  "word": "Muse",
+  "start": 6.14,
+  "end": 6.36
+ },
+ {
+  "word": "da",
+  "start": 6.36,
+  "end": 6.52
+ },
+ {
+  "word": "Meta,",
+  "start": 6.52,
+  "end": 6.92
+ },
+ {
+  "word": "o",
+  "start": 6.94,
+  "end": 7.14
+ },
+ {
+  "word": "ChatGPTDots",
+  "start": 7.14,
+  "end": 7.92
+ },
+ {
+  "word": "e",
+  "start": 7.92,
+  "end": 8.18
+ },
+ {
+  "word": "o",
+  "start": 8.18,
+  "end": 8.34
+ },
+ {
+  "word": "Claude",
+  "start": 8.34,
+  "end": 8.6
+ },
+ {
+  "word": "Doué.",
+  "start": 8.6,
+  "end": 8.84
+ },
+ {
+  "word": "Olha",
+  "start": 8.88,
+  "end": 9.32
+ },
+ {
+  "word": "este",
+  "start": 9.32,
+  "end": 9.46
+ },
+ {
+  "word": "mapa.",
+  "start": 9.46,
+  "end": 9.68
+ },
+ {
+  "word": "Cada",
+  "start": 9.86,
+  "end": 10.12
+ },
+ {
+  "word": "um",
+  "start": 10.12,
+  "end": 10.34
+ },
+ {
+  "word": "aposta",
+  "start": 10.34,
+  "end": 10.78
+ },
+ {
+  "word": "numa",
+  "start": 10.78,
+  "end": 10.92
+ },
+ {
+  "word": "força",
+  "start": 10.92,
+  "end": 11.18
+ },
+ {
+  "word": "diferente.",
+  "start": 11.18,
+  "end": 11.54
+ },
+ {
+  "word": "E",
+  "start": 11.8,
+  "end": 12.04
+ },
+ {
+  "word": "o",
+  "start": 12.04,
+  "end": 12.14
+ },
+ {
+  "word": "Doué",
+  "start": 12.14,
+  "end": 12.42
+ },
+ {
+  "word": "ainda",
+  "start": 12.42,
+  "end": 12.7
+ },
+ {
+  "word": "nem",
+  "start": 12.7,
+  "end": 12.9
+ },
+ {
+  "word": "chegou",
+  "start": 12.9,
+  "end": 13.18
+ },
+ {
+  "word": "ao",
+  "start": 13.18,
+  "end": 13.34
+ },
+ {
+  "word": "Brasil.",
+  "start": 13.34,
+  "end": 13.56
+ },
+ {
+  "word": "Agora",
+  "start": 13.8,
+  "end": 14.16
+ },
+ {
+  "word": "conheça",
+  "start": 14.16,
+  "end": 14.56
+ },
+ {
+  "word": "a",
+  "start": 14.56,
+  "end": 14.62
+ },
+ {
+  "word": "Carla.",
+  "start": 14.62,
+  "end": 14.86
+ },
+ {
+  "word": "41",
+  "start": 15.16,
+  "end": 15.6
+ },
+ {
+  "word": "anos,",
+  "start": 15.6,
+  "end": 16.0
+ },
+ {
+  "word": "consultora,",
+  "start": 16.18,
+  "end": 16.9
+ },
+ {
+  "word": "100",
+  "start": 16.96,
+  "end": 17.34
+ },
+ {
+  "word": "e",
+  "start": 17.34,
+  "end": 17.48
+ },
+ {
+  "word": "-mails",
+  "start": 17.48,
+  "end": 17.68
+ },
+ {
+  "word": "por",
+  "start": 17.68,
+  "end": 17.84
+ },
+ {
+  "word": "dia",
+  "start": 17.84,
+  "end": 18.06
+ },
+ {
+  "word": "e",
+  "start": 18.06,
+  "end": 18.46
+ },
+ {
+  "word": "a",
+  "start": 18.46,
+  "end": 18.52
+ },
+ {
+  "word": "agenda",
+  "start": 18.52,
+  "end": 18.76
+ },
+ {
+  "word": "estourando.",
+  "start": 18.76,
+  "end": 19.28
+ },
+ {
+  "word": "Vamos",
+  "start": 19.46,
+  "end": 19.9
+ },
+ {
+  "word": "ver",
+  "start": 19.9,
+  "end": 20.08
+ },
+ {
+  "word": "como",
+  "start": 20.08,
+  "end": 20.22
+ },
+ {
+  "word": "fica",
+  "start": 20.22,
+  "end": 20.44
+ },
+ {
+  "word": "a",
+  "start": 20.44,
+  "end": 20.52
+ },
+ {
+  "word": "vida",
+  "start": 20.52,
+  "end": 20.7
+ },
+ {
+  "word": "dela",
+  "start": 20.7,
+  "end": 20.88
+ },
+ {
+  "word": "com",
+  "start": 20.88,
+  "end": 21.06
+ },
+ {
+  "word": "cada",
+  "start": 21.06,
+  "end": 21.22
+ },
+ {
+  "word": "bot",
+  "start": 21.22,
+  "end": 21.44
+ },
+ {
+  "word": "e",
+  "start": 21.44,
+  "end": 21.74
+ },
+ {
+  "word": "qual",
+  "start": 21.74,
+  "end": 22.02
+ },
+ {
+  "word": "combina",
+  "start": 22.02,
+  "end": 22.38
+ },
+ {
+  "word": "com",
+  "start": 22.38,
+  "end": 22.48
+ },
+ {
+  "word": "você.",
+  "start": 22.48,
+  "end": 22.68
+ }
+]

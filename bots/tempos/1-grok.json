@@ -1,0 +1,302 @@
+[
+ {
+  "word": "Primeiro,",
+  "start": 0.0,
+  "end": 0.48
+ },
+ {
+  "word": "o",
+  "start": 0.5,
+  "end": 0.7
+ },
+ {
+  "word": "GrokBot.",
+  "start": 0.7,
+  "end": 1.2
+ },
+ {
+  "word": "Ele",
+  "start": 1.24,
+  "end": 1.56
+ },
+ {
+  "word": "trata",
+  "start": 1.56,
+  "end": 1.78
+ },
+ {
+  "word": "cada",
+  "start": 1.78,
+  "end": 1.98
+ },
+ {
+  "word": "bot",
+  "start": 1.98,
+  "end": 2.24
+ },
+ {
+  "word": "como",
+  "start": 2.24,
+  "end": 2.42
+ },
+ {
+  "word": "um",
+  "start": 2.42,
+  "end": 2.54
+ },
+ {
+  "word": "funcionário.",
+  "start": 2.54,
+  "end": 3.04
+ },
+ {
+  "word": "Um",
+  "start": 3.16,
+  "end": 3.6
+ },
+ {
+  "word": "pesquisa,",
+  "start": 3.6,
+  "end": 4.1
+ },
+ {
+  "word": "outro",
+  "start": 4.18,
+  "end": 4.48
+ },
+ {
+  "word": "escreve,",
+  "start": 4.48,
+  "end": 4.98
+ },
+ {
+  "word": "outro",
+  "start": 5.02,
+  "end": 5.42
+ },
+ {
+  "word": "acompanha",
+  "start": 5.42,
+  "end": 5.88
+ },
+ {
+  "word": "o",
+  "start": 5.88,
+  "end": 5.9
+ },
+ {
+  "word": "mercado.",
+  "start": 5.9,
+  "end": 6.18
+ },
+ {
+  "word": "E",
+  "start": 6.48,
+  "end": 6.9
+ },
+ {
+  "word": "ele",
+  "start": 6.9,
+  "end": 7.04
+ },
+ {
+  "word": "lê",
+  "start": 7.04,
+  "end": 7.26
+ },
+ {
+  "word": "o",
+  "start": 7.26,
+  "end": 7.26
+ },
+ {
+  "word": "X",
+  "start": 7.26,
+  "end": 7.4
+ },
+ {
+  "word": "em",
+  "start": 7.4,
+  "end": 7.64
+ },
+ {
+  "word": "tempo",
+  "start": 7.64,
+  "end": 7.8
+ },
+ {
+  "word": "real.",
+  "start": 7.8,
+  "end": 8.04
+ },
+ {
+  "word": "Ótimo",
+  "start": 8.28,
+  "end": 8.72
+ },
+ {
+  "word": "para",
+  "start": 8.72,
+  "end": 8.86
+ },
+ {
+  "word": "saber",
+  "start": 8.86,
+  "end": 9.08
+ },
+ {
+  "word": "o",
+  "start": 9.08,
+  "end": 9.2
+ },
+ {
+  "word": "que",
+  "start": 9.2,
+  "end": 9.24
+ },
+ {
+  "word": "o",
+  "start": 9.24,
+  "end": 9.34
+ },
+ {
+  "word": "seu",
+  "start": 9.34,
+  "end": 9.42
+ },
+ {
+  "word": "cliente",
+  "start": 9.42,
+  "end": 9.72
+ },
+ {
+  "word": "está",
+  "start": 9.72,
+  "end": 9.8
+ },
+ {
+  "word": "falando",
+  "start": 9.8,
+  "end": 10.04
+ },
+ {
+  "word": "hoje.",
+  "start": 10.04,
+  "end": 10.3
+ },
+ {
+  "word": "Com",
+  "start": 10.52,
+  "end": 10.96
+ },
+ {
+  "word": "o",
+  "start": 10.96,
+  "end": 11.06
+ },
+ {
+  "word": "Grok,",
+  "start": 11.06,
+  "end": 11.38
+ },
+ {
+  "word": "a",
+  "start": 11.4,
+  "end": 11.7
+ },
+ {
+  "word": "Carla",
+  "start": 11.7,
+  "end": 11.96
+ },
+ {
+  "word": "vira",
+  "start": 11.96,
+  "end": 12.24
+ },
+ {
+  "word": "chefe",
+  "start": 12.24,
+  "end": 12.56
+ },
+ {
+  "word": "de",
+  "start": 12.56,
+  "end": 12.66
+ },
+ {
+  "word": "uma",
+  "start": 12.66,
+  "end": 12.72
+ },
+ {
+  "word": "equipe",
+  "start": 12.72,
+  "end": 13.02
+ },
+ {
+  "word": "digital.",
+  "start": 13.02,
+  "end": 13.22
+ },
+ {
+  "word": "Mas",
+  "start": 13.62,
+  "end": 14.06
+ },
+ {
+  "word": "atenção,",
+  "start": 14.06,
+  "end": 14.32
+ },
+ {
+  "word": "o",
+  "start": 14.54,
+  "end": 14.76
+ },
+ {
+  "word": "e",
+  "start": 14.76,
+  "end": 14.88
+ },
+ {
+  "word": "-mail",
+  "start": 14.88,
+  "end": 15.04
+ },
+ {
+  "word": "dele",
+  "start": 15.04,
+  "end": 15.2
+ },
+ {
+  "word": "ainda",
+  "start": 15.2,
+  "end": 15.38
+ },
+ {
+  "word": "falha.",
+  "start": 15.38,
+  "end": 15.92
+ },
+ {
+  "word": "E",
+  "start": 15.94,
+  "end": 16.24
+ },
+ {
+  "word": "ele",
+  "start": 16.24,
+  "end": 16.4
+ },
+ {
+  "word": "é",
+  "start": 16.4,
+  "end": 16.48
+ },
+ {
+  "word": "pago.",
+  "start": 16.48,
+  "end": 16.78
+ }
+]

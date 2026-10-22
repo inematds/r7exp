@@ -35,3 +35,12 @@ php/reels/*.mp4
 php/reels/*/assets/
 php/reels/*/.hyperframes/
 __pycache__/
+bots/build/
+bots/avatar/*.mp4
+bots/tempos/_*/
+bots/tempos/dub_work/
+bots/cena-*/assets/
+bots/cena-*/.hyperframes/
+bots/reels/*.mp4
+bots/reels/*/assets/
+bots/reels/*/.hyperframes/

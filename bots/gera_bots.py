@@ -52,7 +52,7 @@ def mapa_svg(f):
                   f'<text x="{cx}" y="{TY + 250}" text-anchor="middle" font-size="40" class="vv">{nome}</text>{est}</g>')
         dots += (f'<circle cx="{cx}" cy="{TY + TH + 70}" r="14" fill="{AMAR}"/>'
                  f'<text x="{cx}" y="{TY + TH + 125}" text-anchor="middle" font-size="30" fill="#c9c9d2">{data}</text>')
-    br = (f'<g id="br" opacity="0"><rect x="{TX0 + 3 * TSTEP + 20}" y="{TY - 40}" width="{TW - 40}" height="58" rx="29" fill="{VERM}"/>'
+    br = (f'<g id="br" opacity="0"><rect x="{TX0 + 3 * TSTEP - 15}" y="{TY - 40}" width="{TW + 30}" height="58" rx="29" fill="{VERM}"/>'
           f'<text x="{TX0 + 3 * TSTEP + TW / 2}" y="{TY - 1}" text-anchor="middle" font-size="27" fill="#fff" font-weight="800">AINDA NÃO NO BRASIL</text></g>')
     return f'''
 <svg id="mapa" width="1920" height="1080" viewBox="0 0 1920 1080">
@@ -72,8 +72,10 @@ def mapa_svg(f):
 
 
 class Cena(P.Cena):
-    def zoom_tile(self, t, i, z=1.18):
-        cx = GX + (TX0 + i * TSTEP + TW / 2) * GS
+    def zoom_tile(self, t, i, z=1.08):
+        # origem presa à esquerda: o quadro cresce para a direita e não entra sob o PiP do avatar (canto inferior esquerdo)
+        x0 = GX + TX0 * GS
+        cx = min(GX + (TX0 + i * TSTEP + TW / 2) * GS, (x0 * z - 380) / (z - 1))
         self.a(f'tl.to("#cam", {{scale:{z}, transformOrigin:"{cx:.0f}px {gy(TY + TH / 2):.0f}px", duration:1.4, ease:"power2.inOut"}}, {t:.2f});')
         self.a(f'tl.to("#ticks", {{opacity:0, duration:0.4}}, {t:.2f});')
 
@@ -156,7 +158,7 @@ class Cena(P.Cena):
         self.tags(F, tags, tfr + 0.2)
         # ponto fraco no mapa
         self.mapa_todo(tfr - 0.3, ticks=False)
-        self.zoom_tile(tfr - 0.2, i, z=1.12)
+        self.zoom_tile(tfr - 0.2, i, z=1.06)
         self.estado(tfr + 0.2, [i], 2, VERM, "#2a0f12")
         self.faixa(f"PONTO FRACO · {fraco[0]} · {fraco[1]}", tfr - 0.1, prox + 0.1, cor=VERM)
 
@@ -205,7 +207,7 @@ class Cena(P.Cena):
         self.a(f'tl.fromTo("#{i3}pr", {{opacity:0, x:80}}, {{opacity:1, x:0, duration:0.6, ease:"back.out(2)"}}, {tclub:.2f});')
 
 
-CORRIGE = {"ia": "IA", "Ia": "IA", "Cloud": "Claude", "cloud": "Claude", "Duet.": "Duet.", "inema": "inema"}
+CORRIGE = {"ia": "IA", "Ia": "IA", "Cloud": "Claude", "cloud": "Claude", "Duet.": "Duet.", "Doué": "Duet", "Doué.": "Duet.", "Doué,": "Duet,", "inema": "inema"}
 
 
 def falso(ordem):

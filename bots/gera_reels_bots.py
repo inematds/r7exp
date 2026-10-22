@@ -15,7 +15,7 @@ import gera_reels as R  # noqa: E402
 import gera_reels_php as RP  # noqa: E402
 
 RP.AQUI = AQUI   # meias() lê a cena-a desta pasta
-R.CORRIGE.update({"Cloud": "Claude", "cloud": "Claude"})
+R.CORRIGE.update({"Cloud": "Claude", "cloud": "Claude", "Doué": "Duet", "Doué.": "Duet.", "Doué,": "Duet,"})
 MARCA = "QUAL BOT?"
 
 CASOS = [  # id, fala, nome curto (≤ 18), cor, banda [(palavra-âncora | 0, imagem, rótulo)]
@@ -53,7 +53,7 @@ def main():
     fala = "0-intro"
     _, w = R.palavras(AQUI, fala, 999)
     t_fim = round(R.t_palavra(w, "vamos") - 0.15, 2)
-    banda = RP.banda_de(w, [(0, "capa-r7.png", "QUAL BOT É O SEU?"), ("mapa", "duet-carla.png", "4 AGENTES · 10 SEMANAS"),
+    banda = RP.banda_de(w, [(0, "final-carla.png", "QUAL BOT É O SEU?"), ("mapa", "duet-carla.png", "4 AGENTES · 10 SEMANAS"),
                             ("carla", "carla-2026.png", "A CARLA · 41 ANOS · CONSULTORA")])
     lis = "".join(f'<div class="li" id="l{j}"><i style="background:{c[3]}"></i><span style="color:{c[3]}">{c[2]}</span></div>'
                   for j, c in enumerate(CASOS))

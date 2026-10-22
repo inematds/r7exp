@@ -1,0 +1,482 @@
+[
+ {
+  "word": "Três",
+  "start": 0.0,
+  "end": 0.32
+ },
+ {
+  "word": "casos,",
+  "start": 0.32,
+  "end": 0.74
+ },
+ {
+  "word": "a",
+  "start": 0.9,
+  "end": 1.14
+ },
+ {
+  "word": "mesma",
+  "start": 1.14,
+  "end": 1.42
+ },
+ {
+  "word": "Lúcia.",
+  "start": 1.42,
+  "end": 1.78
+ },
+ {
+  "word": "Na",
+  "start": 1.88,
+  "end": 2.28
+ },
+ {
+  "word": "plataforma",
+  "start": 2.28,
+  "end": 2.56
+ },
+ {
+  "word": "pronta,",
+  "start": 2.56,
+  "end": 3.16
+ },
+ {
+  "word": "ela",
+  "start": 3.26,
+  "end": 3.6
+ },
+ {
+  "word": "confere",
+  "start": 3.6,
+  "end": 3.98
+ },
+ {
+  "word": "com",
+  "start": 3.98,
+  "end": 4.08
+ },
+ {
+  "word": "o",
+  "start": 4.08,
+  "end": 4.16
+ },
+ {
+  "word": "suporte.",
+  "start": 4.16,
+  "end": 4.58
+ },
+ {
+  "word": "Na",
+  "start": 4.72,
+  "end": 5.08
+ },
+ {
+  "word": "hospedagem,",
+  "start": 5.08,
+  "end": 5.68
+ },
+ {
+  "word": "ela",
+  "start": 5.78,
+  "end": 6.1
+ },
+ {
+  "word": "testa",
+  "start": 6.1,
+  "end": 6.6
+ },
+ {
+  "word": "e",
+  "start": 6.6,
+  "end": 6.76
+ },
+ {
+  "word": "pede",
+  "start": 6.76,
+  "end": 7.08
+ },
+ {
+  "word": "a",
+  "start": 7.08,
+  "end": 7.14
+ },
+ {
+  "word": "versão",
+  "start": 7.14,
+  "end": 7.38
+ },
+ {
+  "word": "nova.",
+  "start": 7.38,
+  "end": 7.66
+ },
+ {
+  "word": "No",
+  "start": 7.96,
+  "end": 8.26
+ },
+ {
+  "word": "servidor",
+  "start": 8.26,
+  "end": 8.58
+ },
+ {
+  "word": "próprio,",
+  "start": 8.58,
+  "end": 8.84
+ },
+ {
+  "word": "o",
+  "start": 9.1,
+  "end": 9.36
+ },
+ {
+  "word": "técnico",
+  "start": 9.36,
+  "end": 9.82
+ },
+ {
+  "word": "atualiza",
+  "start": 9.82,
+  "end": 10.5
+ },
+ {
+  "word": "agora.",
+  "start": 10.5,
+  "end": 10.62
+ },
+ {
+  "word": "E",
+  "start": 10.96,
+  "end": 11.3
+ },
+ {
+  "word": "isso",
+  "start": 11.3,
+  "end": 11.5
+ },
+ {
+  "word": "não",
+  "start": 11.5,
+  "end": 11.68
+ },
+ {
+  "word": "vai",
+  "start": 11.68,
+  "end": 11.86
+ },
+ {
+  "word": "parar.",
+  "start": 11.86,
+  "end": 12.08
+ },
+ {
+  "word": "A",
+  "start": 12.28,
+  "end": 12.6
+ },
+ {
+  "word": "inteligência",
+  "start": 12.6,
+  "end": 13.08
+ },
+ {
+  "word": "artificial",
+  "start": 13.08,
+  "end": 13.38
+ },
+ {
+  "word": "está",
+  "start": 13.38,
+  "end": 14.1
+ },
+ {
+  "word": "achando",
+  "start": 14.1,
+  "end": 14.48
+ },
+ {
+  "word": "falhas",
+  "start": 14.48,
+  "end": 14.8
+ },
+ {
+  "word": "antigas",
+  "start": 14.8,
+  "end": 15.34
+ },
+ {
+  "word": "cada",
+  "start": 15.34,
+  "end": 15.56
+ },
+ {
+  "word": "vez",
+  "start": 15.56,
+  "end": 15.76
+ },
+ {
+  "word": "mais",
+  "start": 15.76,
+  "end": 16.0
+ },
+ {
+  "word": "rápido.",
+  "start": 16.0,
+  "end": 16.32
+ },
+ {
+  "word": "Então,",
+  "start": 16.56,
+  "end": 17.08
+ },
+ {
+  "word": "hoje,",
+  "start": 17.18,
+  "end": 17.46
+ },
+ {
+  "word": "primeiro,",
+  "start": 17.62,
+  "end": 18.12
+ },
+ {
+  "word": "teste",
+  "start": 18.32,
+  "end": 18.86
+ },
+ {
+  "word": "o",
+  "start": 18.86,
+  "end": 19.02
+ },
+ {
+  "word": "seu",
+  "start": 19.02,
+  "end": 19.1
+ },
+ {
+  "word": "site.",
+  "start": 19.1,
+  "end": 19.36
+ },
+ {
+  "word": "Segundo,",
+  "start": 19.68,
+  "end": 20.2
+ },
+ {
+  "word": "veja",
+  "start": 20.26,
+  "end": 20.78
+ },
+ {
+  "word": "a",
+  "start": 20.78,
+  "end": 20.84
+ },
+ {
+  "word": "versão",
+  "start": 20.84,
+  "end": 21.06
+ },
+ {
+  "word": "do",
+  "start": 21.06,
+  "end": 21.28
+ },
+ {
+  "word": "PHP.",
+  "start": 21.28,
+  "end": 21.56
+ },
+ {
+  "word": "Terceiro,",
+  "start": 22.62,
+  "end": 23.14
+ },
+ {
+  "word": "mande",
+  "start": 23.16,
+  "end": 23.62
+ },
+ {
+  "word": "este",
+  "start": 23.62,
+  "end": 23.7
+ },
+ {
+  "word": "vídeo",
+  "start": 23.7,
+  "end": 23.96
+ },
+ {
+  "word": "para",
+  "start": 23.96,
+  "end": 24.1
+ },
+ {
+  "word": "quem",
+  "start": 24.1,
+  "end": 24.26
+ },
+ {
+  "word": "tem",
+  "start": 24.26,
+  "end": 24.36
+ },
+ {
+  "word": "um",
+  "start": 24.36,
+  "end": 24.46
+ },
+ {
+  "word": "site",
+  "start": 24.46,
+  "end": 24.64
+ },
+ {
+  "word": "antigo,",
+  "start": 24.64,
+  "end": 25.12
+ },
+ {
+  "word": "feito",
+  "start": 25.18,
+  "end": 25.58
+ },
+ {
+  "word": "há",
+  "start": 25.58,
+  "end": 25.74
+ },
+ {
+  "word": "anos",
+  "start": 25.74,
+  "end": 25.98
+ },
+ {
+  "word": "e",
+  "start": 25.98,
+  "end": 26.08
+ },
+ {
+  "word": "esquecido.",
+  "start": 26.08,
+  "end": 26.58
+ },
+ {
+  "word": "Proteger",
+  "start": 26.78,
+  "end": 27.3
+ },
+ {
+  "word": "leva",
+  "start": 27.3,
+  "end": 27.46
+ },
+ {
+  "word": "10",
+  "start": 27.46,
+  "end": 27.66
+ },
+ {
+  "word": "minutos.",
+  "start": 27.66,
+  "end": 27.96
+ },
+ {
+  "word": "E",
+  "start": 27.96,
+  "end": 28.42
+ },
+ {
+  "word": "você?",
+  "start": 28.42,
+  "end": 28.64
+ },
+ {
+  "word": "Escreve",
+  "start": 29.12,
+  "end": 29.56
+ },
+ {
+  "word": "aqui",
+  "start": 29.56,
+  "end": 29.66
+ },
+ {
+  "word": "nos",
+  "start": 29.66,
+  "end": 29.8
+ },
+ {
+  "word": "comentários.",
+  "start": 29.8,
+  "end": 30.16
+ },
+ {
+  "word": "Eu",
+  "start": 30.4,
+  "end": 30.74
+ },
+ {
+  "word": "protegi",
+  "start": 30.74,
+  "end": 31.18
+ },
+ {
+  "word": "meu",
+  "start": 31.18,
+  "end": 31.26
+ },
+ {
+  "word": "site",
+  "start": 31.26,
+  "end": 31.54
+ },
+ {
+  "word": "e",
+  "start": 31.54,
+  "end": 31.96
+ },
+ {
+  "word": "tá",
+  "start": 31.96,
+  "end": 32.04
+ },
+ {
+  "word": "tudo",
+  "start": 32.04,
+  "end": 32.22
+ },
+ {
+  "word": "no",
+  "start": 32.22,
+  "end": 32.38
+ },
+ {
+  "word": "inema",
+  "start": 32.38,
+  "end": 32.6
+ },
+ {
+  "word": ".club,",
+  "start": 32.6,
+  "end": 33.1
+ },
+ {
+  "word": "aberto",
+  "start": 33.26,
+  "end": 33.88
+ },
+ {
+  "word": "e",
+  "start": 33.88,
+  "end": 34.02
+ },
+ {
+  "word": "gratuito.",
+  "start": 34.02,
+  "end": 34.5
+ }
+]

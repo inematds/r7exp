@@ -25,3 +25,13 @@ completo/reels/final/
 completo/reels/*/.hyperframes
 completo/cena-*-limpo/
 completo/reels/work-*/
+php/build/
+php/avatar/*.mp4
+php/tempos/_*/
+php/tempos/dub_work/
+php/cena-*/assets/
+php/cena-*/.hyperframes/
+php/reels/*.mp4
+php/reels/*/assets/
+php/reels/*/.hyperframes/
+__pycache__/

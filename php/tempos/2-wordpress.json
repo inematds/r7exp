@@ -1,0 +1,747 @@
+[
+ {
+  "word": "Caso",
+  "start": 0.0,
+  "end": 0.38
+ },
+ {
+  "word": "2.",
+  "start": 0.38,
+  "end": 0.56
+ },
+ {
+  "word": "WordPress",
+  "start": 0.76,
+  "end": 1.14
+ },
+ {
+  "word": "numa",
+  "start": 1.14,
+  "end": 1.5
+ },
+ {
+  "word": "hospedagem",
+  "start": 1.5,
+  "end": 1.92
+ },
+ {
+  "word": "comum.",
+  "start": 1.92,
+  "end": 2.12
+ },
+ {
+  "word": "É",
+  "start": 2.3,
+  "end": 2.64
+ },
+ {
+  "word": "o",
+  "start": 2.64,
+  "end": 2.72
+ },
+ {
+  "word": "caso",
+  "start": 2.72,
+  "end": 3.0
+ },
+ {
+  "word": "da",
+  "start": 3.0,
+  "end": 3.12
+ },
+ {
+  "word": "maioria",
+  "start": 3.12,
+  "end": 3.32
+ },
+ {
+  "word": "das",
+  "start": 3.32,
+  "end": 3.54
+ },
+ {
+  "word": "pequenas",
+  "start": 3.54,
+  "end": 3.86
+ },
+ {
+  "word": "empresas",
+  "start": 3.86,
+  "end": 4.2
+ },
+ {
+  "word": "e",
+  "start": 4.2,
+  "end": 4.66
+ },
+ {
+  "word": "é",
+  "start": 4.66,
+  "end": 4.82
+ },
+ {
+  "word": "o",
+  "start": 4.82,
+  "end": 4.88
+ },
+ {
+  "word": "que",
+  "start": 4.88,
+  "end": 4.96
+ },
+ {
+  "word": "mais",
+  "start": 4.96,
+  "end": 5.08
+ },
+ {
+  "word": "preocupa.",
+  "start": 5.08,
+  "end": 5.6
+ },
+ {
+  "word": "Por",
+  "start": 5.62,
+  "end": 5.9
+ },
+ {
+  "word": "quê?",
+  "start": 5.9,
+  "end": 6.1
+ },
+ {
+  "word": "A",
+  "start": 6.16,
+  "end": 6.52
+ },
+ {
+  "word": "falha",
+  "start": 6.52,
+  "end": 6.92
+ },
+ {
+  "word": "está",
+  "start": 6.92,
+  "end": 7.22
+ },
+ {
+  "word": "no",
+  "start": 7.22,
+  "end": 7.42
+ },
+ {
+  "word": "PHP",
+  "start": 7.42,
+  "end": 7.8
+ },
+ {
+  "word": "e",
+  "start": 7.8,
+  "end": 8.52
+ },
+ {
+  "word": "não",
+  "start": 8.52,
+  "end": 8.84
+ },
+ {
+  "word": "no",
+  "start": 8.84,
+  "end": 8.98
+ },
+ {
+  "word": "WordPress.",
+  "start": 8.98,
+  "end": 9.2
+ },
+ {
+  "word": "Ela",
+  "start": 9.52,
+  "end": 9.94
+ },
+ {
+  "word": "é",
+  "start": 9.94,
+  "end": 10.06
+ },
+ {
+  "word": "acionada",
+  "start": 10.06,
+  "end": 10.4
+ },
+ {
+  "word": "antes",
+  "start": 10.4,
+  "end": 10.8
+ },
+ {
+  "word": "de",
+  "start": 10.8,
+  "end": 10.96
+ },
+ {
+  "word": "o",
+  "start": 10.96,
+  "end": 11.0
+ },
+ {
+  "word": "WordPress",
+  "start": 11.0,
+  "end": 11.26
+ },
+ {
+  "word": "abrir",
+  "start": 11.26,
+  "end": 11.74
+ },
+ {
+  "word": "a",
+  "start": 11.74,
+  "end": 11.9
+ },
+ {
+  "word": "página.",
+  "start": 11.9,
+  "end": 12.16
+ },
+ {
+  "word": "Então,",
+  "start": 12.36,
+  "end": 12.74
+ },
+ {
+  "word": "plugin",
+  "start": 12.88,
+  "end": 13.22
+ },
+ {
+  "word": "de",
+  "start": 13.22,
+  "end": 13.4
+ },
+ {
+  "word": "segurança",
+  "start": 13.4,
+  "end": 13.62
+ },
+ {
+  "word": "não",
+  "start": 13.62,
+  "end": 14.2
+ },
+ {
+  "word": "segura.",
+  "start": 14.2,
+  "end": 14.6
+ },
+ {
+  "word": "Como",
+  "start": 15.22,
+  "end": 15.78
+ },
+ {
+  "word": "a",
+  "start": 15.78,
+  "end": 15.9
+ },
+ {
+  "word": "Lúcia",
+  "start": 15.9,
+  "end": 16.2
+ },
+ {
+  "word": "vive?",
+  "start": 16.2,
+  "end": 16.6
+ },
+ {
+  "word": "O",
+  "start": 17.5,
+  "end": 17.78
+ },
+ {
+  "word": "site",
+  "start": 17.78,
+  "end": 18.02
+ },
+ {
+  "word": "está",
+  "start": 18.02,
+  "end": 18.18
+ },
+ {
+  "word": "no",
+  "start": 18.18,
+  "end": 18.36
+ },
+ {
+  "word": "ar,",
+  "start": 18.36,
+  "end": 18.52
+ },
+ {
+  "word": "a",
+  "start": 18.64,
+  "end": 19.06
+ },
+ {
+  "word": "padaria",
+  "start": 19.06,
+  "end": 19.4
+ },
+ {
+  "word": "funciona",
+  "start": 19.4,
+  "end": 19.7
+ },
+ {
+  "word": "e",
+  "start": 19.7,
+  "end": 20.32
+ },
+ {
+  "word": "ela",
+  "start": 20.32,
+  "end": 20.52
+ },
+ {
+  "word": "nem",
+  "start": 20.52,
+  "end": 20.68
+ },
+ {
+  "word": "sabe",
+  "start": 20.68,
+  "end": 20.94
+ },
+ {
+  "word": "qual",
+  "start": 20.94,
+  "end": 21.14
+ },
+ {
+  "word": "versão",
+  "start": 21.14,
+  "end": 21.42
+ },
+ {
+  "word": "roda",
+  "start": 21.42,
+  "end": 21.82
+ },
+ {
+  "word": "lá.",
+  "start": 21.82,
+  "end": 21.94
+ },
+ {
+  "word": "O",
+  "start": 22.84,
+  "end": 23.12
+ },
+ {
+  "word": "que",
+  "start": 23.12,
+  "end": 23.2
+ },
+ {
+  "word": "fazer?",
+  "start": 23.2,
+  "end": 23.5
+ },
+ {
+  "word": "Primeiro,",
+  "start": 24.44,
+  "end": 25.0
+ },
+ {
+  "word": "teste.",
+  "start": 25.02,
+  "end": 25.58
+ },
+ {
+  "word": "A",
+  "start": 26.4,
+  "end": 26.68
+ },
+ {
+  "word": "OpenAI",
+  "start": 26.68,
+  "end": 27.04
+ },
+ {
+  "word": "publicou",
+  "start": 27.04,
+  "end": 27.54
+ },
+ {
+  "word": "um",
+  "start": 27.54,
+  "end": 27.68
+ },
+ {
+  "word": "verificador",
+  "start": 27.68,
+  "end": 28.12
+ },
+ {
+  "word": "gratuito",
+  "start": 28.12,
+  "end": 28.66
+ },
+ {
+  "word": "no",
+  "start": 28.66,
+  "end": 28.82
+ },
+ {
+  "word": "GitHub.",
+  "start": 28.82,
+  "end": 29.02
+ },
+ {
+  "word": "Você",
+  "start": 29.02,
+  "end": 29.48
+ },
+ {
+  "word": "passa",
+  "start": 29.48,
+  "end": 29.94
+ },
+ {
+  "word": "o",
+  "start": 29.94,
+  "end": 30.1
+ },
+ {
+  "word": "link",
+  "start": 30.1,
+  "end": 30.22
+ },
+ {
+  "word": "para",
+  "start": 30.22,
+  "end": 30.42
+ },
+ {
+  "word": "o",
+  "start": 30.42,
+  "end": 30.52
+ },
+ {
+  "word": "Cloud,",
+  "start": 30.52,
+  "end": 30.76
+ },
+ {
+  "word": "o",
+  "start": 30.92,
+  "end": 31.18
+ },
+ {
+  "word": "Codex",
+  "start": 31.18,
+  "end": 31.7
+ },
+ {
+  "word": "ou",
+  "start": 31.7,
+  "end": 31.94
+ },
+ {
+  "word": "o",
+  "start": 31.94,
+  "end": 32.16
+ },
+ {
+  "word": "Gemini",
+  "start": 32.16,
+  "end": 32.52
+ },
+ {
+  "word": "e",
+  "start": 32.52,
+  "end": 32.86
+ },
+ {
+  "word": "pede.",
+  "start": 32.86,
+  "end": 33.2
+ },
+ {
+  "word": "Rode",
+  "start": 33.28,
+  "end": 33.68
+ },
+ {
+  "word": "só",
+  "start": 33.68,
+  "end": 33.88
+ },
+ {
+  "word": "contra",
+  "start": 33.88,
+  "end": 34.2
+ },
+ {
+  "word": "o",
+  "start": 34.2,
+  "end": 34.36
+ },
+ {
+  "word": "meu",
+  "start": 34.36,
+  "end": 34.5
+ },
+ {
+  "word": "site",
+  "start": 34.5,
+  "end": 34.8
+ },
+ {
+  "word": "e",
+  "start": 34.8,
+  "end": 35.1
+ },
+ {
+  "word": "me",
+  "start": 35.1,
+  "end": 35.2
+ },
+ {
+  "word": "explique",
+  "start": 35.2,
+  "end": 35.56
+ },
+ {
+  "word": "em",
+  "start": 35.56,
+  "end": 35.68
+ },
+ {
+  "word": "português",
+  "start": 35.68,
+  "end": 36.14
+ },
+ {
+  "word": "o",
+  "start": 36.14,
+  "end": 36.26
+ },
+ {
+  "word": "que",
+  "start": 36.26,
+  "end": 36.34
+ },
+ {
+  "word": "achou.",
+  "start": 36.34,
+  "end": 36.58
+ },
+ {
+  "word": "Se",
+  "start": 36.66,
+  "end": 36.96
+ },
+ {
+  "word": "der",
+  "start": 36.96,
+  "end": 37.12
+ },
+ {
+  "word": "vulnerável,",
+  "start": 37.12,
+  "end": 37.66
+ },
+ {
+  "word": "atualize.",
+  "start": 37.72,
+  "end": 38.36
+ },
+ {
+  "word": "Se",
+  "start": 38.46,
+  "end": 38.72
+ },
+ {
+  "word": "der",
+  "start": 38.72,
+  "end": 38.88
+ },
+ {
+  "word": "desconhecido,",
+  "start": 38.88,
+  "end": 39.52
+ },
+ {
+  "word": "não",
+  "start": 39.56,
+  "end": 39.74
+ },
+ {
+  "word": "é",
+  "start": 39.74,
+  "end": 39.86
+ },
+ {
+  "word": "sinal",
+  "start": 39.86,
+  "end": 40.06
+ },
+ {
+  "word": "verde.",
+  "start": 40.06,
+  "end": 40.24
+ },
+ {
+  "word": "Entre",
+  "start": 40.56,
+  "end": 40.96
+ },
+ {
+  "word": "no",
+  "start": 40.96,
+  "end": 41.12
+ },
+ {
+  "word": "painel",
+  "start": 41.12,
+  "end": 41.4
+ },
+ {
+  "word": "da",
+  "start": 41.4,
+  "end": 41.46
+ },
+ {
+  "word": "hospedagem",
+  "start": 41.46,
+  "end": 41.98
+ },
+ {
+  "word": "e",
+  "start": 41.98,
+  "end": 42.14
+ },
+ {
+  "word": "veja",
+  "start": 42.14,
+  "end": 42.46
+ },
+ {
+  "word": "a",
+  "start": 42.46,
+  "end": 42.5
+ },
+ {
+  "word": "versão",
+  "start": 42.5,
+  "end": 42.7
+ },
+ {
+  "word": "do",
+  "start": 42.7,
+  "end": 42.86
+ },
+ {
+  "word": "PHP.",
+  "start": 42.86,
+  "end": 43.06
+ },
+ {
+  "word": "Se",
+  "start": 43.42,
+  "end": 43.8
+ },
+ {
+  "word": "for",
+  "start": 43.8,
+  "end": 43.94
+ },
+ {
+  "word": "8",
+  "start": 43.94,
+  "end": 44.06
+ },
+ {
+  "word": ".1",
+  "start": 44.06,
+  "end": 44.56
+ },
+ {
+  "word": "ou",
+  "start": 44.56,
+  "end": 44.76
+ },
+ {
+  "word": "mais",
+  "start": 44.76,
+  "end": 44.94
+ },
+ {
+  "word": "velha,",
+  "start": 44.94,
+  "end": 45.32
+ },
+ {
+  "word": "não",
+  "start": 45.32,
+  "end": 45.54
+ },
+ {
+  "word": "existe",
+  "start": 45.54,
+  "end": 45.78
+ },
+ {
+  "word": "correção",
+  "start": 45.78,
+  "end": 46.2
+ },
+ {
+  "word": "oficial.",
+  "start": 46.2,
+  "end": 46.38
+ },
+ {
+  "word": "Peça",
+  "start": 46.9,
+  "end": 47.3
+ },
+ {
+  "word": "ao",
+  "start": 47.3,
+  "end": 47.36
+ },
+ {
+  "word": "provedor",
+  "start": 47.36,
+  "end": 47.76
+ },
+ {
+  "word": "para",
+  "start": 47.76,
+  "end": 47.88
+ },
+ {
+  "word": "mudar",
+  "start": 47.88,
+  "end": 48.08
+ },
+ {
+  "word": "a",
+  "start": 48.08,
+  "end": 48.26
+ },
+ {
+  "word": "versão",
+  "start": 48.26,
+  "end": 48.5
+ },
+ {
+  "word": "hoje.",
+  "start": 48.5,
+  "end": 48.74
+ }
+]

@@ -1,0 +1,637 @@
+[
+ {
+  "word": "Seu",
+  "start": 0.0,
+  "end": 0.26
+ },
+ {
+  "word": "site",
+  "start": 0.26,
+  "end": 0.48
+ },
+ {
+  "word": "pode",
+  "start": 0.48,
+  "end": 0.7
+ },
+ {
+  "word": "ser",
+  "start": 0.7,
+  "end": 0.84
+ },
+ {
+  "word": "invadido",
+  "start": 0.84,
+  "end": 1.22
+ },
+ {
+  "word": "hoje,",
+  "start": 1.22,
+  "end": 1.44
+ },
+ {
+  "word": "sem",
+  "start": 1.56,
+  "end": 1.8
+ },
+ {
+  "word": "ninguém",
+  "start": 1.8,
+  "end": 1.98
+ },
+ {
+  "word": "digitar",
+  "start": 1.98,
+  "end": 2.36
+ },
+ {
+  "word": "uma",
+  "start": 2.36,
+  "end": 2.48
+ },
+ {
+  "word": "senha.",
+  "start": 2.48,
+  "end": 2.86
+ },
+ {
+  "word": "E",
+  "start": 2.88,
+  "end": 3.06
+ },
+ {
+  "word": "não",
+  "start": 3.06,
+  "end": 3.14
+ },
+ {
+  "word": "é",
+  "start": 3.14,
+  "end": 3.22
+ },
+ {
+  "word": "exagero.",
+  "start": 3.22,
+  "end": 3.62
+ },
+ {
+  "word": "Governos",
+  "start": 3.8,
+  "end": 4.28
+ },
+ {
+  "word": "da",
+  "start": 4.28,
+  "end": 4.32
+ },
+ {
+  "word": "França,",
+  "start": 4.32,
+  "end": 4.72
+ },
+ {
+  "word": "da",
+  "start": 4.74,
+  "end": 4.8
+ },
+ {
+  "word": "Dinamarca,",
+  "start": 4.8,
+  "end": 5.34
+ },
+ {
+  "word": "da",
+  "start": 5.34,
+  "end": 5.42
+ },
+ {
+  "word": "Finlândia",
+  "start": 5.42,
+  "end": 5.9
+ },
+ {
+  "word": "e",
+  "start": 5.9,
+  "end": 5.98
+ },
+ {
+  "word": "da",
+  "start": 5.98,
+  "end": 6.08
+ },
+ {
+  "word": "Holanda",
+  "start": 6.08,
+  "end": 6.44
+ },
+ {
+  "word": "tiraram",
+  "start": 6.44,
+  "end": 7.0
+ },
+ {
+  "word": "sites",
+  "start": 7.0,
+  "end": 7.14
+ },
+ {
+  "word": "do",
+  "start": 7.14,
+  "end": 7.44
+ },
+ {
+  "word": "ar",
+  "start": 7.44,
+  "end": 7.56
+ },
+ {
+  "word": "esta",
+  "start": 7.56,
+  "end": 7.7
+ },
+ {
+  "word": "semana.",
+  "start": 7.7,
+  "end": 8.0
+ },
+ {
+  "word": "O",
+  "start": 8.24,
+  "end": 8.66
+ },
+ {
+  "word": "motivo",
+  "start": 8.66,
+  "end": 9.02
+ },
+ {
+  "word": "é",
+  "start": 9.02,
+  "end": 9.32
+ },
+ {
+  "word": "uma",
+  "start": 9.32,
+  "end": 9.46
+ },
+ {
+  "word": "falha",
+  "start": 9.46,
+  "end": 9.86
+ },
+ {
+  "word": "no",
+  "start": 9.86,
+  "end": 9.96
+ },
+ {
+  "word": "PHP,",
+  "start": 9.96,
+  "end": 10.32
+ },
+ {
+  "word": "o",
+  "start": 10.76,
+  "end": 11.12
+ },
+ {
+  "word": "motor",
+  "start": 11.12,
+  "end": 11.32
+ },
+ {
+  "word": "que",
+  "start": 11.32,
+  "end": 11.46
+ },
+ {
+  "word": "roda",
+  "start": 11.46,
+  "end": 11.72
+ },
+ {
+  "word": "por",
+  "start": 11.72,
+  "end": 11.8
+ },
+ {
+  "word": "baixo",
+  "start": 11.8,
+  "end": 12.08
+ },
+ {
+  "word": "de",
+  "start": 12.08,
+  "end": 12.26
+ },
+ {
+  "word": "7",
+  "start": 12.26,
+  "end": 12.54
+ },
+ {
+  "word": "em",
+  "start": 12.54,
+  "end": 12.74
+ },
+ {
+  "word": "cada",
+  "start": 12.74,
+  "end": 12.9
+ },
+ {
+  "word": "10",
+  "start": 12.9,
+  "end": 13.16
+ },
+ {
+  "word": "sites",
+  "start": 13.16,
+  "end": 13.44
+ },
+ {
+  "word": "do",
+  "start": 13.44,
+  "end": 13.66
+ },
+ {
+  "word": "mundo,",
+  "start": 13.66,
+  "end": 13.88
+ },
+ {
+  "word": "inclusive",
+  "start": 13.92,
+  "end": 14.16
+ },
+ {
+  "word": "a",
+  "start": 14.16,
+  "end": 14.32
+ },
+ {
+  "word": "maioria",
+  "start": 14.32,
+  "end": 14.56
+ },
+ {
+  "word": "dos",
+  "start": 14.56,
+  "end": 14.8
+ },
+ {
+  "word": "sites",
+  "start": 14.8,
+  "end": 15.02
+ },
+ {
+  "word": "em",
+  "start": 15.02,
+  "end": 15.2
+ },
+ {
+  "word": "WordPress.",
+  "start": 15.2,
+  "end": 15.4
+ },
+ {
+  "word": "Pesquisadores",
+  "start": 15.84,
+  "end": 16.32
+ },
+ {
+  "word": "encontraram",
+  "start": 16.32,
+  "end": 16.92
+ },
+ {
+  "word": "a",
+  "start": 16.92,
+  "end": 16.96
+ },
+ {
+  "word": "falha",
+  "start": 16.96,
+  "end": 17.32
+ },
+ {
+  "word": "com",
+  "start": 17.32,
+  "end": 17.42
+ },
+ {
+  "word": "a",
+  "start": 17.42,
+  "end": 17.52
+ },
+ {
+  "word": "ajuda",
+  "start": 17.52,
+  "end": 17.8
+ },
+ {
+  "word": "de",
+  "start": 17.8,
+  "end": 17.92
+ },
+ {
+  "word": "inteligência",
+  "start": 17.92,
+  "end": 18.42
+ },
+ {
+  "word": "artificial,",
+  "start": 18.42,
+  "end": 18.78
+ },
+ {
+  "word": "e",
+  "start": 19.14,
+  "end": 19.52
+ },
+ {
+  "word": "ela",
+  "start": 19.52,
+  "end": 19.62
+ },
+ {
+  "word": "existe",
+  "start": 19.62,
+  "end": 19.86
+ },
+ {
+  "word": "desde",
+  "start": 19.86,
+  "end": 20.16
+ },
+ {
+  "word": "2012.",
+  "start": 20.16,
+  "end": 20.7
+ },
+ {
+  "word": "Olha",
+  "start": 21.26,
+  "end": 21.66
+ },
+ {
+  "word": "este",
+  "start": 21.66,
+  "end": 21.84
+ },
+ {
+  "word": "gráfico.",
+  "start": 21.84,
+  "end": 22.34
+ },
+ {
+  "word": "São",
+  "start": 22.36,
+  "end": 22.6
+ },
+ {
+  "word": "as",
+  "start": 22.6,
+  "end": 22.72
+ },
+ {
+  "word": "versões",
+  "start": 22.72,
+  "end": 23.12
+ },
+ {
+  "word": "do",
+  "start": 23.12,
+  "end": 23.26
+ },
+ {
+  "word": "PHP.",
+  "start": 23.26,
+  "end": 23.64
+ },
+ {
+  "word": "Todas",
+  "start": 24.32,
+  "end": 24.8
+ },
+ {
+  "word": "têm",
+  "start": 24.8,
+  "end": 24.96
+ },
+ {
+  "word": "a",
+  "start": 24.96,
+  "end": 25.06
+ },
+ {
+  "word": "falha.",
+  "start": 25.06,
+  "end": 25.38
+ },
+ {
+  "word": "Agora",
+  "start": 25.46,
+  "end": 25.92
+ },
+ {
+  "word": "conheça",
+  "start": 25.92,
+  "end": 26.34
+ },
+ {
+  "word": "a",
+  "start": 26.34,
+  "end": 26.4
+ },
+ {
+  "word": "Lúcia,",
+  "start": 26.4,
+  "end": 26.66
+ },
+ {
+  "word": "54",
+  "start": 26.76,
+  "end": 27.28
+ },
+ {
+  "word": "anos,",
+  "start": 27.28,
+  "end": 28.1
+ },
+ {
+  "word": "dona",
+  "start": 28.32,
+  "end": 28.78
+ },
+ {
+  "word": "de",
+  "start": 28.78,
+  "end": 28.96
+ },
+ {
+  "word": "uma",
+  "start": 28.96,
+  "end": 29.06
+ },
+ {
+  "word": "padaria.",
+  "start": 29.06,
+  "end": 29.44
+ },
+ {
+  "word": "O",
+  "start": 29.44,
+  "end": 29.78
+ },
+ {
+  "word": "site",
+  "start": 29.78,
+  "end": 29.98
+ },
+ {
+  "word": "dela",
+  "start": 29.98,
+  "end": 30.2
+ },
+ {
+  "word": "foi",
+  "start": 30.2,
+  "end": 30.4
+ },
+ {
+  "word": "feito",
+  "start": 30.4,
+  "end": 30.64
+ },
+ {
+  "word": "por",
+  "start": 30.64,
+  "end": 30.8
+ },
+ {
+  "word": "um",
+  "start": 30.8,
+  "end": 30.88
+ },
+ {
+  "word": "freelancer",
+  "start": 30.88,
+  "end": 31.34
+ },
+ {
+  "word": "em",
+  "start": 31.34,
+  "end": 31.5
+ },
+ {
+  "word": "2018",
+  "start": 31.5,
+  "end": 32.02
+ },
+ {
+  "word": "e",
+  "start": 32.02,
+  "end": 32.62
+ },
+ {
+  "word": "ninguém",
+  "start": 32.62,
+  "end": 32.94
+ },
+ {
+  "word": "mais",
+  "start": 32.94,
+  "end": 33.2
+ },
+ {
+  "word": "entrou",
+  "start": 33.2,
+  "end": 33.54
+ },
+ {
+  "word": "lá.",
+  "start": 33.54,
+  "end": 33.66
+ },
+ {
+  "word": "Vamos",
+  "start": 33.88,
+  "end": 34.28
+ },
+ {
+  "word": "ver",
+  "start": 34.28,
+  "end": 34.52
+ },
+ {
+  "word": "o",
+  "start": 34.52,
+  "end": 34.64
+ },
+ {
+  "word": "que",
+  "start": 34.64,
+  "end": 34.68
+ },
+ {
+  "word": "ela",
+  "start": 34.68,
+  "end": 34.8
+ },
+ {
+  "word": "faz",
+  "start": 34.8,
+  "end": 35.02
+ },
+ {
+  "word": "em",
+  "start": 35.02,
+  "end": 35.18
+ },
+ {
+  "word": "cada",
+  "start": 35.18,
+  "end": 35.3
+ },
+ {
+  "word": "caso",
+  "start": 35.3,
+  "end": 35.64
+ },
+ {
+  "word": "e",
+  "start": 35.64,
+  "end": 35.98
+ },
+ {
+  "word": "o",
+  "start": 35.98,
+  "end": 36.12
+ },
+ {
+  "word": "que",
+  "start": 36.12,
+  "end": 36.14
+ },
+ {
+  "word": "você",
+  "start": 36.14,
+  "end": 36.36
+ },
+ {
+  "word": "faz",
+  "start": 36.36,
+  "end": 36.58
+ },
+ {
+  "word": "no",
+  "start": 36.58,
+  "end": 36.72
+ },
+ {
+  "word": "seu.",
+  "start": 36.72,
+  "end": 36.88
+ }
+]

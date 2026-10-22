@@ -1,0 +1,19 @@
+# Ficha r7exp — "PHP2Shell: seu site está exposto?" (21/10/2026). Fonte: PHP security team (php.net, 21/10/2026),
+# Sansec, BleepingComputer, Semafor (governos offline), Cloudflare (ataques 07:43 UTC), openai/php2shell-checker.
+# Ponto de partida: vídeo em inglês colado pelo Nei (não citado). Uma versão só (a).
+# A ordem das falas (aberturas.a → caminhos → final) é a que motor/monta_avatar.py usa; as peças estão em php/gera_php.py.
+slug: php2shell-seu-site
+marca: "INEMA · SEU SITE ESTÁ EXPOSTO?"
+fonte: "PHP security team · Sansec · Cloudflare · 21/10/2026"
+personagem: "Lúcia, 54 anos, dona de padaria, site WordPress feito por freelancer em 2018 (lucia-2026.png)"
+
+mapa:
+  linhas: {}
+
+aberturas:
+  a: {fala: 0-intro, capa: capa.png}
+caminhos:
+  - {id: P, n: 1, fala: 1-plataforma}
+  - {id: W, n: 2, fala: 2-wordpress}
+  - {id: S, n: 3, fala: 3-servidor}
+final: {fala: 4-final, url: "https://inema.club"}

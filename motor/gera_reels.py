@@ -99,7 +99,7 @@ def link(src, dst):
         shutil.copy2(src, dst)
 
 
-def monta(pasta, slug, *, chip, nome, cor, fala, exp, exp_ini, dur, banda, fim_html, fim_js, capa=None, capa_ate=0.0, zooms=()):
+def monta(pasta, slug, *, marca="5 FUTUROS", chip, nome, cor, fala, exp, exp_ini, dur, banda, fim_html, fim_js, capa=None, capa_ate=0.0, zooms=()):
     """banda = [(t_ini, img, rotulo, cor_rotulo)]; troca com dissolve e zoom lento (≤1,08)."""
     out = pasta / "reels" / slug
     a = out / "assets"
@@ -148,7 +148,7 @@ def monta(pasta, slug, *, chip, nome, cor, fala, exp, exp_ini, dur, banda, fim_h
 <body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="{total:.2f}" data-width="1080" data-height="1920">
  <div id="hdr" class="clip" data-start="0" data-duration="{dur:.2f}" data-track-index="1"><span class="chip">{chip}</span>
-  <div class="marca">INEMA <span>· 5 FUTUROS</span></div><div class="nome" style="color:{cor};font-size:{76 if len(nome) <= 18 else 66}px">{nome}</div></div>
+  <div class="marca">INEMA <span>· {marca}</span></div><div class="nome" style="color:{cor};font-size:{76 if len(nome) <= 18 else 66}px">{nome}</div></div>
  <div id="expw"><video id="exp" class="clip" src="assets/exp.mp4" data-start="0" data-duration="{dur:.2f}" data-media-start="{exp_ini:.3f}" data-track-index="2" data-volume="0" muted playsinline></video></div>
  <div id="avw">
   <video id="av" src="assets/av.mp4" data-start="0" data-duration="{dur:.2f}" data-track-index="4" data-has-audio="true" data-volume="1" playsinline></video></div>

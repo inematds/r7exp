@@ -1,0 +1,362 @@
+[
+ {
+  "word": "Primeiro,",
+  "start": 0.0,
+  "end": 0.42
+ },
+ {
+  "word": "o",
+  "start": 0.44,
+  "end": 0.52
+ },
+ {
+  "word": "sistema",
+  "start": 0.52,
+  "end": 0.74
+ },
+ {
+  "word": "antigo.",
+  "start": 0.74,
+  "end": 1.2
+ },
+ {
+  "word": "Ele",
+  "start": 1.22,
+  "end": 1.56
+ },
+ {
+  "word": "se",
+  "start": 1.56,
+  "end": 1.7
+ },
+ {
+  "word": "chama",
+  "start": 1.7,
+  "end": 1.88
+ },
+ {
+  "word": "COBOL",
+  "start": 1.88,
+  "end": 2.28
+ },
+ {
+  "word": "e",
+  "start": 2.28,
+  "end": 2.42
+ },
+ {
+  "word": "nasceu",
+  "start": 2.42,
+  "end": 2.84
+ },
+ {
+  "word": "há",
+  "start": 2.84,
+  "end": 2.96
+ },
+ {
+  "word": "mais",
+  "start": 2.96,
+  "end": 3.14
+ },
+ {
+  "word": "de",
+  "start": 3.14,
+  "end": 3.24
+ },
+ {
+  "word": "60",
+  "start": 3.24,
+  "end": 3.44
+ },
+ {
+  "word": "anos.",
+  "start": 3.44,
+  "end": 3.78
+ },
+ {
+  "word": "Mesmo",
+  "start": 4.1,
+  "end": 4.54
+ },
+ {
+  "word": "assim,",
+  "start": 4.54,
+  "end": 4.68
+ },
+ {
+  "word": "segundo",
+  "start": 4.84,
+  "end": 5.26
+ },
+ {
+  "word": "a",
+  "start": 5.26,
+  "end": 5.46
+ },
+ {
+  "word": "OpenAI,",
+  "start": 5.46,
+  "end": 5.8
+ },
+ {
+  "word": "ele",
+  "start": 5.98,
+  "end": 6.3
+ },
+ {
+  "word": "passa",
+  "start": 6.3,
+  "end": 6.52
+ },
+ {
+  "word": "por",
+  "start": 6.52,
+  "end": 6.7
+ },
+ {
+  "word": "quase",
+  "start": 6.7,
+  "end": 6.92
+ },
+ {
+  "word": "todos",
+  "start": 6.92,
+  "end": 7.18
+ },
+ {
+  "word": "os",
+  "start": 7.18,
+  "end": 7.42
+ },
+ {
+  "word": "saques",
+  "start": 7.42,
+  "end": 7.7
+ },
+ {
+  "word": "em",
+  "start": 7.7,
+  "end": 7.82
+ },
+ {
+  "word": "caixa",
+  "start": 7.82,
+  "end": 8.06
+ },
+ {
+  "word": "eletrônico",
+  "start": 8.06,
+  "end": 8.5
+ },
+ {
+  "word": "e",
+  "start": 8.5,
+  "end": 8.88
+ },
+ {
+  "word": "por",
+  "start": 8.88,
+  "end": 9.0
+ },
+ {
+  "word": "oito",
+  "start": 9.0,
+  "end": 9.34
+ },
+ {
+  "word": "em",
+  "start": 9.34,
+  "end": 9.64
+ },
+ {
+  "word": "cada",
+  "start": 9.64,
+  "end": 9.8
+ },
+ {
+  "word": "dez",
+  "start": 9.8,
+  "end": 10.0
+ },
+ {
+  "word": "compras",
+  "start": 10.0,
+  "end": 10.44
+ },
+ {
+  "word": "com",
+  "start": 10.44,
+  "end": 10.56
+ },
+ {
+  "word": "cartão",
+  "start": 10.56,
+  "end": 10.96
+ },
+ {
+  "word": "na",
+  "start": 10.96,
+  "end": 11.04
+ },
+ {
+  "word": "maquininha.",
+  "start": 11.04,
+  "end": 11.48
+ },
+ {
+  "word": "São",
+  "start": 11.56,
+  "end": 11.94
+ },
+ {
+  "word": "cerca",
+  "start": 11.94,
+  "end": 12.18
+ },
+ {
+  "word": "de",
+  "start": 12.18,
+  "end": 12.36
+ },
+ {
+  "word": "220",
+  "start": 12.36,
+  "end": 12.7
+ },
+ {
+  "word": "bilhões",
+  "start": 12.7,
+  "end": 13.38
+ },
+ {
+  "word": "de",
+  "start": 13.38,
+  "end": 13.54
+ },
+ {
+  "word": "linhas",
+  "start": 13.54,
+  "end": 13.8
+ },
+ {
+  "word": "ainda",
+  "start": 13.8,
+  "end": 13.98
+ },
+ {
+  "word": "rodando.",
+  "start": 13.98,
+  "end": 14.4
+ },
+ {
+  "word": "O",
+  "start": 14.48,
+  "end": 14.7
+ },
+ {
+  "word": "Marcos",
+  "start": 14.7,
+  "end": 15.0
+ },
+ {
+  "word": "também",
+  "start": 15.0,
+  "end": 15.18
+ },
+ {
+  "word": "tem",
+  "start": 15.18,
+  "end": 15.42
+ },
+ {
+  "word": "o",
+  "start": 15.42,
+  "end": 15.48
+ },
+ {
+  "word": "seu",
+  "start": 15.48,
+  "end": 15.58
+ },
+ {
+  "word": "sistema",
+  "start": 15.58,
+  "end": 15.82
+ },
+ {
+  "word": "antigo,",
+  "start": 15.82,
+  "end": 16.28
+ },
+ {
+  "word": "aquele",
+  "start": 16.3,
+  "end": 16.64
+ },
+ {
+  "word": "que",
+  "start": 16.64,
+  "end": 16.82
+ },
+ {
+  "word": "ninguém",
+  "start": 16.82,
+  "end": 16.96
+ },
+ {
+  "word": "quer",
+  "start": 16.96,
+  "end": 17.16
+ },
+ {
+  "word": "tocar.",
+  "start": 17.16,
+  "end": 17.36
+ },
+ {
+  "word": "O",
+  "start": 17.6,
+  "end": 17.94
+ },
+ {
+  "word": "problema?",
+  "start": 17.94,
+  "end": 18.26
+ },
+ {
+  "word": "Quem",
+  "start": 18.4,
+  "end": 18.58
+ },
+ {
+  "word": "sabe",
+  "start": 18.58,
+  "end": 18.8
+ },
+ {
+  "word": "mexer",
+  "start": 18.8,
+  "end": 19.16
+ },
+ {
+  "word": "nele",
+  "start": 19.16,
+  "end": 19.4
+ },
+ {
+  "word": "está",
+  "start": 19.4,
+  "end": 19.56
+ },
+ {
+  "word": "se",
+  "start": 19.56,
+  "end": 19.72
+ },
+ {
+  "word": "aposentando.",
+  "start": 19.72,
+  "end": 20.22
+ }
+]

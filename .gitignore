@@ -44,3 +44,12 @@ bots/cena-*/.hyperframes/
 bots/reels/*.mp4
 bots/reels/*/assets/
 bots/reels/*/.hyperframes/
+bancos/build/
+bancos/avatar/*.mp4
+bancos/tempos/_*/
+bancos/tempos/dub_work/
+bancos/cena-*/assets/
+bancos/cena-*/.hyperframes/
+bancos/reels/*.mp4
+bancos/reels/*/assets/
+bancos/reels/*/.hyperframes/

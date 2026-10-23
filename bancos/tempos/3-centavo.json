@@ -1,0 +1,437 @@
+[
+ {
+  "word": "Terceiro,",
+  "start": 0.0,
+  "end": 0.48
+ },
+ {
+  "word": "o",
+  "start": 0.5,
+  "end": 0.78
+ },
+ {
+  "word": "perigo",
+  "start": 0.78,
+  "end": 1.1
+ },
+ {
+  "word": "do",
+  "start": 1.1,
+  "end": 1.18
+ },
+ {
+  "word": "centavo.",
+  "start": 1.18,
+  "end": 1.58
+ },
+ {
+  "word": "Quando",
+  "start": 1.62,
+  "end": 2.08
+ },
+ {
+  "word": "o",
+  "start": 2.08,
+  "end": 2.18
+ },
+ {
+  "word": "Cobol",
+  "start": 2.18,
+  "end": 2.48
+ },
+ {
+  "word": "faz",
+  "start": 2.48,
+  "end": 2.58
+ },
+ {
+  "word": "conta",
+  "start": 2.58,
+  "end": 2.82
+ },
+ {
+  "word": "com",
+  "start": 2.82,
+  "end": 3.0
+ },
+ {
+  "word": "dinheiro,",
+  "start": 3.0,
+  "end": 3.18
+ },
+ {
+  "word": "ele",
+  "start": 3.44,
+  "end": 3.62
+ },
+ {
+  "word": "corta",
+  "start": 3.62,
+  "end": 3.94
+ },
+ {
+  "word": "as",
+  "start": 3.94,
+  "end": 3.98
+ },
+ {
+  "word": "casas",
+  "start": 3.98,
+  "end": 4.28
+ },
+ {
+  "word": "decimais.",
+  "start": 4.28,
+  "end": 4.64
+ },
+ {
+  "word": "Muitas",
+  "start": 4.92,
+  "end": 5.4
+ },
+ {
+  "word": "linguagens",
+  "start": 5.4,
+  "end": 5.76
+ },
+ {
+  "word": "modernas",
+  "start": 5.76,
+  "end": 6.2
+ },
+ {
+  "word": "arredondam.",
+  "start": 6.2,
+  "end": 6.68
+ },
+ {
+  "word": "O",
+  "start": 6.74,
+  "end": 6.98
+ },
+ {
+  "word": "programa",
+  "start": 6.98,
+  "end": 7.24
+ },
+ {
+  "word": "roda,",
+  "start": 7.24,
+  "end": 7.6
+ },
+ {
+  "word": "ninguém",
+  "start": 7.62,
+  "end": 7.94
+ },
+ {
+  "word": "vê",
+  "start": 7.94,
+  "end": 8.22
+ },
+ {
+  "word": "erro,",
+  "start": 8.22,
+  "end": 8.42
+ },
+ {
+  "word": "mas",
+  "start": 8.5,
+  "end": 8.76
+ },
+ {
+  "word": "o",
+  "start": 8.76,
+  "end": 8.88
+ },
+ {
+  "word": "total",
+  "start": 8.88,
+  "end": 9.12
+ },
+ {
+  "word": "sai",
+  "start": 9.12,
+  "end": 9.36
+ },
+ {
+  "word": "um",
+  "start": 9.36,
+  "end": 9.5
+ },
+ {
+  "word": "centavo",
+  "start": 9.5,
+  "end": 9.9
+ },
+ {
+  "word": "diferente.",
+  "start": 9.9,
+  "end": 10.1
+ },
+ {
+  "word": "Em",
+  "start": 10.46,
+  "end": 10.74
+ },
+ {
+  "word": "milhões",
+  "start": 10.74,
+  "end": 11.0
+ },
+ {
+  "word": "de",
+  "start": 11.0,
+  "end": 11.16
+ },
+ {
+  "word": "contas,",
+  "start": 11.16,
+  "end": 11.6
+ },
+ {
+  "word": "isso",
+  "start": 11.6,
+  "end": 11.76
+ },
+ {
+  "word": "vira",
+  "start": 11.76,
+  "end": 12.02
+ },
+ {
+  "word": "desastre.",
+  "start": 12.02,
+  "end": 12.46
+ },
+ {
+  "word": "Por",
+  "start": 12.5,
+  "end": 12.76
+ },
+ {
+  "word": "isso,",
+  "start": 12.76,
+  "end": 12.98
+ },
+ {
+  "word": "nenhum",
+  "start": 13.0,
+  "end": 13.16
+ },
+ {
+  "word": "banco",
+  "start": 13.16,
+  "end": 13.46
+ },
+ {
+  "word": "vai",
+  "start": 13.46,
+  "end": 13.86
+ },
+ {
+  "word": "entregar",
+  "start": 13.86,
+  "end": 14.24
+ },
+ {
+  "word": "o",
+  "start": 14.24,
+  "end": 14.32
+ },
+ {
+  "word": "sistema",
+  "start": 14.32,
+  "end": 14.56
+ },
+ {
+  "word": "para",
+  "start": 14.56,
+  "end": 14.8
+ },
+ {
+  "word": "a",
+  "start": 14.8,
+  "end": 14.82
+ },
+ {
+  "word": "inteligência",
+  "start": 14.82,
+  "end": 15.32
+ },
+ {
+  "word": "artificial",
+  "start": 15.32,
+  "end": 15.56
+ },
+ {
+  "word": "na",
+  "start": 15.56,
+  "end": 15.88
+ },
+ {
+  "word": "semana",
+  "start": 15.88,
+  "end": 16.08
+ },
+ {
+  "word": "que",
+  "start": 16.08,
+  "end": 16.2
+ },
+ {
+  "word": "vem.",
+  "start": 16.2,
+  "end": 16.38
+ },
+ {
+  "word": "A",
+  "start": 16.54,
+  "end": 16.82
+ },
+ {
+  "word": "inteligência",
+  "start": 16.82,
+  "end": 17.3
+ },
+ {
+  "word": "artificial",
+  "start": 17.3,
+  "end": 17.64
+ },
+ {
+  "word": "reescreve",
+  "start": 17.64,
+  "end": 18.36
+ },
+ {
+  "word": "e",
+  "start": 18.36,
+  "end": 18.52
+ },
+ {
+  "word": "o",
+  "start": 18.52,
+  "end": 18.7
+ },
+ {
+  "word": "especialista",
+  "start": 18.7,
+  "end": 19.26
+ },
+ {
+  "word": "confere",
+  "start": 19.26,
+  "end": 19.74
+ },
+ {
+  "word": "e",
+  "start": 19.74,
+  "end": 19.86
+ },
+ {
+  "word": "testa",
+  "start": 19.86,
+  "end": 20.28
+ },
+ {
+  "word": "com",
+  "start": 20.28,
+  "end": 20.36
+ },
+ {
+  "word": "as",
+  "start": 20.36,
+  "end": 20.44
+ },
+ {
+  "word": "regras",
+  "start": 20.44,
+  "end": 20.78
+ },
+ {
+  "word": "da",
+  "start": 20.78,
+  "end": 20.84
+ },
+ {
+  "word": "empresa.",
+  "start": 20.84,
+  "end": 21.04
+ },
+ {
+  "word": "O",
+  "start": 21.4,
+  "end": 21.64
+ },
+ {
+  "word": "Marcos",
+  "start": 21.64,
+  "end": 21.92
+ },
+ {
+  "word": "faz",
+  "start": 21.92,
+  "end": 22.06
+ },
+ {
+  "word": "igual.",
+  "start": 22.06,
+  "end": 22.3
+ },
+ {
+  "word": "O",
+  "start": 22.42,
+  "end": 22.76
+ },
+ {
+  "word": "sistema",
+  "start": 22.76,
+  "end": 23.02
+ },
+ {
+  "word": "novo",
+  "start": 23.02,
+  "end": 23.26
+ },
+ {
+  "word": "roda",
+  "start": 23.26,
+  "end": 23.68
+ },
+ {
+  "word": "ao",
+  "start": 23.68,
+  "end": 23.76
+ },
+ {
+  "word": "lado",
+  "start": 23.76,
+  "end": 24.0
+ },
+ {
+  "word": "do",
+  "start": 24.0,
+  "end": 24.12
+ },
+ {
+  "word": "antigo",
+  "start": 24.12,
+  "end": 24.5
+ },
+ {
+  "word": "até",
+  "start": 24.5,
+  "end": 24.64
+ },
+ {
+  "word": "bater",
+  "start": 24.64,
+  "end": 24.9
+ },
+ {
+  "word": "exatamente.",
+  "start": 24.9,
+  "end": 25.14
+ }
+]

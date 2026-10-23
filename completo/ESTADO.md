@@ -25,3 +25,4 @@ nos 5 caminhos e no final "como se preparar"; cada caminho ensina como se adapta
 - Reels na fila do lives11 (r7ex/fila, na frente, com --playlist PLGR_G3hBAAaM): índice 21h de 21/10, caminhos 1–5 em 22/10 9–17h.
 - Publicados (lives11, todos na playlist): índice iWGJf2IwiRs · 1 IbSbkQmBEaM · 2 cPS1mv96H_g · 3 vaIWnSm3nkY · 4 hju4LeqC3Ds · 5 cNv5tblLd-8. Links no inemaytbot em 22/10.
 - Playlist espelho no lives1 (INEMA TDS): https://www.youtube.com/playlist?list=PLCTFUR8YB1Os — mesmos 9 vídeos, B primeiro (23/10).
+- Telegram 23/10: INEMA.VIP Novidades (t.me/c/2405283087/306) + tópico novo INEMA.IA 6169 (no MENU msg 6180), link da playlist lives11.

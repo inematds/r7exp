@@ -35,8 +35,11 @@ confirmar e não impor; a emoção vem primeiro, senão não atingimos nunca o r
 - Um reel por opção (o bloco 3 em 9:16, 35–60 s), sempre terminando com "existem outros N caminhos".
 - Um reel-índice: o mapa + as N versões da personagem em 2 s cada + "qual é o seu?".
 - **Reels tirados do completo (1º: 5 futuros, 21/10/2026, `motor/gera_reels.py`):** `gera.py <pasta> a limpo` (sem avatar e sem
-  legenda) → render → faixas 1080x1920: título do caminho (0–170) · explicativo 16:9 limpo (170–778) · avatar (778–1338, legenda
-  no peito) · a Ana 2026 → 2040 naquele futuro (1338–1920); cartão final "existem outros 4 caminhos" (3,5 s, sem fala).
+  legenda) → render → faixas 1080x1920 (D17, Nei 22/10/2026): **2/3 de cima = conteúdo** — título do caso (0–170) · explicativo 16:9
+  limpo (170–778) · imagem de impacto da personagem (778–1280) — e **avatar no terço de baixo (1280–1920) o reel inteiro**.
+  **Quadro 0** = capa nos 2/3 de cima: imagem de impacto do caso + título ≤ 4 palavras (`capa=`/`titulo=` no `monta()`; palavra-chave
+  em `<b>` fica amarela), parada até o fim da 1ª frase; a legenda karaokê entra depois, no pé dos 2/3 (fora do rosto, acima da
+  interface do Shorts). Cartão final "existem outros N caminhos" (3,5 s, sem fala).
   Índice = abertura B cortada antes de "começando pelo pior", capa empilhada no quadro 0, as 5 Anas a cada 2,2 s, "qual é o seu?".
   Painel que no 16:9 dividia a tela com o avatar em meia tela: enquadrar com zoom ≤ 1,2×.
 - **Reel explicativo 9:16 avulso (1º: Thwaites, 21/10/2026, `reels/thwaites/`):** gerador próprio `gera_v.py` (o `motor/gera.py` é 16:9).
@@ -51,6 +54,7 @@ confirmar e não impor; a emoção vem primeiro, senão não atingimos nunca o r
 - Personagem: mesma referência em todas as imagens (Codex com imagem de referência); transição por máscara/varredura.
 - Diagrama de causa: nós que acendem em sequência (A → B → C).
 - Cores: preto `#0c0c10`, amarelo `#FACC15` no destaque, cada opção com sua cor de linha do mapa; fonte Sora/Montserrat.
-- Avatar do Nei (D16, 21/10/2026): ABRE em meia tela no quadro 0 (16:9: metade direita até o fim da capa — `abertura.avatar_meia_ate`
+- Avatar do Nei nos reels 9:16 (D17, 22/10/2026): terço de baixo o tempo todo (ver §3).
+- Avatar do Nei no completo 16:9 (D16, 21/10/2026): ABRE em meia tela no quadro 0 (16:9: metade direita até o fim da capa — `abertura.avatar_meia_ate`
   estende; 9:16: metade de baixo 1080x960) e depois PiP, crescendo para meia tela onde o plano pedir (`meia()` no motor).
   Capa com título à esquerda (16:9) ou no alto (9:16), fora do rosto. Nunca tela cheia (D8). Sem efeitos sonoros (D7).

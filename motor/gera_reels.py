@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Reels 9:16 tirados do completo (PADRAO §3): um por caminho + o reel-índice.
 
-Faixas (1080x1920): título (0-170) · explicativo 16:9 limpo (170-778) · avatar (778-1338, legenda no peito)
-· a Ana naquele futuro (1338-1920). No fim, cartão "existem outros 4 caminhos" (caminho) ou "qual é o seu?" (índice).
+Faixas (1080x1920, D17 — Nei 22/10/2026): os 2/3 de cima são do conteúdo — título (0-170) · explicativo 16:9 limpo
+(170-778) · imagem de impacto da personagem (778-1280) — e o avatar fica no TERÇO DE BAIXO (1280-1920) o reel inteiro.
+Quadro 0 = capa nos 2/3 de cima (imagem de impacto + título grande), parada até o fim da 1ª frase; o avatar já aparece embaixo.
+Legenda karaokê no pé dos 2/3 (fora do rosto e acima da interface do Shorts/Reels).
+No fim, cartão "existem outros 4 caminhos" (caminho) ou "qual é o seu?" (índice).
 
 Uso: python3 motor/gera_reels.py completo [--so E,Z]
 Precisa de: reels/limpo-a.mp4 e reels/limpo-b.mp4 (gera.py <pasta> a|b limpo), build/n-<fala>.mp4, tempos/<fala>.json.
@@ -17,8 +20,8 @@ from gera import legenda, CORRIGE, norm  # noqa: E402
 
 W, H = 1080, 1920
 Y_EXP, H_EXP = 170, 608
-Y_AV, H_AV = 778, 560
-Y_IMG = Y_AV + H_AV
+Y_IMG, H_IMG = 778, 502       # imagem de impacto
+Y_AV, H_AV = 1280, 640        # avatar: terço de baixo, o reel inteiro (D17)
 FIM = 3.5          # cartão final (sem fala)
 
 # imagens da Ana em 2040 por caminho (a de 2026 abre todos)
@@ -43,17 +46,23 @@ html, body { width:1080px; height:1920px; overflow:hidden; background:#0c0c10; }
 .nome { font-family:Montserrat; font-weight:900; font-size:76px; line-height:1; margin-top:12px; white-space:nowrap; text-transform:uppercase; }
 #expw { position:absolute; left:0; top:170px; width:1080px; height:608px; overflow:hidden; }
 #exp { position:absolute; left:0; top:0; width:1080px; height:608px; object-fit:cover; }
-#avw { position:absolute; left:0; top:778px; width:1080px; height:560px; overflow:hidden; border-top:4px solid #FACC15; border-bottom:4px solid #FACC15; }
-#av { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 22%; }
-#banda { left:0; top:1338px; width:1080px; height:582px; overflow:hidden; }
+#avw { position:absolute; left:0; top:1280px; width:1080px; height:640px; overflow:hidden; border-top:4px solid #FACC15; }
+#av { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 18%; }
+#banda { left:0; top:778px; width:1080px; height:502px; overflow:hidden; }
 #banda img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform-origin:50% 40%; }
-#banda .sombra { position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,12,16,.55) 0%, rgba(12,12,16,0) 30%); }
+#banda .sombra { position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,12,16,.55) 0%, rgba(12,12,16,0) 28%, rgba(12,12,16,0) 55%, rgba(12,12,16,.75) 100%); }
 .rot { position:absolute; left:40px; top:26px; font-family:Sora; font-weight:700; font-size:30px; letter-spacing:.06em; padding:8px 18px; border-radius:12px; background:rgba(12,12,16,.85); opacity:0; }
 #legenda { left:0; top:0; width:1080px; height:1920px; }
-.cap { position:absolute; left:30px; right:30px; top:1196px; text-align:center; font-family:Montserrat; font-weight:900; font-size:68px; line-height:1.05; text-transform:uppercase; opacity:0;
+.cap { position:absolute; left:30px; right:30px; bottom:660px; text-align:center; font-family:Montserrat; font-weight:900; font-size:68px; line-height:1.05; text-transform:uppercase; opacity:0;
        color:#fff; -webkit-text-stroke:10px #000; paint-order:stroke fill; }
 .cap b { font-weight:900; }
-#capa img { width:100%; height:100%; object-fit:cover; }
+#capa { left:0; top:0; width:1080px; height:1280px; overflow:hidden; background:#0c0c10; }
+#capa img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+#capa .grad { position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,12,16,.92) 0%, rgba(12,12,16,.55) 30%, rgba(12,12,16,0) 52%, rgba(12,12,16,0) 80%, rgba(12,12,16,.6) 100%); }
+#capa .chip { position:absolute; left:40px; top:40px; }
+#capa .tit { position:absolute; left:40px; right:40px; top:110px; font-family:Montserrat; font-weight:900; text-transform:uppercase; line-height:.98;
+             color:#fff; -webkit-text-stroke:6px #000; paint-order:stroke fill; }
+#capa .tit b { color:#FACC15; }
 .fim { background:#0c0c10; opacity:0; }
 .fim h2 { position:absolute; left:40px; right:40px; text-align:center; font-family:Montserrat; font-weight:900; text-transform:uppercase; line-height:1; }
 .grade { position:absolute; left:40px; right:40px; top:480px; display:grid; grid-template-columns:1fr 1fr; gap:22px; }
@@ -99,8 +108,21 @@ def link(src, dst):
         shutil.copy2(src, dst)
 
 
-def monta(pasta, slug, *, marca="5 FUTUROS", chip, nome, cor, fala, exp, exp_ini, dur, banda, fim_html, fim_js, capa=None, capa_ate=0.0, zooms=()):
-    """banda = [(t_ini, img, rotulo, cor_rotulo)]; troca com dissolve e zoom lento (≤1,08)."""
+def fim_1a_frase(pal, minimo=1.5, maximo=4.0):
+    """tempo em que acaba a 1ª frase (palavra com . ? !), entre `minimo` e `maximo` s."""
+    for k, x in enumerate(pal):
+        if x["word"].rstrip('"\'»”').endswith((".", "?", "!")) and x["t"] >= minimo - 0.6:
+            fim = pal[k + 1]["t"] - 0.1 if k + 1 < len(pal) else x["t"] + 0.6
+            return round(min(max(fim, minimo), maximo), 2)
+    return maximo
+
+
+def monta(pasta, slug, *, marca="5 FUTUROS", chip, nome, cor, fala, exp, exp_ini, dur, banda, fim_html, fim_js, capa=None, capa_ate=0.0,
+          zooms=(), titulo=None, capa_pronta=False):
+    """banda = [(t_ini, img, rotulo, cor_rotulo)]; troca com dissolve e zoom lento (≤1,08).
+    Quadro 0 (D17): capa nos 2/3 de cima = `capa` (imagem de impacto do caso; sem ela, a última da banda) + `titulo`
+    (≤ 4 palavras, <b>…</b> fica amarelo; sem ele, `nome`), até `capa_ate` (padrão: fim da 1ª frase).
+    `capa_pronta=True`: a imagem já traz o título desenhado (capa do Codex) — não sobrepõe texto."""
     out = pasta / "reels" / slug
     a = out / "assets"
     (a / "fonts").mkdir(parents=True, exist_ok=True)
@@ -108,7 +130,10 @@ def monta(pasta, slug, *, marca="5 FUTUROS", chip, nome, cor, fala, exp, exp_ini
         link(f, a / "fonts" / f.name)
     link(pasta / "reels" / exp, a / "exp.mp4")
     link(pasta / "build" / f"n-{fala}.mp4", a / "av.mp4")
-    imgs = sorted({b[1] for b in banda} | ({capa} if capa else set()))
+    if not capa:
+        capa = banda[-1][1]
+        print(f"aviso {slug}: sem capa própria, usando {capa} no quadro 0")
+    imgs = sorted({b[1] for b in banda} | {capa})
     for im in imgs:
         src = pasta / "imagens" / im if (pasta / "imagens" / im).exists() else pasta / "build" / im
         link(src, a / im)
@@ -131,11 +156,19 @@ def monta(pasta, slug, *, marca="5 FUTUROS", chip, nome, cor, fala, exp, exp_ini
         if k:
             J.a(f'tl.to("#bi{k - 1}", {{opacity:0, duration:0.6}}, {t0 + 0.3:.2f});')
         J.a(f'tl.set("#br{k}", {{opacity:1}}, {t0:.2f}); tl.set("#br{k}", {{opacity:0}}, {t1 - 0.02:.2f});')
-    capa_html = ""
-    if capa:
-        capa_html = (f'<div id="capa" class="clip full" data-start="0" data-duration="{capa_ate + 0.5:.2f}" data-track-index="12">'
-                     f'<img src="assets/{capa}"></div>')
-        J.a(f'tl.to("#capa", {{opacity:0, duration:0.45}}, {capa_ate:.2f});')
+    if not capa_ate:
+        capa_ate = fim_1a_frase(pal)
+    tit = titulo or nome
+    n_pal = len(re.sub(r"<[^>]+>", "", tit).split())
+    if n_pal > 4 and not capa_pronta:
+        print(f"aviso {slug}: título da capa com {n_pal} palavras (máx. 4)")
+    txt = "" if capa_pronta else (f'<div class="grad"></div><span class="chip">{chip}</span>'
+                                  f'<div class="tit" style="font-size:{150 if len(re.sub(r"<[^>]+>", "", tit)) <= 14 else 118}px">{tit}</div>')
+    capa_html = (f'<div id="capa" class="clip" data-start="0" data-duration="{capa_ate + 0.5:.2f}" data-track-index="12">'
+                 f'<img id="capai" src="assets/{capa}">{txt}</div>')
+    J.a(f'tl.fromTo("#capai", {{scale:1}}, {{scale:1.05, duration:{capa_ate + 0.5:.2f}, ease:"none"}}, 0);')
+    J.a(f'tl.to("#capa", {{opacity:0, duration:0.45}}, {capa_ate:.2f});')
+    J.a(f'tl.set("#legenda", {{opacity:0}}, 0); tl.set("#legenda", {{opacity:1}}, {capa_ate:.2f});')   # um texto por vez
     for z0, z1, k, orig in zooms:      # enquadra um painel do 16:9 (o resto da faixa estaria vazio)
         J.a(f'tl.to("#exp", {{scale:{k}, transformOrigin:"{orig}", duration:0.6, ease:"power2.inOut"}}, {z0:.2f});')
         J.a(f'tl.to("#exp", {{scale:1, duration:0.6, ease:"power2.inOut"}}, {z1 - 0.6:.2f});')
@@ -237,7 +270,7 @@ def main():
     fim_js.append(f'tl.to("#fsub", {{opacity:1, duration:0.3}}, {t_fim + 1.4:.2f});')
     monta(pasta, "indice-5-caminhos", chip="A PARTIR DE 2027", nome="5 CAMINHOS", cor="#FACC15", fala=fala,
           exp="limpo-b.mp4", exp_ini=0.0, dur=round(t_fim, 2), banda=banda, fim_html=fim_html, fim_js=fim_js,
-          capa="B-capa-9x16-3-empilhadas.jpg", capa_ate=capa_ate,
+          capa="B-capa-9x16-3-empilhadas.jpg", capa_ate=capa_ate, capa_pronta=True,
           zooms=[(t_palavra(w, "grupo") + 0.3, t_palavra(w, "stanford") - 0.2, 1.2, "5% 16%")])
 
 

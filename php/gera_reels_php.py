@@ -15,6 +15,10 @@ import gera_reels as R  # noqa: E402
 R.CORRIGE.update({"Php": "PHP", "php": "PHP", "Cloud": "Claude"})
 MARCA = "PHP2SHELL"
 
+# quadro 0 (D17): imagem de impacto + título ≤ 4 palavras nos 2/3 de cima
+CAPAS = {"P": ("plataforma-lucia.png", "LOJA <b>PRONTA</b> ESCAPA?"), "W": ("falha-servidor.png", "WORDPRESS <b>EM RISCO</b>"),
+         "S": ("servidor-ataque.png", "SEU SERVIDOR <b>ABERTO</b>"), "I": ("servidor-ataque.png", "SEU SITE <b>EXPOSTO?</b>")}
+
 CASOS = [  # id, fala, nome curto (≤ 18), cor, banda [(palavra-âncora | 0, imagem, rótulo)]
     ("P", "1-plataforma", "PLATAFORMA PRONTA", "#4ade80",
      [(0, "lucia-2026.png", "A LÚCIA · PADARIA"), ("lucia", "plataforma-lucia.png", "CASO 1 · SHOPIFY, WIX…")]),
@@ -82,7 +86,7 @@ def main():
         slug = f"caso-{n}-{fala.split('-', 1)[1]}"
         R.monta(AQUI, slug, marca=MARCA, chip=f"CASO {n} DE 3", nome=nome, cor=cor, fala=fala, exp="limpo-a.mp4",
                 exp_ini=s["ini"], dur=dur, banda=banda_de(w, itens), fim_html=fim_html, fim_js=fim_js,
-                zooms=zooms_rel(jan, s["ini"], dur))
+                zooms=zooms_rel(jan, s["ini"], dur), capa=CAPAS[k][0], titulo=CAPAS[k][1])
         a = AQUI / "reels" / slug / "assets"
         for o in outros:
             R.link(AQUI / "imagens" / o[4][-1][1], a / o[4][-1][1])
@@ -100,7 +104,7 @@ def main():
     fim_js.append(f'tl.to("#fsub", {{opacity:1, duration:0.3}}, {t_fim + 1.2:.2f});')
     R.monta(AQUI, "indice-3-casos", marca=MARCA, chip="21/10/2026 · URGENTE", nome="SITE EXPOSTO?", cor="#FACC15", fala=fala,
             exp="limpo-a.mp4", exp_ini=0.0, dur=t_fim, banda=banda, fim_html=fim_html, fim_js=fim_js,
-            zooms=zooms_rel(jan, 0.0, t_fim))
+            zooms=zooms_rel(jan, 0.0, t_fim), capa=CAPAS["I"][0], titulo=CAPAS["I"][1])
 
 
 if __name__ == "__main__":

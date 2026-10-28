@@ -53,3 +53,7 @@ bancos/cena-*/.hyperframes/
 bancos/reels/*.mp4
 bancos/reels/*/assets/
 bancos/reels/*/.hyperframes/
+completo/reels/**/*.mp4
+reels/*/build/partes/
+reels/*/build/snap*/
+reels/*/build/q*.jpg

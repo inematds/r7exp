@@ -26,3 +26,9 @@ nos 5 caminhos e no final "como se preparar"; cada caminho ensina como se adapta
 - Publicados (lives11, todos na playlist): índice iWGJf2IwiRs · 1 IbSbkQmBEaM · 2 cPS1mv96H_g · 3 vaIWnSm3nkY · 4 hju4LeqC3Ds · 5 cNv5tblLd-8. Links no inemaytbot em 22/10.
 - Playlist espelho no lives1 (INEMA TDS): https://www.youtube.com/playlist?list=PLCTFUR8YB1Os — mesmos 9 vídeos, B primeiro (23/10).
 - Telegram 23/10: INEMA.VIP Novidades (t.me/c/2405283087/306) + tópico novo INEMA.IA 6169 (no MENU msg 6180), link da playlist lives11.
+
+## Reel novo 9:16 "o que vai acontecer + 5 cenários" (28/10/2026)
+- `reels/cinco-cenarios/gera_v.py`: sem avatar novo — corta 22 frases das falas já gravadas (n-<fala>.mp4 + tempos), gráfico vertical próprio (mapa dos 5 caminhos, AI 2027, −19% Stanford, 72% dos 20 maiores supercomputadores com 3 donos — Epoch AI out/2026, da 1ª coleta do cinco-futuros), chamada por trecho. 97 s.
+- Revisor independente: aprovado 8, impacto 7; sugestões aplicadas (rodapé legível, 5 Anas no lugar da foto repetida).
+- v3 msg 2905. Sem YouTube até o Nei mandar.
+- Reenvio ao v3 dos 8 já feitos (A 2873, B 2879, índice 2881, caminhos 2885/2887/2889/2895/2897) — pasta reels/reenvio-2026-10-28 (hardlinks).

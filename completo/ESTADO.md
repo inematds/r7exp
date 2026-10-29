@@ -32,3 +32,12 @@ nos 5 caminhos e no final "como se preparar"; cada caminho ensina como se adapta
 - Revisor independente: aprovado 8, impacto 7; sugestões aplicadas (rodapé legível, 5 Anas no lugar da foto repetida).
 - v3 msg 2905. Sem YouTube até o Nei mandar.
 - Reenvio ao v3 dos 8 já feitos (A 2873, B 2879, índice 2881, caminhos 2885/2887/2889/2895/2897) — pasta reels/reenvio-2026-10-28 (hardlinks).
+
+## Reel r7exp 5 futuros v2 — avatar novo, fala contínua (28/10/2026)
+- Pedido do Nei: "refaca ele usando o rtex rtexjp e r7ex e r7exp publique no lives11 na fila, e manda todos no v3".
+- `reels/cinco-cenarios-v2/`: `fala.txt` (315 palavras) → `avatar.sh enviar|baixar|preparar` (estúdio HeyGen, TEMPLATE-AVATAR16) → `gera_v2.py` (mesmo layout do cinco-cenarios; seções por palavra-marco). 107,5 s, −14,4 LUFS.
+- Whisper pulou 87–98 s: retranscrito o trecho e juntado (original em `tempos/fala.whisper-original.json`).
+- Revisor independente: aprovado 8, impacto 8; aplicadas: Ana apresentada na tela, "no cenário AI 2027", contador 72% em "três empresas", inema.club no cartão final.
+- v3 msg 2954 · fila r7ex lives11 + playlist PLGR_G3hBAAaM (posição 11).
+- r7ex irmão: `~/projetos/r7ex/edicoes/2026-10-28-cinco-futuros-escolha` (produção automática → v3 + fila lives11 + playlist).
+- Reenvio ao v3 dos 10 já feitos: msgs 2930–2949 (`completo/reels/reenvio-2026-10-28b/`).

@@ -1,0 +1,412 @@
+[
+ {
+  "word": "E",
+  "start": 0.0,
+  "end": 0.08
+ },
+ {
+  "word": "se",
+  "start": 0.08,
+  "end": 0.18
+ },
+ {
+  "word": "uma",
+  "start": 0.18,
+  "end": 0.3
+ },
+ {
+  "word": "máquina",
+  "start": 0.3,
+  "end": 0.56
+ },
+ {
+  "word": "respondesse,",
+  "start": 0.56,
+  "end": 1.16
+ },
+ {
+  "word": "em",
+  "start": 1.2,
+  "end": 1.36
+ },
+ {
+  "word": "seis",
+  "start": 1.36,
+  "end": 1.56
+ },
+ {
+  "word": "semanas,",
+  "start": 1.56,
+  "end": 1.82
+ },
+ {
+  "word": "perguntas",
+  "start": 1.86,
+  "end": 2.4
+ },
+ {
+  "word": "que",
+  "start": 2.4,
+  "end": 2.48
+ },
+ {
+  "word": "os",
+  "start": 2.48,
+  "end": 2.56
+ },
+ {
+  "word": "maiores",
+  "start": 2.56,
+  "end": 2.94
+ },
+ {
+  "word": "gênios",
+  "start": 2.94,
+  "end": 3.2
+ },
+ {
+  "word": "carregaram",
+  "start": 3.2,
+  "end": 3.66
+ },
+ {
+  "word": "por",
+  "start": 3.66,
+  "end": 3.74
+ },
+ {
+  "word": "mais",
+  "start": 3.74,
+  "end": 3.94
+ },
+ {
+  "word": "de",
+  "start": 3.94,
+  "end": 4.06
+ },
+ {
+  "word": "100",
+  "start": 4.06,
+  "end": 4.2
+ },
+ {
+  "word": "anos?",
+  "start": 4.2,
+  "end": 4.44
+ },
+ {
+  "word": "Foi",
+  "start": 4.58,
+  "end": 4.94
+ },
+ {
+  "word": "isso",
+  "start": 4.94,
+  "end": 5.12
+ },
+ {
+  "word": "que",
+  "start": 5.12,
+  "end": 5.26
+ },
+ {
+  "word": "a",
+  "start": 5.26,
+  "end": 5.36
+ },
+ {
+  "word": "OpenAI",
+  "start": 5.36,
+  "end": 5.82
+ },
+ {
+  "word": "anunciou",
+  "start": 5.82,
+  "end": 6.34
+ },
+ {
+  "word": "agora.",
+  "start": 6.34,
+  "end": 6.5
+ },
+ {
+  "word": "Calma,",
+  "start": 6.78,
+  "end": 7.22
+ },
+ {
+  "word": "não",
+  "start": 7.24,
+  "end": 7.5
+ },
+ {
+  "word": "é",
+  "start": 7.5,
+  "end": 7.64
+ },
+ {
+  "word": "mágica",
+  "start": 7.64,
+  "end": 7.94
+ },
+ {
+  "word": "e",
+  "start": 7.94,
+  "end": 8.12
+ },
+ {
+  "word": "não",
+  "start": 8.12,
+  "end": 8.24
+ },
+ {
+  "word": "resolveu",
+  "start": 8.24,
+  "end": 8.6
+ },
+ {
+  "word": "tudo,",
+  "start": 8.6,
+  "end": 8.74
+ },
+ {
+  "word": "mas",
+  "start": 8.9,
+  "end": 9.16
+ },
+ {
+  "word": "mexeu",
+  "start": 9.16,
+  "end": 9.48
+ },
+ {
+  "word": "em",
+  "start": 9.48,
+  "end": 9.58
+ },
+ {
+  "word": "três",
+  "start": 9.58,
+  "end": 9.78
+ },
+ {
+  "word": "ramos",
+  "start": 9.78,
+  "end": 10.12
+ },
+ {
+  "word": "da",
+  "start": 10.12,
+  "end": 10.22
+ },
+ {
+  "word": "ciência",
+  "start": 10.22,
+  "end": 10.52
+ },
+ {
+  "word": "de",
+  "start": 10.52,
+  "end": 10.64
+ },
+ {
+  "word": "uma",
+  "start": 10.64,
+  "end": 10.68
+ },
+ {
+  "word": "vez.",
+  "start": 10.68,
+  "end": 10.92
+ },
+ {
+  "word": "Olha",
+  "start": 11.04,
+  "end": 11.26
+ },
+ {
+  "word": "este",
+  "start": 11.26,
+  "end": 11.54
+ },
+ {
+  "word": "mapa.",
+  "start": 11.54,
+  "end": 11.76
+ },
+ {
+  "word": "São",
+  "start": 11.94,
+  "end": 12.22
+ },
+ {
+  "word": "quatro",
+  "start": 12.22,
+  "end": 12.54
+ },
+ {
+  "word": "peças",
+  "start": 12.54,
+  "end": 12.98
+ },
+ {
+  "word": "dessa",
+  "start": 12.98,
+  "end": 13.16
+ },
+ {
+  "word": "história.",
+  "start": 13.16,
+  "end": 13.48
+ },
+ {
+  "word": "Agora",
+  "start": 13.68,
+  "end": 13.98
+ },
+ {
+  "word": "conheça",
+  "start": 13.98,
+  "end": 14.34
+ },
+ {
+  "word": "o",
+  "start": 14.34,
+  "end": 14.4
+ },
+ {
+  "word": "Rafael,",
+  "start": 14.4,
+  "end": 14.56
+ },
+ {
+  "word": "41",
+  "start": 14.88,
+  "end": 15.42
+ },
+ {
+  "word": "anos,",
+  "start": 15.42,
+  "end": 15.82
+ },
+ {
+  "word": "professor",
+  "start": 15.98,
+  "end": 16.18
+ },
+ {
+  "word": "de",
+  "start": 16.18,
+  "end": 16.48
+ },
+ {
+  "word": "matemática,",
+  "start": 16.48,
+  "end": 16.98
+ },
+ {
+  "word": "que",
+  "start": 17.08,
+  "end": 17.34
+ },
+ {
+  "word": "passou",
+  "start": 17.34,
+  "end": 17.54
+ },
+ {
+  "word": "20",
+  "start": 17.54,
+  "end": 17.76
+ },
+ {
+  "word": "anos",
+  "start": 17.76,
+  "end": 18.04
+ },
+ {
+  "word": "ensinando",
+  "start": 18.04,
+  "end": 18.44
+ },
+ {
+  "word": "que",
+  "start": 18.44,
+  "end": 18.6
+ },
+ {
+  "word": "certas",
+  "start": 18.6,
+  "end": 18.92
+ },
+ {
+  "word": "perguntas",
+  "start": 18.92,
+  "end": 19.44
+ },
+ {
+  "word": "não",
+  "start": 19.44,
+  "end": 19.54
+ },
+ {
+  "word": "têm",
+  "start": 19.54,
+  "end": 19.68
+ },
+ {
+  "word": "resposta.",
+  "start": 19.68,
+  "end": 19.98
+ },
+ {
+  "word": "Vamos",
+  "start": 20.3,
+  "end": 20.64
+ },
+ {
+  "word": "ver",
+  "start": 20.64,
+  "end": 20.86
+ },
+ {
+  "word": "o",
+  "start": 20.86,
+  "end": 20.96
+ },
+ {
+  "word": "que",
+  "start": 20.96,
+  "end": 21.0
+ },
+ {
+  "word": "muda",
+  "start": 21.0,
+  "end": 21.32
+ },
+ {
+  "word": "para",
+  "start": 21.32,
+  "end": 21.42
+ },
+ {
+  "word": "ele",
+  "start": 21.42,
+  "end": 21.64
+ },
+ {
+  "word": "e",
+  "start": 21.64,
+  "end": 21.86
+ },
+ {
+  "word": "para",
+  "start": 21.86,
+  "end": 21.98
+ },
+ {
+  "word": "você.",
+  "start": 21.98,
+  "end": 22.24
+ }
+]

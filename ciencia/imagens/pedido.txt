@@ -1,0 +1,8 @@
+Use a imagem anexada como REFERÊNCIA DO PERSONAGEM (Rafael: mesmo rosto, mesmo cabelo, mesma barba, mesma polo azul-marinho). Gere 5 imagens com a ferramenta de geração de imagem (image_gen), cada uma em PNG, formato PAISAGEM 16:9 (o maior tamanho horizontal disponível), e salve nesta pasta com os nomes abaixo. Em todas: Rafael à DIREITA do quadro, rosto visível, plano médio; metade esquerda mais limpa.
+1) fisica-rafael.png — Rafael numa sala escura diante de uma projeção azulada de um átomo com quarks e glúons brilhando, a mão no queixo, encantado; luz azul fria da projeção no rosto.
+2) computacao-rafael.png — Rafael numa mesa longa de jantar posta para muitos convidados, cadeiras vazias, segurando uma lista de nomes e olhando para um notebook aberto que mostra uma rede de conexões (sem texto legível); expressão de quem entendeu um truque.
+3) matematica-rafael.png — Rafael em pé ao lado de uma mesa de madeira onde uma agulha de costura comprida está girando, com linhas finas desenhadas em giz branco mostrando o rastro do giro; ele observa curioso.
+4) voce-rafael.png — Rafael na sala de aula com alunos adolescentes (de costas ou de perfil, sem rosto em destaque), apontando para a tela de um notebook com uma resposta de IA, ensinando a conferir; clima de aula animada.
+5) final-rafael.png — Rafael sorrindo, confiante, de braços cruzados na frente do quadro-verde cheio de equações, olhando para a câmera.
+Estilo: ilustração cinematográfica realista, luz NEUTRA (nada amarelado/âmbar, nada sépia), cores naturais. SEM texto legível e SEM logos.
+Ao final, liste os caminhos dos arquivos salvos.

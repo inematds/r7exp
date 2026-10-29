@@ -1,0 +1,387 @@
+[
+ {
+  "word": "E",
+  "start": 0.0,
+  "end": 0.22
+ },
+ {
+  "word": "você?",
+  "start": 0.22,
+  "end": 0.36
+ },
+ {
+  "word": "Repare",
+  "start": 0.56,
+  "end": 1.08
+ },
+ {
+  "word": "no",
+  "start": 1.08,
+  "end": 1.16
+ },
+ {
+  "word": "padrão.",
+  "start": 1.16,
+  "end": 1.48
+ },
+ {
+  "word": "A",
+  "start": 1.56,
+  "end": 1.98
+ },
+ {
+  "word": "agulha",
+  "start": 1.98,
+  "end": 2.44
+ },
+ {
+  "word": "esperou",
+  "start": 2.44,
+  "end": 2.8
+ },
+ {
+  "word": "109",
+  "start": 2.8,
+  "end": 3.18
+ },
+ {
+  "word": "anos,",
+  "start": 3.18,
+  "end": 3.52
+ },
+ {
+  "word": "a",
+  "start": 3.68,
+  "end": 3.98
+ },
+ {
+  "word": "física",
+  "start": 3.98,
+  "end": 4.28
+ },
+ {
+  "word": "72,",
+  "start": 4.28,
+  "end": 4.74
+ },
+ {
+  "word": "a",
+  "start": 5.22,
+  "end": 5.52
+ },
+ {
+  "word": "computação",
+  "start": 5.52,
+  "end": 5.88
+ },
+ {
+  "word": "27,",
+  "start": 5.88,
+  "end": 6.12
+ },
+ {
+  "word": "a",
+  "start": 6.54,
+  "end": 6.86
+ },
+ {
+  "word": "inteligência",
+  "start": 6.86,
+  "end": 7.32
+ },
+ {
+  "word": "artificial",
+  "start": 7.32,
+  "end": 7.6
+ },
+ {
+  "word": "fechou",
+  "start": 7.6,
+  "end": 8.26
+ },
+ {
+  "word": "as",
+  "start": 8.26,
+  "end": 8.38
+ },
+ {
+  "word": "três",
+  "start": 8.38,
+  "end": 8.6
+ },
+ {
+  "word": "em",
+  "start": 8.6,
+  "end": 8.96
+ },
+ {
+  "word": "seis",
+  "start": 8.96,
+  "end": 9.22
+ },
+ {
+  "word": "semanas.",
+  "start": 9.22,
+  "end": 9.52
+ },
+ {
+  "word": "Isso",
+  "start": 9.78,
+  "end": 10.14
+ },
+ {
+  "word": "vai",
+  "start": 10.14,
+  "end": 10.28
+ },
+ {
+  "word": "chegar",
+  "start": 10.28,
+  "end": 10.52
+ },
+ {
+  "word": "nos",
+  "start": 10.52,
+  "end": 10.74
+ },
+ {
+  "word": "remédios,",
+  "start": 10.74,
+  "end": 11.24
+ },
+ {
+  "word": "na",
+  "start": 11.28,
+  "end": 11.54
+ },
+ {
+  "word": "energia",
+  "start": 11.54,
+  "end": 11.92
+ },
+ {
+  "word": "e",
+  "start": 11.92,
+  "end": 12.38
+ },
+ {
+  "word": "no",
+  "start": 12.38,
+  "end": 12.5
+ },
+ {
+  "word": "seu",
+  "start": 12.5,
+  "end": 12.66
+ },
+ {
+  "word": "trabalho.",
+  "start": 12.66,
+  "end": 12.94
+ },
+ {
+  "word": "O",
+  "start": 13.16,
+  "end": 13.42
+ },
+ {
+  "word": "mérito",
+  "start": 13.42,
+  "end": 13.76
+ },
+ {
+  "word": "não",
+  "start": 13.76,
+  "end": 13.9
+ },
+ {
+  "word": "está",
+  "start": 13.9,
+  "end": 14.1
+ },
+ {
+  "word": "mais",
+  "start": 14.1,
+  "end": 14.32
+ },
+ {
+  "word": "em",
+  "start": 14.32,
+  "end": 14.44
+ },
+ {
+  "word": "quebrar",
+  "start": 14.44,
+  "end": 14.66
+ },
+ {
+  "word": "pedra,",
+  "start": 14.66,
+  "end": 15.1
+ },
+ {
+  "word": "está",
+  "start": 15.12,
+  "end": 15.36
+ },
+ {
+  "word": "em",
+  "start": 15.36,
+  "end": 15.48
+ },
+ {
+  "word": "ter",
+  "start": 15.48,
+  "end": 15.6
+ },
+ {
+  "word": "critério.",
+  "start": 15.6,
+  "end": 16.06
+ },
+ {
+  "word": "Pedir,",
+  "start": 16.1,
+  "end": 16.6
+ },
+ {
+  "word": "conferir",
+  "start": 16.62,
+  "end": 17.14
+ },
+ {
+  "word": "e",
+  "start": 17.14,
+  "end": 17.28
+ },
+ {
+  "word": "explicar",
+  "start": 17.28,
+  "end": 17.58
+ },
+ {
+  "word": "o",
+  "start": 17.58,
+  "end": 17.82
+ },
+ {
+  "word": "que",
+  "start": 17.82,
+  "end": 17.9
+ },
+ {
+  "word": "a",
+  "start": 17.9,
+  "end": 17.96
+ },
+ {
+  "word": "máquina",
+  "start": 17.96,
+  "end": 18.18
+ },
+ {
+  "word": "entrega.",
+  "start": 18.18,
+  "end": 18.66
+ },
+ {
+  "word": "O",
+  "start": 18.72,
+  "end": 19.02
+ },
+ {
+  "word": "Rafael",
+  "start": 19.02,
+  "end": 19.22
+ },
+ {
+  "word": "já",
+  "start": 19.22,
+  "end": 19.36
+ },
+ {
+  "word": "começou.",
+  "start": 19.36,
+  "end": 19.62
+ },
+ {
+  "word": "Usa",
+  "start": 19.78,
+  "end": 20.2
+ },
+ {
+  "word": "a",
+  "start": 20.2,
+  "end": 20.22
+ },
+ {
+  "word": "inteligência",
+  "start": 20.22,
+  "end": 20.66
+ },
+ {
+  "word": "artificial",
+  "start": 20.66,
+  "end": 20.9
+ },
+ {
+  "word": "para",
+  "start": 20.9,
+  "end": 21.54
+ },
+ {
+  "word": "preparar",
+  "start": 21.54,
+  "end": 21.94
+ },
+ {
+  "word": "as",
+  "start": 21.94,
+  "end": 22.04
+ },
+ {
+  "word": "aulas",
+  "start": 22.04,
+  "end": 22.32
+ },
+ {
+  "word": "e",
+  "start": 22.32,
+  "end": 22.44
+ },
+ {
+  "word": "ensina",
+  "start": 22.44,
+  "end": 22.76
+ },
+ {
+  "word": "os",
+  "start": 22.76,
+  "end": 22.82
+ },
+ {
+  "word": "alunos",
+  "start": 22.82,
+  "end": 23.12
+ },
+ {
+  "word": "a",
+  "start": 23.12,
+  "end": 23.18
+ },
+ {
+  "word": "conferir",
+  "start": 23.18,
+  "end": 23.54
+ },
+ {
+  "word": "cada",
+  "start": 23.54,
+  "end": 23.7
+ },
+ {
+  "word": "resposta.",
+  "start": 23.7,
+  "end": 24.02
+ }
+]

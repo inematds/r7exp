@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="portrait">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=1080, height=1920"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face { font-family:"Sora"; src:url("assets/fonts/sora-latin-700-normal.woff2") format("woff2"); font-weight:700; }
+@font-face { font-family:"Inter"; src:url("assets/fonts/Inter-700.woff2") format("woff2"); font-weight:700; }
+@font-face { font-family:"Montserrat"; src:url("assets/fonts/Montserrat-Black.ttf") format("truetype"); font-weight:900; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:#0c0c10; }
+#root { width:100%; height:100%; position:relative; background:#0c0c10; color:#fff; font-family:Inter, sans-serif; }
+.clip { position:absolute; }
+.full { inset:0; }
+#hdr { left:0; top:0; width:1080px; height:170px; padding:22px 40px 0; }
+.chip { display:inline-block; font-family:Sora; font-weight:700; font-size:26px; letter-spacing:.14em; padding:7px 16px; border-radius:999px; background:#FACC15; color:#14110a; }
+.marca { position:absolute; right:40px; top:28px; font-family:Sora; font-weight:700; font-size:28px; letter-spacing:.14em; color:#FACC15; }
+.marca span { color:#ECECF1; }
+.nome { font-family:Montserrat; font-weight:900; font-size:76px; line-height:1; margin-top:12px; white-space:nowrap; text-transform:uppercase; }
+#expw { position:absolute; left:0; top:170px; width:1080px; height:608px; overflow:hidden; }
+#exp { position:absolute; left:0; top:0; width:1080px; height:608px; object-fit:cover; }
+#avw { position:absolute; left:0; top:1280px; width:1080px; height:640px; overflow:hidden; border-top:4px solid #FACC15; }
+#av { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 18%; }
+#banda { left:0; top:778px; width:1080px; height:502px; overflow:hidden; }
+#banda img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform-origin:50% 40%; }
+#banda .sombra { position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,12,16,.55) 0%, rgba(12,12,16,0) 28%, rgba(12,12,16,0) 55%, rgba(12,12,16,.75) 100%); }
+.rot { position:absolute; left:40px; top:26px; font-family:Sora; font-weight:700; font-size:30px; letter-spacing:.06em; padding:8px 18px; border-radius:12px; background:rgba(12,12,16,.85); opacity:0; }
+#legenda { left:0; top:0; width:1080px; height:1920px; }
+.cap { position:absolute; left:30px; right:30px; bottom:660px; text-align:center; font-family:Montserrat; font-weight:900; font-size:68px; line-height:1.05; text-transform:uppercase; opacity:0;
+       color:#fff; -webkit-text-stroke:10px #000; paint-order:stroke fill; }
+.cap b { font-weight:900; }
+#capa { left:0; top:0; width:1080px; height:1280px; overflow:hidden; background:#0c0c10; }
+#capa img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+#capa .grad { position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,12,16,.92) 0%, rgba(12,12,16,.55) 30%, rgba(12,12,16,0) 52%, rgba(12,12,16,0) 80%, rgba(12,12,16,.6) 100%); }
+#capa .chip { position:absolute; left:40px; top:40px; }
+#capa .tit { position:absolute; left:40px; right:40px; top:110px; font-family:Montserrat; font-weight:900; text-transform:uppercase; line-height:.98;
+             color:#fff; -webkit-text-stroke:6px #000; paint-order:stroke fill; }
+#capa .tit b { color:#FACC15; }
+.fim { background:#0c0c10; opacity:0; }
+.fim h2 { position:absolute; left:40px; right:40px; text-align:center; font-family:Montserrat; font-weight:900; text-transform:uppercase; line-height:1; }
+.grade { position:absolute; left:40px; right:40px; top:480px; display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.cel { border-radius:16px; overflow:hidden; background:#16161e; opacity:0; }
+.cel img { width:100%; height:300px; object-fit:cover; display:block; }
+.cel span { display:block; padding:12px 10px; font-family:Sora; font-weight:700; font-size:28px; text-align:center; }
+.lista { position:absolute; left:90px; right:90px; top:520px; }
+.li { display:flex; align-items:center; gap:24px; margin-bottom:34px; font-family:Sora; font-weight:700; font-size:50px; opacity:0; }
+.li i { flex:none; width:30px; height:30px; border-radius:50%; }
+.sub { position:absolute; left:40px; right:40px; text-align:center; font-family:Sora; font-weight:700; font-size:40px; color:#c9c9d2; line-height:1.3; opacity:0; }
+.pill { display:inline-block; margin-top:22px; font-family:Sora; font-weight:700; font-size:44px; padding:14px 40px; border-radius:999px; background:#FACC15; color:#1a1206; }
+</style></head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="34.37" data-width="1080" data-height="1920">
+ <div id="hdr" class="clip" data-start="0" data-duration="30.87" data-track-index="1"><span class="chip">PEÇA 2 DE 4</span>
+  <div class="marca">INEMA <span>· IA FAZ CIÊNCIA</span></div><div class="nome" style="color:#c084fc;font-size:76px">COMPUTAÇÃO · 1999</div></div>
+ <div id="expw"><video id="exp" class="clip" src="assets/exp.mp4" data-start="0" data-duration="30.87" data-media-start="49.900" data-track-index="2" data-volume="0" muted playsinline></video></div>
+ <div id="avw">
+  <video id="av" src="assets/av.mp4" data-start="0" data-duration="30.87" data-track-index="4" data-has-audio="true" data-volume="1" playsinline></video></div>
+ <div id="banda" class="clip" data-start="0" data-duration="30.87" data-track-index="5"><img id="bi0" src="assets/rafael-hoje.png"><img id="bi1" src="assets/computacao-rafael.png"><div class="sombra"></div><div class="rot" id="br0" style="color:#ECECF1">O RAFAEL · PROFESSOR</div><div class="rot" id="br1" style="color:#ECECF1">A HIPÓTESE CAIU</div></div>
+ <div id="legenda" class="clip" data-start="0" data-duration="30.87" data-track-index="10"><div class="cap" id="cap0"><b data-t="0.00">Segundo</b></div><div class="cap" id="cap1"><b data-t="0.82">a</b> <b data-t="0.92">computação</b></div><div class="cap" id="cap2"><b data-t="1.54">Imagine</b> <b data-t="1.98">montar</b> <b data-t="2.34">um</b></div><div class="cap" id="cap3"><b data-t="2.42">jantar</b> <b data-t="2.72">com</b> <b data-t="2.82">100</b></div><div class="cap" id="cap4"><b data-t="3.02">convidados</b> <b data-t="3.56">e</b> <b data-t="3.70">um</b></div><div class="cap" id="cap5"><b data-t="3.72">monte</b> <b data-t="3.90">de</b> <b data-t="4.06">regras</b></div><div class="cap" id="cap6"><b data-t="4.48">Conferir</b> <b data-t="5.00">uma</b> <b data-t="5.12">lista</b></div><div class="cap" id="cap7"><b data-t="5.32">pronta</b> <b data-t="5.66">é</b> <b data-t="5.78">fácil</b></div><div class="cap" id="cap8"><b data-t="6.26">Achar</b> <b data-t="6.66">a</b> <b data-t="6.78">combinação</b></div><div class="cap" id="cap9"><b data-t="7.06">certa</b> <b data-t="7.40">do</b> <b data-t="7.56">zero</b></div><div class="cap" id="cap10"><b data-t="7.82">é</b> <b data-t="8.02">quase</b> <b data-t="8.28">impossível</b></div><div class="cap" id="cap11"><b data-t="9.02">Desde</b> <b data-t="9.40">1999</b></div><div class="cap" id="cap12"><b data-t="10.98">os</b> <b data-t="11.34">cientistas</b> <b data-t="11.76">acreditavam</b></div><div class="cap" id="cap13"><b data-t="12.42">que</b> <b data-t="12.56">não</b> <b data-t="12.70">existia</b></div><div class="cap" id="cap14"><b data-t="13.08">atalho</b></div><div class="cap" id="cap15"><b data-t="13.56">E</b> <b data-t="13.74">centenas</b> <b data-t="14.06">de</b></div><div class="cap" id="cap16"><b data-t="14.20">artigos</b> <b data-t="14.50">foram</b> <b data-t="14.68">escritos</b></div><div class="cap" id="cap17"><b data-t="15.08">em</b> <b data-t="15.22">cima</b> <b data-t="15.34">disso</b></div><div class="cap" id="cap18"><b data-t="15.86">A</b> <b data-t="16.14">inteligência</b> <b data-t="16.54">artificial</b></div><div class="cap" id="cap19"><b data-t="16.76">achou</b> <b data-t="17.54">o</b> <b data-t="17.60">atalho</b></div><div class="cap" id="cap20"><b data-t="18.06">A</b> <b data-t="18.38">hipótese</b> <b data-t="18.82">caiu</b></div><div class="cap" id="cap21"><b data-t="19.28">E</b> <b data-t="19.66">quem</b> <b data-t="19.82">está</b></div><div class="cap" id="cap22"><b data-t="19.96">revisando</b> <b data-t="20.44">são</b> <b data-t="20.76">os</b></div><div class="cap" id="cap23"><b data-t="20.92">próprios</b> <b data-t="21.22">autores</b> <b data-t="21.54">dela</b></div><div class="cap" id="cap24"><b data-t="21.94">Para</b> <b data-t="22.34">o</b> <b data-t="22.44">Rafael</b></div><div class="cap" id="cap25"><b data-t="22.92">isso</b> <b data-t="23.26">vira</b> <b data-t="23.52">uma</b></div><div class="cap" id="cap26"><b data-t="23.64">aula</b> <b data-t="23.84">incrível</b></div><div class="cap" id="cap27"><b data-t="24.40">Mas</b> <b data-t="24.68">atenção</b></div><div class="cap" id="cap28"><b data-t="25.18">a</b> <b data-t="25.48">senha</b> <b data-t="25.78">do</b></div><div class="cap" id="cap29"><b data-t="25.88">seu</b> <b data-t="26.00">banco</b> <b data-t="26.20">continua</b></div><div class="cap" id="cap30"><b data-t="26.54">segura</b></div><div class="cap" id="cap31"><b data-t="27.02">Caiu</b> <b data-t="27.72">uma</b> <b data-t="27.80">cerca</b></div><div class="cap" id="cap32"><b data-t="28.00">baixinha</b> <b data-t="28.50">e</b> <b data-t="28.68">o</b></div><div class="cap" id="cap33"><b data-t="28.86">muro</b> <b data-t="29.04">alto</b> <b data-t="29.20">continua</b></div><div class="cap" id="cap34"><b data-t="29.56">de</b> <b data-t="29.82">pé</b></div></div>
+ <div id="fim" class="clip full fim" data-start="30.47" data-duration="3.90" data-track-index="11"><h2 style="top:200px;font-size:84px;color:#fff">EXISTEM OUTRAS</h2><h2 style="top:300px;font-size:124px;color:#FACC15;white-space:nowrap">3 PEÇAS</h2><div class="grade"><div class="cel" id="c0"><img src="assets/fisica-rafael.png" style="height:240px"><span style="color:#60a5fa">FÍSICA · 1954</span></div><div class="cel" id="c1"><img src="assets/matematica-rafael.png" style="height:240px"><span style="color:#fb923c">MATEMÁTICA · 1917</span></div><div class="cel" id="c2"><img src="assets/voce-rafael.png" style="height:240px"><span style="color:#FACC15">E VOCÊ?</span></div></div><div class="sub" id="fsub" style="top:1260px">E VOCÊ?<br><span class="pill">vídeo completo no canal</span></div></div>
+ <div id="capa" class="clip" data-start="0" data-duration="2.00" data-track-index="12"><img id="capai" src="assets/computacao-rafael.png"><div class="grad"></div><span class="chip">PEÇA 2 DE 4</span><div class="tit" style="font-size:118px">COMPUTAÇÃO · 1999</div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.to("#fim", {opacity:1, duration:0.4}, 30.47);
+tl.set("#cap0", {opacity:1}, -0.05); tl.set("#cap0", {opacity:0}, 0.77);
+tl.set("#cap0 b:nth-child(1)", {color:"#FACC15"}, 0.00); tl.set("#cap0 b:nth-child(1)", {color:"#fff"}, 0.45);
+tl.set("#cap1", {opacity:1}, 0.77); tl.set("#cap1", {opacity:0}, 1.49);
+tl.set("#cap1 b:nth-child(1)", {color:"#FACC15"}, 0.82); tl.set("#cap1 b:nth-child(1)", {color:"#fff"}, 1.27);
+tl.set("#cap1 b:nth-child(2)", {color:"#FACC15"}, 0.92); tl.set("#cap1 b:nth-child(2)", {color:"#fff"}, 1.37);
+tl.set("#cap2", {opacity:1}, 1.49); tl.set("#cap2", {opacity:0}, 2.37);
+tl.set("#cap2 b:nth-child(1)", {color:"#FACC15"}, 1.54); tl.set("#cap2 b:nth-child(1)", {color:"#fff"}, 1.99);
+tl.set("#cap2 b:nth-child(2)", {color:"#FACC15"}, 1.98); tl.set("#cap2 b:nth-child(2)", {color:"#fff"}, 2.37);
+tl.set("#cap2 b:nth-child(3)", {color:"#FACC15"}, 2.34); tl.set("#cap2 b:nth-child(3)", {color:"#fff"}, 2.37);
+tl.set("#cap3", {opacity:1}, 2.37); tl.set("#cap3", {opacity:0}, 2.97);
+tl.set("#cap3 b:nth-child(1)", {color:"#FACC15"}, 2.42); tl.set("#cap3 b:nth-child(1)", {color:"#fff"}, 2.87);
+tl.set("#cap3 b:nth-child(2)", {color:"#FACC15"}, 2.72); tl.set("#cap3 b:nth-child(2)", {color:"#fff"}, 2.97);
+tl.set("#cap3 b:nth-child(3)", {color:"#FACC15"}, 2.82); tl.set("#cap3 b:nth-child(3)", {color:"#fff"}, 2.97);
+tl.set("#cap4", {opacity:1}, 2.97); tl.set("#cap4", {opacity:0}, 3.67);
+tl.set("#cap4 b:nth-child(1)", {color:"#FACC15"}, 3.02); tl.set("#cap4 b:nth-child(1)", {color:"#fff"}, 3.47);
+tl.set("#cap4 b:nth-child(2)", {color:"#FACC15"}, 3.56); tl.set("#cap4 b:nth-child(2)", {color:"#fff"}, 3.67);
+tl.set("#cap4 b:nth-child(3)", {color:"#FACC15"}, 3.70); tl.set("#cap4 b:nth-child(3)", {color:"#fff"}, 3.67);
+tl.set("#cap5", {opacity:1}, 3.67); tl.set("#cap5", {opacity:0}, 4.43);
+tl.set("#cap5 b:nth-child(1)", {color:"#FACC15"}, 3.72); tl.set("#cap5 b:nth-child(1)", {color:"#fff"}, 4.17);
+tl.set("#cap5 b:nth-child(2)", {color:"#FACC15"}, 3.90); tl.set("#cap5 b:nth-child(2)", {color:"#fff"}, 4.35);
+tl.set("#cap5 b:nth-child(3)", {color:"#FACC15"}, 4.06); tl.set("#cap5 b:nth-child(3)", {color:"#fff"}, 4.43);
+tl.set("#cap6", {opacity:1}, 4.43); tl.set("#cap6", {opacity:0}, 5.27);
+tl.set("#cap6 b:nth-child(1)", {color:"#FACC15"}, 4.48); tl.set("#cap6 b:nth-child(1)", {color:"#fff"}, 4.93);
+tl.set("#cap6 b:nth-child(2)", {color:"#FACC15"}, 5.00); tl.set("#cap6 b:nth-child(2)", {color:"#fff"}, 5.27);
+tl.set("#cap6 b:nth-child(3)", {color:"#FACC15"}, 5.12); tl.set("#cap6 b:nth-child(3)", {color:"#fff"}, 5.27);
+tl.set("#cap7", {opacity:1}, 5.27); tl.set("#cap7", {opacity:0}, 6.21);
+tl.set("#cap7 b:nth-child(1)", {color:"#FACC15"}, 5.32); tl.set("#cap7 b:nth-child(1)", {color:"#fff"}, 5.77);
+tl.set("#cap7 b:nth-child(2)", {color:"#FACC15"}, 5.66); tl.set("#cap7 b:nth-child(2)", {color:"#fff"}, 6.11);
+tl.set("#cap7 b:nth-child(3)", {color:"#FACC15"}, 5.78); tl.set("#cap7 b:nth-child(3)", {color:"#fff"}, 6.21);
+tl.set("#cap8", {opacity:1}, 6.21); tl.set("#cap8", {opacity:0}, 7.01);
+tl.set("#cap8 b:nth-child(1)", {color:"#FACC15"}, 6.26); tl.set("#cap8 b:nth-child(1)", {color:"#fff"}, 6.71);
+tl.set("#cap8 b:nth-child(2)", {color:"#FACC15"}, 6.66); tl.set("#cap8 b:nth-child(2)", {color:"#fff"}, 7.01);
+tl.set("#cap8 b:nth-child(3)", {color:"#FACC15"}, 6.78); tl.set("#cap8 b:nth-child(3)", {color:"#fff"}, 7.01);
+tl.set("#cap9", {opacity:1}, 7.01); tl.set("#cap9", {opacity:0}, 7.77);
+tl.set("#cap9 b:nth-child(1)", {color:"#FACC15"}, 7.06); tl.set("#cap9 b:nth-child(1)", {color:"#fff"}, 7.51);
+tl.set("#cap9 b:nth-child(2)", {color:"#FACC15"}, 7.40); tl.set("#cap9 b:nth-child(2)", {color:"#fff"}, 7.77);
+tl.set("#cap9 b:nth-child(3)", {color:"#FACC15"}, 7.56); tl.set("#cap9 b:nth-child(3)", {color:"#fff"}, 7.77);
+tl.set("#cap10", {opacity:1}, 7.77); tl.set("#cap10", {opacity:0}, 8.97);
+tl.set("#cap10 b:nth-child(1)", {color:"#FACC15"}, 7.82); tl.set("#cap10 b:nth-child(1)", {color:"#fff"}, 8.27);
+tl.set("#cap10 b:nth-child(2)", {color:"#FACC15"}, 8.02); tl.set("#cap10 b:nth-child(2)", {color:"#fff"}, 8.47);
+tl.set("#cap10 b:nth-child(3)", {color:"#FACC15"}, 8.28); tl.set("#cap10 b:nth-child(3)", {color:"#fff"}, 8.73);
+tl.set("#cap11", {opacity:1}, 8.97); tl.set("#cap11", {opacity:0}, 10.80);
+tl.set("#cap11 b:nth-child(1)", {color:"#FACC15"}, 9.02); tl.set("#cap11 b:nth-child(1)", {color:"#fff"}, 9.47);
+tl.set("#cap11 b:nth-child(2)", {color:"#FACC15"}, 9.40); tl.set("#cap11 b:nth-child(2)", {color:"#fff"}, 9.85);
+tl.set("#cap12", {opacity:1}, 10.93); tl.set("#cap12", {opacity:0}, 12.37);
+tl.set("#cap12 b:nth-child(1)", {color:"#FACC15"}, 10.98); tl.set("#cap12 b:nth-child(1)", {color:"#fff"}, 11.43);
+tl.set("#cap12 b:nth-child(2)", {color:"#FACC15"}, 11.34); tl.set("#cap12 b:nth-child(2)", {color:"#fff"}, 11.79);
+tl.set("#cap12 b:nth-child(3)", {color:"#FACC15"}, 11.76); tl.set("#cap12 b:nth-child(3)", {color:"#fff"}, 12.21);
+tl.set("#cap13", {opacity:1}, 12.37); tl.set("#cap13", {opacity:0}, 13.03);
+tl.set("#cap13 b:nth-child(1)", {color:"#FACC15"}, 12.42); tl.set("#cap13 b:nth-child(1)", {color:"#fff"}, 12.87);
+tl.set("#cap13 b:nth-child(2)", {color:"#FACC15"}, 12.56); tl.set("#cap13 b:nth-child(2)", {color:"#fff"}, 13.01);
+tl.set("#cap13 b:nth-child(3)", {color:"#FACC15"}, 12.70); tl.set("#cap13 b:nth-child(3)", {color:"#fff"}, 13.03);
+tl.set("#cap14", {opacity:1}, 13.03); tl.set("#cap14", {opacity:0}, 13.51);
+tl.set("#cap14 b:nth-child(1)", {color:"#FACC15"}, 13.08); tl.set("#cap14 b:nth-child(1)", {color:"#fff"}, 13.51);
+tl.set("#cap15", {opacity:1}, 13.51); tl.set("#cap15", {opacity:0}, 14.15);
+tl.set("#cap15 b:nth-child(1)", {color:"#FACC15"}, 13.56); tl.set("#cap15 b:nth-child(1)", {color:"#fff"}, 14.01);
+tl.set("#cap15 b:nth-child(2)", {color:"#FACC15"}, 13.74); tl.set("#cap15 b:nth-child(2)", {color:"#fff"}, 14.15);
+tl.set("#cap15 b:nth-child(3)", {color:"#FACC15"}, 14.06); tl.set("#cap15 b:nth-child(3)", {color:"#fff"}, 14.15);
+tl.set("#cap16", {opacity:1}, 14.15); tl.set("#cap16", {opacity:0}, 15.03);
+tl.set("#cap16 b:nth-child(1)", {color:"#FACC15"}, 14.20); tl.set("#cap16 b:nth-child(1)", {color:"#fff"}, 14.65);
+tl.set("#cap16 b:nth-child(2)", {color:"#FACC15"}, 14.50); tl.set("#cap16 b:nth-child(2)", {color:"#fff"}, 14.95);
+tl.set("#cap16 b:nth-child(3)", {color:"#FACC15"}, 14.68); tl.set("#cap16 b:nth-child(3)", {color:"#fff"}, 15.03);
+tl.set("#cap17", {opacity:1}, 15.03); tl.set("#cap17", {opacity:0}, 15.81);
+tl.set("#cap17 b:nth-child(1)", {color:"#FACC15"}, 15.08); tl.set("#cap17 b:nth-child(1)", {color:"#fff"}, 15.53);
+tl.set("#cap17 b:nth-child(2)", {color:"#FACC15"}, 15.22); tl.set("#cap17 b:nth-child(2)", {color:"#fff"}, 15.67);
+tl.set("#cap17 b:nth-child(3)", {color:"#FACC15"}, 15.34); tl.set("#cap17 b:nth-child(3)", {color:"#fff"}, 15.79);
+tl.set("#cap18", {opacity:1}, 15.81); tl.set("#cap18", {opacity:0}, 16.71);
+tl.set("#cap18 b:nth-child(1)", {color:"#FACC15"}, 15.86); tl.set("#cap18 b:nth-child(1)", {color:"#fff"}, 16.31);
+tl.set("#cap18 b:nth-child(2)", {color:"#FACC15"}, 16.14); tl.set("#cap18 b:nth-child(2)", {color:"#fff"}, 16.59);
+tl.set("#cap18 b:nth-child(3)", {color:"#FACC15"}, 16.54); tl.set("#cap18 b:nth-child(3)", {color:"#fff"}, 16.71);
+tl.set("#cap19", {opacity:1}, 16.71); tl.set("#cap19", {opacity:0}, 18.01);
+tl.set("#cap19 b:nth-child(1)", {color:"#FACC15"}, 16.76); tl.set("#cap19 b:nth-child(1)", {color:"#fff"}, 17.21);
+tl.set("#cap19 b:nth-child(2)", {color:"#FACC15"}, 17.54); tl.set("#cap19 b:nth-child(2)", {color:"#fff"}, 17.99);
+tl.set("#cap19 b:nth-child(3)", {color:"#FACC15"}, 17.60); tl.set("#cap19 b:nth-child(3)", {color:"#fff"}, 18.01);
+tl.set("#cap20", {opacity:1}, 18.01); tl.set("#cap20", {opacity:0}, 19.23);
+tl.set("#cap20 b:nth-child(1)", {color:"#FACC15"}, 18.06); tl.set("#cap20 b:nth-child(1)", {color:"#fff"}, 18.51);
+tl.set("#cap20 b:nth-child(2)", {color:"#FACC15"}, 18.38); tl.set("#cap20 b:nth-child(2)", {color:"#fff"}, 18.83);
+tl.set("#cap20 b:nth-child(3)", {color:"#FACC15"}, 18.82); tl.set("#cap20 b:nth-child(3)", {color:"#fff"}, 19.23);
+tl.set("#cap21", {opacity:1}, 19.23); tl.set("#cap21", {opacity:0}, 19.91);
+tl.set("#cap21 b:nth-child(1)", {color:"#FACC15"}, 19.28); tl.set("#cap21 b:nth-child(1)", {color:"#fff"}, 19.73);
+tl.set("#cap21 b:nth-child(2)", {color:"#FACC15"}, 19.66); tl.set("#cap21 b:nth-child(2)", {color:"#fff"}, 19.91);
+tl.set("#cap21 b:nth-child(3)", {color:"#FACC15"}, 19.82); tl.set("#cap21 b:nth-child(3)", {color:"#fff"}, 19.91);
+tl.set("#cap22", {opacity:1}, 19.91); tl.set("#cap22", {opacity:0}, 20.87);
+tl.set("#cap22 b:nth-child(1)", {color:"#FACC15"}, 19.96); tl.set("#cap22 b:nth-child(1)", {color:"#fff"}, 20.41);
+tl.set("#cap22 b:nth-child(2)", {color:"#FACC15"}, 20.44); tl.set("#cap22 b:nth-child(2)", {color:"#fff"}, 20.87);
+tl.set("#cap22 b:nth-child(3)", {color:"#FACC15"}, 20.76); tl.set("#cap22 b:nth-child(3)", {color:"#fff"}, 20.87);
+tl.set("#cap23", {opacity:1}, 20.87); tl.set("#cap23", {opacity:0}, 21.89);
+tl.set("#cap23 b:nth-child(1)", {color:"#FACC15"}, 20.92); tl.set("#cap23 b:nth-child(1)", {color:"#fff"}, 21.37);
+tl.set("#cap23 b:nth-child(2)", {color:"#FACC15"}, 21.22); tl.set("#cap23 b:nth-child(2)", {color:"#fff"}, 21.67);
+tl.set("#cap23 b:nth-child(3)", {color:"#FACC15"}, 21.54); tl.set("#cap23 b:nth-child(3)", {color:"#fff"}, 21.89);
+tl.set("#cap24", {opacity:1}, 21.89); tl.set("#cap24", {opacity:0}, 22.87);
+tl.set("#cap24 b:nth-child(1)", {color:"#FACC15"}, 21.94); tl.set("#cap24 b:nth-child(1)", {color:"#fff"}, 22.39);
+tl.set("#cap24 b:nth-child(2)", {color:"#FACC15"}, 22.34); tl.set("#cap24 b:nth-child(2)", {color:"#fff"}, 22.79);
+tl.set("#cap24 b:nth-child(3)", {color:"#FACC15"}, 22.44); tl.set("#cap24 b:nth-child(3)", {color:"#fff"}, 22.87);
+tl.set("#cap25", {opacity:1}, 22.87); tl.set("#cap25", {opacity:0}, 23.59);
+tl.set("#cap25 b:nth-child(1)", {color:"#FACC15"}, 22.92); tl.set("#cap25 b:nth-child(1)", {color:"#fff"}, 23.37);
+tl.set("#cap25 b:nth-child(2)", {color:"#FACC15"}, 23.26); tl.set("#cap25 b:nth-child(2)", {color:"#fff"}, 23.59);
+tl.set("#cap25 b:nth-child(3)", {color:"#FACC15"}, 23.52); tl.set("#cap25 b:nth-child(3)", {color:"#fff"}, 23.59);
+tl.set("#cap26", {opacity:1}, 23.59); tl.set("#cap26", {opacity:0}, 24.35);
+tl.set("#cap26 b:nth-child(1)", {color:"#FACC15"}, 23.64); tl.set("#cap26 b:nth-child(1)", {color:"#fff"}, 24.09);
+tl.set("#cap26 b:nth-child(2)", {color:"#FACC15"}, 23.84); tl.set("#cap26 b:nth-child(2)", {color:"#fff"}, 24.29);
+tl.set("#cap27", {opacity:1}, 24.35); tl.set("#cap27", {opacity:0}, 25.13);
+tl.set("#cap27 b:nth-child(1)", {color:"#FACC15"}, 24.40); tl.set("#cap27 b:nth-child(1)", {color:"#fff"}, 24.85);
+tl.set("#cap27 b:nth-child(2)", {color:"#FACC15"}, 24.68); tl.set("#cap27 b:nth-child(2)", {color:"#fff"}, 25.13);
+tl.set("#cap28", {opacity:1}, 25.13); tl.set("#cap28", {opacity:0}, 25.83);
+tl.set("#cap28 b:nth-child(1)", {color:"#FACC15"}, 25.18); tl.set("#cap28 b:nth-child(1)", {color:"#fff"}, 25.63);
+tl.set("#cap28 b:nth-child(2)", {color:"#FACC15"}, 25.48); tl.set("#cap28 b:nth-child(2)", {color:"#fff"}, 25.83);
+tl.set("#cap28 b:nth-child(3)", {color:"#FACC15"}, 25.78); tl.set("#cap28 b:nth-child(3)", {color:"#fff"}, 25.83);
+tl.set("#cap29", {opacity:1}, 25.83); tl.set("#cap29", {opacity:0}, 26.49);
+tl.set("#cap29 b:nth-child(1)", {color:"#FACC15"}, 25.88); tl.set("#cap29 b:nth-child(1)", {color:"#fff"}, 26.33);
+tl.set("#cap29 b:nth-child(2)", {color:"#FACC15"}, 26.00); tl.set("#cap29 b:nth-child(2)", {color:"#fff"}, 26.45);
+tl.set("#cap29 b:nth-child(3)", {color:"#FACC15"}, 26.20); tl.set("#cap29 b:nth-child(3)", {color:"#fff"}, 26.49);
+tl.set("#cap30", {opacity:1}, 26.49); tl.set("#cap30", {opacity:0}, 26.97);
+tl.set("#cap30 b:nth-child(1)", {color:"#FACC15"}, 26.54); tl.set("#cap30 b:nth-child(1)", {color:"#fff"}, 26.97);
+tl.set("#cap31", {opacity:1}, 26.97); tl.set("#cap31", {opacity:0}, 27.95);
+tl.set("#cap31 b:nth-child(1)", {color:"#FACC15"}, 27.02); tl.set("#cap31 b:nth-child(1)", {color:"#fff"}, 27.47);
+tl.set("#cap31 b:nth-child(2)", {color:"#FACC15"}, 27.72); tl.set("#cap31 b:nth-child(2)", {color:"#fff"}, 27.95);
+tl.set("#cap31 b:nth-child(3)", {color:"#FACC15"}, 27.80); tl.set("#cap31 b:nth-child(3)", {color:"#fff"}, 27.95);
+tl.set("#cap32", {opacity:1}, 27.95); tl.set("#cap32", {opacity:0}, 28.81);
+tl.set("#cap32 b:nth-child(1)", {color:"#FACC15"}, 28.00); tl.set("#cap32 b:nth-child(1)", {color:"#fff"}, 28.45);
+tl.set("#cap32 b:nth-child(2)", {color:"#FACC15"}, 28.50); tl.set("#cap32 b:nth-child(2)", {color:"#fff"}, 28.81);
+tl.set("#cap32 b:nth-child(3)", {color:"#FACC15"}, 28.68); tl.set("#cap32 b:nth-child(3)", {color:"#fff"}, 28.81);
+tl.set("#cap33", {opacity:1}, 28.81); tl.set("#cap33", {opacity:0}, 29.51);
+tl.set("#cap33 b:nth-child(1)", {color:"#FACC15"}, 28.86); tl.set("#cap33 b:nth-child(1)", {color:"#fff"}, 29.31);
+tl.set("#cap33 b:nth-child(2)", {color:"#FACC15"}, 29.04); tl.set("#cap33 b:nth-child(2)", {color:"#fff"}, 29.49);
+tl.set("#cap33 b:nth-child(3)", {color:"#FACC15"}, 29.20); tl.set("#cap33 b:nth-child(3)", {color:"#fff"}, 29.51);
+tl.set("#cap34", {opacity:1}, 29.51); tl.set("#cap34", {opacity:0}, 30.87);
+tl.set("#cap34 b:nth-child(1)", {color:"#FACC15"}, 29.56); tl.set("#cap34 b:nth-child(1)", {color:"#fff"}, 30.01);
+tl.set("#cap34 b:nth-child(2)", {color:"#FACC15"}, 29.82); tl.set("#cap34 b:nth-child(2)", {color:"#fff"}, 30.27);
+tl.set("#bi0", {opacity:1}, 0);
+tl.fromTo("#bi0", {scale:1}, {scale:1.08, duration:23.04, ease:"none", immediateRender:false}, 0.00);
+tl.set("#br0", {opacity:1}, 0.00); tl.set("#br0", {opacity:0}, 22.42);
+tl.to("#bi1", {opacity:1, duration:0.6}, 22.14);
+tl.fromTo("#bi1", {scale:1}, {scale:1.08, duration:9.03, ease:"none", immediateRender:false}, 22.14);
+tl.to("#bi0", {opacity:0, duration:0.6}, 22.74);
+tl.set("#br1", {opacity:1}, 22.44); tl.set("#br1", {opacity:0}, 30.85);
+tl.fromTo("#capai", {scale:1}, {scale:1.05, duration:2.00, ease:"none"}, 0);
+tl.to("#capa", {opacity:0, duration:0.45}, 1.50);
+tl.set("#legenda", {opacity:0}, 0); tl.set("#legenda", {opacity:1}, 1.50);
+tl.to("#c0", {opacity:1, duration:0.3}, 30.97);
+tl.to("#c1", {opacity:1, duration:0.3}, 31.22);
+tl.to("#c2", {opacity:1, duration:0.3}, 31.47);
+tl.to("#fsub", {opacity:1, duration:0.3}, 31.87);
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body></html>

@@ -1,0 +1,5 @@
+Gere 1 imagem com a ferramenta de geração de imagem (image_gen) e salve nesta pasta como rafael-hoje.png, em PNG, formato PAISAGEM 16:9 (o maior tamanho horizontal disponível).
+RAFAEL, personagem fixa de um vídeo: homem brasileiro de 41 anos, professor de matemática do ensino médio, pele morena clara, cabelo preto curto com algumas entradas, barba por fazer, camisa polo azul-marinho, relógio simples. Rosto genérico (não é pessoa real).
+Cena: hoje, numa sala de aula vazia de escola pública, fim de tarde; ele está de pé ao lado do quadro-verde com equações escritas a giz, segurando um celular e olhando a tela com espanto; carteiras vazias atrás. Plano médio, ele à DIREITA do quadro, rosto bem visível.
+Estilo: ilustração cinematográfica realista, luz NEUTRA (nada amarelado/âmbar, nada sépia), cores naturais. SEM texto legível e SEM logos.
+Ao final, diga o caminho do arquivo salvo.

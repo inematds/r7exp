@@ -1,0 +1,5 @@
+Gere 1 imagem com a ferramenta de geração de imagem (image_gen) e salve nesta pasta como capa-r7.png, em PNG, formato PAISAGEM 16:9 (o maior tamanho horizontal disponível).
+Capa de vídeo, fundo preto #0c0c10. À ESQUERDA, título enorme em 3 linhas, fonte sem serifa extra negrito, branco com uma palavra em amarelo #FACC15: "A IA RESOLVEU" / "100 ANOS DE" / "CIÊNCIA" (a palavra CIÊNCIA em amarelo). Português do Brasil com acento correto, letras grandes e legíveis, sem nenhum outro texto.
+À DIREITA (metade direita bem escura, vai receber um rosto por cima depois — deixe só um brilho sutil): a mão metálica branca de um robô humanoide estilo Tesla Optimus segurando um giz diante de um quadro-negro com equações brilhando em azul.
+Luz NEUTRA, alto contraste, impacto. Sem logos.
+Ao final, diga o caminho do arquivo salvo.
